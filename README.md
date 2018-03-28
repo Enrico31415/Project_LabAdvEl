@@ -1,30 +1,10 @@
 # Project_LabAdvEl
 Final projet of LabAdvEl
 
-# Chiedere a Ricci:
- 1. drivers VGA: ce li facciamo o ce li dà?
- 2. dove ci si attacca con la sonda dell'OSC sulla scheda?
- 3. se alla fine funziona, ci paga da bere?
 
-
-# Link utili:
- 1. [protocollo PS/2](http://www.burtonsys.com/ps2_chapweske.htm) spiegata in dettaglio la parte di livello fisico e il timing
- 2. [protocollo PS/2](https://allpinouts.org/pinouts/connectors/input_device/mouse-keyboard-ps-2/) parla di timing e pins
-## Da wikidev:
- 1. [PS/2 mouse](https://wiki.osdev.org/PS/2_Mouse) alcuni codici e struttura del pacchetto
- 2. [PS/2](https://wiki.osdev.org/PS/2) pins del cavo m/f e bits nei pacchetti nel caso client -> host e viceversa
- 3. [PS/2 controller](https://wiki.osdev.org/"8042"_PS/2_Controller) comandi per il mouse, inizializzazione e registri interni
- 4. [Mouse input](https://wiki.osdev.org/Mouse_Input) struttura dei pacchetti, handling doppio click e rotellina, sample rate, risoluzione. In più altri comandi.
-
-# TODO:
-## Protocollo mouse:
- * Capire quando campionare il segnale dev->host in ingresso in termini del clock: falling-edge OR low OR high OR rising-edge?
- * Stessa cosa per le comunicazioni host->dev
- * timing
- * programma pc per capire cosa si dicono
-
-
-## modulo mouse:
- * portare il programma su FPGA
 ## VGA
-## generatore random per le navi
+# 28/03/2018 (mattina):
+in mattinana ho implementato (due volte) i un controller VGA. In entrami i casi non funziona. In entrambi i casi ho capito il motivo. Il primo tentativo è stato cancellato di violenza, in quanto il codice risultava troppo illeggibile e io stesso non capivo più niente. Sostanzialmente l'erorre del primo sviloppo nascie nello considerare indipendenti i due contatori per la posizione. Assunzione legittima, se non fosse che, poi devono interagire sullo tra di loro non con un semplice clock (carry di uno è il clock dell'altro). Infatti, per il protocollo di comunicazione VGA, richiede che all'esterno dello schermo, vi sia nero, mentre all'interno, una combinazione di colori. Non è possibile a quanto ne so, condividere per entrambi lo stesso output (il compilatore si arrabbia). Bisognerebbe introdurre mutua escolusione e roba strane, ma non è questa la sede. Per far bene, sarebbe da usare la RAM, ma non sarà questa la sede.
+Nella seconda implementazione, sono arrivato a qualcosa di più sensanto, tanto che il monitor, si è lamentato della risoluzione che gli davo. Ora, la risoluzione è stabilita dei vsync, e hsync, inpulsi blaba bla bla.... Quindi, guardando con l'oscilloscopio questi implulsi, ho notato che sono scazzati. Pomeriggio proverò o correggerli, ma sono fiducioso.
+Enrico
+
