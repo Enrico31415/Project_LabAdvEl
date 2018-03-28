@@ -1,12 +1,16 @@
 # Resources folder
 /Resources
 
-#c Compilato vlog
-*.bng
+# intermediate build files
+*.bgn
+*.bit
 *.bld
 *.cmd_log
 *.drc
+*.ll
 *.lso
+*.msd
+*.msk
 *.ncd
 *.ngc
 *.ngd
@@ -16,6 +20,9 @@
 *.pcf
 *.prj
 *.ptwx
+*.rbb
+*.rbd
+*.stx
 *.syr
 *.twr
 *.twx
@@ -23,14 +30,41 @@
 *.ut
 *.xpi
 *.xst
-*.xwbt
-*.html
-*.ncd
-*.map
-*.mrp
-*.ncd
-*.ngm
-*.xrpt
-*.xml
+*_bitgen.xwbt
+*_envsettings.html
+*_map.map
+*_map.mrp
+*_map.ngm
+*_map.xrpt
+*_ngdbuild.xrpt
+*_pad.csv
+*_pad.txt
+*_par.xrpt
+*_summary.html
+*_summary.xml
+*_usage.xml
+*_xst.xrpt
+
+# iMPACT generated files
+_impactbatch.log
+impact.xsl
+impact_impact.xwbt
+ise_impact.cmd
+webtalk_impact.xml
+
+# Core Generator generated files
+xaw2verilog.log
+
+# project-wide generated files
 *.gise
-*.log
+par_usage_statistics.html
+usage_statistics_webtalk.html
+webtalk.log
+webtalk_pn.xml
+
+# generated folders
+iseconfig/
+xlnx_auto_0_xdb/
+xst/
+_ngo/
+_xmsgs/
