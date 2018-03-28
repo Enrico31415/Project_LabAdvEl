@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=/home/enrico.pierobon/Vga_Test/vga_test/Controller.ncd
+OUTFILE=/home/enrico.pierobon/Vga_Test/vga_test/Controller.bit
+FAMILY=Spartan3A and Spartan3AN
+PART=xc3s700an-4fgg484
+WORKINGDIR=/home/enrico.pierobon/Vga_Test/vga_test
+LICENSE=WebPack
+USER_INFO=211072777_0_0_836

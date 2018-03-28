@@ -1,0 +1,506 @@
+Release 14.7 - xst P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> 
+Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.05 secs
+ 
+--> 
+Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.06 secs
+ 
+--> 
+Reading design: Controller.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "Controller.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "Controller"
+Output Format                      : NGC
+Target Device                      : xc3s700an-4-fgg484
+
+---- Source Options
+Top Module Name                    : Controller
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Multiplier Style                   : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 24
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Yes
+Use Synchronous Set                : Yes
+Use Synchronous Reset              : Yes
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "module_frequencyDivider.v" in library work
+Compiling verilog file "module_counter_10_bit.v" in library work
+Module <Module_FrequencyDivider> compiled
+Compiling verilog file "Controller.v" in library work
+Module <Module_Counter_10_bit> compiled
+Module <Controller> compiled
+No errors in compilation
+Analysis of file <"Controller.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <Controller> in library <work>.
+
+Analyzing hierarchy for module <Module_FrequencyDivider> in library <work>.
+
+Analyzing hierarchy for module <Module_Counter_10_bit> in library <work>.
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <Controller>.
+Module <Controller> is correct for synthesis.
+ 
+Analyzing module <Module_FrequencyDivider> in library <work>.
+Module <Module_FrequencyDivider> is correct for synthesis.
+ 
+Analyzing module <Module_Counter_10_bit> in library <work>.
+Module <Module_Counter_10_bit> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <Module_FrequencyDivider>.
+    Related source file is "module_frequencyDivider.v".
+    Found 1-bit register for signal <clk_out>.
+    Found 30-bit up counter for signal <counter>.
+    Found 32-bit comparator greatequal for signal <counter$cmp_ge0000> created at line 16.
+    Summary:
+	inferred   1 Counter(s).
+	inferred   1 D-type flip-flop(s).
+	inferred   1 Comparator(s).
+Unit <Module_FrequencyDivider> synthesized.
+
+
+Synthesizing Unit <Module_Counter_10_bit>.
+    Related source file is "module_counter_10_bit.v".
+    Found 1-bit register for signal <out_hsync>.
+    Found 10-bit register for signal <out_horizontal>.
+    Found 12-bit register for signal <test_color>.
+    Found 1-bit register for signal <out_vsync>.
+    Found 10-bit register for signal <out_vertical>.
+    Found 10-bit adder for signal <old_out_horizontal_10$addsub0000> created at line 112.
+    Found 10-bit comparator greatequal for signal <old_out_horizontal_10$cmp_ge0000> created at line 107.
+    Found 10-bit comparator greatequal for signal <old_out_horizontal_10$cmp_ge0001> created at line 107.
+    Found 10-bit comparator less for signal <old_out_horizontal_10$cmp_lt0000> created at line 107.
+    Found 10-bit comparator less for signal <old_out_horizontal_10$cmp_lt0001> created at line 107.
+    Found 10-bit adder for signal <old_out_horizontal_11$addsub0000> created at line 122.
+    Found 10-bit comparator greatequal for signal <old_out_horizontal_11$cmp_ge0000> created at line 117.
+    Found 10-bit comparator greatequal for signal <old_out_horizontal_11$cmp_ge0001> created at line 117.
+    Found 10-bit comparator less for signal <old_out_horizontal_11$cmp_lt0000> created at line 117.
+    Found 10-bit comparator less for signal <old_out_horizontal_11$cmp_lt0001> created at line 117.
+    Found 10-bit adder for signal <old_out_horizontal_6$addsub0000> created at line 69.
+    Found 10-bit adder for signal <old_out_vertical_5$addsub0000> created at line 62.
+    Found 10-bit comparator greatequal for signal <old_out_vertical_5$cmp_ge0000> created at line 60.
+    Found 10-bit comparator greatequal for signal <old_out_vertical_7$cmp_ge0000> created at line 75.
+    Found 10-bit adder for signal <out_horizontal$addsub0000> created at line 129.
+    Found 10-bit comparator greatequal for signal <out_horizontal$cmp_ge0000> created at line 125.
+    Found 10-bit comparator greatequal for signal <out_horizontal$cmp_ge0001> created at line 125.
+    Found 10-bit comparator less for signal <out_horizontal$cmp_lt0000> created at line 125.
+    Found 10-bit comparator less for signal <out_horizontal$cmp_lt0001> created at line 125.
+    Found 10-bit comparator less for signal <out_hsync$cmp_lt0000> created at line 84.
+    Found 10-bit comparator less for signal <out_vsync$cmp_lt0000> created at line 94.
+    Summary:
+	inferred  34 D-type flip-flop(s).
+	inferred   7 Adder/Subtractor(s).
+	inferred  16 Comparator(s).
+Unit <Module_Counter_10_bit> synthesized.
+
+
+Synthesizing Unit <Controller>.
+    Related source file is "Controller.v".
+Unit <Controller> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 7
+ 10-bit adder                                          : 7
+# Counters                                             : 1
+ 30-bit up counter                                     : 1
+# Registers                                            : 6
+ 1-bit register                                        : 3
+ 10-bit register                                       : 2
+ 12-bit register                                       : 1
+# Comparators                                          : 17
+ 10-bit comparator greatequal                          : 8
+ 10-bit comparator less                                : 8
+ 32-bit comparator greatequal                          : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+INFO:Xst:2261 - The FF/Latch <test_color_8> in Unit <position_counter> is equivalent to the following 3 FFs/Latches, which will be removed : <test_color_9> <test_color_10> <test_color_11> 
+INFO:Xst:2261 - The FF/Latch <test_color_0> in Unit <position_counter> is equivalent to the following 7 FFs/Latches, which will be removed : <test_color_1> <test_color_2> <test_color_3> <test_color_4> <test_color_5> <test_color_6> <test_color_7> 
+WARNING:Xst:1710 - FF/Latch <test_color_0> (without init value) has a constant value of 0 in block <position_counter>. This FF/Latch will be trimmed during the optimization process.
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 7
+ 10-bit adder                                          : 7
+# Counters                                             : 1
+ 30-bit up counter                                     : 1
+# Registers                                            : 35
+ Flip-Flops                                            : 35
+# Comparators                                          : 17
+ 10-bit comparator greatequal                          : 8
+ 10-bit comparator less                                : 8
+ 32-bit comparator greatequal                          : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:1710 - FF/Latch <test_color_0> (without init value) has a constant value of 0 in block <Module_Counter_10_bit>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <test_color_1> (without init value) has a constant value of 0 in block <Module_Counter_10_bit>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <test_color_2> (without init value) has a constant value of 0 in block <Module_Counter_10_bit>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <test_color_3> (without init value) has a constant value of 0 in block <Module_Counter_10_bit>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <test_color_4> (without init value) has a constant value of 0 in block <Module_Counter_10_bit>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <test_color_5> (without init value) has a constant value of 0 in block <Module_Counter_10_bit>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <test_color_6> (without init value) has a constant value of 0 in block <Module_Counter_10_bit>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <test_color_7> (without init value) has a constant value of 0 in block <Module_Counter_10_bit>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <test_color_8> in Unit <Module_Counter_10_bit> is equivalent to the following 3 FFs/Latches, which will be removed : <test_color_9> <test_color_10> <test_color_11> 
+
+Optimizing unit <Controller> ...
+
+Optimizing unit <Module_Counter_10_bit> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block Controller, actual ratio is 1.
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 54
+ Flip-Flops                                            : 54
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : Controller.ngr
+Top Level Output File Name         : Controller
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 23
+
+Cell Usage :
+# BELS                             : 406
+#      GND                         : 1
+#      INV                         : 5
+#      LUT1                        : 48
+#      LUT2                        : 12
+#      LUT2_D                      : 5
+#      LUT2_L                      : 5
+#      LUT3                        : 20
+#      LUT3_D                      : 11
+#      LUT3_L                      : 6
+#      LUT4                        : 102
+#      LUT4_D                      : 13
+#      LUT4_L                      : 8
+#      MUXCY                       : 83
+#      MUXF5                       : 6
+#      VCC                         : 1
+#      XORCY                       : 80
+# FlipFlops/Latches                : 54
+#      FD                          : 10
+#      FDE                         : 1
+#      FDR                         : 33
+#      FDRE                        : 10
+# Clock Buffers                    : 2
+#      BUFG                        : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 22
+#      OBUF                        : 22
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 3s700anfgg484-4 
+
+ Number of Slices:                      123  out of   5888     2%  
+ Number of Slice Flip Flops:             54  out of  11776     0%  
+ Number of 4 input LUTs:                235  out of  11776     1%  
+ Number of IOs:                          23
+ Number of bonded IOBs:                  23  out of    372     6%  
+ Number of GCLKs:                         2  out of     24     8%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+CLK_50M                            | BUFGP                  | 31    |
+clock_1_Hz_generator/clk_out1      | BUFG                   | 23    |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -4
+
+   Minimum period: 20.138ns (Maximum Frequency: 49.657MHz)
+   Minimum input arrival time before clock: No path found
+   Maximum output required time after clock: 5.780ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'CLK_50M'
+  Clock period: 5.312ns (frequency: 188.253MHz)
+  Total number of paths / destination ports: 1396 / 62
+-------------------------------------------------------------------------
+Delay:               5.312ns (Levels of Logic = 30)
+  Source:            clock_1_Hz_generator/counter_1 (FF)
+  Destination:       clock_1_Hz_generator/counter_29 (FF)
+  Source Clock:      CLK_50M rising
+  Destination Clock: CLK_50M rising
+
+  Data Path: clock_1_Hz_generator/counter_1 to clock_1_Hz_generator/counter_29
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q              2   0.591   0.590  clock_1_Hz_generator/counter_1 (clock_1_Hz_generator/counter_1)
+     LUT1:I0->O            1   0.648   0.000  clock_1_Hz_generator/Mcount_counter_cy<1>_rt (clock_1_Hz_generator/Mcount_counter_cy<1>_rt)
+     MUXCY:S->O            1   0.632   0.000  clock_1_Hz_generator/Mcount_counter_cy<1> (clock_1_Hz_generator/Mcount_counter_cy<1>)
+     MUXCY:CI->O           1   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<2> (clock_1_Hz_generator/Mcount_counter_cy<2>)
+     MUXCY:CI->O           1   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<3> (clock_1_Hz_generator/Mcount_counter_cy<3>)
+     MUXCY:CI->O           1   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<4> (clock_1_Hz_generator/Mcount_counter_cy<4>)
+     MUXCY:CI->O           1   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<5> (clock_1_Hz_generator/Mcount_counter_cy<5>)
+     MUXCY:CI->O           1   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<6> (clock_1_Hz_generator/Mcount_counter_cy<6>)
+     MUXCY:CI->O           1   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<7> (clock_1_Hz_generator/Mcount_counter_cy<7>)
+     MUXCY:CI->O           1   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<8> (clock_1_Hz_generator/Mcount_counter_cy<8>)
+     MUXCY:CI->O           1   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<9> (clock_1_Hz_generator/Mcount_counter_cy<9>)
+     MUXCY:CI->O           1   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<10> (clock_1_Hz_generator/Mcount_counter_cy<10>)
+     MUXCY:CI->O           1   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<11> (clock_1_Hz_generator/Mcount_counter_cy<11>)
+     MUXCY:CI->O           1   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<12> (clock_1_Hz_generator/Mcount_counter_cy<12>)
+     MUXCY:CI->O           1   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<13> (clock_1_Hz_generator/Mcount_counter_cy<13>)
+     MUXCY:CI->O           1   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<14> (clock_1_Hz_generator/Mcount_counter_cy<14>)
+     MUXCY:CI->O           1   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<15> (clock_1_Hz_generator/Mcount_counter_cy<15>)
+     MUXCY:CI->O           1   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<16> (clock_1_Hz_generator/Mcount_counter_cy<16>)
+     MUXCY:CI->O           1   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<17> (clock_1_Hz_generator/Mcount_counter_cy<17>)
+     MUXCY:CI->O           1   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<18> (clock_1_Hz_generator/Mcount_counter_cy<18>)
+     MUXCY:CI->O           1   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<19> (clock_1_Hz_generator/Mcount_counter_cy<19>)
+     MUXCY:CI->O           1   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<20> (clock_1_Hz_generator/Mcount_counter_cy<20>)
+     MUXCY:CI->O           1   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<21> (clock_1_Hz_generator/Mcount_counter_cy<21>)
+     MUXCY:CI->O           1   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<22> (clock_1_Hz_generator/Mcount_counter_cy<22>)
+     MUXCY:CI->O           1   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<23> (clock_1_Hz_generator/Mcount_counter_cy<23>)
+     MUXCY:CI->O           1   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<24> (clock_1_Hz_generator/Mcount_counter_cy<24>)
+     MUXCY:CI->O           1   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<25> (clock_1_Hz_generator/Mcount_counter_cy<25>)
+     MUXCY:CI->O           1   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<26> (clock_1_Hz_generator/Mcount_counter_cy<26>)
+     MUXCY:CI->O           1   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<27> (clock_1_Hz_generator/Mcount_counter_cy<27>)
+     MUXCY:CI->O           0   0.065   0.000  clock_1_Hz_generator/Mcount_counter_cy<28> (clock_1_Hz_generator/Mcount_counter_cy<28>)
+     XORCY:CI->O           1   0.844   0.000  clock_1_Hz_generator/Mcount_counter_xor<29> (Result<29>)
+     FDR:D                     0.252          clock_1_Hz_generator/counter_29
+    ----------------------------------------
+    Total                      5.312ns (4.722ns logic, 0.590ns route)
+                                       (88.9% logic, 11.1% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clock_1_Hz_generator/clk_out1'
+  Clock period: 20.138ns (frequency: 49.657MHz)
+  Total number of paths / destination ports: 3674914 / 43
+-------------------------------------------------------------------------
+Delay:               20.138ns (Levels of Logic = 16)
+  Source:            position_counter/out_vertical_1 (FF)
+  Destination:       position_counter/test_color_8 (FF)
+  Source Clock:      clock_1_Hz_generator/clk_out1 rising
+  Destination Clock: clock_1_Hz_generator/clk_out1 rising
+
+  Data Path: position_counter/out_vertical_1 to position_counter/test_color_8
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDRE:C->Q             6   0.591   0.812  position_counter/out_vertical_1 (position_counter/out_vertical_1)
+     LUT1:I0->O            1   0.648   0.000  position_counter/Madd_old_out_vertical_5_addsub0000_cy<1>_rt (position_counter/Madd_old_out_vertical_5_addsub0000_cy<1>_rt)
+     MUXCY:S->O            1   0.632   0.000  position_counter/Madd_old_out_vertical_5_addsub0000_cy<1> (position_counter/Madd_old_out_vertical_5_addsub0000_cy<1>)
+     MUXCY:CI->O           1   0.065   0.000  position_counter/Madd_old_out_vertical_5_addsub0000_cy<2> (position_counter/Madd_old_out_vertical_5_addsub0000_cy<2>)
+     MUXCY:CI->O           1   0.065   0.000  position_counter/Madd_old_out_vertical_5_addsub0000_cy<3> (position_counter/Madd_old_out_vertical_5_addsub0000_cy<3>)
+     XORCY:CI->O           4   0.844   0.619  position_counter/Madd_old_out_vertical_5_addsub0000_xor<4> (position_counter/old_out_vertical_5_addsub0000<4>)
+     LUT3:I2->O            3   0.648   0.674  position_counter/_old_out_vertical_5<4>1 (position_counter/_old_out_vertical_7<4>_norst)
+     LUT4:I0->O            2   0.648   0.450  position_counter/old_out_vertical_7_cmp_ge0000224_SW0 (N2)
+     LUT4:I3->O           13   0.648   0.986  position_counter/old_out_vertical_7_cmp_ge0000224 (position_counter/old_out_vertical_7_cmp_ge0000)
+     LUT4:I3->O           16   0.648   1.037  position_counter/old_out_horizontal_10_cmp_ge0001234 (position_counter/old_out_horizontal_10_cmp_ge0001)
+     LUT4:I3->O           14   0.648   1.003  position_counter/old_out_horizontal_10_or000069 (position_counter/old_out_horizontal_10_or0000)
+     LUT4:I3->O            1   0.648   0.452  position_counter/old_out_horizontal_11_or000080 (position_counter/old_out_horizontal_11_or000080)
+     LUT4:I2->O            1   0.648   0.452  position_counter/old_out_horizontal_11_or000088 (position_counter/old_out_horizontal_11_or000088)
+     LUT4:I2->O           14   0.648   1.003  position_counter/old_out_horizontal_11_or0000125 (position_counter/old_out_horizontal_11_or0000)
+     LUT4:I3->O            1   0.648   0.452  position_counter/out_horizontal_and000041 (position_counter/out_horizontal_and000041)
+     LUT4:I2->O           11   0.648   0.936  position_counter/out_horizontal_and000067 (position_counter/out_horizontal_and000067)
+     LUT4:I3->O            1   0.648   0.420  position_counter/test_color_not00011 (position_counter/test_color_not0001)
+     FDR:R                     0.869          position_counter/test_color_8
+    ----------------------------------------
+    Total                     20.138ns (10.842ns logic, 9.296ns route)
+                                       (53.8% logic, 46.2% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clock_1_Hz_generator/clk_out1'
+  Total number of paths / destination ports: 14 / 14
+-------------------------------------------------------------------------
+Offset:              5.780ns (Levels of Logic = 1)
+  Source:            position_counter/out_vertical_1 (FF)
+  Destination:       LED<0> (PAD)
+  Source Clock:      clock_1_Hz_generator/clk_out1 rising
+
+  Data Path: position_counter/out_vertical_1 to LED<0>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDRE:C->Q             6   0.591   0.669  position_counter/out_vertical_1 (position_counter/out_vertical_1)
+     OBUF:I->O                 4.520          LED_0_OBUF (LED<0>)
+    ----------------------------------------
+    Total                      5.780ns (5.111ns logic, 0.669ns route)
+                                       (88.4% logic, 11.6% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 6.00 secs
+Total CPU time to Xst completion: 5.40 secs
+ 
+--> 
+
+
+Total memory usage is 515528 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    9 (   0 filtered)
+Number of infos    :    3 (   0 filtered)
+
