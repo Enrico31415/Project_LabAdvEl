@@ -1,2 +1,36 @@
 # Resources folder
 /Resources
+
+#c Compilato vlog
+*.bng
+*.bld
+*.cmd_log
+*.drc
+*.lso
+*.ncd
+*.ngc
+*.ngd
+*.ngr
+*.pad
+*.par
+*.pcf
+*.prj
+*.ptwx
+*.syr
+*.twr
+*.twx
+*.unroutes
+*.ut
+*.xpi
+*.xst
+*.xwbt
+*.html
+*.ncd
+*.map
+*.mrp
+*.ncd
+*.ngm
+*.xrpt
+*.xml
+*.gise
+*.log
