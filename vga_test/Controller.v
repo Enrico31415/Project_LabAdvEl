@@ -19,7 +19,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 // serve per dimezzare la frequenza
-`define		defaultPeriod	30'b000000000000000000000000000010	//	2
+`define		defaultPeriod	30'b00000000000000000000000000001	//	2
 
 // freqeuza di testing
 //`define		defaultPeriod	30'b000000000000000000001011111010	//	25 10^6
@@ -27,17 +27,17 @@
 //parametri del counter in lunghezza (h)
 `define		hmonitor_lenght 10'b1010000000	//	640 lunghezza schermo
 `define		hcursor_length	10'b1100100000	//	800 totale orizontale
-`define		hsync_length	10'b0001011100	//	96 lunghezza dell'hsinc
+`define		hsync_length	10'b0001100000	//	96 lunghezza dell'hsinc
 `define		hbp_length		10'b0000110000	//	48 lunghezza del bachporch
 `define		hfp_length		10'b0000010000	//	16 lunghezza del frontporch
 
 
 //parametri del counter in altezza (verticale-v)
-`define		vmonitor_lenght	10'b0111100000	//	480 larghezza schermo
-`define		vcursor_length	10'b1000001001	//	521 totale orizontale
-`define		vsync_length	10'b0000000010	//	2 lunghezza dell'hsinc
-`define		vbp_length		10'b0000011101	//	29 lunghezza del bachporch
-`define		vfp_length		10'b0000001010	//	10 lunghezza del frontporch
+`define		vmonitor_lenght	19'b1100101110000100000	//	416800 larghezza schermo
+`define		vcursor_length		19'b1011101110000000000	//	384000 totale orizontale
+`define		vsync_length		19'b0000000011001000000	//	1600  lunghezza dell'hsinc
+`define		vbp_length			19'b0000001111101000000	//	8000 lunghezza del bachporch
+`define		vfp_length			19'b0000101101010100000	//	23200 lunghezza del frontporch
 
 
 module Controller(
@@ -60,13 +60,11 @@ output [7:0]LED;
 wire w_clock_25Mhz;
 
 // divido la frequenza a 25Mhz, frequenza dipica per un monitor a 60hz
-Module_FrequencyDivider		clock_1_Hz_generator	(	.clk_in(CLK_50M),
+Module_FrequencyDivider		clock_25_MHz_generator	(	.clk_in(CLK_50M),
 	.period(`defaultPeriod),
 
 	.clk_out(w_clock_25Mhz));
 
-
-//wire clock_height; //serve per sincronizzare il verticale con l'orizontale
 
 Module_Counter_10_bit position_counter  (.clk_in(w_clock_25Mhz),
 	.hlimit(`hcursor_length),
