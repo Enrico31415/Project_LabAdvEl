@@ -1,142 +1,140 @@
+`timescale 40ns/40ps
+
 `define red 	12'b111100000000
 `define green 	12'b000011110000
 `define blue 	12'b000000001111
 `define black 	12'b000000000000
-module	Module_Counter_10_bit	(	clk_in,
-					hlimit,
-					hsync,
-					hbp,
-					hfp,
-					hlenght,
-					vlimit,
-					vsync,
-					vbp,
-					vfp,
-					vlenght,
-					
 
-					out_vertical,
-					out_horizontal,
+
+
+//parametri del counter in lunghezza (h)
+`define		hmonitor_lenght 10'd800 //	800 lunghezza schermo
+`define		hcursor_length	10'd640	//	lunghezza utilizzabile (dal cursore)
+`define		hsync_length	10'd96 //	96 lunghezza dell'hsinc
+`define		hbp_length		10'd48 //	48 lunghezza del bachporch
+`define		hfp_length		10'd16 //	16 lunghezza del frontporch
+
+
+//parametri del counter in altezza (verticale-v)
+`define		vmonitor_lenght	10'd521 //	416800 larghezza schermo
+`define		vcursor_length		10'd480 //	384000 totale orizontale
+`define		vsync_length		10'd2 //	1600  lunghezza dell'hsinc
+`define		vbp_length			10'd10 //	8000 lunghezza del bachporch
+`define		vfp_length			10'd29 //	23200 lunghezza del frontporch
+
+
+module	Module_Counter_10_bit	(	clk_in,
+
 					out_hsync,
 					out_vsync,
-					test_color,
-					led);
+					test_color
+					);
+
 
 input		clk_in;
-input	[18:0]	vlimit;
-input	[18:0]	vsync;
-input	[18:0]	vbp;
-input	[18:0]	vfp;
-input	[18:0] vlenght;
 
-input	[9:0]	hlimit;
-input	[9:0]	hsync;
-input	[9:0]	hbp;
-input	[9:0]	hfp;
-input	[9:0] hlenght;
+reg [9:0] rows = 10'd0; 
+reg [9:0] lines = 10'd0; 
+
+output reg out_hsync;
+output reg out_vsync;
+
+output reg [11:0] test_color = `black;
 
 
+reg [5:0] status = 4'b0;
+reg [5:0] vstatus = 4'b0;
+								
 
-output [7:0] led;
-output out_vsync;
-output out_hsync;
-output [11:0] test_color;
-output [18:0] out_vertical;
-output [9:0] out_horizontal;
-
-
-reg out_vsync;
-reg out_hsync;
-//reg [7:0] led;
-reg	[18:0]	out_vertical;
-reg	[9:0]	out_horizontal;
-reg [11:0] test_color;
-
-
-buf(led[7:0], out_vertical[9:1]);
 
 always @(posedge clk_in) begin
-	
-		if (out_horizontal >= hlimit) begin //se ho sforato il limite orrizontale, torno a zero ed incremento il verticale
-			out_horizontal = 0;
-			out_vertical= out_vertical + 1;
-			// per star tranquilli
-			out_hsync = 1;
-			out_vsync = 1;
-			test_color = `black;
-		end
-		else begin
-			out_vertical= out_vertical + 1;
-			out_horizontal = out_horizontal +1;
-			// per star tranquilli
-			out_hsync = 1;
-			out_vsync = 1;
-			test_color = `black;
-		end
-		if (out_vertical >= vlimit) begin
-			out_vertical = 0;
-			out_horizontal = out_horizontal +1;
-			// per star tranquilli
-			out_hsync = 1;
-			out_vsync = 1;
-			test_color = `black;
-		end
-		// faccio il controllo se devo mandare il sinc
-		// orrizontale
-		if (out_horizontal < hsync) begin
-			out_hsync = 0;
-			out_horizontal = out_horizontal +1;
-			out_vertical= out_vertical + 1;
-			test_color = `black;
-		end else	begin
-			out_hsync = 1;
-			out_horizontal = out_horizontal +1;
-			out_vertical= out_vertical + 1;
-			test_color = `black;
-		end
-		// verticale
-		if (out_vertical < vsync) begin
-			out_vsync = 0;
-			out_horizontal = out_horizontal +1;
-			out_vertical= out_vertical + 1;
-			test_color = `black;
-		end else	begin
-			out_vsync = 1;
-			out_horizontal = out_horizontal +1;
-			out_vertical= out_vertical + 1;
-			test_color = `black;
-		end
-		
-		
-		//controllo se sono in Porch
-		//verticale
-		if ((out_vertical >= vsync && out_vertical < (vsync+vbp)) || //OR se sono nel back porch
-			(out_vertical >= (vsync+vbp+vlenght) && out_vertical < (vsync+vbp+vlenght+vfp))) //se sono nel frot porch
-			begin
-				//inibisco l'output
-				test_color = `black;
-				out_horizontal = out_horizontal +1;
-				out_vertical= out_vertical + 1;
-			end
-		
-		//controllo se sono in Porch
-		//orrizontale
-		if ((out_horizontal >= hsync && out_horizontal < (hsync+hbp)) || //OR se sono nel back porch
-			(out_horizontal >= (hsync+hbp+hlenght) && out_horizontal < (hsync+hbp+hlenght+hfp))) //se sono nel frot porch
-			begin
-				//inibisco l'output
-				test_color = `black;
-				out_horizontal = out_horizontal +1;
-				out_vertical= out_vertical + 1;
-			end
-		//se sono nella parte buona
-		if (out_vertical >= (vsync+vbp) && out_vertical < (vsync+vbp+vlenght) && // se il verticale e' nello schermo
-		out_horizontal >= (hsync+hbp) && out_horizontal < (hsync+hbp+hlenght))
+	// inizio facendo un contatore fino alla lugnhezza del monitor
+	if(rows >  `hmonitor_lenght - 10'd0000000001) //serve a far tornar i conti //capolinea righe
+	begin
+		rows = 0;
+		lines = lines +1;
+		out_hsync = 1;
+		out_vsync = 1;
+		test_color = `black;
+		status = 5'b00000;
+		vstatus = 5'b00000;
+		if(lines >   `vmonitor_lenght - 10'd0000000001) //capolinea linee (gioco di parole)
 		begin
+			lines = 0;
+			rows = 0;
+			out_hsync = 1;
+			out_vsync = 1;
+			test_color = `black;
+		end		
+	end
+	if(rows >= 0 && rows < `hfp_length) //48 cicli o 1.92us FP
+	begin
+		status = 5'b00001;
+		out_hsync = 1;
+		out_vsync = 1;
+		rows = rows +1;
+		test_color = `black;
+	end	
+	else if (rows >= `hfp_length && rows < (`hfp_length+`hsync_length)) //16 cicli o 640ns SYNCPULSE
+	begin
+		status = 5'b00010;
+		out_hsync = 0;
+		rows = rows +1;
+		test_color = `black;
+	end
+	else if (rows >= (`hfp_length+`hsync_length) && rows < (`hfp_length + `hsync_length + `hbp_length)	)//16 cicli o 640ns BP
+	begin
+		status = 5'b00011;
+		out_hsync = 1;
+		rows = rows +1;
+		test_color = `black;
+	end
+	else if (rows >= (`hfp_length + `hsync_length + `hbp_length) && rows <  `hmonitor_lenght ) // sono nell'area visibile h
+	begin 
+		status = 5'b00100;
+		out_hsync = 1;
+		rows = rows +1;
+		if (lines >= (`vfp_length + `vsync_length + `vbp_length) && lines < `vmonitor_lenght) //sono nel visibile
+		begin
+			vstatus = 5'b00100;
+			out_vsync = 1;
 			test_color = `red;
-			out_horizontal = out_horizontal +1;
-			out_vertical= out_vertical + 1;
 		end
+	end
+	// Condizioni sulle linee
+	if (lines >= 0 && lines < `vfp_length) //FP
+	begin
+		vstatus =  5'b00001;
+		out_vsync = 1;
+		//rows = rows +1;
+		test_color = `black;
+	end
+	else if (lines >= `vfp_length && lines < (`vfp_length + `vsync_length)) //PULSE
+	begin
+		vstatus = 5'b00010;
+		out_vsync = 0;
+		test_color = `black;
+	end
+	else if (lines >= (`vfp_length + `vsync_length) && lines < (`vfp_length + `vsync_length + `vbp_length)) //BP
+	begin
+		vstatus = 5'b00011;
+		out_vsync = 1;
+		test_color = `black;
+	end
+	else if (lines >= (`vfp_length + `vsync_length + `vbp_length) && lines < `vmonitor_lenght) //Se ho appena proiettao a schermo
+	begin
+		status = 5'b10000;
+		vstatus = 5'b10000;
+	end
+	/*else 
+	begin
+		out_hsync = 1;
+		out_vsync = 1;
+		test_color = `black;
+		status = 5'b10000;
+		vstatus = 5'b10000;
+	end*/
+		
 		
 end
 
