@@ -23,19 +23,36 @@
 module battleship(CLK_50M,
 
 				LED,
-				PS2_DATA1
+				PS2_CLK1,
+				PS2_DATA1,
+				
 				);
 
 input		CLK_50M; //here decalrations, variable with 1 bit.
 output	[7:0]	LED;// so have low impedence. 8 digits. is a bus.
+output	PS2_CLK1;
 output	PS2_DATA1;
 
 // here wires, modules, ecc.
 
- Module_FrequencyDivider		clock_10_kHz_generator(	.clk_in(CLK_50M),           //is another 'chip'
+Module_FrequencyDivider		clock_10_kHz_generator(	.clk_in(CLK_50M),           //is another 'chip'
 								.period(`mss),
 
 						.clk_out(PS2_DATA1));
+						
+PS2_send PS2_send(
+	.qzt_clk(CLK_50M),
+	.data(8'b00000000),
+	.send(1'b0), 
+	.PS2C(PS2_CLK1),
+	.PS2D(PS2_DATA1),
+   
+	.status(LED)
+//	.ok,
+//	err
+//	  ,errCode
+	  );
+//
 
 assign LED=8'b10101010;
 

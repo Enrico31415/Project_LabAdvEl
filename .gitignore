@@ -3,6 +3,8 @@
 
 #c Compilato vlog
 *.bng
+*.bgn
+*.lst
 *.bld
 *.cmd_log
 *.drc
@@ -16,6 +18,8 @@
 *.pcf
 *.prj
 *.ptwx
+*.ref
+*.stx
 *.syr
 *.twr
 *.twx
@@ -24,6 +28,8 @@
 *.xpi
 *.xst
 *.xwbt
+*.xbcd
+*.xmsgs
 *.html
 *.ncd
 *.map
