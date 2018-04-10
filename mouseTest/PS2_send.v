@@ -18,51 +18,59 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-`define ST_IDLE 2'd0
-`define ST_WAITAQ 2'd1
-`define ST_WAITCLK 2'd2
-
-
+`define ST_IDLE 3'd0
+`define ST_WAITAQ 3'd1
+`define ST_WAITCLK 3'd2
+`define ST_WAITREADLAST 3'd3
+`define ST_WAITACK 3'd4
+`define ST_ENDPACK 3'd5
+`define ST_ENDCOMM 3'd6
 
 module PS2_send(
 		qzt_clk,
 		data,
 		send,
-		
 
 		PS2C,
 		PS2D,
 	  ok, err, status
-//	  ,errCode
 	  );
+//	  ,errCode
 //
 
 input qzt_clk;
-input [8:0] data;
+input [10:0] data;
 input send;
 
-output ok;
-output err;
 output PS2C;
 output PS2D;
 
 //reg	[8:0] data;
 reg	send_old;
 reg	reset;
+
 reg 	runAcq;
 reg	runData;
-output reg   [1:0] status;
-reg	counter; // bits send
+reg 	runEP;
+reg	runEC;
+
+output reg	[1:0] status;
+output reg			err;
+output reg			ok;
 
 wire w_clk05uS;
 wire w_acquire;
 wire w_chData;
+wire w_EP;
+wire w_EC;
 
 reg  PS2C;
 reg  PS2D;
 reg  PS2C_old;
 reg  PS2D_old;
 
+reg [10:0] dataReg;
+integer nbits;
 
 always @(posedge qzt_clk) begin
 	case (status)
@@ -73,6 +81,9 @@ always @(posedge qzt_clk) begin
 				PS2C=0;	// force clock low
 				PS2D=1;
 				status=`ST_WAITAQ;
+				dataReg=data;
+				nbits=0;
+				ok=0;
 			end
 		end
 		`ST_WAITAQ: begin
@@ -80,12 +91,128 @@ always @(posedge qzt_clk) begin
 				runAcq=0; // resetta aquire counter
 				PS2C=1; 	 // release the clock
 				PS2D=0;	 // force data low
-				status=`ST_WAITCLK
+				status=`ST_WAITCLK;
 			end
-		`ST_WAITCLK: begin
-			
-		
 		end
+		`ST_WAITCLK: begin
+			if (PS2C_old & !PS2C) begin
+				PS2D=dataReg[0];
+				dataReg=dataReg>>1;
+				nbits=nbits+1;
+				if (nbits>=11) begin
+					status=`ST_WAITREADLAST;
+				end
+			end
+		end
+		`ST_WAITREADLAST: begin
+			if (!PS2C_old & PS2C) begin
+				runData=1;
+			end
+			if (w_chData) begin
+				runData=0;
+				status=`ST_WAITACK;
+			end
+		end
+		`ST_WAITACK: begin
+			if (PS2C_old & PS2C) begin
+				err=PS2D?(1):(0);
+				runEP=1;
+				status=`ST_ENDPACK;
+			end
+		end
+		`ST_ENDPACK: begin
+			if (w_EP) begin
+				runEP=0;
+				status=`ST_ENDCOMM;
+				runEC=1;
+			end
+		end
+		`ST_ENDCOMM: begin
+			if (w_EC & PS2C & PS2D) begin
+				runEC=0;
+				status=`ST_IDLE;
+				ok=1;
+			end
+		end
+		
+		endcase
+	
+	PS2C_old=PS2C;
+	PS2D_old=PS2D;
+	send_old=send;
+end	
+
+Module_SynchroCounter_8_bit_SR	 conta05uS(	
+						.qzt_clk(qzt_clk),
+						.clk_in(qzt_clk),
+						.reset(reset),
+						//set,
+						//presetValue,
+						.limit(8'd25),
+
+						//out,
+						.carry(w_clk05uS));
+
+//Module_FrequencyDivider 
+
+
+Module_Counter_8_bit_oneRun acquireChannel	(
+					.qzt_clk(qzt_clk),
+					.clk_in(w_clk05uS),
+					.limit(8'd200),
+					.run(runAcq),
+
+					//out,
+					.carry(w_acquire)
+					);
+					
+Module_Counter_8_bit_oneRun transmissionTiming	(
+					.qzt_clk(qzt_clk),
+					.clk_in(w_clk05uS),
+					.limit(8'd5),
+					.run(runData),
+
+					//out,
+					.carry(w_chData)
+					);
+					
+Module_Counter_8_bit_oneRun endPacket	(
+					.qzt_clk(qzt_clk),
+					.clk_in(w_clk05uS),
+					.limit(8'd120), // 60 uS
+					.run(runEP),
+
+					//out,
+					.carry(w_EP)
+					);
+					
+Module_Counter_8_bit_oneRun endComm	(
+					.qzt_clk(qzt_clk),
+					.clk_in(w_clk05uS),
+					.limit(8'd40), // 
+					.run(runEC),
+
+					//out,
+					.carry(w_EC)
+					);
+
+
+/*	
+	if (out >= (limit - 8'b00000001)) begin
+		out = 0;
+		carry = 1;
+	end else if (out == 0) begin
+		out = 1;
+		carry = 0;
+	end else
+		out = out + 1;
+end
+// */
+
+/*
+		
+		
+		
 		end
 	// send request: make both counters start and take clock low.
 	if (counter>=9) begin
@@ -125,52 +252,7 @@ always @(posedge qzt_clk) begin
 	PS2D_old=PS2D;
 	send_old=send;
 	
-end	
-
-Module_SynchroCounter_8_bit_SR	 conta05uS(	
-						.qzt_clk(qzt_clk),
-						.clk_in(qzt_clk),
-						.reset(reset),
-						//set,
-						//presetValue,
-						.limit(8'd25),
-
-						//out,
-						.carry(w_clk05uS));
-
-//Module_FrequencyDivider 
-
-
-Module_Counter_8_bit_oneRun acquireChannel	(
-					.qzt_clk(qzt_clk),
-					.clk_in(w_clk05uS),
-					.limit(0'd200),
-					.run(runAcq),
-
-					//out,
-					.carry(w_acquire)
-					);
-					
-Module_Counter_8_bit_oneRun transmissionTiming	(
-					.qzt_clk(qzt_clk),
-					.clk_in(w_clk05uS),
-					.limit(0'd5),
-					.run(runData),
-
-					//out,
-					.carry(w_chData)
-					);
-/*	
-	if (out >= (limit - 8'b00000001)) begin
-		out = 0;
-		carry = 1;
-	end else if (out == 0) begin
-		out = 1;
-		carry = 0;
-	end else
-		out = out + 1;
-end
-// */
+*/
 
 
 endmodule

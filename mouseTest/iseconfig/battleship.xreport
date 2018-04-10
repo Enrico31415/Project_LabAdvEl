@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2018-04-10T09:30:21</DateModified>
+  <DateModified>2018-04-10T16:15:11</DateModified>
   <ModuleName>battleship</ModuleName>
-  <SummaryTimeStamp>Unknown</SummaryTimeStamp>
+  <SummaryTimeStamp>2018-04-10T16:06:52</SummaryTimeStamp>
   <SavedFilePath>/home/mat/Documents/repos/Project_LabAdvEl/mouseTest/iseconfig/battleship.xreport</SavedFilePath>
   <ImplementationReportsDirectory>/home/mat/Documents/repos/Project_LabAdvEl/mouseTest</ImplementationReportsDirectory>
   <DateInitialized>2018-04-09T10:24:42</DateInitialized>
