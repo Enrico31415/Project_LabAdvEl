@@ -18,6 +18,12 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
+`define ST_IDLE 2'd0
+`define ST_WAITAQ 2'd1
+`define ST_WAITCLK 2'd2
+
+
+
 module PS2_send(
 		qzt_clk,
 		data,
@@ -35,13 +41,10 @@ input qzt_clk;
 input [8:0] data;
 input send;
 
-
-
 output ok;
 output err;
 output PS2C;
 output PS2D;
-
 
 //reg	[8:0] data;
 reg	send_old;
@@ -62,6 +65,28 @@ reg  PS2D_old;
 
 
 always @(posedge qzt_clk) begin
+	case (status)
+		`ST_IDLE: begin
+			if (!send_old & send) begin
+				runAcq=1; // start counter for acquiring channel
+				reset=1;	// ?
+				PS2C=0;	// force clock low
+				PS2D=1;
+				status=`ST_WAITAQ;
+			end
+		end
+		`ST_WAITAQ: begin
+			if (w_acquire) begin
+				runAcq=0; // resetta aquire counter
+				PS2C=1; 	 // release the clock
+				PS2D=0;	 // force data low
+				status=`ST_WAITCLK
+			end
+		`ST_WAITCLK: begin
+			
+		
+		end
+		end
 	// send request: make both counters start and take clock low.
 	if (counter>=9) begin
 		status=3;
@@ -120,7 +145,7 @@ Module_Counter_8_bit_oneRun acquireChannel	(
 					.qzt_clk(qzt_clk),
 					.clk_in(w_clk05uS),
 					.limit(0'd200),
-					.run(runData),
+					.run(runAcq),
 
 					//out,
 					.carry(w_acquire)
@@ -130,7 +155,7 @@ Module_Counter_8_bit_oneRun transmissionTiming	(
 					.qzt_clk(qzt_clk),
 					.clk_in(w_clk05uS),
 					.limit(0'd5),
-					.run(run),
+					.run(runData),
 
 					//out,
 					.carry(w_chData)
