@@ -4,5 +4,8 @@ in mattinana ho implementato (due volte) i un controller VGA. In entrami i casi 
 Nella seconda implementazione, sono arrivato a qualcosa di più sensanto, tanto che il monitor, si è lamentato della risoluzione che gli davo. Ora, la risoluzione è stabilita dei vsync, e hsync, inpulsi blaba bla bla.... Quindi, guardando con l'oscilloscopio questi implulsi, ho notato che sono scazzati. Pomeriggio proverò o correggerli, ma sono fiducioso.
 Enrico
 
-##02/04_03/04
+## 02/04_03/04
 Imparato come funziona il simulatore. Dopo non poche bestemmie, sono arrivato ad una versione finale. Debuggata e tutto. Unici problemi che potrebbero presentarsi sono le inconmpatibilità tra simulatore ed Spartan. 
+
+## 11/04
+VGA funzionante. Ultima versione commentata ed implementata gia' per l'eventuale mouse. Stampa una griglia, con un quadratino che si muove con utilizzando i tasti. Sara' poi da sostituirlo con la posizione del mouse ed implementare un minimo di movimento, magari con un clock piu' lento, tenendo conto degli incrementi che il mouse segnala.
