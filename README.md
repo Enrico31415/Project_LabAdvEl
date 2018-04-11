@@ -1,10 +1,7 @@
-# Project_LabAdvEl
-Final projet of LabAdvEl
-
 # Chiedere a Ricci:
- 1.  ~~ drivers VGA: ce li facciamo o ce li dà? ~~ FATTI
- 2.  ~~ dove ci si attacca con la sonda dell'OSC sulla scheda? ~~ Non si pone più il problema ~~
- 3.  se alla fine funziona, ci paga da bere? ~~ Non funzionerà mai. ~~
+ 1.  ~~drivers VGA: ce li facciamo o ce li dà?~~ FATTI
+ 2.  ~~dove ci si attacca con la sonda dell'OSC sulla scheda?~~ Non si pone più il problema
+ 3.  se alla fine funziona, ci paga da bere? ~~Non funzionerà mai.~~
 
 
 # Link utili:
