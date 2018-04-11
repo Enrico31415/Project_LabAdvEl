@@ -2,9 +2,9 @@
 Final projet of LabAdvEl
 
 # Chiedere a Ricci:
- 1. drivers VGA: ce li facciamo o ce li dà?
- 2. dove ci si attacca con la sonda dell'OSC sulla scheda?
- 3. se alla fine funziona, ci paga da bere?
+ 1.  ~~ drivers VGA: ce li facciamo o ce li dà? ~~ FATTI
+ 2.  ~~ dove ci si attacca con la sonda dell'OSC sulla scheda? ~~ Non si pone più il problema ~~
+ 3.  se alla fine funziona, ci paga da bere? ~~ Non funzionerà mai. ~~
 
 
 # Link utili:
@@ -24,7 +24,10 @@ Final projet of LabAdvEl
  * programma pc per capire cosa si dicono
 
 
-## modulo mouse:
- * portare il programma su FPGA
-## VGA
-## generatore random per le navi
+# Branch:
+## Master (modulo mouse):
+ * Implementazione in corso del modulo di comunicazione del mouse. (Sarebbe da dare una bella pulita ai file non necessari.)
+## VGADevelop:
+ * Implementato il protocollo di comunicazione: lo si trova sotto il branch VGADevelop.
+## CORE
+ * Nel branch *core* è presente l'attuale versione a cui sto lavorando, ampiamente commentata, che coordina l'uscita a schermo, con l'engine della battaglia navale.
