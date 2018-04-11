@@ -60,9 +60,9 @@ begin
 		if (y_pos >= 'd480)
 			y_pos = 1;
 		if (x_pos <= 'd0)
-			x_pos = 630;
+			x_pos = 640;
 		if (y_pos <= 'd0)
-			y_pos = 470;
+			y_pos = 480;
 		
 		
 
