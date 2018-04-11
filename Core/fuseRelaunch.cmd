@@ -1,1 +1,0 @@
--intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/Module_FrequencyDivider_isim_beh.exe" -prj "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/Module_FrequencyDivider_beh.prj" "work.Module_FrequencyDivider" "work.glbl" 
