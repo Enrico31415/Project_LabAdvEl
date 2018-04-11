@@ -18,8 +18,8 @@ In pratica, tutto quello che disegna è contenuto in *VGADriver*.
 
 ## Da fare:
 1. [ ] implementare e testare, un modo furbo per dividere il display in 10x10 (non 640x480 pixcel).
-  [ ]- Vedere se è possibile utilizzare la divisione per intero, ed eventualmente il prodotto.
- - [ ] Implementare bene i bordi della girglia, che non sograno problemi di posizione.
+       - Vedere se è possibile utilizzare la divisione per intero, ed eventualmente il prodotto.
+       -  Implementare bene i bordi della girglia, che non sograno problemi di posizione.
 2. [ ] Interfacciare il mouse con il core, non con il controller.
    - Gestire l'evento del Click del mouse.
    - Gestire la posizione nella griglia (sulle celle, o sui bordi della griglia. Fare riferimento al punto 1.).
