@@ -1,7 +1,7 @@
 Release 14.7 - par P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-Tue Apr 10 17:48:05 2018
+Tue Apr 10 21:16:01 2018
 
 
 INFO: The IO information is provided in three file formats as part of the Place and Route (PAR) process.  These formats are:
@@ -448,7 +448,7 @@ Pinout by Pin Number:
 |V8        |           |IBUF      |IP_2/VREF_2           |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
 |V9        |           |DIFFMTB   |IO_L09P_2/RDWR_B      |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
 |V10       |           |DIFFMTB   |IO_L13P_2             |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
-|V11       |PS2_DATA1  |IOB       |IO_L17N_2/GCLK13      |OUTPUT   |LVCMOS33   |2             |8         |SLOW     |NONE**     |         |         |LOCATED   |NO         |NONE            |
+|V11       |PS2_DATA1  |IOB       |IO_L17N_2/GCLK13      |OUTPUT   |LVCMOS33   |2             |8         |SLOW     |PULLUP     |         |         |LOCATED   |NO         |NONE            |
 |V12       |           |DIFFMTB   |IO_L20P_2/GCLK2       |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
 |V13       |           |DIFFMTB   |IO_L26P_2/INIT_B      |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
 |V14       |           |DIFFMTB   |IO_L30P_2             |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
@@ -471,7 +471,7 @@ Pinout by Pin Number:
 |W9        |           |DIFFSTB   |IO_L09N_2/VS2         |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
 |W10       |           |          |GND                   |         |           |              |          |         |           |         |         |          |           |                |
 |W11       |           |          |VCCAUX                |         |           |              |          |         |           |         |3.3      |          |           |                |
-|W12       |PS2_CLK1   |IOB       |IO_L18P_2/GCLK14      |OUTPUT   |LVCMOS33   |2             |8         |SLOW     |NONE**     |         |         |LOCATED   |NO         |NONE            |
+|W12       |PS2_CLK1   |IOB       |IO_L18P_2/GCLK14      |OUTPUT   |LVCMOS33   |2             |8         |SLOW     |PULLUP     |         |         |LOCATED   |NO         |NONE            |
 |W13       |           |DIFFMTB   |IO_L23P_2             |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
 |W14       |           |          |GND                   |         |           |              |          |         |           |         |         |          |           |                |
 |W15       |           |DIFFMTB   |IO_L25P_2             |UNUSED   |           |2             |          |         |           |         |         |          |           |                |

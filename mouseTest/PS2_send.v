@@ -1,23 +1,48 @@
+/*
+********************************************************************************
+This module has to send data through the PS2 port. data will be provided from a 
+top module and will be an array of 11 bits. The top module has to care about
+parity and start and stop bit. The send signal is a positive edge one and start
+the procedure of sending the data. The alghorithm is organized as a state 
+machine.
+
+INPUTS:
+	- qzt_clk
+	- data: data to send, comprised of parity, start and stop.
+	- send: signal that starts the send procedure when on a positive edge.
+
+OUTPUTS:
+	- PS2C & PS2D: the ports
+	- ok: signal to the top module the end of the sending
+	- err: signal errors
+	- status: status is used internally to keep the status but is also sended
+			out for inspection
+
+MODULES:
+	- Module_Counter_8_bit_oneRun: Is a module which make only one run each time
+			when it started. When the input run has a positive edge, it starts the
+			counter. When run is put low the counter is resetted and stopped, 
+			waiting for another run.
+			I use this for timing purposes.
+	- Module_SynchroCounter_8_bit_SR: I use this for generate a clock with 
+			T=0.5uS, which goes in the others counters.
+			
+REG:
+	- r/run\w+/: variable used to initialize the one-run counters
+	- r/w_\w+/: wires which take the clock signal from the respective counter
+	- r/\w+_old/: used to implement edge triggered behavior
+	- dataReg: copy of the data input. Since it is a reg i can change it, which
+			i cannot do with input port
+	- nbits: counts the number of bits sended
+	
+TODO:
+	- I can use only one oneRun Module if i change limit in the state machine!
+	- Data to send is more naturally descriped using register with MSB last bit?
+*/
+
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date:    08:42:21 03/27/2018 
-// Design Name: 
-// Module Name:    PS2_send 
-// Project Name: 
-// Target Devices: 
-// Tool versions: 
-// Description: 
-//
-// Dependencies: 
-//
-// Revision: 
-// Revision 0.01 - File Created
-// Additional Comments: 
-//
-//////////////////////////////////////////////////////////////////////////////////
+
+// Defining constants for enumerate states
 `define ST_IDLE 3'd0
 `define ST_WAITAQ 3'd1
 `define ST_WAITCLK 3'd2
@@ -25,6 +50,7 @@
 `define ST_WAITACK 3'd4
 `define ST_ENDPACK 3'd5
 `define ST_ENDCOMM 3'd6
+
 
 module PS2_send(
 		qzt_clk,
@@ -74,26 +100,33 @@ integer nbits;
 
 always @(posedge qzt_clk) begin
 	case (status)
+		// IDLE state, just wait for trigger on send
 		`ST_IDLE: begin
 			if (!send_old & send) begin
 				runAcq=1; // start counter for acquiring channel
-				reset=1;	// ?
+				reset=1;	// reset the 0.5uS counter
+				#10 reset=0; //!!! try this, not sure it works
 				PS2C=0;	// force clock low
-				PS2D=1;
+				PS2D=1;	// and data high. Clock has to go low before data
 				status=`ST_WAITAQ;
-				dataReg=data;
+				dataReg=data; // make a copy of data
 				nbits=0;
 				ok=0;
 			end
 		end
+		// In here waits for the 100uS
 		`ST_WAITAQ: begin
 			if (w_acquire) begin
-				runAcq=0; // resetta aquire counter
+				runAcq=0; // reset aquire counter
 				PS2C=1; 	 // release the clock
 				PS2D=0;	 // force data low
 				status=`ST_WAITCLK;
 			end
 		end
+		
+		// in this state waits for falling edge of device clock in order to send
+		// the data. data is readed by the device on rising edge and so it is
+		// changed by host on falling edge
 		`ST_WAITCLK: begin
 			if (PS2C_old & !PS2C) begin
 				PS2D=dataReg[0];
@@ -104,6 +137,9 @@ always @(posedge qzt_clk) begin
 				end
 			end
 		end
+
+		// Ack bit is sended by the device and readed on falling edge, so wait
+		// for the last bit of data to be sent and then change status to WAITACK
 		`ST_WAITREADLAST: begin
 			if (!PS2C_old & PS2C) begin
 				runData=1;
@@ -113,6 +149,8 @@ always @(posedge qzt_clk) begin
 				status=`ST_WAITACK;
 			end
 		end
+
+		// read the ack and signal error if is not 0
 		`ST_WAITACK: begin
 			if (PS2C_old & PS2C) begin
 				err=PS2D?(1):(0);
@@ -120,6 +158,9 @@ always @(posedge qzt_clk) begin
 				status=`ST_ENDPACK;
 			end
 		end
+
+		// In ENDPACK I simply wait some time before end the communication. This
+		// because the device may transimt some more clock cycles after Ack bit
 		`ST_ENDPACK: begin
 			if (w_EP) begin
 				runEP=0;
@@ -127,6 +168,8 @@ always @(posedge qzt_clk) begin
 				runEC=1;
 			end
 		end
+
+		// Here I check for The line to be released, so Clock and Data High.
 		`ST_ENDCOMM: begin
 			if (w_EC & PS2C & PS2D) begin
 				runEC=0;
@@ -137,6 +180,7 @@ always @(posedge qzt_clk) begin
 		
 		endcase
 	
+	// update old values
 	PS2C_old=PS2C;
 	PS2D_old=PS2D;
 	send_old=send;
