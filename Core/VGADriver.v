@@ -11,6 +11,9 @@
 `define row_dimension	10'd2
 `define line_dimension	10'd2
 
+`define row_period	10'd48
+`define line_period 10'd64
+
 module Module_VGADriver(
 	clk_in,
 	current_row,
@@ -46,18 +49,75 @@ always @(posedge clk_in)
 begin
 	if (enable == 1) 
 	begin
-		//qui tutta la manfrina: per disegnare un cubo.
+		
+	color_out = `back_ground;
+
+
+
+		
+		
+		
+		/*
+		Nuova implementazione con il modulo (da testare, eventualmente canellare la vecchia)
+		*/
+		if (current_row % `row_period  < `row_dimension ) // se il resto della divisione è minore della dimensione tipica di una riga, allora pittura
+		begin
+			color_out = `row_color;
+		end
+		if (current_line % `line_period  < `line_dimension ) // idem per le colonne
+		begin
+			color_out = `line_color;
+		end
+		
+		//qui disegno il punatore
 		if(current_row <= (x_pos+`dimension) && current_line <= (y_pos + `dimension) &&
 		current_row >= (x_pos-`dimension) && current_line >= (y_pos - `dimension) )
 		begin
 			color_out = `red;
 		end
-		else
+		
+		/*
+		if(cell_x == 4'b0000 && cell_y == 4'b0000)
 		begin
-			color_out = `back_ground;
+			// sono nel primo quadrante
+			if(cell_status == 2'b00)
+			begin
+				if (current_row <= ('d64-`line_dimension) && current_row >= 0 && //condizione sulla x
+				current_line <= ('d48-`row_dimension) && current_line >= 0)
+					begin
+						color_out = `back_ground;
+					end
+			end
+			else if(cell_status == 2'b01) //se c'e' una nave
+			begin
+				if (current_row <= ('d64-`line_dimension) && current_row >= 0 && //condizione sulla x
+				current_line <= ('d48-`row_dimension) && current_line >= 0)
+					begin
+						color_out = `ship_color;
+					end
+			end
 		end
+
+		*/
+		
+		else if(cell_status == 2'b01) //se c'è una nave
+			begin
+				if(current_line <= (cell_x + 4'b0001) * `line_period &&
+					current_row <= (cell_y + 4'b0001) * `row_period &&
+					 current_line > cell_x * `line_period &&
+						current_row > cell_y  * `row_period ) //se sono dentro la cella in questione 
+					begin
+						color_out = `ship_color;
+					end
+			end
 		
 		
+		
+		
+		
+		
+		/*
+		Disegno le righe: uso il modulo
 		
 		// disegno le righe della battaglia navale. Ho 10 caselle da 48 -> 48<<2, da sistemare, veder se  compatibile.
 		if (current_line <= ('d48+`row_dimension) && current_line > ('d48-`row_dimension)) // prima riga
@@ -136,34 +196,8 @@ begin
 			color_out = `row_color;
 		end
 
-		
-		
-		if(cell_x == 4'b0000 && cell_y == 4'b0000)
-		begin
-			// sono nel primo quadrante
-			if(cell_status == 2'b00)
-			begin
-				if (current_row <= ('d64-`line_dimension) && current_row >= 0 && //condizione sulla x
-				current_line <= ('d48-`row_dimension) && current_line >= 0)
-					begin
-						color_out = `back_ground;
-					end
-			end
-			else if(cell_status == 2'b01) //se c'e' una nave
-			begin
-				if (current_row <= ('d64-`line_dimension) && current_row >= 0 && //condizione sulla x
-				current_line <= ('d48-`row_dimension) && current_line >= 0)
-					begin
-						color_out = `ship_color;
-					end
-			end
-		end
-
-		
-		
-		
-		
-		
+		*/
+			
 		
 	end
 	else

@@ -10,6 +10,11 @@
 `define row_dimension	10'd2
 `define line_dimension	10'd2
 
+
+`define row_period	10'd48
+`define line_period  10'd64
+
+
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -53,7 +58,7 @@ input [9:0] mouse_pos_x;
 input [9:0] mouse_pos_y;
 //FIXME: per testare, sono nel turno del giocatore
 reg [1:0] turn_status = 2'b01;  //determina la fase di gioco: 00 schieramento navi, 01 turno giocatore, 10 turno IA.
-output reg [3:0] cell_x = 4'b1111; //da 0 a 15 (uso solo i primi 10)
+output reg [3:0] cell_x = 4'b1111; //da 0 a 15 (uso solo i primi 12)
 output reg [3:0] cell_y = 4'b1111; //da 0 a 15
 output reg [1:0] cell_status = 2'b11;
 
@@ -75,6 +80,10 @@ begin
 		//aspetto qui finch non ha cliccato?
 		//se clicca, vedo cosa fare.... qui il casino.
 		
+		
+		
+		/*
+		Vecchia implementazione, se va la nuova, è uno sgamo da panico
 		
 		// gestisco la posizione del mouse: con le griglie: na svangata di if
 		if (mouse_pos_x <= ('d64-`line_dimension) && mouse_pos_x >= 0 && //condizione sulla x
@@ -109,6 +118,27 @@ begin
 					cell_status = 2'b00;
 				end
 			end
+			*/
+			
+			
+			/* Nuova implementazione*/
+			// testata a simulatore
+			cell_x = mouse_pos_x / `line_period;
+			cell_y = mouse_pos_y / `row_period;
+			
+			if(mouse_click) //se ho cliccato sulal cella => cambio lo stato
+			begin
+				//se la cella è libera, allora pitturala
+				if (cell_status == `cell_status_free)
+				begin
+					cell_status = `cell_status_occ;
+				end
+				else if (cell_status == `cell_status_occ) //viceversa, se è occupata, liberela.
+				begin
+					cell_status = `cell_status_free;
+				end
+			end
+			
 	end
 	else if (turn_status == `turn_IA)//se tocca all'ia
 	begin
