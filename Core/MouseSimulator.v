@@ -42,19 +42,20 @@ begin
 		begin
 			x_pos = x_pos + 1;
 		end
-		else if (BTN_WEST == 1)
+		if (BTN_WEST == 1)
 		begin
 			x_pos = x_pos - 1;
 		end
-		else if (BTN_NORTH == 1)
+		if (BTN_NORTH == 1)
 		begin
 			y_pos = y_pos - 1;
 		end
-		else if (BTN_SOUTH == 1)
+		if (BTN_SOUTH == 1)
 		begin
 			y_pos = y_pos + 1;
 		end
 		
+		//PBC
 		if (x_pos >= 'd640)
 			x_pos = 1;
 		if (y_pos >= 'd480)

@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2018-04-11T17:53:45</DateModified>
+  <DateModified>2018-04-12T11:28:16</DateModified>
   <ModuleName>Controller</ModuleName>
   <SummaryTimeStamp>2018-04-11T17:53:31</SummaryTimeStamp>
-  <SavedFilePath>C:/Users/Frasen/Desktop/Project_LabAdvEl-VGADevelop/vga_test/iseconfig/Controller.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>C:/Users/Frasen/Desktop/Project_LabAdvEl-VGADevelop/vga_test\</ImplementationReportsDirectory>
+  <SavedFilePath>/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/iseconfig/Controller.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/</ImplementationReportsDirectory>
   <DateInitialized>2018-04-11T17:36:59</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>

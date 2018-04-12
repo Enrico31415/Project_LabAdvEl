@@ -5,8 +5,9 @@
 `define back_ground 	12'b010101101101
 `define line_color 	12'b111100001111 
 `define row_color 	12'b111100001111 
+`define ship_color 	12'b010101010101
 
-`define dimension	10'd10
+`define dimension	10'd5
 `define row_dimension	10'd2
 `define line_dimension	10'd2
 
@@ -17,6 +18,9 @@ module Module_VGADriver(
 	enable,
 	x_pos,
 	y_pos,
+	cell_status,
+	cell_x,
+	cell_y,
 	
 	color_out
     );
@@ -25,6 +29,12 @@ input clk_in;
 input enable;
 input[9:0] current_row;
 input[9:0] current_line;
+
+
+input [1:0]	cell_status;
+input [3:0]	cell_x;
+input [3:0]	cell_y;
+
 
 input[9:0] x_pos;
 input[9:0] y_pos;
@@ -46,7 +56,10 @@ begin
 		begin
 			color_out = `back_ground;
 		end
-		// disegno le righe della battaglia navale. Ho 10 caselle da 48 -> 48<<2, da sistemare, veder se è compatibile.
+		
+		
+		
+		// disegno le righe della battaglia navale. Ho 10 caselle da 48 -> 48<<2, da sistemare, veder se  compatibile.
 		if (current_line <= ('d48+`row_dimension) && current_line > ('d48-`row_dimension)) // prima riga
 		begin
 			color_out = `line_color;
@@ -125,7 +138,26 @@ begin
 
 		
 		
-		
+		if(cell_x == 4'b0000 && cell_y == 4'b0000)
+		begin
+			// sono nel primo quadrante
+			if(cell_status == 2'b00)
+			begin
+				if (current_row <= ('d64-`line_dimension) && current_row >= 0 && //condizione sulla x
+				current_line <= ('d48-`row_dimension) && current_line >= 0)
+					begin
+						color_out = `back_ground;
+					end
+			end
+			else if(cell_status == 2'b01) //se c'e' una nave
+			begin
+				if (current_row <= ('d64-`line_dimension) && current_row >= 0 && //condizione sulla x
+				current_line <= ('d48-`row_dimension) && current_line >= 0)
+					begin
+						color_out = `ship_color;
+					end
+			end
+		end
 
 		
 		

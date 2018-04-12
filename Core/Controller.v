@@ -6,16 +6,22 @@
 module Controller(
 			CLK_50M,
 			BTN_EAST, BTN_WEST, BTN_NORTH, BTN_SOUTH,
+			SW, //Serve per simulare il click del mouse
 			
 			
+			LED,
 			VGA_R, VGA_G, VGA_B,
 			VGA_HSYNC, VGA_VSYNC
     );
 	 
 input CLK_50M;
 
+output [7:0] LED;
+
 //Da testing, per simulare il mouse
 input BTN_EAST, BTN_WEST, BTN_NORTH, BTN_SOUTH;
+
+input SW;
 
 wire w_25Mhz_clock;
 
@@ -33,6 +39,11 @@ wire clock_umano;
 /*Controlla la posizione del mouse*/
 wire [9:0] mouse_sym_counter_x;
 wire [9:0] mouse_sym_counter_y;
+
+/*Semplifica la posizione del mouse*/
+wire [3:0] w_cell_x;
+wire [3:0] w_cell_y;
+wire [1:0] w_cell_status;
 	 
 	 
 /*OUTPUT TIPICI PER LA VGA*/
@@ -41,8 +52,11 @@ output	[3:0]	VGA_G;
 output	[3:0]	VGA_B;
 output VGA_HSYNC, VGA_VSYNC;
 
+
+assign LED = {w_cell_y, w_cell_x};
+
 //generatore di clock a 25Mhz, serve per tutta la sicronia, a partire dallo schermo. 
-//è il clock più veloce utilizzato
+// il clock pi veloce utilizzato
 Module_FrequencyDivider Mhz25ClockGenerator(
 					.clk_in(CLK_50M),
 					.period(`frequency_divider),
@@ -65,7 +79,9 @@ Module_VGADriver driver (
 	.enable(w_enable_write), //Serve per bloccare l'output quando non sono all'interno dello schermo (vedi UG e PORCH)
 	.x_pos(mouse_sym_counter_x), //posizione del mouse_x
 	.y_pos(mouse_sym_counter_y), //posizione del mouse_x
-	
+	.cell_status(w_cell_status),
+	.cell_x(w_cell_x),
+	.cell_y(w_cell_y),
 	
 	.color_out({VGA_R, VGA_G, VGA_B}) //colore prescelto
 	);
@@ -74,7 +90,7 @@ Module_VGADriver driver (
 
 //simula il movimento del puntatore con i bottoni
 //TODO
-//Un giorno sarà rimosso, e vi andrà il driver del mouse.
+//Un giorno sar rimosso, e vi andr il driver del mouse.
 Module_MouseSimulator sim (
 	.clk_in(w_25Mhz_clock),
 	.BTN_EAST(BTN_EAST), 
@@ -83,10 +99,34 @@ Module_MouseSimulator sim (
 	.BTN_SOUTH(BTN_SOUTH),
 	.clk_in_umano(clock_umano),
 	
+	
+	
 	.x_pos(mouse_sym_counter_x),
 	.y_pos(mouse_sym_counter_y));
 
 
+	
+
+	
+
+GridEngine GE(.clk_in(w_25Mhz_clock),
+	//TODO Implementazione della posizione del mouse.
+	.mouse_pos_x(mouse_sym_counter_x),
+	.mouse_pos_y(mouse_sym_counter_x),
+
+	.mouse_click(SW),
+	
+
+	.cell_x(w_cell_x), //determina quale cella  in utilizzo in x (parte da in alto a sx)!!!
+	.cell_y(w_cell_y), //determina quale cella  in utilizzo in x (parte da in alto a sx)!!!
+	.cell_status(w_cell_status) //stato della cella in uso: 4 possiblit: 00 vuota, 01 occupata nava, 10 nave colpita, 11 bordo.
+	
+    );
+	 
+	 
+	 
+	 
+	 
 
 //core della VGA: comanda gli inpulsi di sync da mandare allo schermo per definire la risoluzione
 Module_VGASyncronizer VGASync  (
@@ -98,8 +138,5 @@ Module_VGASyncronizer VGASync  (
 	.write_enable(w_enable_write),
 	.out_hsync(VGA_HSYNC),
 	.out_vsync(VGA_VSYNC));
-	
-
-
 
 endmodule
