@@ -50,7 +50,7 @@ TODO:
 `define ST_WAITACK 3'd4
 `define ST_ENDPACK 3'd5
 `define ST_ENDCOMM 3'd6
-
+`define uno 1'bz
 
 module PS2_send(
 		qzt_clk,
@@ -68,8 +68,8 @@ input qzt_clk;
 input [10:0] data;
 input send;
 
-output PS2C;
-output PS2D;
+inout PS2C;
+inout PS2D;
 
 //reg	[8:0] data;
 reg	send_old;
@@ -90,8 +90,11 @@ wire w_chData;
 wire w_EP;
 wire w_EC;
 
-reg  PS2C;
-reg  PS2D;
+reg  PS2Creg=`uno;
+reg  PS2Dreg=`uno;
+assign PS2C=PS2Creg;
+assign PS2D=PS2Dreg;
+
 reg  PS2C_old;
 reg  PS2D_old;
 
@@ -106,8 +109,8 @@ always @(posedge qzt_clk) begin
 				runAcq=1; // start counter for acquiring channel
 				reset=1;	// reset the 0.5uS counter
 				#10 reset=0; //!!! try this, not sure it works
-				PS2C=0;	// force clock low
-				PS2D=1;	// and data high. Clock has to go low before data
+				PS2Creg=0;	// force clock low
+				PS2Dreg=`uno;	// and data high. Clock has to go low before data
 				status=`ST_WAITAQ;
 				dataReg=data; // make a copy of data
 				nbits=0;
@@ -118,8 +121,8 @@ always @(posedge qzt_clk) begin
 		`ST_WAITAQ: begin
 			if (w_acquire) begin
 				runAcq=0; // reset aquire counter
-				PS2C=1; 	 // release the clock
-				PS2D=0;	 // force data low
+				PS2Creg=`uno; 	 // release the clock
+				PS2Dreg=0;	 // force data low
 				status=`ST_WAITCLK;
 			end
 		end
@@ -129,7 +132,7 @@ always @(posedge qzt_clk) begin
 		// changed by host on falling edge
 		`ST_WAITCLK: begin
 			if (PS2C_old & !PS2C) begin
-				PS2D=dataReg[0];
+				PS2Dreg=dataReg[0]? `uno : 0;
 				dataReg=dataReg>>1;
 				nbits=nbits+1;
 				if (nbits>=11) begin

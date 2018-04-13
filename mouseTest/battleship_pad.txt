@@ -1,7 +1,7 @@
 Release 14.7 - par P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-Tue Apr 10 21:16:01 2018
+Fri Apr 13 16:16:59 2018
 
 
 INFO: The IO information is provided in three file formats as part of the Place and Route (PAR) process.  These formats are:
@@ -46,20 +46,20 @@ Pinout by Pin Number:
 |AA2       |           |DIFFSLR   |IO_L45N_3             |UNUSED   |           |3             |          |         |           |         |         |          |           |                |
 |AA3       |           |DIFFSTB   |IO_L03N_2             |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
 |AA4       |           |DIFFSTB   |IO_L04N_2             |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
-|AA5       |           |          |VCCO_2                |         |           |2             |          |         |           |         |3.30     |          |           |                |
+|AA5       |           |          |VCCO_2                |         |           |2             |          |         |           |         |any******|          |           |                |
 |AA6       |           |DIFFMTB   |IO_L08P_2             |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
 |AA7       |           |          |GND                   |         |           |              |          |         |           |         |         |          |           |                |
 |AA8       |           |DIFFMTB   |IO_L12P_2             |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
-|AA9       |           |          |VCCO_2                |         |           |2             |          |         |           |         |3.30     |          |           |                |
+|AA9       |           |          |VCCO_2                |         |           |2             |          |         |           |         |any******|          |           |                |
 |AA10      |           |DIFFMTB   |IO_L15P_2             |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
 |AA11      |           |          |GND                   |         |           |              |          |         |           |         |         |          |           |                |
 |AA12      |           |DIFFMTB   |IO_L19P_2/GCLK0       |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
-|AA13      |           |          |VCCO_2                |         |           |2             |          |         |           |         |3.30     |          |           |                |
+|AA13      |           |          |VCCO_2                |         |           |2             |          |         |           |         |any******|          |           |                |
 |AA14      |           |DIFFMTB   |IO_L22P_2             |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
 |AA15      |           |DIFFSTB   |IO_L24N_2/DOUT        |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
 |AA16      |           |          |GND                   |         |           |              |          |         |           |         |         |          |           |                |
 |AA17      |           |DIFFMTB   |IO_L28P_2/D2          |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
-|AA18      |           |          |VCCO_2                |         |           |2             |          |         |           |         |3.30     |          |           |                |
+|AA18      |           |          |VCCO_2                |         |           |2             |          |         |           |         |any******|          |           |                |
 |AA19      |           |DIFFSTB   |IO_L32N_2             |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
 |AA20      |           |DIFFSTB   |IO_L36N_2/CCLK        |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
 |AA21      |           |DIFFSTB   |IO_L35N_2             |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
@@ -424,12 +424,12 @@ Pinout by Pin Number:
 |U6        |           |          |GND                   |         |           |              |          |         |           |         |         |          |           |                |
 |U7        |           |          |NC                    |         |           |              |          |         |           |         |         |          |           |                |
 |U8        |           |IBUF      |IP_2                  |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
-|U9        |           |          |VCCO_2                |         |           |2             |          |         |           |         |3.30     |          |           |                |
+|U9        |           |          |VCCO_2                |         |           |2             |          |         |           |         |any******|          |           |                |
 |U10       |           |IBUF      |IP_2                  |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
 |U11       |           |DIFFMTB   |IO_L17P_2/GCLK12      |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
 |U12       |           |DIFFSTB   |IO_L20N_2/GCLK3       |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
 |U13       |           |DIFFSTB   |IO_L26N_2/D3          |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
-|U14       |           |          |VCCO_2                |         |           |2             |          |         |           |         |3.30     |          |           |                |
+|U14       |           |          |VCCO_2                |         |           |2             |          |         |           |         |any******|          |           |                |
 |U15       |           |IBUF      |IP_2                  |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
 |U16       |           |          |NC                    |         |           |              |          |         |           |         |         |          |           |                |
 |U17       |           |          |GND                   |         |           |              |          |         |           |         |         |          |           |                |
@@ -448,7 +448,7 @@ Pinout by Pin Number:
 |V8        |           |IBUF      |IP_2/VREF_2           |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
 |V9        |           |DIFFMTB   |IO_L09P_2/RDWR_B      |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
 |V10       |           |DIFFMTB   |IO_L13P_2             |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
-|V11       |PS2_DATA1  |IOB       |IO_L17N_2/GCLK13      |OUTPUT   |LVCMOS33   |2             |8         |SLOW     |PULLUP     |         |         |LOCATED   |NO         |NONE            |
+|V11       |PS2_DATA1  |IBUF      |IO_L17N_2/GCLK13      |INPUT    |LVCMOS33   |2             |          |         |           |IBUF     |         |LOCATED   |NO         |NONE            |
 |V12       |           |DIFFMTB   |IO_L20P_2/GCLK2       |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
 |V13       |           |DIFFMTB   |IO_L26P_2/INIT_B      |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
 |V14       |           |DIFFMTB   |IO_L30P_2             |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
@@ -471,7 +471,7 @@ Pinout by Pin Number:
 |W9        |           |DIFFSTB   |IO_L09N_2/VS2         |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
 |W10       |           |          |GND                   |         |           |              |          |         |           |         |         |          |           |                |
 |W11       |           |          |VCCAUX                |         |           |              |          |         |           |         |3.3      |          |           |                |
-|W12       |PS2_CLK1   |IOB       |IO_L18P_2/GCLK14      |OUTPUT   |LVCMOS33   |2             |8         |SLOW     |PULLUP     |         |         |LOCATED   |NO         |NONE            |
+|W12       |PS2_CLK1   |IBUF      |IO_L18P_2/GCLK14      |INPUT    |LVCMOS33   |2             |          |         |           |IBUF     |         |LOCATED   |NO         |NONE            |
 |W13       |           |DIFFMTB   |IO_L23P_2             |UNUSED   |           |2             |          |         |           |         |         |          |           |                |
 |W14       |           |          |GND                   |         |           |              |          |         |           |         |         |          |           |                |
 |W15       |           |DIFFMTB   |IO_L25P_2             |UNUSED   |           |2             |          |         |           |         |         |          |           |                |

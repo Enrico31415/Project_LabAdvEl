@@ -46,7 +46,7 @@ end
 Module_Counter_8_bit_oneRun waitSeconds(
 					.qzt_clk(qzt_clk),
 					.clk_in(qzt_clk),
-					.limit(`delay),
+//					.limit(`delay),
 					.run(run),
 
 					//out,
