@@ -55,6 +55,9 @@ output VGA_HSYNC, VGA_VSYNC;
 
 assign LED = {w_cell_y, w_cell_x};
 
+wire [11:0] w_color_out;
+
+assign {{VGA_R, VGA_G, VGA_B}} = w_color_out;
 //generatore di clock a 25Mhz, serve per tutta la sicronia, a partire dallo schermo. 
 // il clock pi veloce utilizzato
 Module_FrequencyDivider Mhz25ClockGenerator(
@@ -83,7 +86,8 @@ Module_VGADriver driver (
 	.cell_x(w_cell_x),
 	.cell_y(w_cell_y),
 	
-	.color_out({VGA_R, VGA_G, VGA_B}) //colore prescelto
+	
+	.color_out(w_color_out) //colore prescelto
 	);
 
 
@@ -115,10 +119,11 @@ GridEngine GE(.clk_in(w_25Mhz_clock),
 	.mouse_pos_y(mouse_sym_counter_y),
 
 	.mouse_click(SW),
+	.current_color(w_current_color),
 	
 
-	.cell_x(w_cell_x), //determina quale cella  in utilizzo in x (parte da in alto a sx)!!!
-	.cell_y(w_cell_y), //determina quale cella  in utilizzo in x (parte da in alto a sx)!!!
+	.cell_x_main(w_cell_x), //determina quale cella  in utilizzo in x (parte da in alto a sx)!!!
+	.cell_y_main(w_cell_y), //determina quale cella  in utilizzo in x (parte da in alto a sx)!!!
 	.cell_status(w_cell_status) //stato della cella in uso: 4 possiblit: 00 vuota, 01 occupata nava, 10 nave colpita, 11 bordo.
 	
     );
