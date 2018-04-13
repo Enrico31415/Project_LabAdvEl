@@ -112,7 +112,7 @@ Module_MouseSimulator sim (
 GridEngine GE(.clk_in(w_25Mhz_clock),
 	//TODO Implementazione della posizione del mouse.
 	.mouse_pos_x(mouse_sym_counter_x),
-	.mouse_pos_y(mouse_sym_counter_x),
+	.mouse_pos_y(mouse_sym_counter_y),
 
 	.mouse_click(SW),
 	

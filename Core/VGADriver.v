@@ -11,7 +11,7 @@
 `define row_dimension	10'd2
 `define line_dimension	10'd2
 
-`define row_period	10'd48
+`define row_period	10'd32
 `define line_period 10'd64
 
 module Module_VGADriver(
@@ -60,7 +60,7 @@ begin
 		/*
 		Nuova implementazione con il modulo (da testare, eventualmente canellare la vecchia)
 		*/
-		if (current_row % `row_period  < `row_dimension ) // se il resto della divisione è minore della dimensione tipica di una riga, allora pittura
+		if (current_row % `row_period  < `row_dimension ) // se il resto della divisione  minore della dimensione tipica di una riga, allora pittura
 		begin
 			color_out = `row_color;
 		end
@@ -100,12 +100,12 @@ begin
 
 		*/
 		
-		else if(cell_status == 2'b01) //se c'è una nave
+		else if(cell_status == 2'b01) //se c' una nave
 			begin
-				if(current_line <= (cell_x + 4'b0001) * `line_period &&
-					current_row <= (cell_y + 4'b0001) * `row_period &&
-					 current_line > cell_x * `line_period &&
-						current_row > cell_y  * `row_period ) //se sono dentro la cella in questione 
+				if(current_line <= ( cell_y + 4'b0001) * `line_period &&
+					current_row <= (cell_x + 4'b0001) * `row_period &&
+					 current_line > cell_y * `line_period &&
+						current_row > cell_x  * `row_period ) //se sono dentro la cella in questione 
 					begin
 						color_out = `ship_color;
 					end

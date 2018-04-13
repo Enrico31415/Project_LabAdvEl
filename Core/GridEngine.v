@@ -11,7 +11,7 @@
 `define line_dimension	10'd2
 
 
-`define row_period	10'd48
+`define row_period	10'd32
 `define line_period  10'd64
 
 
@@ -60,9 +60,10 @@ input [9:0] mouse_pos_y;
 reg [1:0] turn_status = 2'b01;  //determina la fase di gioco: 00 schieramento navi, 01 turno giocatore, 10 turno IA.
 output reg [3:0] cell_x = 4'b1111; //da 0 a 15 (uso solo i primi 12)
 output reg [3:0] cell_y = 4'b1111; //da 0 a 15
-output reg [1:0] cell_status = 2'b11;
+output reg [1:0] cell_status = 2'b00;
 
-	 
+
+reg mouse_enable = 1;	 
 
 always @ (posedge clk_in)
 begin
@@ -79,65 +80,26 @@ begin
 		//TODO: 
 		//aspetto qui finch non ha cliccato?
 		//se clicca, vedo cosa fare.... qui il casino.
-		
-		
-		
-		/*
-		Vecchia implementazione, se va la nuova, è uno sgamo da panico
-		
-		// gestisco la posizione del mouse: con le griglie: na svangata di if
-		if (mouse_pos_x <= ('d64-`line_dimension) && mouse_pos_x >= 0 && //condizione sulla x
-				mouse_pos_y <= ('d48-`row_dimension) && mouse_pos_y >= 0) //condizione sulla y
-			begin //sono in 0,0 (quadrante)
-				cell_x = 4'b0000;
-				cell_y = 4'b0000;
-				//se clicco
-				if(mouse_click) //TODO anche il rilascio
-				begin
-					//cambio lo stato della cella
-					cell_status = 2'b01;
-				end
-				else
-				begin
-					cell_status = 2'b00;
-				end
-			end
-		else if (mouse_pos_x <= ('d128-`line_dimension) && mouse_pos_x >= ('d64+`line_dimension)  && //condizione sulla x
-				mouse_pos_y <= ('d96-`row_dimension) && mouse_pos_y >= ('d48+`row_dimension) ) //condizione sulla y
-			begin //sono in 1,1 (quadrante)
-				cell_x = 4'b0001;
-				cell_y = 4'b0001;
-				//se clicco
-				if(mouse_click) //TODO anche il rilascio
-				begin
-					//cambio lo stato della cella
-					cell_status = 2'b01;
-				end
-				else
-				begin
-					cell_status = 2'b00;
-				end
-			end
-			*/
-			
-			
 			/* Nuova implementazione*/
 			// testata a simulatore
-			cell_x = mouse_pos_x / `line_period;
-			cell_y = mouse_pos_y / `row_period;
+			cell_x = mouse_pos_x / `row_period;
+			cell_y = mouse_pos_y / `line_period;
 			
-			if(mouse_click) //se ho cliccato sulal cella => cambio lo stato
+			if(mouse_click & mouse_enable) //se ho cliccato sulal cella => cambio lo stato
 			begin
-				//se la cella è libera, allora pitturala
+				//se la cella  libera, allora pitturala
 				if (cell_status == `cell_status_free)
 				begin
 					cell_status = `cell_status_occ;
 				end
-				else if (cell_status == `cell_status_occ) //viceversa, se è occupata, liberela.
+				else if (cell_status == `cell_status_occ) //viceversa, se  occupata, liberela.
 				begin
 					cell_status = `cell_status_free;
 				end
 			end
+			mouse_enable = !mouse_click;
+			
+			
 			
 	end
 	else if (turn_status == `turn_IA)//se tocca all'ia

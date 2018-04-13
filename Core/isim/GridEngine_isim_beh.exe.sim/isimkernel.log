@@ -1,0 +1,29 @@
+Command line:
+   GridEngine_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  59263
+
+Thu Apr 12 12:53:53 2018
+
+
+ Elaboration Time: 0.01 sec
+
+ Current Memory Usage: 199.508 Meg
+
+ Total Signals          : 17
+ Total Nets             : 27
+ Total Signal Drivers   : 8
+ Total Blocks           : 2
+ Total Primitive Blocks : 2
+ Total Processes        : 10
+ Total Traceable Variables  : 22
+ Total Scalar Nets and Variables : 119
+Total Line Count : 41
+
+ Total Simulation Time: 1.45 sec
+
+ Current Memory Usage: 274.481 Meg
+
+Thu Apr 12 12:56:31 2018
+
