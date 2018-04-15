@@ -11,8 +11,8 @@ GridEngine->Gestisce la griglia, quindi la logica del gioco. Qui tutto quello ch
 pos_to_quadrant->Generato in python, date due coordinate (x,y), ritorna la posizione in una griglia 10x10 in cui si trovano.
 cellMemory->Generato in python, tiene traccia di tutte le celle, e dello stato per ogni cella.
 ```
-
-Nella cartella [PytonScript] (/Core/PythonScript) sono presenti degli script in python, commentati. Sostanzialmente generano il codice sopra descritto. Per i pigri, è apparso un `updatePython.sh` che se lanciato dov'è, permette di generare e sostituire in automatico il codice degli script.
+[I'm a relative reference to a repository file](../Core/PythonScript)
+Nella cartella [PytonScript](/Core/PythonScript) sono presenti degli script in python, commentati. Sostanzialmente generano il codice sopra descritto. Per i pigri, è apparso un `updatePython.sh` che se lanciato dov'è, permette di generare e sostituire in automatico il codice degli script.
 
 **Nota bene: lo schermo parte da (x,y) = (0,0) in ALTO A SINISTRA.**
 
