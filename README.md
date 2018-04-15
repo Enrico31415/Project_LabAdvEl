@@ -32,3 +32,5 @@ Nella cartella [PytonScript](/Core/PythonScript) sono presenti degli script in p
 5. Implementare la fase di gioco dell'ia.
    - Usare sempre il generatore pseudorandom per sparare con più o meno furbizia.  
 6. Implementare le win condition.
+
+Poi, un dubbio. Qualcuno mai leggerà quel che ho scritto? Forse serve solo a me, ma neanche, perché se l'avessi riletto, avrei anche corretto gli errori di ortografia. La verità è che sono prigro. La verità, è che nessuno leggerà questo readme. La verità è che Matteo si fa i cazzi suoi, e Carlo è già tanto se ha capito come si scrive un commit di git.
