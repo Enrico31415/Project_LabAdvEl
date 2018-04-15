@@ -23,6 +23,7 @@
 module battleship(
 				CLK_50M,
 				BTN_SOUTH,
+				BTN_NORTH,
 
 				LED,
 				PS2_CLK1,
@@ -30,6 +31,7 @@ module battleship(
 				
 				);
 
+input		BTN_NORTH;
 input		BTN_SOUTH;
 input		CLK_50M; //here decalrations, variable with 1 bit.
 output	[7:0]	LED;// so have low impedence. 8 digits. is a bus.
@@ -42,7 +44,32 @@ reg run;
 reg btn_old;
 */
 //assign send = BTN_SOUTH;
+`define centomicro 5000
+
 assign LED[7]=BTN_SOUTH;
+wire w_end;
+
+onerun centomicro( 
+		.CLK(CLK_50M),
+		.limit(`centomicro),
+		.start_count(BTN_NORTH),
+		
+		.countend(w_end)
+		);
+		
+reg regPS2_CLK1;
+assign PS2_CLK1=regPS2_CLK1;
+always @(posedge CLK_50M) begin
+	if (BTN_NORTH) begin regPS2_CLK1=0; end
+	if (w_end) begin regPS2_CLK1=1'bz; end
+end
+
+`define delay 31'd50_000_000
+
+//assign PS2_CLK1=BTN_NORTH?0:1'bz;
+assign PS2_DATA1=BTN_SOUTH?0:1'bz;
+assign LED[6:4]=PS2_CLK1;
+assign LED[3:0]=PS2_DATA1;
 
 /*
 always @(posedge CLK_50M) begin
@@ -61,12 +88,7 @@ end
 
 // here wires, modules, ecc.
 */
-`define delay 31'd50_000_000
 
-assign PS2_CLK1=1'bz;
-assign PS2_DATA1=1'bz;
-assign LED[6:4]=PS2_CLK1;
-assign LED[3:0]=PS2_DATA1;
 /*
 wire w_tmp;
 PS2_send PS2_send(
