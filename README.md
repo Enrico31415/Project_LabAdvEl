@@ -1,6 +1,6 @@
 -Qui, l'implementazione dell VGA, associata al core, cioè il modulo che dovà gestire, come matrice, la griglia della battaglia navale. **Il codice è commentato**.
 Nella cartalla, sono presenti script in Python, che generano file. I file genrati, come è intuibile, sarebbe meglio non modificarli, piuttosto modificare il sorgente. I sorgenti si trovano nella cartella /PythonScript.
-Nella directory principale del progetto, è comunque presente uno script di shell, che lancia il python e aggiorna i file generati ``updatePython.sh``
+Nella directory principale del progetto, è comunque presente uno script di shell, che lancia il python e aggiorna i file generati `updatePython.sh`
 
 
 
