@@ -44,14 +44,17 @@ module GridEngine(clk_in,
 	mouse_pos_x,
 	mouse_pos_y,
 	
-	mouse_click,
+	// posizione attuale del pxcel a schermo
+	pos_x,
+	pos_y,
 	
-	current_color,
+	mouse_click, //evento del click del mouse
 	
 	
-	cell_x_main, //determina quale cella  in utilizzo in x (parte da in alto a sx)!!!
-	cell_y_main, //determina quale cella  in utilizzo in x (parte da in alto a sx)!!!
-	cell_status //stato della cella in uso: 4 possiblit: 00 vuota, 01 occupata nava, 10 nave colpita, 11 bordo.
+	
+	cell_x_mouse, //determina quale cella  in utilizzo in x (parte da in alto a sx)!!!
+	cell_y_mouse, //determina quale cella  in utilizzo in x (parte da in alto a sx)!!!
+	cell_read_status //stato della cella in uso: 4 possiblit: 00 vuota, 01 occupata nava, 10 nave colpita, 11 bordo.
 	
 	
 	
@@ -61,30 +64,44 @@ input mouse_click;
 input clk_in;
 input [9:0] mouse_pos_x;
 input [9:0] mouse_pos_y;
-input [11:0] current_color;
+
+input [9:0] pos_x;
+input [9:0] pos_y;
+
 //FIXME: per testare, sono nel turno del giocatore
 reg [1:0] turn_status = 2'b01;  //determina la fase di gioco: 00 schieramento navi, 01 turno giocatore, 10 turno IA.
-output [3:0] cell_x_main; //da 0 a 15 (uso solo i primi 12)
-output [3:0] cell_y_main; //da 0 a 15
-output reg [1:0] cell_status = 2'b00;
-
+output [3:0] cell_x_mouse; //da 0 a 15 (uso solo i primi 12)
+output [3:0] cell_y_mouse; //da 0 a 15
+output [1:0] cell_read_status; //stato attuale della cella letta
+reg  [1:0] cell_new_status;
 
 reg mouse_enable = 1;
 
 
-mouse_pos_to_quadrant mps (
+
+
+
+pos_to_quadrant mouse_position_to_quadrant ( //ritorna la posizione in celle, attuale del mouse
 	.clk_in(clk_in),
-	.mouse_pos_x(mouse_pos_x),
-	.mouse_pos_y(mouse_pos_y),
+	.pos_x(mouse_pos_x),
+	.pos_y(mouse_pos_y),
 	
-	.cell_x(cell_x_main),
-	.cell_y(cell_y_main)
+	.cell_x(cell_x_mouse),
+	.cell_y(cell_y_mouse)
 );
 
 
-
-
-
+//data la posizione in x, ed y, ritorna lo stato della cella.
+// si può fare furbo? senza flag, ma controllando se lo stato è diverso?
+cell_io memory( //gestisce la memoria
+	.clk_in(clk_in),
+	.pos_x(pos_x),
+	.pos_y(pos_y),
+	.write_enable(mouse_click & mouse_enable), // scrivo solo se ho cliccato, e per un ciclo solo
+	.new_value(cell_new_status),
+	
+	.status(cell_read_status)
+);
 
 
 always @ (posedge clk_in)
@@ -92,65 +109,32 @@ begin
 	if (turn_status == `turn_inizialize)//se devo inizializzare 
 	begin
 		//TODO: generazione random, controllo posizionamento
-		
-		
-		
 		turn_status = turn_status + 1; //tocca al giocatore
 	end
 	else if (turn_status == `turn_player)//se tocca al giocatore
 	begin
 		//TODO: 
 		//aspetto qui finch non ha cliccato?
-		//se clicca, vedo cosa fare.... qui il casino.
-		
-			case(current_color)
-				`back_ground : cell_status = `cell_status_free;
-				`ship_color : cell_status = `cell_status_occ;
-			endcase
-		
-		
-			/* Nuova implementazione*/
-			// testata a simulatore
-			// TODO: Posizione cell_x e cell_y, Generare codice da programma.
-//			cell_x = mouse_pos_x / `row_period;
-//			cell_y = mouse_pos_y / `line_period;
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			if(mouse_click & mouse_enable) //se ho cliccato sulal cella => cambio lo stato
+		if(mouse_click & mouse_enable) //se ho cliccato sulal cella => cambio lo stato
+		begin
+			//se la cella  libera, allora pitturala
+			if (cell_read_status == `cell_status_free)
 			begin
-				//se la cella  libera, allora pitturala
-				if (cell_status == `cell_status_free)
-				begin
-					cell_status = `cell_status_occ;
-				end
-				else if (cell_status == `cell_status_occ) //viceversa, se  occupata, liberela.
-				begin
-					cell_status = `cell_status_free;
-				end
+				cell_new_status = `cell_status_occ;
 			end
-			
-			
-			
-			
-			
-			
-			
-			mouse_enable = !mouse_click;
+			else if (cell_read_status == `cell_status_occ) //viceversa, se  occupata, liberela.
+			begin
+				cell_new_status = `cell_status_free;
+			end
+		end	
+		mouse_enable = !mouse_click;
 	end
 	else if (turn_status == `turn_IA)//se tocca all'ia
 	begin
 		//TODO:
 		//genero random una posizione e verifico se  buona.
-		
 	end
-end 
+end
 
 
 endmodule

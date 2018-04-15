@@ -1,0 +1,38 @@
+# Controller.lpc  
+#   The constraints in this file were created simply to be viewed.  
+#   If you wish to use these constraints, please copy them into your  
+#   project's constraint file. If you do not have a project constraints  
+#   file yet, please use the "Project->New Source" menu to create one.
+
+
+
+#pin2ucf - Sun Apr 15 11:46:28 2018
+#The following constraints were newly added
+NET "BTN_NORTH" LOC = T14;
+NET "BTN_EAST" LOC = T16;
+NET "BTN_WEST" LOC = U15;
+NET "LED<0>" LOC = R20;
+NET "VGA_B<0>" LOC = C7;
+NET "LED<1>" LOC = T19;
+NET "VGA_B<1>" LOC = D7;
+NET "LED<2>" LOC = U20;
+NET "VGA_B<2>" LOC = B9;
+NET "LED<3>" LOC = U19;
+NET "VGA_B<3>" LOC = C9;
+NET "LED<4>" LOC = V19;
+NET "VGA_HSYNC" LOC = C11;
+NET "LED<5>" LOC = V20;
+NET "LED<6>" LOC = Y22;
+NET "LED<7>" LOC = W21;
+NET "SW" LOC = V8;
+NET "VGA_G<0>" LOC = C5;
+NET "VGA_G<1>" LOC = D5;
+NET "BTN_SOUTH" LOC = T15;
+NET "CLK_50M" LOC = E12;
+NET "VGA_G<2>" LOC = C6;
+NET "VGA_G<3>" LOC = D6;
+NET "VGA_R<0>" LOC = A3;
+NET "VGA_R<1>" LOC = B3;
+NET "VGA_R<2>" LOC = B8;
+NET "VGA_VSYNC" LOC = B11;
+NET "VGA_R<3>" LOC = C8;

@@ -1,0 +1,29 @@
+Command line:
+   cell_io_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  49166
+
+Sun Apr 15 19:00:09 2018
+
+
+ Elaboration Time: 0.327603 sec
+
+ Current Memory Usage: 663.589 Meg
+
+ Total Signals          : 18
+ Total Nets             : 27
+ Total Signal Drivers   : 6
+ Total Blocks           : 2
+ Total Primitive Blocks : 2
+ Total Processes        : 8
+ Total Traceable Variables  : 119
+ Total Scalar Nets and Variables : 309
+Total Line Count : 619
+
+ Total Simulation Time: 4.16523 sec
+
+ Current Memory Usage: 663.589 Meg
+
+Sun Apr 15 19:05:34 2018
+

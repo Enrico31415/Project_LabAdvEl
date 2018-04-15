@@ -14,16 +14,21 @@
 `define row_period	10'd48
 `define line_period 10'd64
 
+
+`define cell_status_free 2'b00
+`define cell_status_occ 2'b01
+`define cell_status_hitted 2'b10
+`define cell_status_outbound 2'b11
+
+
 module Module_VGADriver(
 	clk_in,
-	current_row,
+	current_row, //pixcel in cui sto scrivendo
 	current_line,
-	enable,
-	x_pos,
-	y_pos,
+	enable, //se non sono nel porch
+	mouse_pos_x,
+	mouse_pos_y,
 	cell_status,
-	cell_x,
-	cell_y,
 	
 	color_out
     );
@@ -35,14 +40,29 @@ input[9:0] current_line;
 
 
 input [1:0]	cell_status;
-input [3:0]	cell_x;
-input [3:0]	cell_y;
 
 
-input[9:0] x_pos;
-input[9:0] y_pos;
+input[9:0] mouse_pos_x;
+input[9:0] mouse_pos_y;
 
 output reg [11:0] color_out = `black;
+
+
+//cella in cui sto scrivendo.
+wire [3:0] cell_x;
+wire [3:0] cell_y;
+
+
+pos_to_quadrant position_to_quadrant (
+	.clk_in(clk_in),
+	.pos_x(current_line),
+	.pos_y(current_row),
+	
+	.cell_x(cell_x_1),
+	.cell_y(cell_y_1)
+);
+
+
 	 
 	 
 always @(posedge clk_in) 
@@ -131,39 +151,35 @@ begin
 		end
 		
 		
-		
-		//qui disegno il punatore
-		if(current_row <= (x_pos+`dimension) && current_line <= (y_pos + `dimension) &&
-		current_row >= (x_pos-`dimension) && current_line >= (y_pos - `dimension) )
-		begin
-			color_out = `red;
-		end
-		
-		
-		else if(cell_status == 2'b01) //se c' una nave
-			begin
-				if(current_line <= ( cell_y + 4'b0001) * `line_period &&
-					current_row <= (cell_x + 4'b0001) * `row_period &&
-					 current_line > cell_y * `line_period &&
-						current_row > cell_x  * `row_period ) //se sono dentro la cella in questione 
+		// Da testare: non è detto che vada il prodotto.....
+		case (cell_status) // test sullo stato della cella in quesione
+			`cell_status_free : 
+				begin //se sono nel quadrato => cambio colore
+				if (current_row <= `line_period*(cell_x+1) && current_row > `line_period*(cell_x) &&
+					current_line <= `row_period*(cell_y+1) && current_line > `row_period*(cell_y))
+					begin
+						color_out = `back_ground;
+					end
+				end
+			`cell_status_occ : 
+				begin
+				if (current_row <= `line_period*(cell_x+1) && current_row > `line_period*(cell_x) &&
+					current_line <= `row_period*(cell_y+1) && current_line > `row_period*(cell_y))
 					begin
 						color_out = `ship_color;
 					end
-			end
+				end
+				
+		endcase
 		
 		
 		
-		
-		
-		
-		/*
-		Disegno le righe: uso il modulo
-		
-		// disegno le righe della battaglia navale. Ho 10 caselle da 48 -> 48<<2, da sistemare, veder se  compatibile.
-		
-*/
-		
-			
+		//qui disegno il punatore
+		if(current_row <= (mouse_pos_x+`dimension) && current_line <= (mouse_pos_y + `dimension) &&
+		current_row >= (mouse_pos_x-`dimension) && current_line >= (mouse_pos_y - `dimension) )
+		begin
+			color_out = `red;
+		end
 		
 	end
 	else

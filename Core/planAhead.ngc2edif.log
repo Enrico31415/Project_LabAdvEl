@@ -1,0 +1,46 @@
+Release 14.7 - ngc2edif P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+Reading design Controller.ngc ...
+WARNING:NetListWriters:298 - No output is written to Controller.xncf, ignored.
+Processing design ...
+   Preping design's networks ...
+   Preping design's macros ...
+WARNING:NetListWriters:306 - Signal bus
+   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_lut<11 : 0> on block
+   Controller is not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus GE/mps/cell_x<3 : 0> on block Controller
+   is not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus GE/mps/cell_x_mux0000<3 : 0> on block
+   Controller is not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus VGASync/Msub_out_lines_addsub0000_lut<9
+   : 1> on block Controller is not reconstructed, because there are some missing
+   bus signals.
+WARNING:NetListWriters:306 - Signal bus VGASync/old_rows_14_add0000<9 : 0> on
+   block Controller is not reconstructed, because there are some missing bus
+   signals.
+WARNING:NetListWriters:306 - Signal bus driver/Madd_color_out_addsub0000_lut<2 :
+   0> on block Controller is not reconstructed, because there are some missing
+   bus signals.
+WARNING:NetListWriters:306 - Signal bus driver/Madd_color_out_addsub0001_lut<2 :
+   0> on block Controller is not reconstructed, because there are some missing
+   bus signals.
+WARNING:NetListWriters:306 - Signal bus driver/Msub_color_out_addsub0002_lut<9 :
+   1> on block Controller is not reconstructed, because there are some missing
+   bus signals.
+WARNING:NetListWriters:306 - Signal bus driver/Msub_color_out_addsub0003_lut<8 :
+   1> on block Controller is not reconstructed, because there are some missing
+   bus signals.
+WARNING:NetListWriters:306 - Signal bus driver/color_out<9 : 0> on block
+   Controller is not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus driver/color_out_mult0000<8 : 6> on
+   block Controller is not reconstructed, because there are some missing bus
+   signals.
+WARNING:NetListWriters:306 - Signal bus driver/mult0000_addsub0001<3 : 0> on
+   block Controller is not reconstructed, because there are some missing bus
+   signals.
+WARNING:NetListWriters:306 - Signal bus sim/_old_y_pos_3<8 : 0> on block
+   Controller is not reconstructed, because there are some missing bus signals.
+  finished :Prep
+Writing EDIF netlist file Controller.edif ...
+ngc2edif: Total memory usage is 76504 kilobytes
+

@@ -80,11 +80,9 @@ Module_VGADriver driver (
 	.current_row(position_to_controller_x), //posizione_x del pixcel in considerazione
 	.current_line(position_to_controller_y), //posizione_y del pixcel in considerazione
 	.enable(w_enable_write), //Serve per bloccare l'output quando non sono all'interno dello schermo (vedi UG e PORCH)
-	.x_pos(mouse_sym_counter_x), //posizione del mouse_x
-	.y_pos(mouse_sym_counter_y), //posizione del mouse_x
+	.mouse_pos_x(mouse_sym_counter_x), //posizione del mouse_x
+	.mouse_pos_y(mouse_sym_counter_y), //posizione del mouse_x
 	.cell_status(w_cell_status),
-	.cell_x(w_cell_x),
-	.cell_y(w_cell_y),
 	
 	
 	.color_out(w_color_out) //colore prescelto
@@ -119,12 +117,16 @@ GridEngine GE(.clk_in(w_25Mhz_clock),
 	.mouse_pos_y(mouse_sym_counter_y),
 
 	.mouse_click(SW),
-	.current_color(w_current_color),
 	
-
-	.cell_x_main(w_cell_x), //determina quale cella  in utilizzo in x (parte da in alto a sx)!!!
-	.cell_y_main(w_cell_y), //determina quale cella  in utilizzo in x (parte da in alto a sx)!!!
-	.cell_status(w_cell_status) //stato della cella in uso: 4 possiblit: 00 vuota, 01 occupata nava, 10 nave colpita, 11 bordo.
+	
+	
+	.pos_x(position_to_controller_x),
+	.pos_y(position_to_controller_y),
+	
+	//TODO: cancellare, si utilizza solo per i led attualmente
+	.cell_x_mouse(w_cell_x), //determina quale cella  in utilizzo in x (parte da in alto a sx)!!!
+	.cell_y_mouse(w_cell_y), //determina quale cella  in utilizzo in x (parte da in alto a sx)!!!
+	.cell_read_status(w_cell_status) //stato della cella in uso: 4 possiblit: 00 vuota, 01 occupata nava, 10 nave colpita, 11 bordo.
 	
     );
 	 
