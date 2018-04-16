@@ -53,14 +53,14 @@ module GridEngine(clk_in,
 	
 	
 	
-	cell_read_status //stato della cella in uso: 4 possiblit: 00 vuota, 01 occupata nava, 10 nave colpita, 11 bordo.
+	pointer_cell_read_status
 	
 	
 	
 	
     );
-input mouse_click;	
 input clk_in;
+input mouse_click;	
 input [9:0] mouse_pos_x;
 input [9:0] mouse_pos_y;
 
@@ -69,17 +69,23 @@ input [9:0] pos_y;
 
 //FIXME: per testare, sono nel turno del giocatore
 reg [1:0] turn_status = 2'b01;  //determina la fase di gioco: 00 schieramento navi, 01 turno giocatore, 10 turno IA.
-output [1:0] cell_read_status; //stato attuale della cella letta
+wire [1:0] mouse_cell_read_status; //stato attuale della cella letta
+output [1:0] pointer_cell_read_status;
 reg  [1:0] cell_new_status;
 
 reg mouse_enable = 1'b1;
+reg write_enable =1'b0;
 
 wire[3:0] mouse_cell_x;
 wire[3:0] mouse_cell_y;
 
 
+wire[3:0] pointer_cell_x;
+wire[3:0] pointer_cell_y;
+
+
 //dalla posizione del mouse, torna la posizione in celle.
-pos_to_quadrant pointer_to_cell(
+pos_to_quadrant mouse_to_cell(
 	.clk_in(clk_in), 
 	.pos_x(mouse_pos_x),
 	.pos_y(mouse_pos_y),
@@ -90,17 +96,34 @@ pos_to_quadrant pointer_to_cell(
 );
 
 
+//dalla posizione del pixel in scrittura, torna la posizione in celle.
+pos_to_quadrant pointer_to_cell(
+	.clk_in(clk_in), 
+	.pos_x(pos_x),
+	.pos_y(pos_y),
+	
+	.cell_x(pointer_cell_x),
+	.cell_y(pointer_cell_y)
+
+);
+
+
+
 
 //data la posizione in x, ed y, ritorna lo stato della cella. 
 // si pu fare furbo? senza flag, ma controllando se lo stato  diverso?
 // punta alla posizione del mouse.
 cell_io memory( //gestisce la memoria
 	.clk_in(clk_in),
-	.cell_x(mouse_cell_x),
-	.cell_y(mouse_cell_y),
+	.mouse_cell_x(mouse_cell_x),
+	.mouse_cell_y(mouse_cell_y),
 	.new_value(cell_new_status),
+	.we(write_enable),
+	.pointer_cell_x(pointer_cell_x),
+	.pointer_cell_y(pointer_cell_y),
 	
-	.status(cell_read_status)
+	.status(mouse_cell_read_status),
+	.status_pointed_cell(pointer_cell_read_status)
 );
 
 
@@ -117,19 +140,20 @@ begin
 		//aspetto qui finch non ha cliccato?
 		if(mouse_click & mouse_enable) //se ho cliccato sulal cella => cambio lo stato
 		begin
+			write_enable = 1'b1;
 			//se la cella  libera, allora pitturala
-			if (cell_read_status == `cell_status_free)
+			if (mouse_cell_read_status == `cell_status_free)
 			begin
 				cell_new_status = `cell_status_occ;
 			end
-			else if (cell_read_status == `cell_status_occ) //viceversa, se  occupata, liberela.
+			else if (mouse_cell_read_status == `cell_status_occ) //viceversa, se  occupata, liberela.
 			begin
 				cell_new_status = `cell_status_free;
 			end
 		end	
 		else
 		begin
-			cell_new_status = `cell_status_free;
+			write_enable = 1'b0;
 		end
 		mouse_enable = !mouse_click;
 	end

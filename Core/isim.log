@@ -1,5 +1,5 @@
 ISim log file
-Running: /home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb /home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine_isim_beh.wdb 
+Running: /home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/Module_VGADriver_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb /home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/Module_VGADriver_isim_beh.wdb 
 ISim P.20131013 (signature 0xfbc00daa)
 WARNING: A WEBPACK license was found.
 WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
@@ -11,223 +11,27 @@ Time resolution is 1 ps
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
-# isim force add /GridEngine/clk_in 1 -radix bin -value 0 -radix bin -time 20 ns -repeat 40 ns
-# isim force add /GridEngine/clk_in 1 -radix bin -value 0 -radix bin -time 20 ns -repeat 40 ns
-# isim force add /GridEngine/mouse_click 0 -radix bin
-# isim force add /GridEngine/mouse_click 0 -radix bin
-# isim force add /GridEngine/mouse_pos_x 0 -radix bin
-/GridEngine/mouse_pos_x: Array length and the input lengths are different
-
-# isim force add /GridEngine/mouse_pos_x 20 -radix unsigned
-# isim force add /GridEngine/mouse_pos_x 20 -radix unsigned
-# isim force add /GridEngine/mouse_pos_y 20 -radix unsigned
-# isim force add /GridEngine/mouse_pos_y 20 -radix unsigned
+# isim force add /Module_VGADriver/clk_in 1 -radix bin -value 0 -radix bin -time 20 ns -repeat 40 ns
+# isim force add /Module_VGADriver/clk_in 1 -radix bin -value 0 -radix bin -time 20 ns -repeat 40 ns
+# isim force add /Module_VGADriver/enable 1 -radix bin
+# isim force add /Module_VGADriver/enable 1 -radix bin
+# isim force add /Module_VGADriver/current_row 20 -radix unsigned
+# isim force add /Module_VGADriver/current_row 20 -radix unsigned
+# isim force add /Module_VGADriver/current_line 20 -radix unsigned
+# isim force add /Module_VGADriver/current_line 20 -radix unsigned
+# isim force add /Module_VGADriver/cell_status 1 -radix unsigned
+# isim force add /Module_VGADriver/cell_status 1 -radix unsigned
+# isim force add /Module_VGADriver/mouse_pos_x 40 -radix unsigned
+# isim force add /Module_VGADriver/mouse_pos_y 40 -radix unsigned
+# isim force add /Module_VGADriver/mouse_pos_y 40 -radix unsigned
 # run 1.00us
+# isim force add /Module_VGADriver/current_line 40 -radix unsigned
+# isim force add /Module_VGADriver/current_line 40 -radix unsigned
 # run 1.00us
+# isim force add /Module_VGADriver/current_line 80 -radix unsigned
+# isim force add /Module_VGADriver/current_line 80 -radix unsigned
 # run 1.00us
+# isim force add /Module_VGADriver/current_row 80 -radix unsigned
+# isim force add /Module_VGADriver/current_row 80 -radix unsigned
 # run 1.00us
-# run 1.00us
-# run 1.00us
-# run 1.00us
-# run 1.00us
-# run 1.00us
-# run 1.00us
-# run 1.00us
-# isim force add /GridEngine/mouse_click 1 -radix bin
-# isim force add /GridEngine/mouse_click 1 -radix bin
-# step
-Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 108
-# step
-Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 109
-# step
-Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 114
-# step
-Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 115
-# step
-Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 118
-# step
-Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 119
-# step
-Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 121
-# step
-Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 122
-# step
-Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 123
-# step
-Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 134
-# step
-Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 107
-# step
-Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 17
-# step
-Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 18
-# step
-Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 19
-# step
-Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 20
-# step
-Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 21
-# step
-Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 16
-# step
-Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 118
-# step
-Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 119
-# step
-Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 120
-# step
-Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 121
-# step
-Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 125
-# step
-Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 117
-# step
-Stopped at time : 12080 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 108
-# step
-Stopped at time : 12080 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 109
-# step
-Stopped at time : 12080 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 114
-# step
-Stopped at time : 12080 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 115
-# step
-Stopped at time : 12080 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 118
-# step
-Stopped at time : 12080 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 131
-# step
-Stopped at time : 12080 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 132
-# step
-Stopped at time : 12080 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 134
-# step
-Stopped at time : 12080 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 107
-# run 1.00us
-# isim force add /GridEngine/mouse_click 0 -radix bin
-# isim force add /GridEngine/mouse_click 0 -radix bin
-# run 1.00us
-# run 1.00us
-# isim force add /GridEngine/mouse_click 1 -radix bin
-# isim force add /GridEngine/mouse_click 1 -radix bin
-# step
-Stopped at time : 15120 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 108
-# step
-Stopped at time : 15120 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 109
-# step
-Stopped at time : 15120 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 114
-# step
-Stopped at time : 15120 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 115
-# step
-Stopped at time : 15120 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 118
-# step
-Stopped at time : 15120 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 119
-# step
-Stopped at time : 15120 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 121
-# run 1.00us
-# isim force add /GridEngine/mouse_click 0 -radix bin
-# isim force add /GridEngine/mouse_click 0 -radix bin
-# run 1.00us
-# isim force add /GridEngine/mouse_click 1 -radix bin
-# isim force add /GridEngine/mouse_click 1 -radix bin
-# step
-Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 108
-# step
-Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 109
-# step
-Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 114
-# step
-Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 115
-# step
-Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 118
-# step
-Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 119
-# step
-Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 121
-# step
-Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 122
-# step
-Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 123
-# step
-Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 134
-# step
-Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 107
-# step
-Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 17
-# step
-Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 18
-# step
-Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 19
-# step
-Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 20
-# step
-Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 21
-# step
-Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 16
-# step
-Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 118
-# step
-Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 119
-# step
-Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 120
-# step
-Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 121
-# step
-Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 125
-# step
-Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 117
-# step
-Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 108
-# step
-Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 109
-# step
-Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 114
-# step
-Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 115
-# step
-Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 118
-# step
-Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 131
-# step
-Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 132
-# step
-Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 134
-# step
-Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 107
-# step
-Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 17
-# step
-Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 18
-# step
-Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 19
-# step
-Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 20
-# step
-Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 21
-# step
-Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 16
-# step
-Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 118
-# step
-Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 119
-# step
-Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 120
-# step
-Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 121
-# step
-Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 122
-# step
-Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 123
-# step
-Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 125
-# step
-Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 117
-# step
-Stopped at time : 17240 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 108
-# step
-Stopped at time : 17240 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 109
-# step
-Stopped at time : 17240 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 114
-# step
-Stopped at time : 17240 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 115
-# step
-Stopped at time : 17240 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 118
-# step
-Stopped at time : 17240 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 131
 # exit 0

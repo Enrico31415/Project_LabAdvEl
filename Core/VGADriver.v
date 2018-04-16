@@ -59,8 +59,8 @@ pos_to_quadrant position_to_quadrant (
 	.pos_x(current_line),
 	.pos_y(current_row),
 	
-	.cell_x(cell_x_1),
-	.cell_y(cell_y_1)
+	.cell_x(cell_x),
+	.cell_y(cell_y)
 );
 
 
@@ -69,12 +69,17 @@ pos_to_quadrant position_to_quadrant (
 always @(posedge clk_in) 
 begin
 	if (enable == 1) 
-	begin
-		
-	color_out = `back_ground;
-
-
-
+	begin		
+		case (cell_status) // test sullo stato della cella in quesione
+			`cell_status_free : 
+				begin //se sono nel quadrato => cambio colore
+					color_out = `back_ground;
+				end
+			`cell_status_occ : 
+				begin
+					color_out = `ship_color;
+				end
+		endcase
 		if (current_line <= ('d48+`row_dimension) && current_line > ('d48-`row_dimension)) // prima riga
 		begin
 			color_out = `line_color;
@@ -152,26 +157,7 @@ begin
 		end
 		
 		
-		// Da testare: non  detto che vada il prodotto.....
-		case (cell_status) // test sullo stato della cella in quesione
-			`cell_status_free : 
-				begin //se sono nel quadrato => cambio colore
-				if (current_row <= `line_period*(cell_x+1) && current_row > `line_period*(cell_x) &&
-					current_line <= `row_period*(cell_y+1) && current_line > `row_period*(cell_y))
-					begin
-						color_out = `back_ground;
-					end
-				end
-			`cell_status_occ : 
-				begin
-				if (current_row <= `line_period*(cell_x+1) && current_row > `line_period*(cell_x) &&
-					current_line <= `row_period*(cell_y+1) && current_line > `row_period*(cell_y))
-					begin
-						color_out = `ship_color;
-					end
-				end
-				
-		endcase
+
 		
 		
 		

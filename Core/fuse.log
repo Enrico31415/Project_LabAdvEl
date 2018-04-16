@@ -1,24 +1,22 @@
-Running: /usr/LDSS/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -o /home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine_isim_beh.exe -prj /home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine_beh.prj work.GridEngine work.glbl 
+Running: /usr/LDSS/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -o /home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/Module_VGADriver_isim_beh.exe -prj /home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/Module_VGADriver_beh.prj work.Module_VGADriver work.glbl 
 ISim P.20131013 (signature 0xfbc00daa)
 Number of CPUs detected in this system: 4
 Turning on mult-threading, number of parallel sub-compilation jobs: 8 
 Determining compilation order of HDL files
 Analyzing Verilog file "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" into library work
-Analyzing Verilog file "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" into library work
-Analyzing Verilog file "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" into library work
+Analyzing Verilog file "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/VGADriver.v" into library work
 Analyzing Verilog file "/usr/LDSS/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
 Starting static elaboration
 Completed static elaboration
-Fuse Memory Usage: 96260 KB
-Fuse CPU Usage: 1050 ms
+Fuse Memory Usage: 96248 KB
+Fuse CPU Usage: 960 ms
 Compiling module pos_to_quadrant
-Compiling module cell_io
-Compiling module GridEngine
+Compiling module Module_VGADriver
 Compiling module glbl
 Time Resolution for simulation is 1ps.
 Waiting for 1 sub-compilation(s) to finish...
-Compiled 4 Verilog Units
-Built simulation executable /home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine_isim_beh.exe
-Fuse Memory Usage: 663200 KB
-Fuse CPU Usage: 1180 ms
-GCC CPU Usage: 3670 ms
+Compiled 3 Verilog Units
+Built simulation executable /home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/Module_VGADriver_isim_beh.exe
+Fuse Memory Usage: 662976 KB
+Fuse CPU Usage: 1060 ms
+GCC CPU Usage: 2610 ms

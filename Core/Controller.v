@@ -124,8 +124,7 @@ GridEngine GE(.clk_in(w_25Mhz_clock),
 	.pos_y(position_to_controller_y),
 	
 	//TODO: cancellare, si utilizza solo per i led attualmente
-	.cell_read_status(w_cell_status) //stato della cella in uso: 4 possiblit: 00 vuota, 01 occupata nava, 10 nave colpita, 11 bordo.
-	
+	.pointer_cell_read_status(w_cell_status) //stato della cella in uso: 4 possiblit: 00 vuota, 01 occupata nava, 10 nave colpita, 11 bordo.
     );
 	 
 	 
