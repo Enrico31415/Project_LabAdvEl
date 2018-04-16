@@ -6,9 +6,8 @@
 
 module onerun( CLK, limit, start_count,
 					
-					countend   );
+					countend );
 					
-
 	input CLK;	
 	input [7:0] limit; // numero cicli ritardo
 	input start_count; // input che riceve un impulso. durante il conteggio è insensibile

@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "/home/mat/Documents/repos/Project_LabAdvEl/mouseTest/prova_monostabile_isim_beh.exe" -prj "/home/mat/Documents/repos/Project_LabAdvEl/mouseTest/prova_monostabile_beh.prj" "work.prova_monostabile" "work.glbl" 

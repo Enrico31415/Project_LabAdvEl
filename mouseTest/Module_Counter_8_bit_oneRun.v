@@ -18,13 +18,14 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module	Module_Counter_8_bit_oneRun	(qzt_clk,
-					clk_in,
-					limit,
-					run,
+module	Module_Counter_8_bit_oneRun	(
+		qzt_clk,
+		clk_in,
+		limit,
+		run,
 
-					out,
-					carry);
+		out,
+		carry);
 
 input		qzt_clk;
 input		clk_in;

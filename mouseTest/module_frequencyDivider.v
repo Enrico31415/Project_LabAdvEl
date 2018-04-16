@@ -1,7 +1,8 @@
-module	Module_FrequencyDivider	(	clk_in,
-					period,
+module	Module_FrequencyDivider	(
+		clk_in,
+		period,
 
-					clk_out);
+		clk_out);
 
 input		clk_in;
 input	[29:0]	period;

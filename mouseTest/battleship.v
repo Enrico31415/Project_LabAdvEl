@@ -37,6 +37,58 @@ input		CLK_50M; //here decalrations, variable with 1 bit.
 output	[7:0]	LED;// so have low impedence. 8 digits. is a bus.
 inout		PS2_CLK1;
 inout		PS2_DATA1;
+
+//////////////////////////////////////////////////////
+wire w_clk_1micro;
+wire w_PS2CLK;
+wire w_toggleData;
+wire w_clk_milli;
+wire w_PS2DATA;
+
+Module_FrequencyDivider	unmicro(
+		.clk_in(CLK_50M),
+		.period(30'd25),
+
+		.clk_out(w_clk_1micro)
+		);
+
+Module_FrequencyDivider	milli(
+		.clk_in(CLK_50M),
+		.period(30'd25_000),
+
+		.clk_out(w_clk_milli)
+		);
+
+monostable_with_one_run clockDown(
+		.trigger(BTN_NORTH),
+		.qzt_clk(CLK_50M),
+		.clk(w_clk_1micro),
+		.limit(8'd100),
+		
+		.out(w_PS2CLK)
+    );
+
+monostable_with_one_run waitForDataDown(
+		.trigger(w_PS2CLK),
+		.qzt_clk(CLK_50M),
+		.clk(w_clk_1micro),
+		.limit(8'd2),
+		
+		.out(w_toggleData)
+    );
+
+monostable_with_one_run dataLow(
+		.trigger(~w_toggleData),
+		.qzt_clk(CLK_50M),
+		.clk(w_clk_milli),
+		.limit(8'd5),
+		
+		.out(w_PS2DATA)
+    );
+
+assign PS2_CLK1 = ~w_PS2CLK ? 1'bz : 0;
+assign PS2_DATA1 = ~w_PS2DATA ? 1'bz : 0;
+assign LED=8'b10101010;
 /*
 wire w_delay;
 wire send;
@@ -44,11 +96,9 @@ reg run;
 reg btn_old;
 */
 //assign send = BTN_SOUTH;
-`define centomicro 5000
 
-assign LED[7]=BTN_SOUTH;
-wire w_end;
 
+/*
 onerun centomicro( 
 		.CLK(CLK_50M),
 		.limit(`centomicro),
@@ -56,21 +106,95 @@ onerun centomicro(
 		
 		.countend(w_end)
 		);
+		*/
 		
+	/*	
 reg regPS2_CLK1;
 assign PS2_CLK1=regPS2_CLK1;
 always @(posedge CLK_50M) begin
 	if (BTN_NORTH) begin regPS2_CLK1=0; end
 	if (w_end) begin regPS2_CLK1=1'bz; end
 end
+*/
+/*
+`define mezzoMicro 31'd25//_000_000
+wire w_clk_mezzo_micro;
+wire w_clk_10_micro;
+wire w_out_mono;
+wire w_clk_lungo;
 
-`define delay 31'd50_000_000
 
+assign PS2_CLK1 = w_out_mono?0:1'bz;
+
+monostable_with_one_run monoCLKdown(
+		.trigger(BTN_NORTH),
+		.qzt_clk(CLK_50M),
+		.clk(w_clk_mezzo_micro),
+		.limit(8'd100),
+		
+		.out(w_out_mono)
+    );
+
+assign LED[6:0]=8'b10101010;
+
+
+Module_FrequencyDivider mezzo_micro(	
+		.clk_in(CLK_50M),
+		.period(`mezzoMicro),
+
+		.clk_out(w_clk_mezzo_micro)
+		);
+
+Module_FrequencyDivider dieci_micro(	
+		.clk_in(CLK_50M),
+		.period(8'd250),
+
+		.clk_out(w_clk_10_micro)
+		);
+		
+Module_FrequencyDivider dieci_micro(	
+		.clk_in(w_clk_10_micro),
+		.period(8'd100),
+
+		.clk_out(w_clk_lungo)
+		);
+
+wire w_toggle;
+wire w_PS2data;
+
+Toggle toggle(
+		.qzt(CLK_50M),
+		.in(w_toggle),
+		
+		.out(w_PS2data)
+    );
+
+assign LED[7]=w_PS2data;
+
+monostable_with_one_run antirmibalzo(
+		.trigger(BTN_SOUTH),
+		.qzt_clk(CLK_50M),
+		.clk(w_clk_10_micro),
+		.limit(8'd20),
+		
+		.out(w_toggle)
+    );
+
+reg PS2CLK_old;
+always @ (posedge CLK_50M) begin
+	if (PS2CLK_old & ~PS2_CLK1) begin
+		
+	end
+	PS2CLK_old=PS2_CLK1;
+end
+*/
+
+/*
 //assign PS2_CLK1=BTN_NORTH?0:1'bz;
 assign PS2_DATA1=BTN_SOUTH?0:1'bz;
 assign LED[6:4]=PS2_CLK1;
 assign LED[3:0]=PS2_DATA1;
-
+*/
 /*
 always @(posedge CLK_50M) begin
 	if (BTN_SOUTH) begin
