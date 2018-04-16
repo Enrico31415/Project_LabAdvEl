@@ -1,6 +1,6 @@
 ISim log file
-Running: Z:\Core\cell_io_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb Z:/Core/cell_io_isim_beh.wdb 
-ISim P.20131013 (signature 0x7708f090)
+Running: /home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb /home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine_isim_beh.wdb 
+ISim P.20131013 (signature 0xfbc00daa)
 WARNING: A WEBPACK license was found.
 WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
 WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
@@ -11,21 +11,17 @@ Time resolution is 1 ps
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
-# isim force add /cell_io/clk_in 1 -radix bin -value 0 -radix bin -time 20 ns -repeat 40 ns
-# isim force add /cell_io/clk_in 1 -radix bin -value 0 -radix bin -time 20 ns -repeat 40 ns
-# isim force add /cell_io/write_enable 1 -radix bin -cancel 50 ns
-# isim force add /cell_io/write_enable 1 -radix bin -cancel 50 ns
-# isim force add /cell_io/new_value 01 -radix bin -time 100 ns -cancel 150 ns
-# isim force add /cell_io/new_value 01 -radix bin -time 100 ns -cancel 150 ns
-# isim force add /cell_io/pos_x 010 -radix bin -time 100 ns -cancel 150 ns
-/cell_io/pos_x: Array length and the input lengths are different
+# isim force add /GridEngine/clk_in 1 -radix bin -value 0 -radix bin -time 20 ns -repeat 40 ns
+# isim force add /GridEngine/clk_in 1 -radix bin -value 0 -radix bin -time 20 ns -repeat 40 ns
+# isim force add /GridEngine/mouse_click 0 -radix bin
+# isim force add /GridEngine/mouse_click 0 -radix bin
+# isim force add /GridEngine/mouse_pos_x 0 -radix bin
+/GridEngine/mouse_pos_x: Array length and the input lengths are different
 
-# isim force add /cell_io/pos_x 010 -radix bin -time 100 ns -cancel 150 ns
-/cell_io/pos_x: Array length and the input lengths are different
-
-# isim force add /cell_io/pos_y 010 -radix bin -time 100 ns -cancel 150 ns
-/cell_io/pos_y: Array length and the input lengths are different
-
+# isim force add /GridEngine/mouse_pos_x 20 -radix unsigned
+# isim force add /GridEngine/mouse_pos_x 20 -radix unsigned
+# isim force add /GridEngine/mouse_pos_y 20 -radix unsigned
+# isim force add /GridEngine/mouse_pos_y 20 -radix unsigned
 # run 1.00us
 # run 1.00us
 # run 1.00us
@@ -37,160 +33,201 @@ Finished circuit initialization process.
 # run 1.00us
 # run 1.00us
 # run 1.00us
+# isim force add /GridEngine/mouse_click 1 -radix bin
+# isim force add /GridEngine/mouse_click 1 -radix bin
+# step
+Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 108
+# step
+Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 109
+# step
+Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 114
+# step
+Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 115
+# step
+Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 118
+# step
+Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 119
+# step
+Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 121
+# step
+Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 122
+# step
+Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 123
+# step
+Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 134
+# step
+Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 107
+# step
+Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 17
+# step
+Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 18
+# step
+Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 19
+# step
+Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 20
+# step
+Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 21
+# step
+Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 16
+# step
+Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 118
+# step
+Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 119
+# step
+Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 120
+# step
+Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 121
+# step
+Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 125
+# step
+Stopped at time : 12040 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 117
+# step
+Stopped at time : 12080 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 108
+# step
+Stopped at time : 12080 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 109
+# step
+Stopped at time : 12080 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 114
+# step
+Stopped at time : 12080 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 115
+# step
+Stopped at time : 12080 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 118
+# step
+Stopped at time : 12080 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 131
+# step
+Stopped at time : 12080 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 132
+# step
+Stopped at time : 12080 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 134
+# step
+Stopped at time : 12080 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 107
+# run 1.00us
+# isim force add /GridEngine/mouse_click 0 -radix bin
+# isim force add /GridEngine/mouse_click 0 -radix bin
 # run 1.00us
 # run 1.00us
+# isim force add /GridEngine/mouse_click 1 -radix bin
+# isim force add /GridEngine/mouse_click 1 -radix bin
+# step
+Stopped at time : 15120 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 108
+# step
+Stopped at time : 15120 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 109
+# step
+Stopped at time : 15120 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 114
+# step
+Stopped at time : 15120 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 115
+# step
+Stopped at time : 15120 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 118
+# step
+Stopped at time : 15120 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 119
+# step
+Stopped at time : 15120 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 121
 # run 1.00us
+# isim force add /GridEngine/mouse_click 0 -radix bin
+# isim force add /GridEngine/mouse_click 0 -radix bin
 # run 1.00us
-# run 1.00us
-# run 1.00us
-# run 1.00us
-# run 1.00us
-# run 1.00us
-# run 1.00us
-# run all
-Stopped at time : 9993720 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 742
-# isim force add /cell_io/write_enable 1 -radix bin
-# isim force add /cell_io/write_enable 1 -radix bin
-# run 1.00us
-# isim force add /cell_io/new_value 01 -radix bin
-# isim force add /cell_io/new_value 01 -radix bin
-# isim force add /cell_io/pos_x 4 -radix unsigned
-# isim force add /cell_io/pos_x 4 -radix unsigned
-# isim force add /cell_io/pos_y 4 -radix unsigned
-# isim force add /cell_io/pos_y 4 -radix unsigned
-# run 1.00us
-# run 1.00us
+# isim force add /GridEngine/mouse_click 1 -radix bin
+# isim force add /GridEngine/mouse_click 1 -radix bin
 # step
-Stopped at time : 9996760 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 120
+Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 108
 # step
-Stopped at time : 9996760 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 121
+Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 109
 # step
-Stopped at time : 9996760 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 122
+Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 114
 # step
-Stopped at time : 9996760 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 123
+Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 115
 # step
-Stopped at time : 9996760 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 127
+Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 118
 # step
-Stopped at time : 9996760 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 131
+Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 119
 # step
-Stopped at time : 9996760 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 135
+Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 121
 # step
-Stopped at time : 9996760 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 139
-# run 1.00us
+Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 122
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 120
+Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 123
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 121
+Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 134
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 122
+Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 107
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 123
+Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 17
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 127
+Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 18
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 131
+Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 19
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 135
+Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 20
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 139
+Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 21
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 143
+Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 16
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 147
+Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 118
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 151
+Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 119
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 155
+Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 120
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 159
+Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 121
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 163
+Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 125
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 167
+Stopped at time : 17160 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 117
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 171
+Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 108
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 175
+Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 109
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 179
+Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 114
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 183
+Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 115
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 187
+Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 118
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 191
+Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 131
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 195
+Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 132
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 199
+Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 134
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 203
+Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 107
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 207
+Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 17
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 211
+Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 18
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 215
+Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 19
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 219
+Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 20
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 223
+Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 21
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 227
+Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 16
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 231
+Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 118
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 235
+Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 119
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 239
+Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 120
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 243
+Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 121
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 247
+Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 122
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 251
+Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 123
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 255
+Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 125
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 259
+Stopped at time : 17200 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/cellMemory.v" Line 117
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 263
+Stopped at time : 17240 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 108
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 267
+Stopped at time : 17240 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 109
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 271
+Stopped at time : 17240 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 114
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 275
+Stopped at time : 17240 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 115
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 279
+Stopped at time : 17240 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 118
 # step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 283
-# step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 287
-# step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 291
-# step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 295
-# step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 299
-# step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 300
-# step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 301
-# step
-Stopped at time : 9997800 ns : File "//vmware-host/Shared Folders/Core/cellMemory.v" Line 119
-# isim force add /cell_io/write_enable 0 -radix bin
-# isim force add /cell_io/write_enable 0 -radix bin
-# run 1.00us
-# run 1.00us
-# isim force add /cell_io/pos_y 01 -radix bin
-/cell_io/pos_y: Array length and the input lengths are different
-
-# isim force add /cell_io/pos_y 01 -radix bin
-/cell_io/pos_y: Array length and the input lengths are different
-
-# run 1.00us
-# run 1.00us
-# isim force add /cell_io/pos_y 3 -radix unsigned
-# isim force add /cell_io/pos_y 3 -radix unsigned
-# run 1.00us
+Stopped at time : 17240 ns : File "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine.v" Line 131
+# exit 0

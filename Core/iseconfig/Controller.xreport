@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2018-04-15T18:54:38</DateModified>
+  <DateModified>2018-04-16T10:02:19</DateModified>
   <ModuleName>Controller</ModuleName>
   <SummaryTimeStamp>2018-04-15T11:40:41</SummaryTimeStamp>
-  <SavedFilePath>Z:/Core/iseconfig/Controller.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>Z:/Core\</ImplementationReportsDirectory>
+  <SavedFilePath>/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/iseconfig/Controller.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/</ImplementationReportsDirectory>
   <DateInitialized>2018-04-12T16:31:55</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>

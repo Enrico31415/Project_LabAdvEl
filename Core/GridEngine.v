@@ -1,5 +1,6 @@
 `timescale 1ns / 1ps
 `define turn_inizialize 2'b00
+`define frequency_div 	30'd1
 `define turn_player 2'b01
 `define turn_IA 2'b10
 `define cell_status_free 2'b00
@@ -52,8 +53,6 @@ module GridEngine(clk_in,
 	
 	
 	
-	cell_x_mouse, //determina quale cella  in utilizzo in x (parte da in alto a sx)!!!
-	cell_y_mouse, //determina quale cella  in utilizzo in x (parte da in alto a sx)!!!
 	cell_read_status //stato della cella in uso: 4 possiblit: 00 vuota, 01 occupata nava, 10 nave colpita, 11 bordo.
 	
 	
@@ -70,34 +69,35 @@ input [9:0] pos_y;
 
 //FIXME: per testare, sono nel turno del giocatore
 reg [1:0] turn_status = 2'b01;  //determina la fase di gioco: 00 schieramento navi, 01 turno giocatore, 10 turno IA.
-output [3:0] cell_x_mouse; //da 0 a 15 (uso solo i primi 12)
-output [3:0] cell_y_mouse; //da 0 a 15
 output [1:0] cell_read_status; //stato attuale della cella letta
 reg  [1:0] cell_new_status;
 
-reg mouse_enable = 1;
+reg mouse_enable = 1'b1;
+
+wire[3:0] mouse_cell_x;
+wire[3:0] mouse_cell_y;
 
 
-
-
-
-pos_to_quadrant mouse_position_to_quadrant ( //ritorna la posizione in celle, attuale del mouse
-	.clk_in(clk_in),
+//dalla posizione del mouse, torna la posizione in celle.
+pos_to_quadrant pointer_to_cell(
+	.clk_in(clk_in), 
 	.pos_x(mouse_pos_x),
 	.pos_y(mouse_pos_y),
 	
-	.cell_x(cell_x_mouse),
-	.cell_y(cell_y_mouse)
+	.cell_x(mouse_cell_x),
+	.cell_y(mouse_cell_y)
+
 );
 
 
-//data la posizione in x, ed y, ritorna lo stato della cella.
-// si può fare furbo? senza flag, ma controllando se lo stato è diverso?
+
+//data la posizione in x, ed y, ritorna lo stato della cella. 
+// si pu fare furbo? senza flag, ma controllando se lo stato  diverso?
+// punta alla posizione del mouse.
 cell_io memory( //gestisce la memoria
 	.clk_in(clk_in),
-	.pos_x(pos_x),
-	.pos_y(pos_y),
-	.write_enable(mouse_click & mouse_enable), // scrivo solo se ho cliccato, e per un ciclo solo
+	.cell_x(mouse_cell_x),
+	.cell_y(mouse_cell_y),
 	.new_value(cell_new_status),
 	
 	.status(cell_read_status)
@@ -127,11 +127,15 @@ begin
 				cell_new_status = `cell_status_free;
 			end
 		end	
+		else
+		begin
+			cell_new_status = `cell_status_free;
+		end
 		mouse_enable = !mouse_click;
 	end
 	else if (turn_status == `turn_IA)//se tocca all'ia
 	begin
-		//TODO:
+		//TODO
 		//genero random una posizione e verifico se  buona.
 	end
 end

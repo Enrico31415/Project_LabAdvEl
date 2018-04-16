@@ -53,6 +53,7 @@ wire [3:0] cell_x;
 wire [3:0] cell_y;
 
 
+//ritona la posizione attuale del pennello in celle
 pos_to_quadrant position_to_quadrant (
 	.clk_in(clk_in),
 	.pos_x(current_line),
@@ -151,7 +152,7 @@ begin
 		end
 		
 		
-		// Da testare: non è detto che vada il prodotto.....
+		// Da testare: non  detto che vada il prodotto.....
 		case (cell_status) // test sullo stato della cella in quesione
 			`cell_status_free : 
 				begin //se sono nel quadrato => cambio colore

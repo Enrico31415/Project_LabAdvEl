@@ -53,7 +53,7 @@ output	[3:0]	VGA_B;
 output VGA_HSYNC, VGA_VSYNC;
 
 
-assign LED = {w_cell_y, w_cell_x};
+assign LED = {w_cell_status};
 
 wire [11:0] w_color_out;
 
@@ -124,8 +124,6 @@ GridEngine GE(.clk_in(w_25Mhz_clock),
 	.pos_y(position_to_controller_y),
 	
 	//TODO: cancellare, si utilizza solo per i led attualmente
-	.cell_x_mouse(w_cell_x), //determina quale cella  in utilizzo in x (parte da in alto a sx)!!!
-	.cell_y_mouse(w_cell_y), //determina quale cella  in utilizzo in x (parte da in alto a sx)!!!
 	.cell_read_status(w_cell_status) //stato della cella in uso: 4 possiblit: 00 vuota, 01 occupata nava, 10 nave colpita, 11 bordo.
 	
     );
