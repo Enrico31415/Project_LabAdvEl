@@ -1,25 +1,7 @@
 //`timescale 1ns / 1ps
 `define		defaultPeriod	30'b000001011111010111100001000000	//	25 10^6
 `define mss 30'd5000
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date:    08:38:53 03/27/2018 
-// Design Name: 
-// Module Name:    battleship 
-// Project Name: 
-// Target Devices: 
-// Tool versions: 
-// Description: 
-//
-// Dependencies: 
-//
-// Revision: 
-// Revision 0.01 - File Created
-// Additional Comments: 
-//
-//////////////////////////////////////////////////////////////////////////////////
+
 module battleship(
 				CLK_50M,
 				BTN_SOUTH,
@@ -39,6 +21,43 @@ inout		PS2_CLK1;
 inout		PS2_DATA1;
 
 //////////////////////////////////////////////////////
+
+wire w_status;
+wire w_clk_milli;
+wire w_buttonN;
+
+PS2_send PS2_send(
+		.qzt_clk(CLK_50M),
+		.data(11'b01111111111),
+		.send(w_buttonN),
+		
+		.PS2C(PS2_CLK1),
+		.PS2D(PS2_DATA1),
+		//ok,
+		//err,
+		.status(w_status)
+	  );
+
+monostable_with_one_run antirimbalzo(
+		.trigger(BTN_NORTH),
+		.qzt_clk(CLK_50M),
+		.clk(w_clk_milli),
+		.limit(8'd200),
+		
+		.out(w_buttonN)
+    );
+
+Module_FrequencyDivider	milli(
+		.clk_in(CLK_50M),
+		.period(30'd25_000),
+
+		.clk_out(w_clk_milli)
+		);
+
+assign LED = ~w_status;
+
+
+/*
 wire w_clk_1micro;
 wire w_PS2CLK;
 wire w_toggleData;
@@ -89,6 +108,8 @@ monostable_with_one_run dataLow(
 assign PS2_CLK1 = ~w_PS2CLK ? 1'bz : 0;
 assign PS2_DATA1 = ~w_PS2DATA ? 1'bz : 0;
 assign LED=8'b10101010;
+*/
+
 /*
 wire w_delay;
 wire send;

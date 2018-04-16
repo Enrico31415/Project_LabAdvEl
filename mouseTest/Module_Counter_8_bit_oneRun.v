@@ -35,10 +35,10 @@ input		run;
 output	[7:0]	out;
 output	carry;
 
-reg	[7:0]	out;
-reg	carry;
-reg 	run_old;
-reg 	clk_in_old;
+reg	[7:0]	out=8'd0;
+reg	carry=1'b0;
+reg 	run_old=1'b0;
+reg 	clk_in_old=1'b0;
 
 always @(posedge qzt_clk) begin
 	if (!clk_in_old & clk_in) begin

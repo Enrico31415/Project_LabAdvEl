@@ -56,33 +56,35 @@ module PS2_send(
 		qzt_clk,
 		data,
 		send,
-
+		
 		PS2C,
 		PS2D,
-	  ok, err, status
+		ok,
+		err,
+		status
 	  );
 //	  ,errCode
 //
 
 input qzt_clk;
-input [10:0] data;
+input [0:10] data;
 input send;
 
 inout PS2C;
 inout PS2D;
 
 //reg	[8:0] data;
-reg	send_old;
-reg	reset;
+reg	send_old=1'b0;
+reg	reset=1'b0;
 
-reg 	runAcq;
-reg	runData;
-reg 	runEP;
-reg	runEC;
+reg 	runAcq=1'b0;
+reg	runData=1'b0;
+reg 	runEP=1'b0;
+reg	runEC=1'b0;
 
-output reg	[1:0] status;
-output reg			err;
-output reg			ok;
+output reg	[7:0] status=8'd0;
+output reg			err=1'b0;
+output reg			ok=1'b0;
 
 wire w_clk05uS;
 wire w_acquire;
@@ -95,11 +97,11 @@ reg  PS2Dreg=`uno;
 assign PS2C=PS2Creg;
 assign PS2D=PS2Dreg;
 
-reg  PS2C_old;
-reg  PS2D_old;
+reg  PS2C_old=1'b1;
+reg  PS2D_old=1'b1;
 
-reg [10:0] dataReg;
-integer nbits;
+reg [10:0] dataReg=11'd0;
+integer nbits=0;
 
 always @(posedge qzt_clk) begin
 	case (status)
@@ -107,8 +109,6 @@ always @(posedge qzt_clk) begin
 		`ST_IDLE: begin
 			if (!send_old & send) begin
 				runAcq=1; // start counter for acquiring channel
-				reset=1;	// reset the 0.5uS counter
-				#10 reset=0; //!!! try this, not sure it works
 				PS2Creg=0;	// force clock low
 				PS2Dreg=`uno;	// and data high. Clock has to go low before data
 				status=`ST_WAITAQ;
@@ -189,24 +189,18 @@ always @(posedge qzt_clk) begin
 	send_old=send;
 end	
 
-Module_SynchroCounter_8_bit_SR	 conta05uS(	
-						.qzt_clk(qzt_clk),
-						.clk_in(qzt_clk),
-						.reset(reset),
-						//set,
-						//presetValue,
-						.limit(8'd25),
+Module_FrequencyDivider	mezzoMicro(
+		.clk_in(qzt_clk),
+		.period(30'd25),
 
-						//out,
-						.carry(w_clk05uS));
-
-//Module_FrequencyDivider 
+		.clk_out(w_clk_1micro)
+		);
 
 
 Module_Counter_8_bit_oneRun acquireChannel	(
 					.qzt_clk(qzt_clk),
 					.clk_in(w_clk05uS),
-					.limit(8'd200),
+					.limit(8'd100),
 					.run(runAcq),
 
 					//out,
@@ -216,7 +210,7 @@ Module_Counter_8_bit_oneRun acquireChannel	(
 Module_Counter_8_bit_oneRun transmissionTiming	(
 					.qzt_clk(qzt_clk),
 					.clk_in(w_clk05uS),
-					.limit(8'd5),
+					.limit(8'd3),
 					.run(runData),
 
 					//out,
@@ -226,7 +220,7 @@ Module_Counter_8_bit_oneRun transmissionTiming	(
 Module_Counter_8_bit_oneRun endPacket	(
 					.qzt_clk(qzt_clk),
 					.clk_in(w_clk05uS),
-					.limit(8'd120), // 60 uS
+					.limit(8'd60), // 60 uS
 					.run(runEP),
 
 					//out,
@@ -236,7 +230,7 @@ Module_Counter_8_bit_oneRun endPacket	(
 Module_Counter_8_bit_oneRun endComm	(
 					.qzt_clk(qzt_clk),
 					.clk_in(w_clk05uS),
-					.limit(8'd40), // 
+					.limit(8'd20), // 
 					.run(runEC),
 
 					//out,
