@@ -48,6 +48,9 @@
 *.html
 *.ini
 *.wdb
+*.xreport
+*.dbg
+*.dat
 LICENSE
 
 # iMPACT generated files
@@ -72,3 +75,4 @@ xlnx_auto_0_xdb/
 xst/
 _ngo/
 _xmsgs/
+isim/
