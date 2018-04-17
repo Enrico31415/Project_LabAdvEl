@@ -47,6 +47,7 @@
 *_xst.xrpt
 *.html
 *.ini
+*.wdb
 LICENSE
 
 # iMPACT generated files
