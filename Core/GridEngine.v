@@ -3,10 +3,11 @@
 `define frequency_div 	30'd1
 `define turn_player 2'b01
 `define turn_IA 2'b10
-`define cell_status_free 2'b00
-`define cell_status_occ 2'b01
-`define cell_status_hitted 2'b10
-`define cell_status_outbound 2'b11
+`define cell_status_free 4'b0000
+`define cell_status_occ 4'b0001
+`define cell_status_player_hitted 4'b0010
+`define cell_status_ia_hitted 4'b0011
+`define cell_status_player_and_ia_hitted 4'b0100
 
 `define row_dimension	10'd2
 `define line_dimension	10'd2
@@ -69,9 +70,9 @@ input [9:0] pos_y;
 
 //FIXME: per testare, sono nel turno del giocatore
 reg [1:0] turn_status = 2'b01;  //determina la fase di gioco: 00 schieramento navi, 01 turno giocatore, 10 turno IA.
-wire [1:0] mouse_cell_read_status; //stato attuale della cella letta
-output [1:0] pointer_cell_read_status;
-reg  [1:0] cell_new_status;
+wire [3:0] mouse_cell_read_status; //stato attuale della cella letta
+output [3:0] pointer_cell_read_status;
+reg  [3:0] cell_new_status;
 
 reg mouse_enable = 1'b1;
 reg write_enable =1'b0;
@@ -147,6 +148,18 @@ begin
 				cell_new_status = `cell_status_occ;
 			end
 			else if (mouse_cell_read_status == `cell_status_occ) //viceversa, se  occupata, liberela.
+			begin
+				cell_new_status = `cell_status_player_hitted;
+			end
+			else if (mouse_cell_read_status == `cell_status_player_hitted) //viceversa, se  occupata, liberela.
+			begin
+				cell_new_status = `cell_status_ia_hitted;
+			end
+			else if (mouse_cell_read_status == `cell_status_ia_hitted) //viceversa, se  occupata, liberela.
+			begin
+				cell_new_status = `cell_status_player_and_ia_hitted;
+			end
+			else if (mouse_cell_read_status == `cell_status_player_and_ia_hitted) //viceversa, se  occupata, liberela.
 			begin
 				cell_new_status = `cell_status_free;
 			end

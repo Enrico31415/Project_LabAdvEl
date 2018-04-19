@@ -43,7 +43,7 @@ wire [9:0] mouse_sym_counter_y;
 /*Semplifica la posizione del mouse*/
 wire [3:0] w_cell_x;
 wire [3:0] w_cell_y;
-wire [1:0] w_cell_status;
+wire [3:0] w_cell_status;
 	 
 	 
 /*OUTPUT TIPICI PER LA VGA*/
@@ -124,7 +124,7 @@ GridEngine GE(.clk_in(w_25Mhz_clock),
 	.pos_y(position_to_controller_y),
 	
 	//TODO: cancellare, si utilizza solo per i led attualmente
-	.pointer_cell_read_status(w_cell_status) //stato della cella in uso: 4 possiblit: 00 vuota, 01 occupata nava, 10 nave colpita, 11 bordo.
+	.pointer_cell_read_status(w_cell_status) //stato della cella in uso
     );
 	 
 	 
