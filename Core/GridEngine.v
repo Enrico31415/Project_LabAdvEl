@@ -4,20 +4,29 @@
 `define turn_player 2'b01
 `define turn_IA 2'b10
 
+
+
+
+// CODIFICA DELLA CELLA DI MEMORIA: 5 bit
+// 	_ 1 bit libero (?)	_ _ 2 bit per i colpi sparati 	_ _ 2 bit per la disposizione
+//  
+// bit per la disposizione: 
+//		00 acqua 			/ 01 nave mia			/ 10 nave sua 			/ 11 entrambe
+//
+// bit per i colpi sparati: 
+// 	00 non sparato 	/ 01 sparato da me 	/ 10 sparato da lui 	/ 11 sparato da entrambi
+//
+//
+
 `define cell_status_free 5'b00000
 `define cell_status_occ 5'b00001
 `define cell_status_player_hitted 5'b00010
 `define cell_status_ia_hitted 5'b00011
 `define cell_status_player_and_ia_hitted 5'b00100
 
+
 `define row_dimension	10'd2
 `define line_dimension	10'd2
-
-`define back_ground 	12'b010101101101
-`define line_color 	12'b111100001111 
-`define row_color 	12'b111100001111 
-`define ship_color 	12'b010101010101
-
 
 `define row_period	10'd48
 `define line_period  10'd64
@@ -69,10 +78,10 @@ input [9:0] mouse_pos_y;
 input [9:0] pos_x;
 input [9:0] pos_y;
 
+output [4:0] pointer_cell_read_status;
+
 //FIXME: per testare, sono nel turno del giocatore
 reg [1:0] turn_status = 2'b01;  //determina la fase di gioco: 00 schieramento navi, 01 turno giocatore, 10 turno IA.
-wire [4:0] mouse_cell_read_status; //stato attuale della cella letta
-output [4:0] pointer_cell_read_status;
 reg  [4:0] cell_new_status;
 
 reg mouse_enable = 1'b1;
@@ -80,7 +89,7 @@ reg write_enable =1'b0;
 
 wire[3:0] mouse_cell_x;
 wire[3:0] mouse_cell_y;
-
+wire [4:0] mouse_cell_read_status; //stato attuale della cella letta
 
 wire[3:0] pointer_cell_x;
 wire[3:0] pointer_cell_y;

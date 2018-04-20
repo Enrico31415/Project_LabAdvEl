@@ -1,1 +1,1 @@
--intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/Module_VGADriver_isim_beh.exe" -prj "/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/Module_VGADriver_beh.prj" "work.Module_VGADriver" "work.glbl" 
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "/home/user/git/core/Core/random_gen_isim_beh.exe" -prj "/home/user/git/core/Core/random_gen_beh.prj" "work.random_gen" "work.glbl" 
