@@ -18,11 +18,11 @@
 `define line_period 10'd64
 
 
-`define cell_status_free 4'b0000
-`define cell_status_occ 4'b0001
-`define cell_status_player_hitted 4'b0010
-`define cell_status_ia_hitted 4'b0011
-`define cell_status_player_and_ia_hitted 4'b0100
+`define cell_status_free 						5'b00000
+`define cell_status_occ 						5'b00001
+`define cell_status_player_hitted 			5'b00010
+`define cell_status_ia_hitted 				5'b00011
+`define cell_status_player_and_ia_hitted 	5'b00100
 
 
 module Module_VGADriver(
@@ -43,7 +43,7 @@ input[9:0] current_row;
 input[9:0] current_line;
 
 
-input [3:0]	cell_status;
+input [4:0]	cell_status;
 
 
 input[9:0] mouse_pos_x;
@@ -75,7 +75,7 @@ begin
 	if (enable == 1) 
 	begin		
 		case (cell_status) // test sullo stato della cella in quesione
-			`cell_status_free : 
+			`cell_status_free : // <-----------------------------------------------
 				begin //se sono nel quadrato => cambio colore
 					color_out = `back_ground;
 				end

@@ -43,7 +43,7 @@ wire [9:0] mouse_sym_counter_y;
 /*Semplifica la posizione del mouse*/
 wire [3:0] w_cell_x;
 wire [3:0] w_cell_y;
-wire [3:0] w_cell_status;
+wire [4:0] w_cell_status;
 	 
 	 
 /*OUTPUT TIPICI PER LA VGA*/

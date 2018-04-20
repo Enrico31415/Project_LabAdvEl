@@ -3,11 +3,12 @@
 `define frequency_div 	30'd1
 `define turn_player 2'b01
 `define turn_IA 2'b10
-`define cell_status_free 4'b0000
-`define cell_status_occ 4'b0001
-`define cell_status_player_hitted 4'b0010
-`define cell_status_ia_hitted 4'b0011
-`define cell_status_player_and_ia_hitted 4'b0100
+
+`define cell_status_free 5'b00000
+`define cell_status_occ 5'b00001
+`define cell_status_player_hitted 5'b00010
+`define cell_status_ia_hitted 5'b00011
+`define cell_status_player_and_ia_hitted 5'b00100
 
 `define row_dimension	10'd2
 `define line_dimension	10'd2
@@ -70,9 +71,9 @@ input [9:0] pos_y;
 
 //FIXME: per testare, sono nel turno del giocatore
 reg [1:0] turn_status = 2'b01;  //determina la fase di gioco: 00 schieramento navi, 01 turno giocatore, 10 turno IA.
-wire [3:0] mouse_cell_read_status; //stato attuale della cella letta
-output [3:0] pointer_cell_read_status;
-reg  [3:0] cell_new_status;
+wire [4:0] mouse_cell_read_status; //stato attuale della cella letta
+output [4:0] pointer_cell_read_status;
+reg  [4:0] cell_new_status;
 
 reg mouse_enable = 1'b1;
 reg write_enable =1'b0;
@@ -142,26 +143,26 @@ begin
 		if(mouse_click & mouse_enable) //se ho cliccato sulal cella => cambio lo stato
 		begin
 			write_enable = 1'b1;
-			//se la cella  libera, allora pitturala
+
 			if (mouse_cell_read_status == `cell_status_free)
 			begin
-				cell_new_status = `cell_status_occ;
+				cell_new_status = `cell_status_occ;  // _____________ 0->1 
 			end
-			else if (mouse_cell_read_status == `cell_status_occ) //viceversa, se  occupata, liberela.
+			else if (mouse_cell_read_status == `cell_status_occ) 
 			begin
-				cell_new_status = `cell_status_player_hitted;
+				cell_new_status = `cell_status_player_hitted;   // _____________ 1->2 
 			end
-			else if (mouse_cell_read_status == `cell_status_player_hitted) //viceversa, se  occupata, liberela.
+			else if (mouse_cell_read_status == `cell_status_player_hitted) 
 			begin
-				cell_new_status = `cell_status_ia_hitted;
+				cell_new_status = `cell_status_ia_hitted;  // _____________ 2->3 
 			end
-			else if (mouse_cell_read_status == `cell_status_ia_hitted) //viceversa, se  occupata, liberela.
+			else if (mouse_cell_read_status == `cell_status_ia_hitted) 
 			begin
-				cell_new_status = `cell_status_player_and_ia_hitted;
+				cell_new_status = `cell_status_player_and_ia_hitted; // _____________ 3->4
 			end
-			else if (mouse_cell_read_status == `cell_status_player_and_ia_hitted) //viceversa, se  occupata, liberela.
+			else if (mouse_cell_read_status == `cell_status_player_and_ia_hitted) 
 			begin
-				cell_new_status = `cell_status_free;
+				cell_new_status = `cell_status_free;   // _____________ 4->0
 			end
 		end	
 		else
