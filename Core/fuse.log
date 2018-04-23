@@ -1,24 +1,24 @@
-Running: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin/unwrapped/fuse -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -o /home/user/git/core/Core/random_gen_isim_beh.exe -prj /home/user/git/core/Core/random_gen_beh.prj work.random_gen work.glbl 
+Running: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin/unwrapped/fuse -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -o /home/user/git/core/Core/zero_to_nine_r_gen_isim_beh.exe -prj /home/user/git/core/Core/zero_to_nine_r_gen_beh.prj work.zero_to_nine_r_gen work.glbl 
 ISim P.20131013 (signature 0xfbc00daa)
 Number of CPUs detected in this system: 8
 Turning on mult-threading, number of parallel sub-compilation jobs: 16 
 Determining compilation order of HDL files
 Analyzing Verilog file "/home/user/git/core/Core/shift_2.v" into library work
 Analyzing Verilog file "/home/user/git/core/Core/random_gen.v" into library work
-WARNING:HDLCompiler:35 - "/home/user/git/core/Core/random_gen.v" Line 36: <clk_in> is already implicitly declared earlier.
-WARNING:HDLCompiler:370 - "/home/user/git/core/Core/random_gen.v" Line 9: Empty port in module declaration
+Analyzing Verilog file "/home/user/git/core/Core/zero_to_nine_r_gen.v" into library work
 Analyzing Verilog file "/opt/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
 Starting static elaboration
 Completed static elaboration
 Fuse Memory Usage: 36864 KB
-Fuse CPU Usage: 1410 ms
+Fuse CPU Usage: 1550 ms
 Compiling module shift_2
 Compiling module random_gen
+Compiling module zero_to_nine_r_gen
 Compiling module glbl
 Time Resolution for simulation is 1ps.
 Waiting for 1 sub-compilation(s) to finish...
-Compiled 3 Verilog Units
-Built simulation executable /home/user/git/core/Core/random_gen_isim_beh.exe
-Fuse Memory Usage: 88092 KB
-Fuse CPU Usage: 1440 ms
-GCC CPU Usage: 240 ms
+Compiled 4 Verilog Units
+Built simulation executable /home/user/git/core/Core/zero_to_nine_r_gen_isim_beh.exe
+Fuse Memory Usage: 88344 KB
+Fuse CPU Usage: 1560 ms
+GCC CPU Usage: 510 ms

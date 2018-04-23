@@ -5,11 +5,5 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="HDLCompiler" num="35" delta="unknown" >"/home/user/git/core/Core/random_gen.v" Line 36: &lt;<arg fmt="%s" index="1">clk_in</arg>&gt; is already implicitly declared earlier.
-</msg>
-
-<msg type="warning" file="HDLCompiler" num="370" delta="unknown" >"/home/user/git/core/Core/random_gen.v" Line 9: Empty port in module declaration
-</msg>
-
 </messages>
 
