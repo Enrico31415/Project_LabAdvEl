@@ -61,7 +61,10 @@ module PS2_send(
 		PS2D,
 		ok,
 		err,
-		status
+		status,
+		
+		PS2Creg,
+		PS2Dreg
 	  );
 //	  ,errCode
 //
@@ -91,8 +94,8 @@ wire w_chData;
 wire w_EP;
 wire w_EC;
 
-reg  PS2Creg=`uno;
-reg  PS2Dreg=`uno;
+output reg  PS2Creg=`uno;
+output reg  PS2Dreg=`uno;
 assign PS2C=PS2Creg;
 assign PS2D=PS2Dreg;
 
@@ -197,6 +200,33 @@ Module_FrequencyDivider	mezzoMicro(
 		.clk_out(w_clk_1micro)
 		);
 
+///////////////////////////////////////////////
+reg run_principal;
+reg run_auxiliary;
+reg [7:0] limit_principal;
+reg [7:0] limit_auxiliary;
+wire w_principal;
+wire w_auxiliary;
+
+Module_Counter_8_bit_oneRun principal(
+					.qzt_clk(qzt_clk),
+					.clk_in(w_clk_1micro),
+					.limit(8'd120),
+					.run(run_principal),
+
+					//out,
+					.carry(w_principal)
+					);
+Module_Counter_8_bit_oneRun auxiliary(
+					.qzt_clk(qzt_clk),
+					.clk_in(w_clk_1micro),
+					.limit(8'd120),
+					.run(run_auxiliary),
+
+					//out,
+					.carry(w_auxiliary)
+					);
+/////////////////////////////////////////////////////
 
 Module_Counter_8_bit_oneRun acquireChannel	(
 					.qzt_clk(qzt_clk),

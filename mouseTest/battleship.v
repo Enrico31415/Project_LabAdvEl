@@ -26,6 +26,11 @@ wire w_status;
 wire w_clk_milli;
 wire w_buttonN;
 
+wire w_ps2Creg;
+wire w_ps2Dreg;
+assign LED[7] = (w_ps2Creg==1'bz)?1'b1:1'b0;
+assign LED[6] = (w_ps2Dreg==1'bz)?1'b1:1'b0;
+
 PS2_send PS2_send(
 		.qzt_clk(CLK_50M),
 		.data(11'b01110011111),
@@ -35,7 +40,9 @@ PS2_send PS2_send(
 		.PS2D(PS2_DATA1),
 		//ok,
 		//err,
-		.status(w_status)
+		.status(w_status),
+		.PS2Creg(w_ps2Creg),
+		.PS2Dreg(w_ps2Dreg)
 	  );
 
 monostable_with_one_run antirimbalzo(
@@ -54,8 +61,15 @@ Module_FrequencyDivider	milli(
 		.clk_out(w_clk_milli)
 		);
 
-assign LED = ~w_status;
+assign LED[3:0] = ~w_status;
 
+assign LED[4] = w_buttonN;
+Module_FrequencyDivider	second(
+		.clk_in(CLK_50M),
+		.period(30'd25_000_000),
+
+		.clk_out(LED[5])
+		);
 
 /*
 wire w_clk_1micro;
