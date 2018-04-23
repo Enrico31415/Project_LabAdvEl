@@ -2,7 +2,7 @@
 max_row = 39
 max_char = 39
 x = 0
-cube_dimension = 5
+cube_dimension = 1
 
 for i in range(0,max_row):
     for j in range(0,max_char):

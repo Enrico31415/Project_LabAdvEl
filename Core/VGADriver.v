@@ -1,3 +1,4 @@
+
 `define red 	12'b111100000000
 `define green 	12'b000011110000
 `define blue 	12'b000000001111
@@ -6,9 +7,11 @@
 `define color_line 	12'b111100001111 
 `define color_row 	12'b111100001111 
 `define color_ship 	12'b010101010101
-`define color_player_hit	12'b11101000100010
-`define color_ia_hit 	12'b11110000000000
-`define color_player_and_ia_hit 	12'b1111000001100
+`define color_player_hit			12'b111010010001
+`define color_ia_hit 				12'b111100000000
+`define color_player_and_ia_hit 	12'b111100001100
+
+`define cross_dimensions 	10'd5
 
 `define dimension	10'd5
 `define row_dimension	10'd2
@@ -36,7 +39,7 @@ module Module_VGADriver(
 	
 	color_out
     );
-	 
+`include "simple_function.v"
 input clk_in;
 input enable;
 input[9:0] current_row;
@@ -55,6 +58,11 @@ output reg [11:0] color_out = `black;
 //cella in cui sto scrivendo.
 wire [3:0] cell_x;
 wire [3:0] cell_y;
+
+reg [9:0] prec_line;
+
+reg [9:0] cell_cross_counter_x = 10'd0;
+reg [9:0] cell_cross_counter_y = 10'd0;
 
 
 //ritona la posizione attuale del pennello in celle
@@ -77,7 +85,7 @@ begin
 		case (cell_status) // test sullo stato della cella in quesione
 			`cell_status_free : // <-----------------------------------------------
 				begin //se sono nel quadrato => cambio colore
-					color_out = `back_ground;
+					color_out = `black;
 				end
 			`cell_status_occ : 
 				begin
@@ -93,7 +101,7 @@ begin
 				end
 			`cell_status_player_and_ia_hitted : 
 				begin
-					color_out = `color_player_and_ia_hit;
+					color_out = myfunction(current_line, current_row, cell_x, cell_y);
 				end
 		endcase
 		if (current_line <= ('d48+`row_dimension) && current_line > ('d48-`row_dimension)) // prima riga
@@ -171,12 +179,21 @@ begin
 		begin
 			color_out = `color_row;
 		end
-		
-		
+		/*
+		if(current_row <= cell_cross_counter_x+cell_cross_counter_x>>1+cell_cross_counter_x>>1)
+		begin
+			color_out = myfunction(cell_x, cell_y, 4'd0, 4'd0);
+		end
+		if (cell_cross_counter_x > 10'd479)
+		begin
+			cell_cross_counter_x = 10'b0;
+		end
+		if (prec_line != current_line)
+		begin
+			cell_cross_counter_x = cell_cross_counter_x + 10'd1;
+		end
+		*/
 
-		
-		
-		
 		//qui disegno il punatore
 		if(current_row <= (mouse_pos_x+`dimension) && current_line <= (mouse_pos_y + `dimension) &&
 		current_row >= (mouse_pos_x-`dimension) && current_line >= (mouse_pos_y - `dimension) )
@@ -189,9 +206,18 @@ begin
 	begin
 		color_out = `black;
 	end
+	prec_line = current_line;
 end
 
 
+
+function [11:0] test;
+input[3:0] pos_x;
+input[3:0] pos_y;
+begin
+	test = 12'b000000001111;
+end
+endfunction
 
 
 endmodule

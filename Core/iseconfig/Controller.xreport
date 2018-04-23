@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2018-04-20T12:57:34</DateModified>
+  <DateModified>2018-04-23T12:48:04</DateModified>
   <ModuleName>Controller</ModuleName>
   <SummaryTimeStamp>2018-04-15T11:40:41</SummaryTimeStamp>
-  <SavedFilePath>/home/user/git/core/Core/iseconfig/Controller.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>/home/user/git/core/Core/</ImplementationReportsDirectory>
+  <SavedFilePath>/media/Scratch/LabAdvP/Project_LabAdvEl/Core/iseconfig/Controller.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>/media/Scratch/LabAdvP/Project_LabAdvEl/Core/</ImplementationReportsDirectory>
   <DateInitialized>2018-04-12T16:31:55</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>
