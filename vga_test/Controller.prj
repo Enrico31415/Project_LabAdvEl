@@ -1,3 +1,0 @@
-verilog work "module_frequencyDivider.v"
-verilog work "module_counter_10_bit.v"
-verilog work "Controller.v"
