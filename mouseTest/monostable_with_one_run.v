@@ -29,10 +29,10 @@ module monostable_with_one_run(
 
 input [7:0] limit;
 input trigger, qzt_clk, clk;
-output reg out;
-reg trigger_old;
+output reg out=1'b0;
+reg trigger_old=1'b0;
 wire w_count_end;
-reg start_count;
+reg start_count=1'b0;
 
 always @ (posedge qzt_clk) begin
 	if (trigger & ~trigger_old) begin

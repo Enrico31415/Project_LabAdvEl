@@ -9,7 +9,7 @@ module battleship(
 
 				LED,
 				PS2_CLK1,
-				PS2_DATA1,
+				PS2_DATA1
 				
 				);
 
@@ -28,7 +28,7 @@ wire w_buttonN;
 
 PS2_send PS2_send(
 		.qzt_clk(CLK_50M),
-		.data(11'b01111111111),
+		.data(11'b01110011111),
 		.send(w_buttonN),
 		
 		.PS2C(PS2_CLK1),

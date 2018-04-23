@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/mat/Documents/repos/Project_LabAdvEl/mouseTest/battleship_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="battleship" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="15" />
+   <wvobject fp_name="/battleship/BTN_NORTH" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">BTN_NORTH</obj_property>
+      <obj_property name="ObjectShortName">BTN_NORTH</obj_property>
+   </wvobject>
+   <wvobject fp_name="/battleship/CLK_50M" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">CLK_50M</obj_property>
+      <obj_property name="ObjectShortName">CLK_50M</obj_property>
+   </wvobject>
+   <wvobject fp_name="/battleship/LED" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">LED[7:0]</obj_property>
+      <obj_property name="ObjectShortName">LED[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/battleship/PS2_CLK1" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">PS2_CLK1</obj_property>
+      <obj_property name="ObjectShortName">PS2_CLK1</obj_property>
+   </wvobject>
+   <wvobject fp_name="/battleship/PS2_DATA1" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">PS2_DATA1</obj_property>
+      <obj_property name="ObjectShortName">PS2_DATA1</obj_property>
+   </wvobject>
+   <wvobject fp_name="/battleship/w_buttonN" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">w_buttonN</obj_property>
+      <obj_property name="ObjectShortName">w_buttonN</obj_property>
+   </wvobject>
+   <wvobject fp_name="/battleship/PS2_send/PS2Creg" type="logic" db_ref_id="1">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">PS2Creg</obj_property>
+      <obj_property name="ObjectShortName">PS2Creg</obj_property>
+      <obj_property name="label">PS2Creg</obj_property>
+   </wvobject>
+   <wvobject fp_name="/battleship/PS2_send/PS2Dreg" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">PS2Dreg</obj_property>
+      <obj_property name="ObjectShortName">PS2Dreg</obj_property>
+   </wvobject>
+   <wvobject fp_name="/battleship/PS2_send/send" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">send</obj_property>
+      <obj_property name="ObjectShortName">send</obj_property>
+   </wvobject>
+   <wvobject fp_name="/battleship/PS2_send/dataReg" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">dataReg[10:0]</obj_property>
+      <obj_property name="ObjectShortName">dataReg[10:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/battleship/PS2_send/status" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">status[7:0]</obj_property>
+      <obj_property name="ObjectShortName">status[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/battleship/PS2_send/data" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">data[0:10]</obj_property>
+      <obj_property name="ObjectShortName">data[0:10]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/battleship/PS2_send/acquireChannel/out" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">out[7:0]</obj_property>
+      <obj_property name="ObjectShortName">out[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/battleship/PS2_send/mezzoMicro/clk_out" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk_out</obj_property>
+      <obj_property name="ObjectShortName">clk_out</obj_property>
+   </wvobject>
+   <wvobject fp_name="/battleship/PS2_send/nbits" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">nbits[31:0]</obj_property>
+      <obj_property name="ObjectShortName">nbits[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+</wave_config>

@@ -43,13 +43,13 @@ TODO:
 `timescale 1ns / 1ps
 
 // Defining constants for enumerate states
-`define ST_IDLE 3'd0
-`define ST_WAITAQ 3'd1
-`define ST_WAITCLK 3'd2
-`define ST_WAITREADLAST 3'd3
-`define ST_WAITACK 3'd4
-`define ST_ENDPACK 3'd5
-`define ST_ENDCOMM 3'd6
+`define ST_IDLE 8'd0
+`define ST_WAITAQ 8'd1
+`define ST_WAITCLK 8'd2
+`define ST_WAITREADLAST 8'd3
+`define ST_WAITACK 8'd4
+`define ST_ENDPACK 8'd5
+`define ST_ENDCOMM 8'd6
 `define uno 1'bz
 
 module PS2_send(
@@ -75,7 +75,6 @@ inout PS2D;
 
 //reg	[8:0] data;
 reg	send_old=1'b0;
-reg	reset=1'b0;
 
 reg 	runAcq=1'b0;
 reg	runData=1'b0;
@@ -86,7 +85,7 @@ output reg	[7:0] status=8'd0;
 output reg			err=1'b0;
 output reg			ok=1'b0;
 
-wire w_clk05uS;
+wire w_clk_1micro;
 wire w_acquire;
 wire w_chData;
 wire w_EP;
@@ -107,6 +106,8 @@ always @(posedge qzt_clk) begin
 	case (status)
 		// IDLE state, just wait for trigger on send
 		`ST_IDLE: begin
+		//PS2Creg=`uno;
+		//PS2Dreg=`uno;
 			if (!send_old & send) begin
 				runAcq=1; // start counter for acquiring channel
 				PS2Creg=0;	// force clock low
@@ -135,7 +136,7 @@ always @(posedge qzt_clk) begin
 				PS2Dreg=dataReg[0]? `uno : 0;
 				dataReg=dataReg>>1;
 				nbits=nbits+1;
-				if (nbits>=11) begin
+				if (nbits>=10) begin
 					status=`ST_WAITREADLAST;
 				end
 			end
@@ -199,8 +200,8 @@ Module_FrequencyDivider	mezzoMicro(
 
 Module_Counter_8_bit_oneRun acquireChannel	(
 					.qzt_clk(qzt_clk),
-					.clk_in(w_clk05uS),
-					.limit(8'd100),
+					.clk_in(w_clk_1micro),
+					.limit(8'd120),
 					.run(runAcq),
 
 					//out,
@@ -209,7 +210,7 @@ Module_Counter_8_bit_oneRun acquireChannel	(
 					
 Module_Counter_8_bit_oneRun transmissionTiming	(
 					.qzt_clk(qzt_clk),
-					.clk_in(w_clk05uS),
+					.clk_in(w_clk_1micro),
 					.limit(8'd3),
 					.run(runData),
 
@@ -219,7 +220,7 @@ Module_Counter_8_bit_oneRun transmissionTiming	(
 					
 Module_Counter_8_bit_oneRun endPacket	(
 					.qzt_clk(qzt_clk),
-					.clk_in(w_clk05uS),
+					.clk_in(w_clk_1micro),
 					.limit(8'd60), // 60 uS
 					.run(runEP),
 
@@ -229,7 +230,7 @@ Module_Counter_8_bit_oneRun endPacket	(
 					
 Module_Counter_8_bit_oneRun endComm	(
 					.qzt_clk(qzt_clk),
-					.clk_in(w_clk05uS),
+					.clk_in(w_clk_1micro),
 					.limit(8'd20), // 
 					.run(runEC),
 
