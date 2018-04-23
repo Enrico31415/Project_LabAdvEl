@@ -38,15 +38,15 @@ print (");");
 
 print("input clk_in;");
 print("input "+var_in_1+";");
-print("input [3:0]"+var_in_2+";");
+print("input [4:0]"+var_in_2+";");
 
 print ("input [3:0]"+var_in_x+";")
 print ("input [3:0]"+var_in_y+";")
-print ("input [3:0]"+var_in_x_p+";")
-print ("input [3:0]"+var_in_y_p+";")
+print ("input [4:0]"+var_in_x_p+";")
+print ("input [4:0]"+var_in_y_p+";")
 
-print ("output reg [3:0]"+var_out_1+";")
-print ("output reg [3:0]"+var_out_2+";")
+print ("output reg [4:0]"+var_out_1+";")
+print ("output reg [4:0]"+var_out_2+";")
 
 
 
@@ -55,7 +55,7 @@ print ("output reg [3:0]"+var_out_2+";")
 print ("// registri del tipo sta_X(posizione x)_Y(posizione y)")
 for j in range (0,10):
 	for i in range (0,10):
-		print ("reg [3:0] stat_X"+str(i)+"_Y"+str(j)+" = 4'b0000;")
+		print ("reg [4:0] stat_X"+str(i)+"_Y"+str(j)+" = 4'b0000;")
 
 print("// operazioni di scrittura/lettura dal mouse")
 print ("always @ (negedge clk_in)")
