@@ -26,8 +26,8 @@ module Toggle(
     );
 
 input qzt, in;
-output reg out;
-reg in_old;
+output reg out=0;
+reg in_old=0;
 
 always @ (posedge qzt) begin
 	if (~in_old & in)

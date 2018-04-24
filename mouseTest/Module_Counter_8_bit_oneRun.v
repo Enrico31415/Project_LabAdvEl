@@ -25,7 +25,8 @@ module	Module_Counter_8_bit_oneRun	(
 		run,
 
 		out,
-		carry);
+		carry
+		);
 
 input		qzt_clk;
 input		clk_in;
@@ -40,13 +41,12 @@ reg	carry=1'b0;
 reg 	run_old=1'b0;
 reg 	clk_in_old=1'b0;
 
-always @(posedge qzt_clk) begin
-	if (!clk_in_old & clk_in) begin
-		if (!run_old & run) begin
-			out=0;
-			carry=0;
-		end
-		if (run) begin
+always @(negedge qzt_clk) begin
+	if (!run) begin
+		out=0;
+		carry=0;
+	end else begin
+		if (!clk_in_old & clk_in) begin
 			if (out >= (limit - 8'b00000001)) begin
 				carry = 1;
 			end else if (out == 0) begin
@@ -55,14 +55,10 @@ always @(posedge qzt_clk) begin
 			end else begin
 				out = out + 1;
 			end
-		end else begin
-			out=0;
-			carry=0;
 		end
-		
 	end
-	run_old=run;
 	clk_in_old=clk_in;
+	run_old=run;
 end
 
 endmodule

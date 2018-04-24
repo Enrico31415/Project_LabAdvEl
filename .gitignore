@@ -1,8 +1,10 @@
 # Resources folder
 /Resources
 *.log
+/mouseTest/isim/
 
 #c Compilato vlog
+*.bmm
 *.bng
 *.bgn
 *.lst
@@ -75,6 +77,10 @@ par_usage_statistics.html
 usage_statistics_webtalk.html
 webtalk.log
 webtalk_pn.xml
+
+# simulator
+*.sdb
+*.exe
 
 # generated folders
 iseconfig/

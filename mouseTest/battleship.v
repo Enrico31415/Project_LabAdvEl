@@ -6,34 +6,40 @@ module battleship(
 				CLK_50M,
 				BTN_SOUTH,
 				BTN_NORTH,
+				SW,
 
 				LED,
 				PS2_CLK1,
-				PS2_DATA1
-				
+				PS2_DATA1,
+				J20_IO
 				);
 
 input		BTN_NORTH;
 input		BTN_SOUTH;
 input		CLK_50M; //here decalrations, variable with 1 bit.
+input		[3:0] SW;
 output	[7:0]	LED;// so have low impedence. 8 digits. is a bus.
+output	[3:0] J20_IO;
 inout		PS2_CLK1;
 inout		PS2_DATA1;
 
 //////////////////////////////////////////////////////
 
-wire w_status;
+wire [3:0]w_status;
 wire w_clk_milli;
+wire w_clk_second;
 wire w_buttonN;
 
 wire w_ps2Creg;
 wire w_ps2Dreg;
-assign LED[7] = (w_ps2Creg==1'bz)?1'b1:1'b0;
-assign LED[6] = (w_ps2Dreg==1'bz)?1'b1:1'b0;
+wire w_altro; ////////////////////////////////////
+assign LED[7] = w_altro;// PS2_CLK1; //(w_ps2Creg==1'bz)?1'b1:1'b0;
+//assign J20_IO = w_altro;
+assign LED[6] = PS2_DATA1; //(w_ps2Dreg==1'bz)?1'b1:1'b0;
 
 PS2_send PS2_send(
 		.qzt_clk(CLK_50M),
-		.data(11'b01110011111),
+		.data(11'b01100111111),
 		.send(w_buttonN),
 		
 		.PS2C(PS2_CLK1),
@@ -42,7 +48,8 @@ PS2_send PS2_send(
 		//err,
 		.status(w_status),
 		.PS2Creg(w_ps2Creg),
-		.PS2Dreg(w_ps2Dreg)
+		.PS2Dreg(w_ps2Dreg),
+		.altro(w_altro)
 	  );
 
 monostable_with_one_run antirimbalzo(
@@ -63,14 +70,33 @@ Module_FrequencyDivider	milli(
 
 assign LED[3:0] = ~w_status;
 
-assign LED[4] = w_buttonN;
+assign LED[5] = w_buttonN;
+assign LED[4] = w_clk_second;
+
 Module_FrequencyDivider	second(
 		.clk_in(CLK_50M),
 		.period(30'd25_000_000),
 
-		.clk_out(LED[5])
+		.clk_out(w_clk_second)
 		);
 
+///////////////////////////////////////	
+
+wire w_diosc;
+Module_Counter_8_bit_oneRun diosc(
+		.qzt_clk(CLK_50M),
+		.clk_in(w_clk_second),
+		.limit(8'd2),
+		.run(SW[0]),
+
+		//out,
+		.carry(w_diosc)
+		);
+assign J20_IO[3:0]= {BTN_SOUTH,SW[0],w_ps2Creg,w_ps2Dreg};
+
+
+//assign J20_IO[3:0]={SW[3],SW[2],SW[1],SW[0]};
+//////////////////////////////////////
 /*
 wire w_clk_1micro;
 wire w_PS2CLK;
