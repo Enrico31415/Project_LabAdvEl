@@ -39,7 +39,7 @@ module Module_VGADriver(
 	
 	color_out
     );
-`include "simple_function.v"
+`include "crossGenerator.v"
 input clk_in;
 input enable;
 input[9:0] current_row;
@@ -101,7 +101,7 @@ begin
 				end
 			`cell_status_player_and_ia_hitted : 
 				begin
-					color_out = myfunction(current_line, current_row, cell_x, cell_y);
+					color_out = crossGenerator(current_line, current_row, cell_x, cell_y);
 				end
 		endcase
 		if (current_line <= ('d48+`row_dimension) && current_line > ('d48-`row_dimension)) // prima riga
