@@ -92,7 +92,7 @@ Module_Counter_8_bit_oneRun diosc(
 		//out,
 		.carry(w_diosc)
 		);
-assign J20_IO[3:0]= {BTN_SOUTH,SW[0],w_ps2Creg,w_ps2Dreg};
+assign J20_IO[3:0]= {BTN_SOUTH,w_altro,w_ps2Creg,w_ps2Dreg};
 
 
 //assign J20_IO[3:0]={SW[3],SW[2],SW[1],SW[0]};

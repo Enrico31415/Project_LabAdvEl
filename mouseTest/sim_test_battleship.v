@@ -31,8 +31,8 @@ module sim_test_battleship(
 //reg mouse_clk;
 
 initial begin
-	clk40ns=1'b0;
-	forever #20 clk40ns = ~clk40ns;
+	clk20ns=1'b0;
+	forever #10 clk20ns = ~clk20ns;
 end
 
 Module_FrequencyDivider t80uS(
@@ -58,5 +58,8 @@ battleship btls(
 		.PS2_CLK1(cavoPS2_C),
 		.PS2_DATA1(cavoPS2_D)		
 		);
+
+		
+
 		
 endmodule

@@ -1,1 +1,1 @@
--intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "/home/mat/Documents/repos/Project_LabAdvEl/mouseTest/sim_data_out_isim_beh.exe" -prj "/home/mat/Documents/repos/Project_LabAdvEl/mouseTest/sim_data_out_beh.prj" "work.sim_data_out" "work.glbl" 
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "/home/mat/Documents/repos/Project_LabAdvEl/mouseTest/PS2_send_isim_beh.exe" -prj "/home/mat/Documents/repos/Project_LabAdvEl/mouseTest/PS2_send_beh.prj" "work.PS2_send" "work.glbl" 

@@ -45,11 +45,16 @@ TODO:
 // Defining constants for enumerate states
 `define ST_IDLE 8'd0
 `define ST_WAITAQ 8'd1
-`define ST_WAITCLK 8'd2
+`define ST_WAITCLK_WAIT 8'd2
 `define ST_WAITREADLAST 8'd3
 `define ST_WAITACK 8'd4
 `define ST_ENDPACK 8'd5
-`define ST_ENDCOMM 8'd6
+`define ST_PRE_ENDCOMM 8'd6
+`define ST_SENDCMD 8'd7
+`define ST_ENDCOMM 8'd8
+`define ST_PRE_WAITREADLAST 8'd9
+`define ST_WAITCLK_SEND 8'd10
+
 `define uno 1'bz
 
 module PS2_send(
@@ -80,20 +85,24 @@ inout PS2D;
 //reg	[8:0] data;
 output reg	[7:0] status=8'd0;
 output reg			err=1'b0;
-output reg			ok=1'b0;
+output 				ok;
+reg					reg_ok=1'b0;
 
 reg  send_old=1'b0;
 reg  PS2C_old=1'b1;
 reg  PS2D_old=1'b1;
 
 wire w_clk_1micro;
+wire w_clk_100micro;
 
 reg run_principal=0;
 reg run_auxiliary=0;
+reg run_timeout=0;
 reg [7:0] limit_principal=0;
 reg [7:0] limit_auxiliary=0;
 wire w_principal;
 wire w_auxiliary;
+wire w_timeout;
 
 output reg  PS2Creg=1'b1;
 output reg  PS2Dreg=1'b1;
@@ -105,72 +114,90 @@ integer nbits=0;
 
 ////////////
 output altro;
-assign altro=w_principal;
+assign altro=(w_timeout | w_principal);
 ////////////
 
+
 always @(posedge qzt_clk) begin
+	if (w_timeout) begin
+		status=`ST_IDLE;
+		reg_ok=~reg_ok;
+		err=1'b1;
+	end
 	case (status)
 		// IDLE state, just wait for trigger on send
 		`ST_IDLE: begin
-		PS2Creg=1'b1;
-		PS2Dreg=1'b1;
+			PS2Creg=1'b1;
+			PS2Dreg=1'b1;
+			run_timeout=0;
+			limit_principal=8'd120;
+			limit_auxiliary=8'd60;
+			run_principal=0; // start counter for acquiring channel
+			run_auxiliary=0;
 			if (!send_old & send) begin
-				limit_principal=8'd120;
-				limit_auxiliary=8'd60;
-				run_principal=1; // start counter for acquiring channel
-				run_auxiliary=1;
-				
-				PS2Creg=0;	// force clock low
-				PS2Dreg=1;	// and data high. Clock has to go low before data
-				status=`ST_WAITAQ;
-				dataReg=data; // make a copy of data
-				nbits=0;
-				ok=0;
+				status=`ST_SENDCMD;
 			end
+		end
+		`ST_SENDCMD: begin
+			run_timeout=1;
+			run_principal=1; // start counter for acquiring channel
+			run_auxiliary=1;
+			PS2Creg=0;	// force clock low
+			PS2Dreg=1;	// and data high. Clock has to go low before data
+			status=`ST_WAITAQ;
+			dataReg=data; // make a copy of data
+			nbits=0;
+			err=0;
 		end
 		// In here waits for the 100uS
 		`ST_WAITAQ: begin
 			if (w_principal) begin
 				run_principal=0; // reset aquire counter
 				PS2Creg=1; 	 // release the clock 
-				status=`ST_WAITCLK;
+				status=`ST_WAITCLK_WAIT;
 			end
 			if (w_auxiliary) begin
 				run_auxiliary=0;
 				PS2Dreg=0;	// force data low
 			end
 		end
-		
 		// in this state waits for falling edge of device clock in order to send
 		// the data. data is readed by the device on rising edge and so it is
 		// changed by host on falling edge
-		`ST_WAITCLK: begin
+		`ST_WAITCLK_WAIT: begin
 			if (PS2C_old & !PS2C) begin
 				dataReg=dataReg<<1;
-				PS2Dreg=dataReg[0]? 1'b1 : 1'b0;
-				nbits=nbits+1;
-				if (nbits>=10) begin
-					status=`ST_WAITREADLAST;
-				end
+				status=`ST_WAITCLK_SEND;
 			end
 		end
-
+		`ST_WAITCLK_SEND:begin
+			PS2Dreg=dataReg[0]? 1'b1 : 1'b0;
+			nbits=nbits+1;
+			if (nbits>=10) begin
+				status=`ST_PRE_WAITREADLAST;
+			end else begin
+				status=`ST_WAITCLK_WAIT;
+			end
+		end
 		// Ack bit is sended by the device and readed on falling edge, so wait
 		// for the last bit of data to be sent and then change status to WAITACK
-		`ST_WAITREADLAST: begin
+		`ST_PRE_WAITREADLAST: begin
 			if (!PS2C_old & PS2C) begin
 				run_principal=1;
 				limit_principal=8'd3;
+				status=`ST_WAITREADLAST;
 			end
+		end
+		`ST_WAITREADLAST: begin
 			if (w_principal) begin
 				run_principal=0;
 				PS2Dreg=1'b1; // release data
 				status=`ST_WAITACK;
 			end
 		end
-
 		// read the ack and signal error if is not 0
 		`ST_WAITACK: begin
+			run_timeout=1;
 			if (PS2C_old & !PS2C) begin
 				err=PS2D?(1):(0);
 				
@@ -186,18 +213,22 @@ always @(posedge qzt_clk) begin
 		`ST_ENDPACK: begin
 			if (w_principal) begin
 				run_principal=0;
-				status=`ST_ENDCOMM;
+				status=`ST_PRE_ENDCOMM;
 				limit_principal=8'd20;
 			end
 		end
 
 		// Here I check for The line to be released, so Clock and Data High.
-		`ST_ENDCOMM: begin
+		`ST_PRE_ENDCOMM: begin
 			run_principal=1;
+			status=`ST_ENDCOMM;
+		end
+		`ST_ENDCOMM: begin
 			if (w_principal & PS2C & PS2D) begin
 				run_principal=0;
 				status=`ST_IDLE;
-				ok=1;
+				reg_ok=~reg_ok;
+				err=1'b0;
 			end /*else begin
 				run_principal=0;
 				status=`ST_IDLE;
@@ -206,12 +237,14 @@ always @(posedge qzt_clk) begin
 		end
 		default: begin
 			status=`ST_IDLE;
+			reg_ok=~reg_ok;
+			err=1'b1;
 		end
 		endcase
 		 
 	// update old values
 	PS2C_old=PS2C;
-	PS2D_old=PS2D;
+	//PS2D_old=PS2D;
 	send_old=send;
 end	
 
@@ -220,6 +253,13 @@ Module_FrequencyDivider	mezzoMicro(
 		.period(30'd25),
 
 		.clk_out(w_clk_1micro)
+		);
+		
+Module_FrequencyDivider	centoMicro(
+		.clk_in(qzt_clk),
+		.period(30'd2500),
+
+		.clk_out(w_clk_100micro)
 		);
 
 Module_Counter_8_bit_oneRun principal(
@@ -241,6 +281,22 @@ Module_Counter_8_bit_oneRun auxiliary(
 					.carry(w_auxiliary)
 					);
 
+Module_Counter_8_bit_oneRun timeout(
+					.qzt_clk(qzt_clk),
+					.clk_in(w_clk_100micro),
+					.limit(8'd20),
+					.run(run_timeout),
+
+					//out,
+					.carry(w_timeout)
+					);
+
+pulse_on_change ok_pulse(
+		.qzt_clk(qzt_clk),
+		.trigger(reg_ok),
+		
+		.pulse(ok)
+    );
 
 /*
 Module_Counter_8_bit_oneRun acquireChannel	(
