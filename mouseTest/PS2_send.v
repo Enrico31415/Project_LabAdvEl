@@ -132,7 +132,7 @@ always @(posedge qzt_clk) begin
 			run_timeout=0;
 			limit_principal=8'd120;
 			limit_auxiliary=8'd60;
-			run_principal=0; // start counter for acquiring channel
+			run_principal=0;
 			run_auxiliary=0;
 			if (!send_old & send) begin
 				status=`ST_SENDCMD;
@@ -171,7 +171,7 @@ always @(posedge qzt_clk) begin
 			end
 		end
 		`ST_WAITCLK_SEND:begin
-			PS2Dreg=dataReg[0]? 1'b1 : 1'b0;
+			PS2Dreg=dataReg[0];
 			nbits=nbits+1;
 			if (nbits>=10) begin
 				status=`ST_PRE_WAITREADLAST;
@@ -184,14 +184,14 @@ always @(posedge qzt_clk) begin
 		`ST_PRE_WAITREADLAST: begin
 			if (!PS2C_old & PS2C) begin
 				run_principal=1;
-				limit_principal=8'd3;
+				limit_principal=8'd50;
 				status=`ST_WAITREADLAST;
 			end
 		end
 		`ST_WAITREADLAST: begin
 			if (w_principal) begin
 				run_principal=0;
-				PS2Dreg=1'b1; // release data
+				PS2Dreg=1'b0; // release data
 				status=`ST_WAITACK;
 			end
 		end

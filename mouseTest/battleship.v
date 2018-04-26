@@ -12,7 +12,7 @@ module battleship(
 				PS2_CLK1,
 				PS2_DATA1,
 				J20_IO
-				);
+				); 
 
 input		BTN_NORTH;
 input		BTN_SOUTH;
@@ -39,7 +39,7 @@ assign LED[6] = PS2_DATA1; //(w_ps2Dreg==1'bz)?1'b1:1'b0;
 
 PS2_send PS2_send(
 		.qzt_clk(CLK_50M),
-		.data(11'b01100111111),
+		.data(11'b11111111111),
 		.send(w_buttonN),
 		
 		.PS2C(PS2_CLK1),
