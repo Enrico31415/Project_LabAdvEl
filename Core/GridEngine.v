@@ -173,6 +173,10 @@ begin
 			begin
 				cell_new_status = `cell_status_free;   // _____________ 4->0
 			end
+			else
+			begin
+				cell_new_status = `cell_status_free;   
+			end
 		end	
 		else
 		begin

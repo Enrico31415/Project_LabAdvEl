@@ -1,11 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <ImplementationReportsDirectory>/media/Scratch/porojece/Project_LabAdvEl/Core</ImplementationReportsDirectory>
+  <ImplementationReportsDirectory>/media/Scratch/Project_LabAdvEl/Core/</ImplementationReportsDirectory>
   <ModuleName>Controller</ModuleName>
-  <DateModified>2018-04-26T12:26:50</DateModified>
-  <SavedFilePath>/media/Scratch/porojece/Project_LabAdvEl/Core/iseconfig/Controller.xreport</SavedFilePath>
+  <DateModified>2018-04-26T16:09:26</DateModified>
+  <SavedFilePath>/media/Scratch/Project_LabAdvEl/Core/iseconfig/Controller.xreport</SavedFilePath>
   <DateInitialized>2018-04-26T12:26:50</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
+  <SummaryTimeStamp>2018-04-26T16:01:44</SummaryTimeStamp>
  </header>
 </report-views>

@@ -5,11 +5,5 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<<<<<<< HEAD
-=======
-<msg type="warning" file="HDLCompiler" num="1591" delta="unknown" >"Function_drawCross.v" Line 4: Root scope declaration is not allowed in verilog 95/2K mode
-</msg>
-
->>>>>>> 956418f2306530509272fa877f1e1e1cd3102511
 </messages>
 
