@@ -55,7 +55,7 @@ print ("output reg [4:0]"+var_out_2+";")
 print ("// registri del tipo sta_X(posizione x)_Y(posizione y)")
 for j in range (0,10):
 	for i in range (0,10):
-		print ("reg [4:0] stat_X"+str(i)+"_Y"+str(j)+" = 4'b0000;")
+		print ("reg [4:0] stat_X"+str(i)+"_Y"+str(j)+" = 5'b00000;")
 
 print("// operazioni di scrittura/lettura dal mouse")
 print ("always @ (negedge clk_in)")

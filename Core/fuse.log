@@ -1,24 +1,22 @@
-Running: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin/unwrapped/fuse -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -o /home/user/git/core/Core/zero_to_nine_r_gen_isim_beh.exe -prj /home/user/git/core/Core/zero_to_nine_r_gen_beh.prj work.zero_to_nine_r_gen work.glbl 
+Running: /usr/LDSS/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -o /media/Scratch/ElADV/Project_LabAdvEl/Core/Module_VGADriver_isim_beh.exe -prj /media/Scratch/ElADV/Project_LabAdvEl/Core/Module_VGADriver_beh.prj work.Module_VGADriver work.glbl 
 ISim P.20131013 (signature 0xfbc00daa)
-Number of CPUs detected in this system: 8
-Turning on mult-threading, number of parallel sub-compilation jobs: 16 
+Number of CPUs detected in this system: 4
+Turning on mult-threading, number of parallel sub-compilation jobs: 8 
 Determining compilation order of HDL files
-Analyzing Verilog file "/home/user/git/core/Core/shift_2.v" into library work
-Analyzing Verilog file "/home/user/git/core/Core/random_gen.v" into library work
-Analyzing Verilog file "/home/user/git/core/Core/zero_to_nine_r_gen.v" into library work
-Analyzing Verilog file "/opt/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
+Analyzing Verilog file "/media/Scratch/ElADV/Project_LabAdvEl/Core/pos_to_quadrant.v" into library work
+Analyzing Verilog file "/media/Scratch/ElADV/Project_LabAdvEl/Core/VGADriver.v" into library work
+Analyzing Verilog file "/usr/LDSS/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
 Starting static elaboration
 Completed static elaboration
-Fuse Memory Usage: 36864 KB
-Fuse CPU Usage: 1550 ms
-Compiling module shift_2
-Compiling module random_gen
-Compiling module zero_to_nine_r_gen
+Fuse Memory Usage: 96248 KB
+Fuse CPU Usage: 1080 ms
+Compiling module pos_to_quadrant
+Compiling module Module_VGADriver
 Compiling module glbl
 Time Resolution for simulation is 1ps.
 Waiting for 1 sub-compilation(s) to finish...
-Compiled 4 Verilog Units
-Built simulation executable /home/user/git/core/Core/zero_to_nine_r_gen_isim_beh.exe
-Fuse Memory Usage: 88344 KB
-Fuse CPU Usage: 1560 ms
-GCC CPU Usage: 510 ms
+Compiled 3 Verilog Units
+Built simulation executable /media/Scratch/ElADV/Project_LabAdvEl/Core/Module_VGADriver_isim_beh.exe
+Fuse Memory Usage: 662940 KB
+Fuse CPU Usage: 1140 ms
+GCC CPU Usage: 2430 ms
