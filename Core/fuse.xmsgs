@@ -5,11 +5,11 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<<<<<<< HEAD
-=======
-<msg type="warning" file="HDLCompiler" num="1591" delta="unknown" >"Function_drawCross.v" Line 4: Root scope declaration is not allowed in verilog 95/2K mode
+<msg type="warning" file="HDLCompiler" num="189" delta="unknown" >"/home/user/git/core/Core/GridEngine.v" Line 158: Size mismatch in connection of port &lt;<arg fmt="%s" index="3">pointer_cell_x</arg>&gt;. Formal port size is <arg fmt="%d" index="2">5</arg>-bit while actual signal size is <arg fmt="%d" index="1">4</arg>-bit.
 </msg>
 
->>>>>>> 956418f2306530509272fa877f1e1e1cd3102511
+<msg type="warning" file="HDLCompiler" num="189" delta="unknown" >"/home/user/git/core/Core/GridEngine.v" Line 159: Size mismatch in connection of port &lt;<arg fmt="%s" index="3">pointer_cell_y</arg>&gt;. Formal port size is <arg fmt="%d" index="2">5</arg>-bit while actual signal size is <arg fmt="%d" index="1">4</arg>-bit.
+</msg>
+
 </messages>
 

@@ -1,0 +1,13 @@
+[Inputs]
+clk_in
+mouse_click
+=mouse_pos_x[9:0]=
+=mouse_pos_y[9:0]=
+=pos_x[9:0]=
+=pos_y[9:0]=
+[Outputs]
+=pointer_cell_read_status[4:0]=
+[BiDir]
+[ATTRIBUTES]
+VeriModel GridEngine
+

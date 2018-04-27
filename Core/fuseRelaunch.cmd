@@ -1,1 +1,1 @@
--intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "/home/user/git/core/Core/zero_to_nine_r_gen_isim_beh.exe" -prj "/home/user/git/core/Core/zero_to_nine_r_gen_beh.prj" "work.zero_to_nine_r_gen" "work.glbl" 
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "/home/user/git/core/Core/GridEngine_isim_beh.exe" -prj "/home/user/git/core/Core/GridEngine_beh.prj" "work.GridEngine" "work.glbl" 
