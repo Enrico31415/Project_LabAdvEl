@@ -61,6 +61,7 @@ module PS2_send(
 		qzt_clk,
 		data,
 		send,
+		btnS,
 		
 		PS2C,
 		PS2D,
@@ -70,7 +71,8 @@ module PS2_send(
 		
 		PS2Creg,
 		PS2Dreg,
-		altro
+		altro,
+		ortla
 	  );
 //	  ,errCode
 //
@@ -78,6 +80,7 @@ module PS2_send(
 input qzt_clk;
 input [0:10] data;
 input send;
+input btnS;
 
 inout PS2C;
 inout PS2D;
@@ -112,20 +115,41 @@ assign PS2D=PS2Dreg?1'bz:1'b0;
 reg [0:10] dataReg=11'd0;
 integer nbits=0;
 
-////////////
+//////////////////////////////////////////////
 output [3:0] altro;
-//assign altro=PS2D;//(w_timeout | w_principal);
-assign altro[0]=w_clk_100micro;
-assign altro[1]=w_clk_1micro;
+output [3:0] ortla;
+reg to_count_bits=0;
+pulse_on_change pulse_bit(
+		.qzt_clk(qzt_clk),
+		.trigger(to_count_bits),
+		
+		.pulse(altro[0])
+    );
+//assign altro=PS2D;//
+assign altro[3]=(w_timeout | w_principal);
+//assign altro[0]=w_clk_100micro;
+assign altro[1]=run_principal;
+assign altro[2]=run_auxiliary;
 //assign altro[2]=
-////////////
 
+wire w_clk_50KHz;
+Module_FrequencyDivider	cinquantaKHz(
+		.clk_in(qzt_clk),
+		.period(30'd200),
 
-always @(posedge qzt_clk) begin
+		.clk_out(w_clk_50KHz)
+		);
+assign ortla[0]=w_clk_50KHz;
+////////////////////////////////////////////////////
+
+always @(posedge w_clk_50KHz) begin
 	if (w_timeout) begin
-		status=`ST_IDLE;
+		//status=`ST_IDLE;
 		reg_ok=~reg_ok;
 		err=1'b1;
+	end
+	if (btnS) begin
+		status=`ST_IDLE;
 	end
 	case (status)
 		// IDLE state, just wait for trigger on send
@@ -176,6 +200,9 @@ always @(posedge qzt_clk) begin
 		`ST_WAITCLK_SEND:begin
 			PS2Dreg=dataReg[0];
 			nbits=nbits+1;
+			/////////////////////////////////
+			to_count_bits=~to_count_bits;
+			/////////////////////////////////
 			if (nbits>=10) begin
 				status=`ST_PRE_WAITREADLAST;
 			end else begin
@@ -187,20 +214,19 @@ always @(posedge qzt_clk) begin
 		`ST_PRE_WAITREADLAST: begin
 			if (!PS2C_old & PS2C) begin
 				run_principal=1;
-				limit_principal=8'd50;
+				limit_principal=8'd10;
 				status=`ST_WAITREADLAST;
 			end
 		end
 		`ST_WAITREADLAST: begin
 			if (w_principal) begin
 				run_principal=0;
-				PS2Dreg=1'b0; // release data
+				PS2Dreg=1'b1; // release data
 				status=`ST_WAITACK;
 			end
 		end
 		// read the ack and signal error if is not 0
 		`ST_WAITACK: begin
-			run_timeout=1;
 			if (PS2C_old & !PS2C) begin
 				err=PS2D?(1):(0);
 				
