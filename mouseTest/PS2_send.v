@@ -113,8 +113,11 @@ reg [0:10] dataReg=11'd0;
 integer nbits=0;
 
 ////////////
-output altro;
-assign altro=(w_timeout | w_principal);
+output [3:0] altro;
+//assign altro=PS2D;//(w_timeout | w_principal);
+assign altro[0]=w_clk_100micro;
+assign altro[1]=w_clk_1micro;
+//assign altro[2]=
 ////////////
 
 
@@ -268,7 +271,7 @@ Module_Counter_8_bit_oneRun principal(
 					.limit(limit_principal),
 					.run(run_principal),
 
-					//out,
+					//.out(),
 					.carry(w_principal)
 					);
 Module_Counter_8_bit_oneRun auxiliary(

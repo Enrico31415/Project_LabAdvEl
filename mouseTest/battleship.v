@@ -32,8 +32,8 @@ wire w_buttonN;
 
 wire w_ps2Creg;
 wire w_ps2Dreg;
-wire w_altro; ////////////////////////////////////
-assign LED[7] = w_altro;// PS2_CLK1; //(w_ps2Creg==1'bz)?1'b1:1'b0;
+wire [3:0] w_altro; ////////////////////////////////////
+assign LED[7] = 0;// w_altro;// PS2_CLK1; //(w_ps2Creg==1'bz)?1'b1:1'b0;
 //assign J20_IO = w_altro;
 assign LED[6] = PS2_DATA1; //(w_ps2Dreg==1'bz)?1'b1:1'b0;
 
@@ -49,7 +49,7 @@ PS2_send PS2_send(
 		.status(w_status),
 		.PS2Creg(w_ps2Creg),
 		.PS2Dreg(w_ps2Dreg),
-		.altro(w_altro)
+		.altro(w_altro[1:0])
 	  );
 
 monostable_with_one_run antirimbalzo(
@@ -86,13 +86,13 @@ wire w_diosc;
 Module_Counter_8_bit_oneRun diosc(
 		.qzt_clk(CLK_50M),
 		.clk_in(w_clk_second),
-		.limit(8'd2),
+		.limit(8'd3),
 		.run(SW[0]),
 
 		//out,
-		.carry(w_diosc)
+		.carry(w_altro[2])
 		);
-assign J20_IO[3:0]= {BTN_SOUTH,w_altro,w_ps2Creg,w_ps2Dreg};
+assign J20_IO[3:0]= {BTN_SOUTH,w_altro[2],w_altro[1],w_altro[0]};
 
 
 //assign J20_IO[3:0]={SW[3],SW[2],SW[1],SW[0]};
