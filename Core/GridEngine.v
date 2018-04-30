@@ -70,6 +70,9 @@ module GridEngine(clk_in,
 	
 	
     );
+	 
+`include "gridFunctions.v"
+
 input clk_in;
 input mouse_click;	
 input [9:0] mouse_pos_x;
@@ -93,6 +96,7 @@ wire [4:0] mouse_cell_read_status; //stato attuale della cella letta
 
 wire[3:0] pointer_cell_x;
 wire[3:0] pointer_cell_y;
+
 
 
 //dalla posizione del mouse, torna la posizione in celle.
@@ -136,6 +140,7 @@ cell_io memory( //gestisce la memoria
 	.status(mouse_cell_read_status),
 	.status_pointed_cell(pointer_cell_read_status)
 );
+
 
 
 always @ (posedge clk_in)

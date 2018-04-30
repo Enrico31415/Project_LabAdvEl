@@ -1,1 +1,1 @@
--intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "/media/Scratch/ElADV/Project_LabAdvEl/Core/Module_VGADriver_isim_beh.exe" -prj "/media/Scratch/ElADV/Project_LabAdvEl/Core/Module_VGADriver_beh.prj" "work.Module_VGADriver" "work.glbl" 
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "Z:/Core/Sim_GridEngine_isim_beh.exe" -prj "Z:/Core/Sim_GridEngine_beh.prj" "work.Sim_GridEngine" "work.glbl" 

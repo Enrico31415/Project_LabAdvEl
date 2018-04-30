@@ -3,10 +3,10 @@
  <header>
   <ImplementationReportsDirectory>Z:/Core\</ImplementationReportsDirectory>
   <ModuleName>Controller</ModuleName>
-  <DateModified>2018-04-30T11:45:25</DateModified>
+  <DateModified>2018-04-30T15:33:09</DateModified>
   <SavedFilePath>Z:/Core/iseconfig/Controller.xreport</SavedFilePath>
   <DateInitialized>2018-04-26T12:26:50</DateInitialized>
-  <EnableMessageFiltering>false</EnableMessageFiltering>
-  <SummaryTimeStamp>2018-04-26T16:01:44</SummaryTimeStamp>
+  <EnableMessageFiltering>true</EnableMessageFiltering>
+  <SummaryTimeStamp>2018-04-30T15:31:08</SummaryTimeStamp>
  </header>
 </report-views>

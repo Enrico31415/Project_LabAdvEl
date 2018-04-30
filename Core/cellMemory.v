@@ -17,8 +17,8 @@ input we;
 input [4:0]new_value;
 input [3:0]mouse_cell_x;
 input [3:0]mouse_cell_y;
-input [4:0]pointer_cell_x;
-input [4:0]pointer_cell_y;
+input [3:0]pointer_cell_x;
+input [3:0]pointer_cell_y;
 output reg [4:0]status;
 output reg [4:0]status_pointed_cell;
 // registri del tipo sta_X(posizione x)_Y(posizione y)

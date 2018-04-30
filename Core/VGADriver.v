@@ -70,6 +70,7 @@ reg [11:0] pointer_to_mask_1 = 12'd0;
 reg [11:0] pointer_to_mask_2 = 12'd0;
 wire [3071:0] cross;
 wire [3071:0] circle;
+wire [3071:0] cross_over_circle;
 
 //ritona la posizione attuale del pennello in celle
 pos_to_quadrant position_to_quadrant (
@@ -83,6 +84,7 @@ pos_to_quadrant position_to_quadrant (
 `include "VGAmask.v"
 assign cross = `d_cross;
 assign circle = `d_circle;
+assign cross_over_circle = `d_circle & `d_cross;
 /*
 initial begin 
 	cross = `d_cross;
