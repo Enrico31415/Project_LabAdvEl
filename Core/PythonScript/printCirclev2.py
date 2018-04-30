@@ -10,7 +10,10 @@ draw.ellipse((0, 0, x_dim-1, y_dim-1), outline =1, fill = 1)
 draw.ellipse((0+delta, 0+delta, x_dim-1-delta, y_dim-1-delta), outline =2, fill = 2)
 #diventa lista
 image = list(image.getdata())
-
+print ("//File autogenerato da "+__file__);
+print ("//non modificare! Qualsiasi modifica potrebbe essere cancellata all'esecuzione successiva")
+print("")
+print("`define d_circle \t "+str(x_dim*y_dim)+"'b", end = '')
 #sistemo l'ellisse interna con gli zeri
 for i in range(0,len(image)):
 	if(image[i] == 2):

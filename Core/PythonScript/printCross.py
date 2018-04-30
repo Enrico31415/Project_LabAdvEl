@@ -4,6 +4,9 @@ max_y = 48
 dim  = 4
 x=0
 y=0
+print ("//File autogenerato da "+__file__);
+print ("//non modificare! Qualsiasi modifica potrebbe essere cancellata all'esecuzione successiva")
+print ("`define d_cross \t", end='')
 print (""+str(64*48)+"'b", end='')
 for i in range(0,max_y):
     for j in range(0,max_x):
@@ -15,5 +18,4 @@ for i in range(0,max_y):
             print("1", end='')
         else:
             print("0", end='')
-
-
+print("")
