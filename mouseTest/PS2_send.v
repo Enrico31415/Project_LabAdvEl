@@ -59,6 +59,7 @@ TODO:
 
 module PS2_send(
 		qzt_clk,
+		clk_50KHz,
 		data,
 		send,
 		btnS,
@@ -78,6 +79,7 @@ module PS2_send(
 //
 
 input qzt_clk;
+input clk_50KHz;
 input [0:10] data;
 input send;
 input btnS;
@@ -132,17 +134,10 @@ assign altro[1]=run_principal;
 assign altro[2]=run_auxiliary;
 //assign altro[2]=
 
-wire w_clk_50KHz;
-Module_FrequencyDivider	cinquantaKHz(
-		.clk_in(qzt_clk),
-		.period(30'd200),
-
-		.clk_out(w_clk_50KHz)
-		);
-assign ortla[0]=w_clk_50KHz;
+assign ortla[0]=0;
 ////////////////////////////////////////////////////
 
-always @(posedge w_clk_50KHz) begin
+always @(posedge clk_50KHz) begin
 	if (w_timeout) begin
 		status=`ST_IDLE;
 		reg_ok=~reg_ok;
@@ -321,7 +316,7 @@ Module_Counter_8_bit_oneRun timeout(
 					);
 
 pulse_on_change ok_pulse(
-		.qzt_clk(qzt_clk),
+		.qzt_clk(clk_50KHz),
 		.trigger(reg_ok),
 		
 		.pulse(ok)

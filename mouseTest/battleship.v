@@ -41,7 +41,7 @@ wire [7:0] w_altro; ////////////////////////////////////
 
 
 assign J20_IO[3:0]={w_altro[3],w_altro[2],w_altro[1],w_altro[0]};
-assign J18_IO[3:0]={w_buttonN,0,1,0};
+assign J18_IO[3:0]={w_buttonN,1'b0,1'b1,1'b0};
 
 assign LED = {4{w_clk_second, ~w_clk_second}};
 
@@ -56,7 +56,6 @@ PS2_comm communication(
 		
 		.altro(w_altro)
     );
-
 
 monostable_with_one_run antirimbalzoNorth(
 		.trigger(BTN_NORTH),

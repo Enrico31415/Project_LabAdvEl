@@ -1,0 +1,1 @@
+- with the current frequency (50KHz) in the send module, i've a resolution of 20us. I should try to bring it to 200 KHz (-> 5us) or 1MHz (-> 1us). with that I can measure the intervals in the protocol. But for now maybe, better don't worry about.

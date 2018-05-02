@@ -2,6 +2,7 @@
 /Resources
 *.log
 /mouseTest/isim/
+*.wdb
 
 #c Compilato vlog
 *.bmm
