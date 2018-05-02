@@ -144,13 +144,13 @@ assign ortla[0]=w_clk_50KHz;
 
 always @(posedge w_clk_50KHz) begin
 	if (w_timeout) begin
-		//status=`ST_IDLE;
+		status=`ST_IDLE;
 		reg_ok=~reg_ok;
 		err=1'b1;
 	end
-	if (btnS) begin
+	/*if (btnS) begin
 		status=`ST_IDLE;
-	end
+	end*/
 	case (status)
 		// IDLE state, just wait for trigger on send
 		`ST_IDLE: begin

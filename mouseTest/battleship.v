@@ -35,26 +35,28 @@ wire w_buttonS;
 
 wire w_ps2Creg;
 wire w_ps2Dreg;
-wire [3:0] w_altro; ////////////////////////////////////
-wire [3:0] w_ortla;
+wire [7:0] w_altro; ////////////////////////////////////
 
-PS2_send PS2_send(
+///////////////////////////////////////////////////////////////////////////////
+
+
+assign J20_IO[3:0]={w_altro[3],w_altro[2],w_altro[1],w_altro[0]};
+assign J18_IO[3:0]={w_buttonN,0,1,0};
+
+assign LED = {4{w_clk_second, ~w_clk_second}};
+
+///////////////////////////////////////////////////////////////////////////////
+
+PS2_comm communication(
 		.qzt_clk(CLK_50M),
-		//.data(11'b01100111111),
-		  .data(11'b01100110011),
-		.send(w_buttonN),
-		.btnS(w_buttonS),
+		.trigger(w_buttonN),
 		
 		.PS2C(PS2_CLK1),
 		.PS2D(PS2_DATA1),
-		//ok,
-		//err,
-		.status(w_status),
-		.PS2Creg(w_ps2Creg),
-		.PS2Dreg(w_ps2Dreg),
-		.altro(w_altro),
-		.ortla(w_ortla)
-	  );
+		
+		.altro(w_altro)
+    );
+
 
 monostable_with_one_run antirimbalzoNorth(
 		.trigger(BTN_NORTH),
@@ -87,27 +89,5 @@ Module_FrequencyDivider	second(
 
 		.clk_out(w_clk_second)
 		);
-
-///////////////////////////////////////	
-wire w_diosc;
-Module_Counter_8_bit_oneRun diosc(
-		.qzt_clk(CLK_50M),
-		.clk_in(w_clk_second),
-		.limit(8'd3),
-		.run(SW[0])
-
-		//out,
-		//.carry(w_altro[2])
-		);
-
-assign J20_IO[3:0]={w_altro[1],w_altro[1],w_altro[1],w_altro[0]};
-assign J18_IO[3:0]={w_altro[3],0,w_ortla[0],w_altro[2]};
-
-assign LED[7] = 0;// w_altro;// PS2_CLK1; //(w_ps2Creg==1'bz)?1'b1:1'b0;
-//assign J20_IO = w_altro;
-assign LED[6] = PS2_DATA1; //(w_ps2Dreg==1'bz)?1'b1:1'b0;
-assign LED[5] = w_buttonN;
-assign LED[4] = w_clk_second;
-assign LED[3:0] = ~w_status;
 
 endmodule
