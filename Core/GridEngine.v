@@ -59,7 +59,7 @@ module GridEngine(clk_in,
 	
 	mouse_click, //evento del click del mouse [0] right click, [1] left click
 	
-	//stati delle celle, siccome sono in comune con la memoria, per evitare mismatch è meglio che le definizione sia contenute nel modulo padre
+	//stati delle celle, siccome sono in comune con la memoria, per evitare mismatch  meglio che le definizione sia contenute nel modulo padre
 	cell_status_free,
 	cell_status_occ,
 	cell_status_player_hitted,
@@ -93,7 +93,7 @@ input [4:0] cell_status_player_and_ia_hitted;
 
 input [3:0] ship_size0, ship_size1, ship_size2, ship_size3, ship_size4;
 
-// sono 5 navi, con profondità 3 bit (massimo 7 la lunghezza)
+// sono 5 navi, con profondit 3 bit (massimo 7 la lunghezza)
 
 
 input clk_in;
@@ -127,9 +127,10 @@ wire[3:0] pointer_cell_x;
 wire[3:0] pointer_cell_y;
 
 // crea un array da: 5 elementi [4:0]
-// di profondità 2^4-1 (3:0)
+// di profondit 2^4-1 (3:0)
 wire[3:0] ship_size [4:0];
 
+wire ship_placed;
 
 assign ship_size[0] = ship_size0;
 assign ship_size[1] = ship_size1;
@@ -180,7 +181,14 @@ cell_io memory( //gestisce la memoria
 	.pointer_cell_x(pointer_cell_x),
 	.pointer_cell_y(pointer_cell_y),
 	
+	
+	.play_status(turn_status), //stato attuale del gioco (schieramento, shooting, etc)
+	.direction(direction), //direzione della nave 
+	.dimension(ship_size[ship_size_pointer]), //dimensione della nave 
+	
+	
 	.status(mouse_cell_read_status),
+	.ship_placed(ship_placed),
 	.status_pointed_cell(pointer_cell_read_status)
 );
 
@@ -191,41 +199,46 @@ begin
 	if (turn_status == `turn_inizialize)//se devo inizializzare 
 	begin
 		//TODO: generazione random, controllo posizionamento
-		turn_status = turn_status + 1; //tocca al giocatore
 		//TODO: provo ad implementare il posizionamento delle navi.
 		case (ship_size_pointer)
 			4'd0: // posiziona la prima nave
 			begin
-				//cosa sbagliata: la funzione ritorna 1 se va a buon fine, pertanto è come fare +1 (non uccidetermi)
-				ship_size_pointer = ship_size_pointer+placeShip(mouse_pos_x, mouse_pos_y, direction, ship_size[ship_size_pointer]);
+				//cosa sbagliata: la funzione ritorna 1 se va a buon fine, pertanto  come fare +1 (non uccidetermi)
+				write_enable = mouse_click[0] & mouse_right_enable;
+				if (ship_placed)
+				begin
+					ship_size_pointer = ship_size_pointer+1;
+				end
+				
 			end
 			4'd1: // posiziona la seconda nave
 			begin
-				ship_size_pointer = ship_size_pointer+placeShip(mouse_pos_x, mouse_pos_y, direction, ship_size[ship_size_pointer]);
+				//ship_size_pointer = ship_size_pointer+1;
 			end
 			4'd2: // posiziona la terza nave
 			begin
-				ship_size_pointer = ship_size_pointer+placeShip(mouse_pos_x, mouse_pos_y, direction, ship_size[ship_size_pointer]);
+				//ship_size_pointer = ship_size_pointer+1;
 			end
 			4'd3: // posiziona la quarta nave
 			begin
-				ship_size_pointer = ship_size_pointer+placeShip(mouse_pos_x, mouse_pos_y, direction, ship_size[ship_size_pointer]);
+				//ship_size_pointer = ship_size_pointer+1;
 			end
 			4'd4: // posiziona la quinta nave
 			begin
 				// finito il posizionamento, passo allo step successivo
-				turn_status = turn_status +placeShip(mouse_pos_x, mouse_pos_y, direction, ship_size[ship_size_pointer]);
+				//ship_size_pointer = ship_size_pointer+1;
+				//turn_status = turn_status+1;
 			end
 			default:
 			begin
-				//se cado qui, si è rotto
-				turn_status = turn_status+1;
+				//se cado qui, si  rotto
+				//turn_status = turn_status+1;
 			end
 		endcase
 		//se clicca il sinistro, devo giare il posizionamento
 		if(mouse_click[1] & mouse_left_enable) //se ho cliccato 
 		begin
-			direction = direction+1; // sfrutto l'oveflow (spero funzioni)
+			direction = direction+1; // sfrutto l'oveflow (spero funzioni. Funziona)
 		end
 		mouse_left_enable = !mouse_click[1];
 	end

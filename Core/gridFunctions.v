@@ -2,7 +2,7 @@
 function isShipInside;
 input [3:0] cell_x; //cella (x,y), partendo da in alto a dx
 input [3:0] cell_y; //vedi sopra
-input direction; // direzione della nave: se è 0 - (orrizontale) se è 1 | (verticale);
+input direction; // direzione della nave: se  0 - (orrizontale) se  1 | (verticale);
 input [3:0] ship_length; // dimensione delle nave.
 begin
 	// mi smazzo la direzione in orrizontale
@@ -22,18 +22,3 @@ begin
 			isShipInside = 1;
 end
 endfunction
-
-
-
-
-function placeShip;
-input [3:0] cell_x; //cella (x,y), partendo da in alto a dx
-input [3:0] cell_y; //vedi sopra
-input direction; // direzione della nave: se è 0 - (orrizontale) se è 1 | (verticale);
-input [3:0] ship_length; // dimensione delle nave.
-begin
-	// DO THINGS
-	placeShip = 0;
-end
-endfunction
-
