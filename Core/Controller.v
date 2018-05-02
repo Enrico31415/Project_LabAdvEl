@@ -21,6 +21,17 @@
 
 
 
+
+// dimensione delle navi
+`define size_0 4'd2
+`define size_1 4'd3
+`define size_2 4'd3
+`define size_3 4'd4
+`define size_4 4'd5
+
+
+
+
 module Controller(
 			CLK_50M,
 			BTN_EAST, BTN_WEST, BTN_NORTH, BTN_SOUTH,
@@ -149,7 +160,7 @@ GridEngine GE(.clk_in(w_25Mhz_clock),
 	.mouse_pos_x(mouse_sym_counter_x),
 	.mouse_pos_y(mouse_sym_counter_y),
 
-	.mouse_click(SW),
+	.mouse_click(SW[1:0]),
 	
 	.pos_x(position_to_controller_x),
 	.pos_y(position_to_controller_y),
@@ -161,6 +172,13 @@ GridEngine GE(.clk_in(w_25Mhz_clock),
 	.cell_status_player_hitted(`cell_status_player_hitted),
 	.cell_status_ia_hitted(`cell_status_ia_hitted),
 	.cell_status_player_and_ia_hitted(`cell_status_player_and_ia_hitted),
+	
+	//dimensione delle navi
+	.ship_size0(`size_0),
+	.ship_size1(`size_1),
+	.ship_size2(`size_2),
+	.ship_size3(`size_3),
+	.ship_size4(`size_4),
 	
 	
 	
