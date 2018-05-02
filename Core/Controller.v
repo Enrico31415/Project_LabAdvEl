@@ -2,11 +2,30 @@
 `define frequency_divider_umano 	30'd100000
 
 
+// CODIFICA DELLA CELLA DI MEMORIA: 5 bit
+// 	_ 1 bit libero (?)	_ _ 2 bit per i colpi sparati 	_ _ 2 bit per la disposizione
+//  
+// bit per la disposizione: 
+//		00 acqua 			/ 01 nave mia			/ 10 nave sua 			/ 11 entrambe
+//
+// bit per i colpi sparati: 
+// 	00 non sparato 	/ 01 sparato da me 	/ 10 sparato da lui 	/ 11 sparato da entrambi
+//
+//
+
+`define cell_status_free 5'b00000
+`define cell_status_occ 5'b00001
+`define cell_status_player_hitted 5'b00010
+`define cell_status_ia_hitted 5'b00011
+`define cell_status_player_and_ia_hitted 5'b00100
+
+
 
 module Controller(
 			CLK_50M,
 			BTN_EAST, BTN_WEST, BTN_NORTH, BTN_SOUTH,
 			SW, //Serve per simulare il click del mouse
+			
 			
 			
 			LED,
@@ -21,7 +40,7 @@ output [7:0] LED;
 //Da testing, per simulare il mouse
 input BTN_EAST, BTN_WEST, BTN_NORTH, BTN_SOUTH;
 
-input SW;
+input [1:0] SW;
 
 wire w_25Mhz_clock;
 
@@ -82,6 +101,20 @@ Module_VGADriver driver (
 	.enable(w_enable_write), //Serve per bloccare l'output quando non sono all'interno dello schermo (vedi UG e PORCH)
 	.mouse_pos_x(mouse_sym_counter_x), //posizione del mouse_x
 	.mouse_pos_y(mouse_sym_counter_y), //posizione del mouse_x
+	
+	// stati delle celle, sono in comune alla memoria, quindi per evitare mismatch meglio che li tengra il controller
+	.cell_status_free(`cell_status_free),
+	.cell_status_occ(`cell_status_occ),
+	.cell_status_player_hitted(`cell_status_player_hitted),
+	.cell_status_ia_hitted(`cell_status_ia_hitted),
+	.cell_status_player_and_ia_hitted(`cell_status_player_and_ia_hitted),
+	
+	
+	
+	
+	
+	
+	
 	.cell_status(w_cell_status),
 	
 	
@@ -118,10 +151,18 @@ GridEngine GE(.clk_in(w_25Mhz_clock),
 
 	.mouse_click(SW),
 	
-	
-	
 	.pos_x(position_to_controller_x),
 	.pos_y(position_to_controller_y),
+	
+	
+	// stati delle celle, sono in comune alla memoria, quindi per evitare mismatch meglio che li tengra il controller
+	.cell_status_free(`cell_status_free),
+	.cell_status_occ(`cell_status_occ),
+	.cell_status_player_hitted(`cell_status_player_hitted),
+	.cell_status_ia_hitted(`cell_status_ia_hitted),
+	.cell_status_player_and_ia_hitted(`cell_status_player_and_ia_hitted),
+	
+	
 	
 	//TODO: cancellare, si utilizza solo per i led attualmente
 	.pointer_cell_read_status(w_cell_status) //stato della cella in uso

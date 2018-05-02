@@ -21,12 +21,6 @@
 `define line_period 10'd64
 
 
-`define cell_status_free 						5'b00000
-`define cell_status_occ 						5'b00001
-`define cell_status_player_hitted 			5'b00010
-`define cell_status_ia_hitted 				5'b00011
-`define cell_status_player_and_ia_hitted 	5'b00100
-
 
 
 module Module_VGADriver(
@@ -37,6 +31,13 @@ module Module_VGADriver(
 	mouse_pos_x,
 	mouse_pos_y,
 	cell_status,
+	cell_status_free,
+	cell_status_occ,
+	cell_status_player_hitted,
+	cell_status_ia_hitted,
+	cell_status_player_and_ia_hitted,
+	
+	
 	
 	color_out
     );
@@ -45,6 +46,14 @@ input clk_in;
 input enable;
 input[9:0] current_row;
 input[9:0] current_line;
+
+
+
+input [4:0] cell_status_free;
+input [4:0] cell_status_occ;
+input [4:0] cell_status_player_hitted;
+input [4:0] cell_status_ia_hitted;
+input [4:0] cell_status_player_and_ia_hitted;
 
 
 input [4:0]	cell_status;
@@ -97,19 +106,19 @@ begin
 	if (enable == 1) 
 	begin		
 		case (cell_status) // test sullo stato della cella in quesione
-			`cell_status_free : // <-----------------------------------------------
+			cell_status_free : // <-----------------------------------------------
 				begin //se sono nel quadrato => cambio colore
 					color_out = `black;
 				end
-			`cell_status_occ : 
+			cell_status_occ : 
 				begin
 					color_out = `color_ship;
 				end
-			`cell_status_player_hitted : 
+			cell_status_player_hitted : 
 				begin
 					color_out = `color_player_hit;
 				end
-			`cell_status_ia_hitted : 
+			cell_status_ia_hitted : 
 				begin
 					pointer_to_mask_1 =  ( current_row- (cell_x*10'd64));
 					pointer_to_mask_2 =  (current_line- (cell_y*10'd48));
@@ -123,7 +132,7 @@ begin
 						color_out = `black;
 					end
 				end
-			`cell_status_player_and_ia_hitted : 
+			cell_status_player_and_ia_hitted : 
 				begin
 				//`cross
 					pointer_to_mask_1 =  ( current_row- (cell_x*10'd64));
