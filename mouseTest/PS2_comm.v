@@ -54,7 +54,7 @@ reg [7:0] status=0;
 //reg [7:0] pck_sent=0;
 reg w_ok_old;
 
-`define NPACKETS_SEND 3
+`define NPACKETS_SEND 8'd3
 reg [0:10] data_array [`NPACKETS_SEND-1:0];
 initial begin
 	//data_array[0]=11'b01111111111;	// reset
@@ -108,7 +108,7 @@ end
 
 PS2_send module_send(
 		.qzt_clk(qzt_clk),
-		.clk_50KHz(w_clk_50KHz),
+		.clk_main_loop(w_clk_50KHz),
 		.data(w_data),
 		.send(w_send),
 		//btnS,

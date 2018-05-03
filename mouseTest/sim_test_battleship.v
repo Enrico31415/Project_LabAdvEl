@@ -19,7 +19,6 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module sim_test_battleship(
-		input forceClock,
 		input btn,
 		
 		output reg clk20ns,
@@ -34,18 +33,7 @@ initial begin
 	forever #10 clk20ns = ~clk20ns;
 end
 
-Module_FrequencyDivider t80uS(
-		.clk_in(clk20ns),
-		.period(30'd1000),
-
-		.clk_out(mouse_clk));
-
-assign cavoPS2_C=forceClock?mouse_clk:1'bz;
-
-pullup(cavoPS2_C);
-pullup(cavoPS2_D);
 pulldown(btn);
-pulldown(forceClock);
 
 battleship btls(
 		.CLK_50M(clk20ns),
@@ -56,6 +44,10 @@ battleship btls(
 		.PS2_DATA1(cavoPS2_D)		
 		);
 
+sim_mouse mouse(
+		.PS2C(cavoPS2_C),
+		.PS2D(cavoPS2_D)
+    );
 		
 
 		
