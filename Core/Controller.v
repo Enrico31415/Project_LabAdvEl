@@ -13,11 +13,11 @@
 //
 //
 
-`define cell_status_free 5'b00000
-`define cell_status_occ 5'b00001
-`define cell_status_player_hitted 5'b00010
-`define cell_status_ia_hitted 5'b00011
-`define cell_status_player_and_ia_hitted 5'b00100
+`define cell_status_free 5'd0
+`define cell_status_occ 5'd1
+`define cell_status_player_hitted 5'd2
+`define cell_status_ia_hitted 5'd3
+`define cell_status_player_and_ia_hitted 5'd4
 
 
 

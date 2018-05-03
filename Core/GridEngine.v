@@ -200,11 +200,11 @@ begin
 	begin
 		//TODO: generazione random, controllo posizionamento
 		//TODO: provo ad implementare il posizionamento delle navi.
+		write_enable = mouse_click[0] & mouse_right_enable;
 		case (ship_size_pointer)
 			4'd0: // posiziona la prima nave
 			begin
 				//cosa sbagliata: la funzione ritorna 1 se va a buon fine, pertanto  come fare +1 (non uccidetermi)
-				write_enable = mouse_click[0] & mouse_right_enable;
 				if (ship_placed)
 				begin
 					ship_size_pointer = ship_size_pointer+1;
@@ -235,6 +235,7 @@ begin
 				//turn_status = turn_status+1;
 			end
 		endcase
+		mouse_right_enable = !mouse_click[0];
 		//se clicca il sinistro, devo giare il posizionamento
 		if(mouse_click[1] & mouse_left_enable) //se ho cliccato 
 		begin

@@ -96,94 +96,83 @@ print ("\tend")
 print ("\t//se e' il turnio dello schieramento")
 print("\tif ("+var_in_play_status+"== 2'b00)")
 print("\tbegin")
+print("\t\t//se sono stati temporanei, li piallo")
+for q in range(0,10):
+	for r in range(0,10):
+		print("\t\t if(stat_X"+str(q)+"_Y"+str(r)+" == 5'd1)")
+		print("\t\t\t stat_X"+str(q)+"_Y"+str(r)+" =0;")
+		print("\t\t else if(stat_X"+str(q)+"_Y"+str(r)+" == 5'd4)")
+		print("\t\t\t stat_X"+str(q)+"_Y"+str(r)+" =3;")
 for i in range(0,9):
-	for j in range(0,9):
+	for j in range(0,10):
 		print("\t\t//controllo la posizione: capisco in che cella sono")
 		if j == 0 and i == 0:
 			print ("\t\tif", end='')
 		else:
 			print("\t\telse if", end='')
 		print ("("+var_in_x+" == 4'd"+str(i)+" && "+var_in_y+" == 4'd"+str(j)+")")
-		print("\t\tbegin")
-		print("\t\t\t//sbianco tutto attorno")
-		for q in range(-5,5):
-			for r in range(-5,5):
-				if (i+q in range(0,10) and j+r in range(0,10)):
-					print("\t\t\t if(stat_X"+str(i+q)+"_Y"+str(j+r)+" == 5'd1)")
-					print("\t\t\t\t stat_X"+str(i+q)+"_Y"+str(j+r)+" =0;")
-		print("\t\t\t//controllo la direzione")
-		print("\t\t\tif(!"+var_in_direction+")")
-		print("\t\t\tbegin")
-		print("\t\t\t\t//controllo la dimensione della nave")
-		print("\t\t\t\tcase ("+var_in_ship_dimension+")")
-		# stampo il case delle dimensioni
-		for k in  ([2,3,4,5]):
-			print("\t\t\t\t\t4'd"+str(k)+":")
-			print("\t\t\t\t\tbegin")
-			# genero le condizioni in funzione di k (dim nave)
-			l = 1
-			print ("\t\t\t\t\t\t//se e' libera")
-			print("\t\t\t\t\t\tif(stat_X"+str(i)+"_Y"+str(j)+" == 5'd0)")
-			print("\t\t\t\t\t\tbegin")
-			print("\t\t\t\t\t\t\t//pre-occupo")
-			print("\t\t\t\t\t\t\tstat_X"+str(i)+"_Y"+str(j)+"= 5'd1;")
-			print("\t\t\t\t\t\tend")
-			while l < k:
-				# non devo sforare i registri
-				if (i+l)<=9:
-					print("\t\t\t\t\t\tif("+var_in_1+")");
-					print("\t\t\t\t\t\tbegin")
-					print("\t\t\t\t\t\t\tstat_X"+str(i+l)+"_Y"+str(j)+"= 5'd2;")
-					print("\t\t\t\t\t\tend")
-					print("\t\t\t\t\t\telse if(stat_X"+str(i+l)+"_Y"+str(j)+" == 5'd0)")
-					print("\t\t\t\t\t\tbegin")
-					print("\t\t\t\t\t\t\t//pre-occupo")
-					print("\t\t\t\t\t\t\tstat_X"+str(i+l)+"_Y"+str(j)+"= 5'd1;")
-					print("\t\t\t\t\t\tend")	
-				else:
-					# vado fuori volutamente dal while
-					l = l + 10
-				l = l +1
-			print("\t\t\t\t\tend")#(interno al case)
-		print("\t\t\t\tendcase")
-		print("\t\t\tend")#(direction)
-		print("\t\t\telse")
-		print("\t\t\tbegin")
-		print("\t\t\t\t//controllo la dimensione della nave")
-		print("\t\t\t\tcase ("+var_in_ship_dimension+")")
-		# stampo il case delle dimensioni
-		for k in  ([2,3,4,5]):
-			print("\t\t\t\t\t4'd"+str(k)+":")
-			print("\t\t\t\t\tbegin")
-			# genero le condizioni in funzione di k (dim nave)
-			l = 1
-			print ("\t\t\t\t\t\t//se e' libera")
-			print("\t\t\t\t\t\tif(stat_X"+str(i)+"_Y"+str(j)+" == 5'd0)")
-			print("\t\t\t\t\t\tbegin")
-			print("\t\t\t\t\t\t\t//pre-occupo")
-			print("\t\t\t\t\t\t\tstat_X"+str(i)+"_Y"+str(j)+"= 5'd1;")
-			print("\t\t\t\t\t\tend")
-			while l < k:
-				# non devo sforare i registri
-				if (j+l)<=9:
-					print("\t\t\t\t\t\tif(stat_X"+str(i)+"_Y"+str(j+l)+" == 5'd0)")
-					print("\t\t\t\t\t\tbegin")
-					print("\t\t\t\t\t\t\t//pre-occupo")
-					print("\t\t\t\t\t\t\tstat_X"+str(i)+"_Y"+str(j+l)+"= 5'd1;")
-					print("\t\t\t\t\t\tend")	
-				else:
-					# vado fuori volutamente dal while
-					l = l + 10
-				l = l +1
-			print("\t\t\t\t\tend")#(interno al case)
-		print("\t\t\t\tendcase")
-		print("\t\t\tend")#(direction)
-
-
-
-
-		print("\t\tend")#(posizione)
-print("\tend")
+		print("\t\tbegin", end='')
+		print("//controllo la direzione")
+		for n in range (0,2):# per le direzioni
+			if n == 0:
+				print("\t\t\tif(!"+var_in_direction+")")
+			else:
+				print("\t\t\telse")
+			print("\t\t\tbegin", end='')
+			print("//controllo la dimensione della nave")
+			print("\t\t\t\tcase ("+var_in_ship_dimension+")")
+			# stampo il case delle dimensioni
+			for k in  ([2,3,4,5]):
+				print("\t\t\t\t\t4'd"+str(k)+":")
+				print("\t\t\t\t\tbegin")
+				# genero le condizioni in funzione di k (dim nave)
+				m = 0
+				# condizioni sullo stato = 0 e non scrivo
+				while m < k:
+					if (i+m)<=9 and (j+m)<=9:
+						if n == 0:
+							print("\t\t\t\t\t\tif( !"+var_in_1+" && stat_X"+str(i+m)+"_Y"+str(j)+" == 5'd0)");
+							print("\t\t\t\t\t\t\tstat_X"+str(i+m)+"_Y"+str(j)+"= 5'd1;")
+						else:
+							print("\t\t\t\t\t\tif( !"+var_in_1+" && stat_X"+str(i)+"_Y"+str(j+m)+" == 5'd0)");
+							print("\t\t\t\t\t\t\tstat_X"+str(i)+"_Y"+str(j+m)+"= 5'd1;")
+					else:
+						# vado fuori volutamente dal while
+						m = m + 10
+					m = m + 1
+				# condizioni sullo stato = 3 occupato
+				o = 0
+				while o < k:
+					if (i+o)<=9 and (j+o)<=9:
+						if n == 0:
+							print("\t\t\t\t\t\tif(!"+var_in_1+" && stat_X"+str(i+o)+"_Y"+str(j)+" == 5'd3)");
+							print("\t\t\t\t\t\t\tstat_X"+str(i+o)+"_Y"+str(j)+"= 5'd4;")
+						else:
+							print("\t\t\t\t\t\tif(!"+var_in_1+" && stat_X"+str(i)+"_Y"+str(j+o)+" == 5'd3)");
+							print("\t\t\t\t\t\t\tstat_X"+str(i)+"_Y"+str(j+o)+"= 5'd4;")
+					else:
+						# vado fuori volutamente dal while
+						o = o + 10
+					o = o + 1
+				l = 0
+				# condizioni sullo stato = 0 e scrivo
+				while l < k:
+					if (i+l)<=9 and (j+l)<=9:
+						if n == 0:
+							print("\t\t\t\t\t\tif( "+var_in_1+" )");
+							print("\t\t\t\t\t\t\tstat_X"+str(i+l)+"_Y"+str(j)+"= 5'd3;")
+						else:
+							print("\t\t\t\t\t\tif( "+var_in_1+" )");
+							print("\t\t\t\t\t\t\tstat_X"+str(i)+"_Y"+str(j+l)+"= 5'd3;")
+					else:
+						# vado fuori volutamente dal while
+						l = l + 10
+					l = l +1
+				print("\t\t\t\t\tend//interno case")#(interno al case)
+			print("\t\t\t\tendcase")
+			print("\t\t\tend//direzione")
+		print("\t\tend//posizione")#(posizione)
+print("\tend//posizione")
 print("end")
 
 

@@ -56,14 +56,14 @@ begin
 		end
 		
 		//PBC
-		if (x_pos >= 'd640)
-			x_pos = 1;
-		if (y_pos >= 'd480)
-			y_pos = 1;
-		if (x_pos <= 'd0)
-			x_pos = 640;
-		if (y_pos <= 'd0)
-			y_pos = 480;
+		if (x_pos >= 10'd640)
+			x_pos = 10'd639;
+		if (y_pos >= 10'd480)
+			y_pos = 10'd479;
+		if (x_pos <= 10'd1)
+			x_pos = 10'd0;
+		if (y_pos <= 10'd1)
+			y_pos = 10'd0;
 		
 		
 

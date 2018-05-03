@@ -29,6 +29,7 @@ input [3:0] dimension;
 output reg [4:0] status;
 output reg [4:0] status_pointed_cell;
 output reg ship_placed = 0;
+reg old_we = 0;
 // registri del tipo stat_X(posizione x)_Y(posizione y)
 reg [4:0] stat_X0_Y0 = 5'b00000;
 reg [4:0] stat_X1_Y0 = 5'b00000;
@@ -940,26899 +941,15749 @@ begin
 	//se e' il turnio dello schieramento
 	if (play_status== 2'b00)
 	begin
+		//se sono stati temporanei, li piallo
+		 if(stat_X0_Y0 == 5'd1)
+			 stat_X0_Y0 =0;
+		 if(stat_X0_Y1 == 5'd1)
+			 stat_X0_Y1 =0;
+		 if(stat_X0_Y2 == 5'd1)
+			 stat_X0_Y2 =0;
+		 if(stat_X0_Y3 == 5'd1)
+			 stat_X0_Y3 =0;
+		 if(stat_X0_Y4 == 5'd1)
+			 stat_X0_Y4 =0;
+		 if(stat_X0_Y5 == 5'd1)
+			 stat_X0_Y5 =0;
+		 if(stat_X0_Y6 == 5'd1)
+			 stat_X0_Y6 =0;
+		 if(stat_X0_Y7 == 5'd1)
+			 stat_X0_Y7 =0;
+		 if(stat_X0_Y8 == 5'd1)
+			 stat_X0_Y8 =0;
+		 if(stat_X0_Y9 == 5'd1)
+			 stat_X0_Y9 =0;
+		 if(stat_X1_Y0 == 5'd1)
+			 stat_X1_Y0 =0;
+		 if(stat_X1_Y1 == 5'd1)
+			 stat_X1_Y1 =0;
+		 if(stat_X1_Y2 == 5'd1)
+			 stat_X1_Y2 =0;
+		 if(stat_X1_Y3 == 5'd1)
+			 stat_X1_Y3 =0;
+		 if(stat_X1_Y4 == 5'd1)
+			 stat_X1_Y4 =0;
+		 if(stat_X1_Y5 == 5'd1)
+			 stat_X1_Y5 =0;
+		 if(stat_X1_Y6 == 5'd1)
+			 stat_X1_Y6 =0;
+		 if(stat_X1_Y7 == 5'd1)
+			 stat_X1_Y7 =0;
+		 if(stat_X1_Y8 == 5'd1)
+			 stat_X1_Y8 =0;
+		 if(stat_X1_Y9 == 5'd1)
+			 stat_X1_Y9 =0;
+		 if(stat_X2_Y0 == 5'd1)
+			 stat_X2_Y0 =0;
+		 if(stat_X2_Y1 == 5'd1)
+			 stat_X2_Y1 =0;
+		 if(stat_X2_Y2 == 5'd1)
+			 stat_X2_Y2 =0;
+		 if(stat_X2_Y3 == 5'd1)
+			 stat_X2_Y3 =0;
+		 if(stat_X2_Y4 == 5'd1)
+			 stat_X2_Y4 =0;
+		 if(stat_X2_Y5 == 5'd1)
+			 stat_X2_Y5 =0;
+		 if(stat_X2_Y6 == 5'd1)
+			 stat_X2_Y6 =0;
+		 if(stat_X2_Y7 == 5'd1)
+			 stat_X2_Y7 =0;
+		 if(stat_X2_Y8 == 5'd1)
+			 stat_X2_Y8 =0;
+		 if(stat_X2_Y9 == 5'd1)
+			 stat_X2_Y9 =0;
+		 if(stat_X3_Y0 == 5'd1)
+			 stat_X3_Y0 =0;
+		 if(stat_X3_Y1 == 5'd1)
+			 stat_X3_Y1 =0;
+		 if(stat_X3_Y2 == 5'd1)
+			 stat_X3_Y2 =0;
+		 if(stat_X3_Y3 == 5'd1)
+			 stat_X3_Y3 =0;
+		 if(stat_X3_Y4 == 5'd1)
+			 stat_X3_Y4 =0;
+		 if(stat_X3_Y5 == 5'd1)
+			 stat_X3_Y5 =0;
+		 if(stat_X3_Y6 == 5'd1)
+			 stat_X3_Y6 =0;
+		 if(stat_X3_Y7 == 5'd1)
+			 stat_X3_Y7 =0;
+		 if(stat_X3_Y8 == 5'd1)
+			 stat_X3_Y8 =0;
+		 if(stat_X3_Y9 == 5'd1)
+			 stat_X3_Y9 =0;
+		 if(stat_X4_Y0 == 5'd1)
+			 stat_X4_Y0 =0;
+		 if(stat_X4_Y1 == 5'd1)
+			 stat_X4_Y1 =0;
+		 if(stat_X4_Y2 == 5'd1)
+			 stat_X4_Y2 =0;
+		 if(stat_X4_Y3 == 5'd1)
+			 stat_X4_Y3 =0;
+		 if(stat_X4_Y4 == 5'd1)
+			 stat_X4_Y4 =0;
+		 if(stat_X4_Y5 == 5'd1)
+			 stat_X4_Y5 =0;
+		 if(stat_X4_Y6 == 5'd1)
+			 stat_X4_Y6 =0;
+		 if(stat_X4_Y7 == 5'd1)
+			 stat_X4_Y7 =0;
+		 if(stat_X4_Y8 == 5'd1)
+			 stat_X4_Y8 =0;
+		 if(stat_X4_Y9 == 5'd1)
+			 stat_X4_Y9 =0;
+		 if(stat_X5_Y0 == 5'd1)
+			 stat_X5_Y0 =0;
+		 if(stat_X5_Y1 == 5'd1)
+			 stat_X5_Y1 =0;
+		 if(stat_X5_Y2 == 5'd1)
+			 stat_X5_Y2 =0;
+		 if(stat_X5_Y3 == 5'd1)
+			 stat_X5_Y3 =0;
+		 if(stat_X5_Y4 == 5'd1)
+			 stat_X5_Y4 =0;
+		 if(stat_X5_Y5 == 5'd1)
+			 stat_X5_Y5 =0;
+		 if(stat_X5_Y6 == 5'd1)
+			 stat_X5_Y6 =0;
+		 if(stat_X5_Y7 == 5'd1)
+			 stat_X5_Y7 =0;
+		 if(stat_X5_Y8 == 5'd1)
+			 stat_X5_Y8 =0;
+		 if(stat_X5_Y9 == 5'd1)
+			 stat_X5_Y9 =0;
+		 if(stat_X6_Y0 == 5'd1)
+			 stat_X6_Y0 =0;
+		 if(stat_X6_Y1 == 5'd1)
+			 stat_X6_Y1 =0;
+		 if(stat_X6_Y2 == 5'd1)
+			 stat_X6_Y2 =0;
+		 if(stat_X6_Y3 == 5'd1)
+			 stat_X6_Y3 =0;
+		 if(stat_X6_Y4 == 5'd1)
+			 stat_X6_Y4 =0;
+		 if(stat_X6_Y5 == 5'd1)
+			 stat_X6_Y5 =0;
+		 if(stat_X6_Y6 == 5'd1)
+			 stat_X6_Y6 =0;
+		 if(stat_X6_Y7 == 5'd1)
+			 stat_X6_Y7 =0;
+		 if(stat_X6_Y8 == 5'd1)
+			 stat_X6_Y8 =0;
+		 if(stat_X6_Y9 == 5'd1)
+			 stat_X6_Y9 =0;
+		 if(stat_X7_Y0 == 5'd1)
+			 stat_X7_Y0 =0;
+		 if(stat_X7_Y1 == 5'd1)
+			 stat_X7_Y1 =0;
+		 if(stat_X7_Y2 == 5'd1)
+			 stat_X7_Y2 =0;
+		 if(stat_X7_Y3 == 5'd1)
+			 stat_X7_Y3 =0;
+		 if(stat_X7_Y4 == 5'd1)
+			 stat_X7_Y4 =0;
+		 if(stat_X7_Y5 == 5'd1)
+			 stat_X7_Y5 =0;
+		 if(stat_X7_Y6 == 5'd1)
+			 stat_X7_Y6 =0;
+		 if(stat_X7_Y7 == 5'd1)
+			 stat_X7_Y7 =0;
+		 if(stat_X7_Y8 == 5'd1)
+			 stat_X7_Y8 =0;
+		 if(stat_X7_Y9 == 5'd1)
+			 stat_X7_Y9 =0;
+		 if(stat_X8_Y0 == 5'd1)
+			 stat_X8_Y0 =0;
+		 if(stat_X8_Y1 == 5'd1)
+			 stat_X8_Y1 =0;
+		 if(stat_X8_Y2 == 5'd1)
+			 stat_X8_Y2 =0;
+		 if(stat_X8_Y3 == 5'd1)
+			 stat_X8_Y3 =0;
+		 if(stat_X8_Y4 == 5'd1)
+			 stat_X8_Y4 =0;
+		 if(stat_X8_Y5 == 5'd1)
+			 stat_X8_Y5 =0;
+		 if(stat_X8_Y6 == 5'd1)
+			 stat_X8_Y6 =0;
+		 if(stat_X8_Y7 == 5'd1)
+			 stat_X8_Y7 =0;
+		 if(stat_X8_Y8 == 5'd1)
+			 stat_X8_Y8 =0;
+		 if(stat_X8_Y9 == 5'd1)
+			 stat_X8_Y9 =0;
+		 if(stat_X9_Y0 == 5'd1)
+			 stat_X9_Y0 =0;
+		 if(stat_X9_Y1 == 5'd1)
+			 stat_X9_Y1 =0;
+		 if(stat_X9_Y2 == 5'd1)
+			 stat_X9_Y2 =0;
+		 if(stat_X9_Y3 == 5'd1)
+			 stat_X9_Y3 =0;
+		 if(stat_X9_Y4 == 5'd1)
+			 stat_X9_Y4 =0;
+		 if(stat_X9_Y5 == 5'd1)
+			 stat_X9_Y5 =0;
+		 if(stat_X9_Y6 == 5'd1)
+			 stat_X9_Y6 =0;
+		 if(stat_X9_Y7 == 5'd1)
+			 stat_X9_Y7 =0;
+		 if(stat_X9_Y8 == 5'd1)
+			 stat_X9_Y8 =0;
+		 if(stat_X9_Y9 == 5'd1)
+			 stat_X9_Y9 =0;
 		//controllo la posizione: capisco in che cella sono
 		if(mouse_cell_x == 4'd0 && mouse_cell_y == 4'd0)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X0_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y0 == 5'd0)
 							stat_X0_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y0= 5'd2;
-						end
-						else if(stat_X1_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y0 == 5'd0)
 							stat_X1_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y0 == 5'd3)
+							stat_X0_Y0= 5'd4;
+						if(old_we && stat_X1_Y0 == 5'd3)
+							stat_X1_Y0= 5'd4;
+						if( we )
+							stat_X0_Y0= 5'd3;
+						if( we )
+							stat_X1_Y0= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X0_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y0 == 5'd0)
 							stat_X0_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y0= 5'd2;
-						end
-						else if(stat_X1_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y0 == 5'd0)
 							stat_X1_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y0= 5'd2;
-						end
-						else if(stat_X2_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y0 == 5'd0)
 							stat_X2_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y0 == 5'd3)
+							stat_X0_Y0= 5'd4;
+						if(old_we && stat_X1_Y0 == 5'd3)
+							stat_X1_Y0= 5'd4;
+						if(old_we && stat_X2_Y0 == 5'd3)
+							stat_X2_Y0= 5'd4;
+						if( we )
+							stat_X0_Y0= 5'd3;
+						if( we )
+							stat_X1_Y0= 5'd3;
+						if( we )
+							stat_X2_Y0= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X0_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y0 == 5'd0)
 							stat_X0_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y0= 5'd2;
-						end
-						else if(stat_X1_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y0 == 5'd0)
 							stat_X1_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y0= 5'd2;
-						end
-						else if(stat_X2_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y0 == 5'd0)
 							stat_X2_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y0= 5'd2;
-						end
-						else if(stat_X3_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y0 == 5'd0)
 							stat_X3_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y0 == 5'd3)
+							stat_X0_Y0= 5'd4;
+						if(old_we && stat_X1_Y0 == 5'd3)
+							stat_X1_Y0= 5'd4;
+						if(old_we && stat_X2_Y0 == 5'd3)
+							stat_X2_Y0= 5'd4;
+						if(old_we && stat_X3_Y0 == 5'd3)
+							stat_X3_Y0= 5'd4;
+						if( we )
+							stat_X0_Y0= 5'd3;
+						if( we )
+							stat_X1_Y0= 5'd3;
+						if( we )
+							stat_X2_Y0= 5'd3;
+						if( we )
+							stat_X3_Y0= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X0_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y0 == 5'd0)
 							stat_X0_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y0= 5'd2;
-						end
-						else if(stat_X1_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y0 == 5'd0)
 							stat_X1_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y0= 5'd2;
-						end
-						else if(stat_X2_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y0 == 5'd0)
 							stat_X2_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y0= 5'd2;
-						end
-						else if(stat_X3_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y0 == 5'd0)
 							stat_X3_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y0= 5'd2;
-						end
-						else if(stat_X4_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y0 == 5'd0)
 							stat_X4_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y0 == 5'd3)
+							stat_X0_Y0= 5'd4;
+						if(old_we && stat_X1_Y0 == 5'd3)
+							stat_X1_Y0= 5'd4;
+						if(old_we && stat_X2_Y0 == 5'd3)
+							stat_X2_Y0= 5'd4;
+						if(old_we && stat_X3_Y0 == 5'd3)
+							stat_X3_Y0= 5'd4;
+						if(old_we && stat_X4_Y0 == 5'd3)
+							stat_X4_Y0= 5'd4;
+						if( we )
+							stat_X0_Y0= 5'd3;
+						if( we )
+							stat_X1_Y0= 5'd3;
+						if( we )
+							stat_X2_Y0= 5'd3;
+						if( we )
+							stat_X3_Y0= 5'd3;
+						if( we )
+							stat_X4_Y0= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X0_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y0 == 5'd0)
 							stat_X0_Y0= 5'd1;
-						end
-						if(stat_X0_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y1 == 5'd0)
 							stat_X0_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y0 == 5'd3)
+							stat_X0_Y0= 5'd4;
+						if(old_we && stat_X0_Y1 == 5'd3)
+							stat_X0_Y1= 5'd4;
+						if( we )
+							stat_X0_Y0= 5'd3;
+						if( we )
+							stat_X0_Y1= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X0_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y0 == 5'd0)
 							stat_X0_Y0= 5'd1;
-						end
-						if(stat_X0_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y1 == 5'd0)
 							stat_X0_Y1= 5'd1;
-						end
-						if(stat_X0_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y2 == 5'd0)
 							stat_X0_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y0 == 5'd3)
+							stat_X0_Y0= 5'd4;
+						if(old_we && stat_X0_Y1 == 5'd3)
+							stat_X0_Y1= 5'd4;
+						if(old_we && stat_X0_Y2 == 5'd3)
+							stat_X0_Y2= 5'd4;
+						if( we )
+							stat_X0_Y0= 5'd3;
+						if( we )
+							stat_X0_Y1= 5'd3;
+						if( we )
+							stat_X0_Y2= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X0_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y0 == 5'd0)
 							stat_X0_Y0= 5'd1;
-						end
-						if(stat_X0_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y1 == 5'd0)
 							stat_X0_Y1= 5'd1;
-						end
-						if(stat_X0_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y2 == 5'd0)
 							stat_X0_Y2= 5'd1;
-						end
-						if(stat_X0_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y3 == 5'd0)
 							stat_X0_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y0 == 5'd3)
+							stat_X0_Y0= 5'd4;
+						if(old_we && stat_X0_Y1 == 5'd3)
+							stat_X0_Y1= 5'd4;
+						if(old_we && stat_X0_Y2 == 5'd3)
+							stat_X0_Y2= 5'd4;
+						if(old_we && stat_X0_Y3 == 5'd3)
+							stat_X0_Y3= 5'd4;
+						if( we )
+							stat_X0_Y0= 5'd3;
+						if( we )
+							stat_X0_Y1= 5'd3;
+						if( we )
+							stat_X0_Y2= 5'd3;
+						if( we )
+							stat_X0_Y3= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X0_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y0 == 5'd0)
 							stat_X0_Y0= 5'd1;
-						end
-						if(stat_X0_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y1 == 5'd0)
 							stat_X0_Y1= 5'd1;
-						end
-						if(stat_X0_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y2 == 5'd0)
 							stat_X0_Y2= 5'd1;
-						end
-						if(stat_X0_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y3 == 5'd0)
 							stat_X0_Y3= 5'd1;
-						end
-						if(stat_X0_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y4 == 5'd0)
 							stat_X0_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y0 == 5'd3)
+							stat_X0_Y0= 5'd4;
+						if(old_we && stat_X0_Y1 == 5'd3)
+							stat_X0_Y1= 5'd4;
+						if(old_we && stat_X0_Y2 == 5'd3)
+							stat_X0_Y2= 5'd4;
+						if(old_we && stat_X0_Y3 == 5'd3)
+							stat_X0_Y3= 5'd4;
+						if(old_we && stat_X0_Y4 == 5'd3)
+							stat_X0_Y4= 5'd4;
+						if( we )
+							stat_X0_Y0= 5'd3;
+						if( we )
+							stat_X0_Y1= 5'd3;
+						if( we )
+							stat_X0_Y2= 5'd3;
+						if( we )
+							stat_X0_Y3= 5'd3;
+						if( we )
+							stat_X0_Y4= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd0 && mouse_cell_y == 4'd1)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X0_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y1 == 5'd0)
 							stat_X0_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y1= 5'd2;
-						end
-						else if(stat_X1_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y1 == 5'd0)
 							stat_X1_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y1 == 5'd3)
+							stat_X0_Y1= 5'd4;
+						if(old_we && stat_X1_Y1 == 5'd3)
+							stat_X1_Y1= 5'd4;
+						if( we )
+							stat_X0_Y1= 5'd3;
+						if( we )
+							stat_X1_Y1= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X0_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y1 == 5'd0)
 							stat_X0_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y1= 5'd2;
-						end
-						else if(stat_X1_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y1 == 5'd0)
 							stat_X1_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y1= 5'd2;
-						end
-						else if(stat_X2_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y1 == 5'd0)
 							stat_X2_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y1 == 5'd3)
+							stat_X0_Y1= 5'd4;
+						if(old_we && stat_X1_Y1 == 5'd3)
+							stat_X1_Y1= 5'd4;
+						if(old_we && stat_X2_Y1 == 5'd3)
+							stat_X2_Y1= 5'd4;
+						if( we )
+							stat_X0_Y1= 5'd3;
+						if( we )
+							stat_X1_Y1= 5'd3;
+						if( we )
+							stat_X2_Y1= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X0_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y1 == 5'd0)
 							stat_X0_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y1= 5'd2;
-						end
-						else if(stat_X1_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y1 == 5'd0)
 							stat_X1_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y1= 5'd2;
-						end
-						else if(stat_X2_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y1 == 5'd0)
 							stat_X2_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y1= 5'd2;
-						end
-						else if(stat_X3_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y1 == 5'd0)
 							stat_X3_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y1 == 5'd3)
+							stat_X0_Y1= 5'd4;
+						if(old_we && stat_X1_Y1 == 5'd3)
+							stat_X1_Y1= 5'd4;
+						if(old_we && stat_X2_Y1 == 5'd3)
+							stat_X2_Y1= 5'd4;
+						if(old_we && stat_X3_Y1 == 5'd3)
+							stat_X3_Y1= 5'd4;
+						if( we )
+							stat_X0_Y1= 5'd3;
+						if( we )
+							stat_X1_Y1= 5'd3;
+						if( we )
+							stat_X2_Y1= 5'd3;
+						if( we )
+							stat_X3_Y1= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X0_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y1 == 5'd0)
 							stat_X0_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y1= 5'd2;
-						end
-						else if(stat_X1_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y1 == 5'd0)
 							stat_X1_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y1= 5'd2;
-						end
-						else if(stat_X2_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y1 == 5'd0)
 							stat_X2_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y1= 5'd2;
-						end
-						else if(stat_X3_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y1 == 5'd0)
 							stat_X3_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y1= 5'd2;
-						end
-						else if(stat_X4_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y1 == 5'd0)
 							stat_X4_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y1 == 5'd3)
+							stat_X0_Y1= 5'd4;
+						if(old_we && stat_X1_Y1 == 5'd3)
+							stat_X1_Y1= 5'd4;
+						if(old_we && stat_X2_Y1 == 5'd3)
+							stat_X2_Y1= 5'd4;
+						if(old_we && stat_X3_Y1 == 5'd3)
+							stat_X3_Y1= 5'd4;
+						if(old_we && stat_X4_Y1 == 5'd3)
+							stat_X4_Y1= 5'd4;
+						if( we )
+							stat_X0_Y1= 5'd3;
+						if( we )
+							stat_X1_Y1= 5'd3;
+						if( we )
+							stat_X2_Y1= 5'd3;
+						if( we )
+							stat_X3_Y1= 5'd3;
+						if( we )
+							stat_X4_Y1= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X0_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y1 == 5'd0)
 							stat_X0_Y1= 5'd1;
-						end
-						if(stat_X0_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y2 == 5'd0)
 							stat_X0_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y1 == 5'd3)
+							stat_X0_Y1= 5'd4;
+						if(old_we && stat_X0_Y2 == 5'd3)
+							stat_X0_Y2= 5'd4;
+						if( we )
+							stat_X0_Y1= 5'd3;
+						if( we )
+							stat_X0_Y2= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X0_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y1 == 5'd0)
 							stat_X0_Y1= 5'd1;
-						end
-						if(stat_X0_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y2 == 5'd0)
 							stat_X0_Y2= 5'd1;
-						end
-						if(stat_X0_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y3 == 5'd0)
 							stat_X0_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y1 == 5'd3)
+							stat_X0_Y1= 5'd4;
+						if(old_we && stat_X0_Y2 == 5'd3)
+							stat_X0_Y2= 5'd4;
+						if(old_we && stat_X0_Y3 == 5'd3)
+							stat_X0_Y3= 5'd4;
+						if( we )
+							stat_X0_Y1= 5'd3;
+						if( we )
+							stat_X0_Y2= 5'd3;
+						if( we )
+							stat_X0_Y3= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X0_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y1 == 5'd0)
 							stat_X0_Y1= 5'd1;
-						end
-						if(stat_X0_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y2 == 5'd0)
 							stat_X0_Y2= 5'd1;
-						end
-						if(stat_X0_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y3 == 5'd0)
 							stat_X0_Y3= 5'd1;
-						end
-						if(stat_X0_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y4 == 5'd0)
 							stat_X0_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y1 == 5'd3)
+							stat_X0_Y1= 5'd4;
+						if(old_we && stat_X0_Y2 == 5'd3)
+							stat_X0_Y2= 5'd4;
+						if(old_we && stat_X0_Y3 == 5'd3)
+							stat_X0_Y3= 5'd4;
+						if(old_we && stat_X0_Y4 == 5'd3)
+							stat_X0_Y4= 5'd4;
+						if( we )
+							stat_X0_Y1= 5'd3;
+						if( we )
+							stat_X0_Y2= 5'd3;
+						if( we )
+							stat_X0_Y3= 5'd3;
+						if( we )
+							stat_X0_Y4= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X0_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y1 == 5'd0)
 							stat_X0_Y1= 5'd1;
-						end
-						if(stat_X0_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y2 == 5'd0)
 							stat_X0_Y2= 5'd1;
-						end
-						if(stat_X0_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y3 == 5'd0)
 							stat_X0_Y3= 5'd1;
-						end
-						if(stat_X0_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y4 == 5'd0)
 							stat_X0_Y4= 5'd1;
-						end
-						if(stat_X0_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y5 == 5'd0)
 							stat_X0_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y1 == 5'd3)
+							stat_X0_Y1= 5'd4;
+						if(old_we && stat_X0_Y2 == 5'd3)
+							stat_X0_Y2= 5'd4;
+						if(old_we && stat_X0_Y3 == 5'd3)
+							stat_X0_Y3= 5'd4;
+						if(old_we && stat_X0_Y4 == 5'd3)
+							stat_X0_Y4= 5'd4;
+						if(old_we && stat_X0_Y5 == 5'd3)
+							stat_X0_Y5= 5'd4;
+						if( we )
+							stat_X0_Y1= 5'd3;
+						if( we )
+							stat_X0_Y2= 5'd3;
+						if( we )
+							stat_X0_Y3= 5'd3;
+						if( we )
+							stat_X0_Y4= 5'd3;
+						if( we )
+							stat_X0_Y5= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd0 && mouse_cell_y == 4'd2)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X0_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y2 == 5'd0)
 							stat_X0_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y2= 5'd2;
-						end
-						else if(stat_X1_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y2 == 5'd0)
 							stat_X1_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y2 == 5'd3)
+							stat_X0_Y2= 5'd4;
+						if(old_we && stat_X1_Y2 == 5'd3)
+							stat_X1_Y2= 5'd4;
+						if( we )
+							stat_X0_Y2= 5'd3;
+						if( we )
+							stat_X1_Y2= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X0_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y2 == 5'd0)
 							stat_X0_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y2= 5'd2;
-						end
-						else if(stat_X1_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y2 == 5'd0)
 							stat_X1_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y2= 5'd2;
-						end
-						else if(stat_X2_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y2 == 5'd0)
 							stat_X2_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y2 == 5'd3)
+							stat_X0_Y2= 5'd4;
+						if(old_we && stat_X1_Y2 == 5'd3)
+							stat_X1_Y2= 5'd4;
+						if(old_we && stat_X2_Y2 == 5'd3)
+							stat_X2_Y2= 5'd4;
+						if( we )
+							stat_X0_Y2= 5'd3;
+						if( we )
+							stat_X1_Y2= 5'd3;
+						if( we )
+							stat_X2_Y2= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X0_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y2 == 5'd0)
 							stat_X0_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y2= 5'd2;
-						end
-						else if(stat_X1_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y2 == 5'd0)
 							stat_X1_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y2= 5'd2;
-						end
-						else if(stat_X2_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y2 == 5'd0)
 							stat_X2_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y2= 5'd2;
-						end
-						else if(stat_X3_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y2 == 5'd0)
 							stat_X3_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y2 == 5'd3)
+							stat_X0_Y2= 5'd4;
+						if(old_we && stat_X1_Y2 == 5'd3)
+							stat_X1_Y2= 5'd4;
+						if(old_we && stat_X2_Y2 == 5'd3)
+							stat_X2_Y2= 5'd4;
+						if(old_we && stat_X3_Y2 == 5'd3)
+							stat_X3_Y2= 5'd4;
+						if( we )
+							stat_X0_Y2= 5'd3;
+						if( we )
+							stat_X1_Y2= 5'd3;
+						if( we )
+							stat_X2_Y2= 5'd3;
+						if( we )
+							stat_X3_Y2= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X0_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y2 == 5'd0)
 							stat_X0_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y2= 5'd2;
-						end
-						else if(stat_X1_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y2 == 5'd0)
 							stat_X1_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y2= 5'd2;
-						end
-						else if(stat_X2_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y2 == 5'd0)
 							stat_X2_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y2= 5'd2;
-						end
-						else if(stat_X3_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y2 == 5'd0)
 							stat_X3_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y2= 5'd2;
-						end
-						else if(stat_X4_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y2 == 5'd0)
 							stat_X4_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y2 == 5'd3)
+							stat_X0_Y2= 5'd4;
+						if(old_we && stat_X1_Y2 == 5'd3)
+							stat_X1_Y2= 5'd4;
+						if(old_we && stat_X2_Y2 == 5'd3)
+							stat_X2_Y2= 5'd4;
+						if(old_we && stat_X3_Y2 == 5'd3)
+							stat_X3_Y2= 5'd4;
+						if(old_we && stat_X4_Y2 == 5'd3)
+							stat_X4_Y2= 5'd4;
+						if( we )
+							stat_X0_Y2= 5'd3;
+						if( we )
+							stat_X1_Y2= 5'd3;
+						if( we )
+							stat_X2_Y2= 5'd3;
+						if( we )
+							stat_X3_Y2= 5'd3;
+						if( we )
+							stat_X4_Y2= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X0_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y2 == 5'd0)
 							stat_X0_Y2= 5'd1;
-						end
-						if(stat_X0_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y3 == 5'd0)
 							stat_X0_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y2 == 5'd3)
+							stat_X0_Y2= 5'd4;
+						if(old_we && stat_X0_Y3 == 5'd3)
+							stat_X0_Y3= 5'd4;
+						if( we )
+							stat_X0_Y2= 5'd3;
+						if( we )
+							stat_X0_Y3= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X0_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y2 == 5'd0)
 							stat_X0_Y2= 5'd1;
-						end
-						if(stat_X0_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y3 == 5'd0)
 							stat_X0_Y3= 5'd1;
-						end
-						if(stat_X0_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y4 == 5'd0)
 							stat_X0_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y2 == 5'd3)
+							stat_X0_Y2= 5'd4;
+						if(old_we && stat_X0_Y3 == 5'd3)
+							stat_X0_Y3= 5'd4;
+						if(old_we && stat_X0_Y4 == 5'd3)
+							stat_X0_Y4= 5'd4;
+						if( we )
+							stat_X0_Y2= 5'd3;
+						if( we )
+							stat_X0_Y3= 5'd3;
+						if( we )
+							stat_X0_Y4= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X0_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y2 == 5'd0)
 							stat_X0_Y2= 5'd1;
-						end
-						if(stat_X0_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y3 == 5'd0)
 							stat_X0_Y3= 5'd1;
-						end
-						if(stat_X0_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y4 == 5'd0)
 							stat_X0_Y4= 5'd1;
-						end
-						if(stat_X0_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y5 == 5'd0)
 							stat_X0_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y2 == 5'd3)
+							stat_X0_Y2= 5'd4;
+						if(old_we && stat_X0_Y3 == 5'd3)
+							stat_X0_Y3= 5'd4;
+						if(old_we && stat_X0_Y4 == 5'd3)
+							stat_X0_Y4= 5'd4;
+						if(old_we && stat_X0_Y5 == 5'd3)
+							stat_X0_Y5= 5'd4;
+						if( we )
+							stat_X0_Y2= 5'd3;
+						if( we )
+							stat_X0_Y3= 5'd3;
+						if( we )
+							stat_X0_Y4= 5'd3;
+						if( we )
+							stat_X0_Y5= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X0_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y2 == 5'd0)
 							stat_X0_Y2= 5'd1;
-						end
-						if(stat_X0_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y3 == 5'd0)
 							stat_X0_Y3= 5'd1;
-						end
-						if(stat_X0_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y4 == 5'd0)
 							stat_X0_Y4= 5'd1;
-						end
-						if(stat_X0_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y5 == 5'd0)
 							stat_X0_Y5= 5'd1;
-						end
-						if(stat_X0_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y6 == 5'd0)
 							stat_X0_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y2 == 5'd3)
+							stat_X0_Y2= 5'd4;
+						if(old_we && stat_X0_Y3 == 5'd3)
+							stat_X0_Y3= 5'd4;
+						if(old_we && stat_X0_Y4 == 5'd3)
+							stat_X0_Y4= 5'd4;
+						if(old_we && stat_X0_Y5 == 5'd3)
+							stat_X0_Y5= 5'd4;
+						if(old_we && stat_X0_Y6 == 5'd3)
+							stat_X0_Y6= 5'd4;
+						if( we )
+							stat_X0_Y2= 5'd3;
+						if( we )
+							stat_X0_Y3= 5'd3;
+						if( we )
+							stat_X0_Y4= 5'd3;
+						if( we )
+							stat_X0_Y5= 5'd3;
+						if( we )
+							stat_X0_Y6= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd0 && mouse_cell_y == 4'd3)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X0_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y3 == 5'd0)
 							stat_X0_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y3= 5'd2;
-						end
-						else if(stat_X1_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y3 == 5'd0)
 							stat_X1_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y3 == 5'd3)
+							stat_X0_Y3= 5'd4;
+						if(old_we && stat_X1_Y3 == 5'd3)
+							stat_X1_Y3= 5'd4;
+						if( we )
+							stat_X0_Y3= 5'd3;
+						if( we )
+							stat_X1_Y3= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X0_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y3 == 5'd0)
 							stat_X0_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y3= 5'd2;
-						end
-						else if(stat_X1_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y3 == 5'd0)
 							stat_X1_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y3= 5'd2;
-						end
-						else if(stat_X2_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y3 == 5'd0)
 							stat_X2_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y3 == 5'd3)
+							stat_X0_Y3= 5'd4;
+						if(old_we && stat_X1_Y3 == 5'd3)
+							stat_X1_Y3= 5'd4;
+						if(old_we && stat_X2_Y3 == 5'd3)
+							stat_X2_Y3= 5'd4;
+						if( we )
+							stat_X0_Y3= 5'd3;
+						if( we )
+							stat_X1_Y3= 5'd3;
+						if( we )
+							stat_X2_Y3= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X0_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y3 == 5'd0)
 							stat_X0_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y3= 5'd2;
-						end
-						else if(stat_X1_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y3 == 5'd0)
 							stat_X1_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y3= 5'd2;
-						end
-						else if(stat_X2_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y3 == 5'd0)
 							stat_X2_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y3= 5'd2;
-						end
-						else if(stat_X3_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y3 == 5'd0)
 							stat_X3_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y3 == 5'd3)
+							stat_X0_Y3= 5'd4;
+						if(old_we && stat_X1_Y3 == 5'd3)
+							stat_X1_Y3= 5'd4;
+						if(old_we && stat_X2_Y3 == 5'd3)
+							stat_X2_Y3= 5'd4;
+						if(old_we && stat_X3_Y3 == 5'd3)
+							stat_X3_Y3= 5'd4;
+						if( we )
+							stat_X0_Y3= 5'd3;
+						if( we )
+							stat_X1_Y3= 5'd3;
+						if( we )
+							stat_X2_Y3= 5'd3;
+						if( we )
+							stat_X3_Y3= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X0_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y3 == 5'd0)
 							stat_X0_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y3= 5'd2;
-						end
-						else if(stat_X1_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y3 == 5'd0)
 							stat_X1_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y3= 5'd2;
-						end
-						else if(stat_X2_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y3 == 5'd0)
 							stat_X2_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y3= 5'd2;
-						end
-						else if(stat_X3_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y3 == 5'd0)
 							stat_X3_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y3= 5'd2;
-						end
-						else if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y3 == 5'd3)
+							stat_X0_Y3= 5'd4;
+						if(old_we && stat_X1_Y3 == 5'd3)
+							stat_X1_Y3= 5'd4;
+						if(old_we && stat_X2_Y3 == 5'd3)
+							stat_X2_Y3= 5'd4;
+						if(old_we && stat_X3_Y3 == 5'd3)
+							stat_X3_Y3= 5'd4;
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if( we )
+							stat_X0_Y3= 5'd3;
+						if( we )
+							stat_X1_Y3= 5'd3;
+						if( we )
+							stat_X2_Y3= 5'd3;
+						if( we )
+							stat_X3_Y3= 5'd3;
+						if( we )
+							stat_X4_Y3= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X0_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y3 == 5'd0)
 							stat_X0_Y3= 5'd1;
-						end
-						if(stat_X0_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y4 == 5'd0)
 							stat_X0_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y3 == 5'd3)
+							stat_X0_Y3= 5'd4;
+						if(old_we && stat_X0_Y4 == 5'd3)
+							stat_X0_Y4= 5'd4;
+						if( we )
+							stat_X0_Y3= 5'd3;
+						if( we )
+							stat_X0_Y4= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X0_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y3 == 5'd0)
 							stat_X0_Y3= 5'd1;
-						end
-						if(stat_X0_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y4 == 5'd0)
 							stat_X0_Y4= 5'd1;
-						end
-						if(stat_X0_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y5 == 5'd0)
 							stat_X0_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y3 == 5'd3)
+							stat_X0_Y3= 5'd4;
+						if(old_we && stat_X0_Y4 == 5'd3)
+							stat_X0_Y4= 5'd4;
+						if(old_we && stat_X0_Y5 == 5'd3)
+							stat_X0_Y5= 5'd4;
+						if( we )
+							stat_X0_Y3= 5'd3;
+						if( we )
+							stat_X0_Y4= 5'd3;
+						if( we )
+							stat_X0_Y5= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X0_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y3 == 5'd0)
 							stat_X0_Y3= 5'd1;
-						end
-						if(stat_X0_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y4 == 5'd0)
 							stat_X0_Y4= 5'd1;
-						end
-						if(stat_X0_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y5 == 5'd0)
 							stat_X0_Y5= 5'd1;
-						end
-						if(stat_X0_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y6 == 5'd0)
 							stat_X0_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y3 == 5'd3)
+							stat_X0_Y3= 5'd4;
+						if(old_we && stat_X0_Y4 == 5'd3)
+							stat_X0_Y4= 5'd4;
+						if(old_we && stat_X0_Y5 == 5'd3)
+							stat_X0_Y5= 5'd4;
+						if(old_we && stat_X0_Y6 == 5'd3)
+							stat_X0_Y6= 5'd4;
+						if( we )
+							stat_X0_Y3= 5'd3;
+						if( we )
+							stat_X0_Y4= 5'd3;
+						if( we )
+							stat_X0_Y5= 5'd3;
+						if( we )
+							stat_X0_Y6= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X0_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y3 == 5'd0)
 							stat_X0_Y3= 5'd1;
-						end
-						if(stat_X0_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y4 == 5'd0)
 							stat_X0_Y4= 5'd1;
-						end
-						if(stat_X0_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y5 == 5'd0)
 							stat_X0_Y5= 5'd1;
-						end
-						if(stat_X0_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y6 == 5'd0)
 							stat_X0_Y6= 5'd1;
-						end
-						if(stat_X0_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y7 == 5'd0)
 							stat_X0_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y3 == 5'd3)
+							stat_X0_Y3= 5'd4;
+						if(old_we && stat_X0_Y4 == 5'd3)
+							stat_X0_Y4= 5'd4;
+						if(old_we && stat_X0_Y5 == 5'd3)
+							stat_X0_Y5= 5'd4;
+						if(old_we && stat_X0_Y6 == 5'd3)
+							stat_X0_Y6= 5'd4;
+						if(old_we && stat_X0_Y7 == 5'd3)
+							stat_X0_Y7= 5'd4;
+						if( we )
+							stat_X0_Y3= 5'd3;
+						if( we )
+							stat_X0_Y4= 5'd3;
+						if( we )
+							stat_X0_Y5= 5'd3;
+						if( we )
+							stat_X0_Y6= 5'd3;
+						if( we )
+							stat_X0_Y7= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd0 && mouse_cell_y == 4'd4)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X0_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y4 == 5'd0)
 							stat_X0_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y4= 5'd2;
-						end
-						else if(stat_X1_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y4 == 5'd0)
 							stat_X1_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y4 == 5'd3)
+							stat_X0_Y4= 5'd4;
+						if(old_we && stat_X1_Y4 == 5'd3)
+							stat_X1_Y4= 5'd4;
+						if( we )
+							stat_X0_Y4= 5'd3;
+						if( we )
+							stat_X1_Y4= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X0_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y4 == 5'd0)
 							stat_X0_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y4= 5'd2;
-						end
-						else if(stat_X1_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y4 == 5'd0)
 							stat_X1_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y4= 5'd2;
-						end
-						else if(stat_X2_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y4 == 5'd0)
 							stat_X2_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y4 == 5'd3)
+							stat_X0_Y4= 5'd4;
+						if(old_we && stat_X1_Y4 == 5'd3)
+							stat_X1_Y4= 5'd4;
+						if(old_we && stat_X2_Y4 == 5'd3)
+							stat_X2_Y4= 5'd4;
+						if( we )
+							stat_X0_Y4= 5'd3;
+						if( we )
+							stat_X1_Y4= 5'd3;
+						if( we )
+							stat_X2_Y4= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X0_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y4 == 5'd0)
 							stat_X0_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y4= 5'd2;
-						end
-						else if(stat_X1_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y4 == 5'd0)
 							stat_X1_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y4= 5'd2;
-						end
-						else if(stat_X2_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y4 == 5'd0)
 							stat_X2_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y4= 5'd2;
-						end
-						else if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y4 == 5'd3)
+							stat_X0_Y4= 5'd4;
+						if(old_we && stat_X1_Y4 == 5'd3)
+							stat_X1_Y4= 5'd4;
+						if(old_we && stat_X2_Y4 == 5'd3)
+							stat_X2_Y4= 5'd4;
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if( we )
+							stat_X0_Y4= 5'd3;
+						if( we )
+							stat_X1_Y4= 5'd3;
+						if( we )
+							stat_X2_Y4= 5'd3;
+						if( we )
+							stat_X3_Y4= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X0_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y4 == 5'd0)
 							stat_X0_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y4= 5'd2;
-						end
-						else if(stat_X1_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y4 == 5'd0)
 							stat_X1_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y4= 5'd2;
-						end
-						else if(stat_X2_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y4 == 5'd0)
 							stat_X2_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y4= 5'd2;
-						end
-						else if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y4= 5'd2;
-						end
-						else if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y4 == 5'd3)
+							stat_X0_Y4= 5'd4;
+						if(old_we && stat_X1_Y4 == 5'd3)
+							stat_X1_Y4= 5'd4;
+						if(old_we && stat_X2_Y4 == 5'd3)
+							stat_X2_Y4= 5'd4;
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if( we )
+							stat_X0_Y4= 5'd3;
+						if( we )
+							stat_X1_Y4= 5'd3;
+						if( we )
+							stat_X2_Y4= 5'd3;
+						if( we )
+							stat_X3_Y4= 5'd3;
+						if( we )
+							stat_X4_Y4= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X0_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y4 == 5'd0)
 							stat_X0_Y4= 5'd1;
-						end
-						if(stat_X0_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y5 == 5'd0)
 							stat_X0_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y4 == 5'd3)
+							stat_X0_Y4= 5'd4;
+						if(old_we && stat_X0_Y5 == 5'd3)
+							stat_X0_Y5= 5'd4;
+						if( we )
+							stat_X0_Y4= 5'd3;
+						if( we )
+							stat_X0_Y5= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X0_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y4 == 5'd0)
 							stat_X0_Y4= 5'd1;
-						end
-						if(stat_X0_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y5 == 5'd0)
 							stat_X0_Y5= 5'd1;
-						end
-						if(stat_X0_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y6 == 5'd0)
 							stat_X0_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y4 == 5'd3)
+							stat_X0_Y4= 5'd4;
+						if(old_we && stat_X0_Y5 == 5'd3)
+							stat_X0_Y5= 5'd4;
+						if(old_we && stat_X0_Y6 == 5'd3)
+							stat_X0_Y6= 5'd4;
+						if( we )
+							stat_X0_Y4= 5'd3;
+						if( we )
+							stat_X0_Y5= 5'd3;
+						if( we )
+							stat_X0_Y6= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X0_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y4 == 5'd0)
 							stat_X0_Y4= 5'd1;
-						end
-						if(stat_X0_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y5 == 5'd0)
 							stat_X0_Y5= 5'd1;
-						end
-						if(stat_X0_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y6 == 5'd0)
 							stat_X0_Y6= 5'd1;
-						end
-						if(stat_X0_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y7 == 5'd0)
 							stat_X0_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y4 == 5'd3)
+							stat_X0_Y4= 5'd4;
+						if(old_we && stat_X0_Y5 == 5'd3)
+							stat_X0_Y5= 5'd4;
+						if(old_we && stat_X0_Y6 == 5'd3)
+							stat_X0_Y6= 5'd4;
+						if(old_we && stat_X0_Y7 == 5'd3)
+							stat_X0_Y7= 5'd4;
+						if( we )
+							stat_X0_Y4= 5'd3;
+						if( we )
+							stat_X0_Y5= 5'd3;
+						if( we )
+							stat_X0_Y6= 5'd3;
+						if( we )
+							stat_X0_Y7= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X0_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y4 == 5'd0)
 							stat_X0_Y4= 5'd1;
-						end
-						if(stat_X0_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y5 == 5'd0)
 							stat_X0_Y5= 5'd1;
-						end
-						if(stat_X0_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y6 == 5'd0)
 							stat_X0_Y6= 5'd1;
-						end
-						if(stat_X0_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y7 == 5'd0)
 							stat_X0_Y7= 5'd1;
-						end
-						if(stat_X0_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y8 == 5'd0)
 							stat_X0_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y4 == 5'd3)
+							stat_X0_Y4= 5'd4;
+						if(old_we && stat_X0_Y5 == 5'd3)
+							stat_X0_Y5= 5'd4;
+						if(old_we && stat_X0_Y6 == 5'd3)
+							stat_X0_Y6= 5'd4;
+						if(old_we && stat_X0_Y7 == 5'd3)
+							stat_X0_Y7= 5'd4;
+						if(old_we && stat_X0_Y8 == 5'd3)
+							stat_X0_Y8= 5'd4;
+						if( we )
+							stat_X0_Y4= 5'd3;
+						if( we )
+							stat_X0_Y5= 5'd3;
+						if( we )
+							stat_X0_Y6= 5'd3;
+						if( we )
+							stat_X0_Y7= 5'd3;
+						if( we )
+							stat_X0_Y8= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd0 && mouse_cell_y == 4'd5)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X0_Y9 == 5'd1)
-				 stat_X0_Y9 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X0_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y5 == 5'd0)
 							stat_X0_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y5= 5'd2;
-						end
-						else if(stat_X1_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y5 == 5'd0)
 							stat_X1_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y5 == 5'd3)
+							stat_X0_Y5= 5'd4;
+						if(old_we && stat_X1_Y5 == 5'd3)
+							stat_X1_Y5= 5'd4;
+						if( we )
+							stat_X0_Y5= 5'd3;
+						if( we )
+							stat_X1_Y5= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X0_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y5 == 5'd0)
 							stat_X0_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y5= 5'd2;
-						end
-						else if(stat_X1_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y5 == 5'd0)
 							stat_X1_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y5= 5'd2;
-						end
-						else if(stat_X2_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y5 == 5'd0)
 							stat_X2_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y5 == 5'd3)
+							stat_X0_Y5= 5'd4;
+						if(old_we && stat_X1_Y5 == 5'd3)
+							stat_X1_Y5= 5'd4;
+						if(old_we && stat_X2_Y5 == 5'd3)
+							stat_X2_Y5= 5'd4;
+						if( we )
+							stat_X0_Y5= 5'd3;
+						if( we )
+							stat_X1_Y5= 5'd3;
+						if( we )
+							stat_X2_Y5= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X0_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y5 == 5'd0)
 							stat_X0_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y5= 5'd2;
-						end
-						else if(stat_X1_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y5 == 5'd0)
 							stat_X1_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y5= 5'd2;
-						end
-						else if(stat_X2_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y5 == 5'd0)
 							stat_X2_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y5= 5'd2;
-						end
-						else if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y5 == 5'd3)
+							stat_X0_Y5= 5'd4;
+						if(old_we && stat_X1_Y5 == 5'd3)
+							stat_X1_Y5= 5'd4;
+						if(old_we && stat_X2_Y5 == 5'd3)
+							stat_X2_Y5= 5'd4;
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if( we )
+							stat_X0_Y5= 5'd3;
+						if( we )
+							stat_X1_Y5= 5'd3;
+						if( we )
+							stat_X2_Y5= 5'd3;
+						if( we )
+							stat_X3_Y5= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X0_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y5 == 5'd0)
 							stat_X0_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y5= 5'd2;
-						end
-						else if(stat_X1_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y5 == 5'd0)
 							stat_X1_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y5= 5'd2;
-						end
-						else if(stat_X2_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y5 == 5'd0)
 							stat_X2_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y5= 5'd2;
-						end
-						else if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y5= 5'd2;
-						end
-						else if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y5 == 5'd3)
+							stat_X0_Y5= 5'd4;
+						if(old_we && stat_X1_Y5 == 5'd3)
+							stat_X1_Y5= 5'd4;
+						if(old_we && stat_X2_Y5 == 5'd3)
+							stat_X2_Y5= 5'd4;
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if( we )
+							stat_X0_Y5= 5'd3;
+						if( we )
+							stat_X1_Y5= 5'd3;
+						if( we )
+							stat_X2_Y5= 5'd3;
+						if( we )
+							stat_X3_Y5= 5'd3;
+						if( we )
+							stat_X4_Y5= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X0_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y5 == 5'd0)
 							stat_X0_Y5= 5'd1;
-						end
-						if(stat_X0_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y6 == 5'd0)
 							stat_X0_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y5 == 5'd3)
+							stat_X0_Y5= 5'd4;
+						if(old_we && stat_X0_Y6 == 5'd3)
+							stat_X0_Y6= 5'd4;
+						if( we )
+							stat_X0_Y5= 5'd3;
+						if( we )
+							stat_X0_Y6= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X0_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y5 == 5'd0)
 							stat_X0_Y5= 5'd1;
-						end
-						if(stat_X0_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y6 == 5'd0)
 							stat_X0_Y6= 5'd1;
-						end
-						if(stat_X0_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y7 == 5'd0)
 							stat_X0_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y5 == 5'd3)
+							stat_X0_Y5= 5'd4;
+						if(old_we && stat_X0_Y6 == 5'd3)
+							stat_X0_Y6= 5'd4;
+						if(old_we && stat_X0_Y7 == 5'd3)
+							stat_X0_Y7= 5'd4;
+						if( we )
+							stat_X0_Y5= 5'd3;
+						if( we )
+							stat_X0_Y6= 5'd3;
+						if( we )
+							stat_X0_Y7= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X0_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y5 == 5'd0)
 							stat_X0_Y5= 5'd1;
-						end
-						if(stat_X0_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y6 == 5'd0)
 							stat_X0_Y6= 5'd1;
-						end
-						if(stat_X0_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y7 == 5'd0)
 							stat_X0_Y7= 5'd1;
-						end
-						if(stat_X0_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y8 == 5'd0)
 							stat_X0_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y5 == 5'd3)
+							stat_X0_Y5= 5'd4;
+						if(old_we && stat_X0_Y6 == 5'd3)
+							stat_X0_Y6= 5'd4;
+						if(old_we && stat_X0_Y7 == 5'd3)
+							stat_X0_Y7= 5'd4;
+						if(old_we && stat_X0_Y8 == 5'd3)
+							stat_X0_Y8= 5'd4;
+						if( we )
+							stat_X0_Y5= 5'd3;
+						if( we )
+							stat_X0_Y6= 5'd3;
+						if( we )
+							stat_X0_Y7= 5'd3;
+						if( we )
+							stat_X0_Y8= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X0_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y5 == 5'd0)
 							stat_X0_Y5= 5'd1;
-						end
-						if(stat_X0_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y6 == 5'd0)
 							stat_X0_Y6= 5'd1;
-						end
-						if(stat_X0_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y7 == 5'd0)
 							stat_X0_Y7= 5'd1;
-						end
-						if(stat_X0_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y8 == 5'd0)
 							stat_X0_Y8= 5'd1;
-						end
-						if(stat_X0_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y9 == 5'd0)
 							stat_X0_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y5 == 5'd3)
+							stat_X0_Y5= 5'd4;
+						if(old_we && stat_X0_Y6 == 5'd3)
+							stat_X0_Y6= 5'd4;
+						if(old_we && stat_X0_Y7 == 5'd3)
+							stat_X0_Y7= 5'd4;
+						if(old_we && stat_X0_Y8 == 5'd3)
+							stat_X0_Y8= 5'd4;
+						if(old_we && stat_X0_Y9 == 5'd3)
+							stat_X0_Y9= 5'd4;
+						if( we )
+							stat_X0_Y5= 5'd3;
+						if( we )
+							stat_X0_Y6= 5'd3;
+						if( we )
+							stat_X0_Y7= 5'd3;
+						if( we )
+							stat_X0_Y8= 5'd3;
+						if( we )
+							stat_X0_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd0 && mouse_cell_y == 4'd6)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X0_Y9 == 5'd1)
-				 stat_X0_Y9 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X0_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y6 == 5'd0)
 							stat_X0_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y6= 5'd2;
-						end
-						else if(stat_X1_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y6 == 5'd0)
 							stat_X1_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y6 == 5'd3)
+							stat_X0_Y6= 5'd4;
+						if(old_we && stat_X1_Y6 == 5'd3)
+							stat_X1_Y6= 5'd4;
+						if( we )
+							stat_X0_Y6= 5'd3;
+						if( we )
+							stat_X1_Y6= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X0_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y6 == 5'd0)
 							stat_X0_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y6= 5'd2;
-						end
-						else if(stat_X1_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y6 == 5'd0)
 							stat_X1_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y6= 5'd2;
-						end
-						else if(stat_X2_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y6 == 5'd0)
 							stat_X2_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y6 == 5'd3)
+							stat_X0_Y6= 5'd4;
+						if(old_we && stat_X1_Y6 == 5'd3)
+							stat_X1_Y6= 5'd4;
+						if(old_we && stat_X2_Y6 == 5'd3)
+							stat_X2_Y6= 5'd4;
+						if( we )
+							stat_X0_Y6= 5'd3;
+						if( we )
+							stat_X1_Y6= 5'd3;
+						if( we )
+							stat_X2_Y6= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X0_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y6 == 5'd0)
 							stat_X0_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y6= 5'd2;
-						end
-						else if(stat_X1_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y6 == 5'd0)
 							stat_X1_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y6= 5'd2;
-						end
-						else if(stat_X2_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y6 == 5'd0)
 							stat_X2_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y6= 5'd2;
-						end
-						else if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y6 == 5'd3)
+							stat_X0_Y6= 5'd4;
+						if(old_we && stat_X1_Y6 == 5'd3)
+							stat_X1_Y6= 5'd4;
+						if(old_we && stat_X2_Y6 == 5'd3)
+							stat_X2_Y6= 5'd4;
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if( we )
+							stat_X0_Y6= 5'd3;
+						if( we )
+							stat_X1_Y6= 5'd3;
+						if( we )
+							stat_X2_Y6= 5'd3;
+						if( we )
+							stat_X3_Y6= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X0_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y6 == 5'd0)
 							stat_X0_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y6= 5'd2;
-						end
-						else if(stat_X1_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y6 == 5'd0)
 							stat_X1_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y6= 5'd2;
-						end
-						else if(stat_X2_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y6 == 5'd0)
 							stat_X2_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y6= 5'd2;
-						end
-						else if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y6= 5'd2;
-						end
-						else if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X4_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y6 == 5'd3)
+							stat_X0_Y6= 5'd4;
+						if(old_we && stat_X1_Y6 == 5'd3)
+							stat_X1_Y6= 5'd4;
+						if(old_we && stat_X2_Y6 == 5'd3)
+							stat_X2_Y6= 5'd4;
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if( we )
+							stat_X0_Y6= 5'd3;
+						if( we )
+							stat_X1_Y6= 5'd3;
+						if( we )
+							stat_X2_Y6= 5'd3;
+						if( we )
+							stat_X3_Y6= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X0_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y6 == 5'd0)
 							stat_X0_Y6= 5'd1;
-						end
-						if(stat_X0_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y7 == 5'd0)
 							stat_X0_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y6 == 5'd3)
+							stat_X0_Y6= 5'd4;
+						if(old_we && stat_X0_Y7 == 5'd3)
+							stat_X0_Y7= 5'd4;
+						if( we )
+							stat_X0_Y6= 5'd3;
+						if( we )
+							stat_X0_Y7= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X0_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y6 == 5'd0)
 							stat_X0_Y6= 5'd1;
-						end
-						if(stat_X0_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y7 == 5'd0)
 							stat_X0_Y7= 5'd1;
-						end
-						if(stat_X0_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y8 == 5'd0)
 							stat_X0_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y6 == 5'd3)
+							stat_X0_Y6= 5'd4;
+						if(old_we && stat_X0_Y7 == 5'd3)
+							stat_X0_Y7= 5'd4;
+						if(old_we && stat_X0_Y8 == 5'd3)
+							stat_X0_Y8= 5'd4;
+						if( we )
+							stat_X0_Y6= 5'd3;
+						if( we )
+							stat_X0_Y7= 5'd3;
+						if( we )
+							stat_X0_Y8= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X0_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y6 == 5'd0)
 							stat_X0_Y6= 5'd1;
-						end
-						if(stat_X0_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y7 == 5'd0)
 							stat_X0_Y7= 5'd1;
-						end
-						if(stat_X0_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y8 == 5'd0)
 							stat_X0_Y8= 5'd1;
-						end
-						if(stat_X0_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y9 == 5'd0)
 							stat_X0_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y6 == 5'd3)
+							stat_X0_Y6= 5'd4;
+						if(old_we && stat_X0_Y7 == 5'd3)
+							stat_X0_Y7= 5'd4;
+						if(old_we && stat_X0_Y8 == 5'd3)
+							stat_X0_Y8= 5'd4;
+						if(old_we && stat_X0_Y9 == 5'd3)
+							stat_X0_Y9= 5'd4;
+						if( we )
+							stat_X0_Y6= 5'd3;
+						if( we )
+							stat_X0_Y7= 5'd3;
+						if( we )
+							stat_X0_Y8= 5'd3;
+						if( we )
+							stat_X0_Y9= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X0_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y6 == 5'd0)
 							stat_X0_Y6= 5'd1;
-						end
-						if(stat_X0_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y7 == 5'd0)
 							stat_X0_Y7= 5'd1;
-						end
-						if(stat_X0_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y8 == 5'd0)
 							stat_X0_Y8= 5'd1;
-						end
-						if(stat_X0_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y9 == 5'd0)
 							stat_X0_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y6 == 5'd3)
+							stat_X0_Y6= 5'd4;
+						if(old_we && stat_X0_Y7 == 5'd3)
+							stat_X0_Y7= 5'd4;
+						if(old_we && stat_X0_Y8 == 5'd3)
+							stat_X0_Y8= 5'd4;
+						if(old_we && stat_X0_Y9 == 5'd3)
+							stat_X0_Y9= 5'd4;
+						if( we )
+							stat_X0_Y6= 5'd3;
+						if( we )
+							stat_X0_Y7= 5'd3;
+						if( we )
+							stat_X0_Y8= 5'd3;
+						if( we )
+							stat_X0_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd0 && mouse_cell_y == 4'd7)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X0_Y9 == 5'd1)
-				 stat_X0_Y9 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X0_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y7 == 5'd0)
 							stat_X0_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y7= 5'd2;
-						end
-						else if(stat_X1_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y7 == 5'd0)
 							stat_X1_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y7 == 5'd3)
+							stat_X0_Y7= 5'd4;
+						if(old_we && stat_X1_Y7 == 5'd3)
+							stat_X1_Y7= 5'd4;
+						if( we )
+							stat_X0_Y7= 5'd3;
+						if( we )
+							stat_X1_Y7= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X0_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y7 == 5'd0)
 							stat_X0_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y7= 5'd2;
-						end
-						else if(stat_X1_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y7 == 5'd0)
 							stat_X1_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y7= 5'd2;
-						end
-						else if(stat_X2_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y7 == 5'd0)
 							stat_X2_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y7 == 5'd3)
+							stat_X0_Y7= 5'd4;
+						if(old_we && stat_X1_Y7 == 5'd3)
+							stat_X1_Y7= 5'd4;
+						if(old_we && stat_X2_Y7 == 5'd3)
+							stat_X2_Y7= 5'd4;
+						if( we )
+							stat_X0_Y7= 5'd3;
+						if( we )
+							stat_X1_Y7= 5'd3;
+						if( we )
+							stat_X2_Y7= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X0_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y7 == 5'd0)
 							stat_X0_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y7= 5'd2;
-						end
-						else if(stat_X1_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y7 == 5'd0)
 							stat_X1_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y7= 5'd2;
-						end
-						else if(stat_X2_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y7 == 5'd0)
 							stat_X2_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y7= 5'd2;
-						end
-						else if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X3_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y7 == 5'd3)
+							stat_X0_Y7= 5'd4;
+						if(old_we && stat_X1_Y7 == 5'd3)
+							stat_X1_Y7= 5'd4;
+						if(old_we && stat_X2_Y7 == 5'd3)
+							stat_X2_Y7= 5'd4;
+						if( we )
+							stat_X0_Y7= 5'd3;
+						if( we )
+							stat_X1_Y7= 5'd3;
+						if( we )
+							stat_X2_Y7= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X0_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y7 == 5'd0)
 							stat_X0_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y7= 5'd2;
-						end
-						else if(stat_X1_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y7 == 5'd0)
 							stat_X1_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y7= 5'd2;
-						end
-						else if(stat_X2_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y7 == 5'd0)
 							stat_X2_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y7= 5'd2;
-						end
-						else if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X3_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y7= 5'd2;
-						end
-						else if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X4_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y7 == 5'd3)
+							stat_X0_Y7= 5'd4;
+						if(old_we && stat_X1_Y7 == 5'd3)
+							stat_X1_Y7= 5'd4;
+						if(old_we && stat_X2_Y7 == 5'd3)
+							stat_X2_Y7= 5'd4;
+						if( we )
+							stat_X0_Y7= 5'd3;
+						if( we )
+							stat_X1_Y7= 5'd3;
+						if( we )
+							stat_X2_Y7= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X0_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y7 == 5'd0)
 							stat_X0_Y7= 5'd1;
-						end
-						if(stat_X0_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y8 == 5'd0)
 							stat_X0_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y7 == 5'd3)
+							stat_X0_Y7= 5'd4;
+						if(old_we && stat_X0_Y8 == 5'd3)
+							stat_X0_Y8= 5'd4;
+						if( we )
+							stat_X0_Y7= 5'd3;
+						if( we )
+							stat_X0_Y8= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X0_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y7 == 5'd0)
 							stat_X0_Y7= 5'd1;
-						end
-						if(stat_X0_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y8 == 5'd0)
 							stat_X0_Y8= 5'd1;
-						end
-						if(stat_X0_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y9 == 5'd0)
 							stat_X0_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y7 == 5'd3)
+							stat_X0_Y7= 5'd4;
+						if(old_we && stat_X0_Y8 == 5'd3)
+							stat_X0_Y8= 5'd4;
+						if(old_we && stat_X0_Y9 == 5'd3)
+							stat_X0_Y9= 5'd4;
+						if( we )
+							stat_X0_Y7= 5'd3;
+						if( we )
+							stat_X0_Y8= 5'd3;
+						if( we )
+							stat_X0_Y9= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X0_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y7 == 5'd0)
 							stat_X0_Y7= 5'd1;
-						end
-						if(stat_X0_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y8 == 5'd0)
 							stat_X0_Y8= 5'd1;
-						end
-						if(stat_X0_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y9 == 5'd0)
 							stat_X0_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y7 == 5'd3)
+							stat_X0_Y7= 5'd4;
+						if(old_we && stat_X0_Y8 == 5'd3)
+							stat_X0_Y8= 5'd4;
+						if(old_we && stat_X0_Y9 == 5'd3)
+							stat_X0_Y9= 5'd4;
+						if( we )
+							stat_X0_Y7= 5'd3;
+						if( we )
+							stat_X0_Y8= 5'd3;
+						if( we )
+							stat_X0_Y9= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X0_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y7 == 5'd0)
 							stat_X0_Y7= 5'd1;
-						end
-						if(stat_X0_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y8 == 5'd0)
 							stat_X0_Y8= 5'd1;
-						end
-						if(stat_X0_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y9 == 5'd0)
 							stat_X0_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y7 == 5'd3)
+							stat_X0_Y7= 5'd4;
+						if(old_we && stat_X0_Y8 == 5'd3)
+							stat_X0_Y8= 5'd4;
+						if(old_we && stat_X0_Y9 == 5'd3)
+							stat_X0_Y9= 5'd4;
+						if( we )
+							stat_X0_Y7= 5'd3;
+						if( we )
+							stat_X0_Y8= 5'd3;
+						if( we )
+							stat_X0_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd0 && mouse_cell_y == 4'd8)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X0_Y9 == 5'd1)
-				 stat_X0_Y9 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X0_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y8 == 5'd0)
 							stat_X0_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y8= 5'd2;
-						end
-						else if(stat_X1_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y8 == 5'd0)
 							stat_X1_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y8 == 5'd3)
+							stat_X0_Y8= 5'd4;
+						if(old_we && stat_X1_Y8 == 5'd3)
+							stat_X1_Y8= 5'd4;
+						if( we )
+							stat_X0_Y8= 5'd3;
+						if( we )
+							stat_X1_Y8= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X0_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y8 == 5'd0)
 							stat_X0_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y8= 5'd2;
-						end
-						else if(stat_X1_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y8 == 5'd0)
 							stat_X1_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y8= 5'd2;
-						end
-						else if(stat_X2_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X2_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y8 == 5'd3)
+							stat_X0_Y8= 5'd4;
+						if(old_we && stat_X1_Y8 == 5'd3)
+							stat_X1_Y8= 5'd4;
+						if( we )
+							stat_X0_Y8= 5'd3;
+						if( we )
+							stat_X1_Y8= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X0_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y8 == 5'd0)
 							stat_X0_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y8= 5'd2;
-						end
-						else if(stat_X1_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y8 == 5'd0)
 							stat_X1_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y8= 5'd2;
-						end
-						else if(stat_X2_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X2_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y8= 5'd2;
-						end
-						else if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X3_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y8 == 5'd3)
+							stat_X0_Y8= 5'd4;
+						if(old_we && stat_X1_Y8 == 5'd3)
+							stat_X1_Y8= 5'd4;
+						if( we )
+							stat_X0_Y8= 5'd3;
+						if( we )
+							stat_X1_Y8= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X0_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y8 == 5'd0)
 							stat_X0_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X1_Y8= 5'd2;
-						end
-						else if(stat_X1_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y8 == 5'd0)
 							stat_X1_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y8= 5'd2;
-						end
-						else if(stat_X2_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X2_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y8= 5'd2;
-						end
-						else if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X3_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y8= 5'd2;
-						end
-						else if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X4_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y8 == 5'd3)
+							stat_X0_Y8= 5'd4;
+						if(old_we && stat_X1_Y8 == 5'd3)
+							stat_X1_Y8= 5'd4;
+						if( we )
+							stat_X0_Y8= 5'd3;
+						if( we )
+							stat_X1_Y8= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X0_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y8 == 5'd0)
 							stat_X0_Y8= 5'd1;
-						end
-						if(stat_X0_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y9 == 5'd0)
 							stat_X0_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y8 == 5'd3)
+							stat_X0_Y8= 5'd4;
+						if(old_we && stat_X0_Y9 == 5'd3)
+							stat_X0_Y9= 5'd4;
+						if( we )
+							stat_X0_Y8= 5'd3;
+						if( we )
+							stat_X0_Y9= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X0_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y8 == 5'd0)
 							stat_X0_Y8= 5'd1;
-						end
-						if(stat_X0_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y9 == 5'd0)
 							stat_X0_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y8 == 5'd3)
+							stat_X0_Y8= 5'd4;
+						if(old_we && stat_X0_Y9 == 5'd3)
+							stat_X0_Y9= 5'd4;
+						if( we )
+							stat_X0_Y8= 5'd3;
+						if( we )
+							stat_X0_Y9= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X0_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y8 == 5'd0)
 							stat_X0_Y8= 5'd1;
-						end
-						if(stat_X0_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y9 == 5'd0)
 							stat_X0_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y8 == 5'd3)
+							stat_X0_Y8= 5'd4;
+						if(old_we && stat_X0_Y9 == 5'd3)
+							stat_X0_Y9= 5'd4;
+						if( we )
+							stat_X0_Y8= 5'd3;
+						if( we )
+							stat_X0_Y9= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X0_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y8 == 5'd0)
 							stat_X0_Y8= 5'd1;
-						end
-						if(stat_X0_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X0_Y9 == 5'd0)
 							stat_X0_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X0_Y8 == 5'd3)
+							stat_X0_Y8= 5'd4;
+						if(old_we && stat_X0_Y9 == 5'd3)
+							stat_X0_Y9= 5'd4;
+						if( we )
+							stat_X0_Y8= 5'd3;
+						if( we )
+							stat_X0_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
+		//controllo la posizione: capisco in che cella sono
+		else if(mouse_cell_x == 4'd0 && mouse_cell_y == 4'd9)
+		begin//controllo la direzione
+			if(!direction)
+			begin//controllo la dimensione della nave
+				case (dimension)
+					4'd2:
+					begin
+						if( !we && stat_X0_Y9 == 5'd0)
+							stat_X0_Y9= 5'd1;
+						if(old_we && stat_X0_Y9 == 5'd3)
+							stat_X0_Y9= 5'd4;
+						if( we )
+							stat_X0_Y9= 5'd3;
+					end//interno case
+					4'd3:
+					begin
+						if( !we && stat_X0_Y9 == 5'd0)
+							stat_X0_Y9= 5'd1;
+						if(old_we && stat_X0_Y9 == 5'd3)
+							stat_X0_Y9= 5'd4;
+						if( we )
+							stat_X0_Y9= 5'd3;
+					end//interno case
+					4'd4:
+					begin
+						if( !we && stat_X0_Y9 == 5'd0)
+							stat_X0_Y9= 5'd1;
+						if(old_we && stat_X0_Y9 == 5'd3)
+							stat_X0_Y9= 5'd4;
+						if( we )
+							stat_X0_Y9= 5'd3;
+					end//interno case
+					4'd5:
+					begin
+						if( !we && stat_X0_Y9 == 5'd0)
+							stat_X0_Y9= 5'd1;
+						if(old_we && stat_X0_Y9 == 5'd3)
+							stat_X0_Y9= 5'd4;
+						if( we )
+							stat_X0_Y9= 5'd3;
+					end//interno case
+				endcase
+			end//direzione
+			else
+			begin//controllo la dimensione della nave
+				case (dimension)
+					4'd2:
+					begin
+						if( !we && stat_X0_Y9 == 5'd0)
+							stat_X0_Y9= 5'd1;
+						if(old_we && stat_X0_Y9 == 5'd3)
+							stat_X0_Y9= 5'd4;
+						if( we )
+							stat_X0_Y9= 5'd3;
+					end//interno case
+					4'd3:
+					begin
+						if( !we && stat_X0_Y9 == 5'd0)
+							stat_X0_Y9= 5'd1;
+						if(old_we && stat_X0_Y9 == 5'd3)
+							stat_X0_Y9= 5'd4;
+						if( we )
+							stat_X0_Y9= 5'd3;
+					end//interno case
+					4'd4:
+					begin
+						if( !we && stat_X0_Y9 == 5'd0)
+							stat_X0_Y9= 5'd1;
+						if(old_we && stat_X0_Y9 == 5'd3)
+							stat_X0_Y9= 5'd4;
+						if( we )
+							stat_X0_Y9= 5'd3;
+					end//interno case
+					4'd5:
+					begin
+						if( !we && stat_X0_Y9 == 5'd0)
+							stat_X0_Y9= 5'd1;
+						if(old_we && stat_X0_Y9 == 5'd3)
+							stat_X0_Y9= 5'd4;
+						if( we )
+							stat_X0_Y9= 5'd3;
+					end//interno case
+				endcase
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd1 && mouse_cell_y == 4'd0)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X1_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y0 == 5'd0)
 							stat_X1_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y0= 5'd2;
-						end
-						else if(stat_X2_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y0 == 5'd0)
 							stat_X2_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y0 == 5'd3)
+							stat_X1_Y0= 5'd4;
+						if(old_we && stat_X2_Y0 == 5'd3)
+							stat_X2_Y0= 5'd4;
+						if( we )
+							stat_X1_Y0= 5'd3;
+						if( we )
+							stat_X2_Y0= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X1_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y0 == 5'd0)
 							stat_X1_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y0= 5'd2;
-						end
-						else if(stat_X2_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y0 == 5'd0)
 							stat_X2_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y0= 5'd2;
-						end
-						else if(stat_X3_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y0 == 5'd0)
 							stat_X3_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y0 == 5'd3)
+							stat_X1_Y0= 5'd4;
+						if(old_we && stat_X2_Y0 == 5'd3)
+							stat_X2_Y0= 5'd4;
+						if(old_we && stat_X3_Y0 == 5'd3)
+							stat_X3_Y0= 5'd4;
+						if( we )
+							stat_X1_Y0= 5'd3;
+						if( we )
+							stat_X2_Y0= 5'd3;
+						if( we )
+							stat_X3_Y0= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X1_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y0 == 5'd0)
 							stat_X1_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y0= 5'd2;
-						end
-						else if(stat_X2_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y0 == 5'd0)
 							stat_X2_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y0= 5'd2;
-						end
-						else if(stat_X3_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y0 == 5'd0)
 							stat_X3_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y0= 5'd2;
-						end
-						else if(stat_X4_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y0 == 5'd0)
 							stat_X4_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y0 == 5'd3)
+							stat_X1_Y0= 5'd4;
+						if(old_we && stat_X2_Y0 == 5'd3)
+							stat_X2_Y0= 5'd4;
+						if(old_we && stat_X3_Y0 == 5'd3)
+							stat_X3_Y0= 5'd4;
+						if(old_we && stat_X4_Y0 == 5'd3)
+							stat_X4_Y0= 5'd4;
+						if( we )
+							stat_X1_Y0= 5'd3;
+						if( we )
+							stat_X2_Y0= 5'd3;
+						if( we )
+							stat_X3_Y0= 5'd3;
+						if( we )
+							stat_X4_Y0= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X1_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y0 == 5'd0)
 							stat_X1_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y0= 5'd2;
-						end
-						else if(stat_X2_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y0 == 5'd0)
 							stat_X2_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y0= 5'd2;
-						end
-						else if(stat_X3_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y0 == 5'd0)
 							stat_X3_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y0= 5'd2;
-						end
-						else if(stat_X4_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y0 == 5'd0)
 							stat_X4_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y0= 5'd2;
-						end
-						else if(stat_X5_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y0 == 5'd0)
 							stat_X5_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y0 == 5'd3)
+							stat_X1_Y0= 5'd4;
+						if(old_we && stat_X2_Y0 == 5'd3)
+							stat_X2_Y0= 5'd4;
+						if(old_we && stat_X3_Y0 == 5'd3)
+							stat_X3_Y0= 5'd4;
+						if(old_we && stat_X4_Y0 == 5'd3)
+							stat_X4_Y0= 5'd4;
+						if(old_we && stat_X5_Y0 == 5'd3)
+							stat_X5_Y0= 5'd4;
+						if( we )
+							stat_X1_Y0= 5'd3;
+						if( we )
+							stat_X2_Y0= 5'd3;
+						if( we )
+							stat_X3_Y0= 5'd3;
+						if( we )
+							stat_X4_Y0= 5'd3;
+						if( we )
+							stat_X5_Y0= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X1_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y0 == 5'd0)
 							stat_X1_Y0= 5'd1;
-						end
-						if(stat_X1_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y1 == 5'd0)
 							stat_X1_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y0 == 5'd3)
+							stat_X1_Y0= 5'd4;
+						if(old_we && stat_X1_Y1 == 5'd3)
+							stat_X1_Y1= 5'd4;
+						if( we )
+							stat_X1_Y0= 5'd3;
+						if( we )
+							stat_X1_Y1= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X1_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y0 == 5'd0)
 							stat_X1_Y0= 5'd1;
-						end
-						if(stat_X1_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y1 == 5'd0)
 							stat_X1_Y1= 5'd1;
-						end
-						if(stat_X1_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y2 == 5'd0)
 							stat_X1_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y0 == 5'd3)
+							stat_X1_Y0= 5'd4;
+						if(old_we && stat_X1_Y1 == 5'd3)
+							stat_X1_Y1= 5'd4;
+						if(old_we && stat_X1_Y2 == 5'd3)
+							stat_X1_Y2= 5'd4;
+						if( we )
+							stat_X1_Y0= 5'd3;
+						if( we )
+							stat_X1_Y1= 5'd3;
+						if( we )
+							stat_X1_Y2= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X1_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y0 == 5'd0)
 							stat_X1_Y0= 5'd1;
-						end
-						if(stat_X1_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y1 == 5'd0)
 							stat_X1_Y1= 5'd1;
-						end
-						if(stat_X1_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y2 == 5'd0)
 							stat_X1_Y2= 5'd1;
-						end
-						if(stat_X1_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y3 == 5'd0)
 							stat_X1_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y0 == 5'd3)
+							stat_X1_Y0= 5'd4;
+						if(old_we && stat_X1_Y1 == 5'd3)
+							stat_X1_Y1= 5'd4;
+						if(old_we && stat_X1_Y2 == 5'd3)
+							stat_X1_Y2= 5'd4;
+						if(old_we && stat_X1_Y3 == 5'd3)
+							stat_X1_Y3= 5'd4;
+						if( we )
+							stat_X1_Y0= 5'd3;
+						if( we )
+							stat_X1_Y1= 5'd3;
+						if( we )
+							stat_X1_Y2= 5'd3;
+						if( we )
+							stat_X1_Y3= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X1_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y0 == 5'd0)
 							stat_X1_Y0= 5'd1;
-						end
-						if(stat_X1_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y1 == 5'd0)
 							stat_X1_Y1= 5'd1;
-						end
-						if(stat_X1_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y2 == 5'd0)
 							stat_X1_Y2= 5'd1;
-						end
-						if(stat_X1_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y3 == 5'd0)
 							stat_X1_Y3= 5'd1;
-						end
-						if(stat_X1_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y4 == 5'd0)
 							stat_X1_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y0 == 5'd3)
+							stat_X1_Y0= 5'd4;
+						if(old_we && stat_X1_Y1 == 5'd3)
+							stat_X1_Y1= 5'd4;
+						if(old_we && stat_X1_Y2 == 5'd3)
+							stat_X1_Y2= 5'd4;
+						if(old_we && stat_X1_Y3 == 5'd3)
+							stat_X1_Y3= 5'd4;
+						if(old_we && stat_X1_Y4 == 5'd3)
+							stat_X1_Y4= 5'd4;
+						if( we )
+							stat_X1_Y0= 5'd3;
+						if( we )
+							stat_X1_Y1= 5'd3;
+						if( we )
+							stat_X1_Y2= 5'd3;
+						if( we )
+							stat_X1_Y3= 5'd3;
+						if( we )
+							stat_X1_Y4= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd1 && mouse_cell_y == 4'd1)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X1_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y1 == 5'd0)
 							stat_X1_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y1= 5'd2;
-						end
-						else if(stat_X2_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y1 == 5'd0)
 							stat_X2_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y1 == 5'd3)
+							stat_X1_Y1= 5'd4;
+						if(old_we && stat_X2_Y1 == 5'd3)
+							stat_X2_Y1= 5'd4;
+						if( we )
+							stat_X1_Y1= 5'd3;
+						if( we )
+							stat_X2_Y1= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X1_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y1 == 5'd0)
 							stat_X1_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y1= 5'd2;
-						end
-						else if(stat_X2_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y1 == 5'd0)
 							stat_X2_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y1= 5'd2;
-						end
-						else if(stat_X3_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y1 == 5'd0)
 							stat_X3_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y1 == 5'd3)
+							stat_X1_Y1= 5'd4;
+						if(old_we && stat_X2_Y1 == 5'd3)
+							stat_X2_Y1= 5'd4;
+						if(old_we && stat_X3_Y1 == 5'd3)
+							stat_X3_Y1= 5'd4;
+						if( we )
+							stat_X1_Y1= 5'd3;
+						if( we )
+							stat_X2_Y1= 5'd3;
+						if( we )
+							stat_X3_Y1= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X1_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y1 == 5'd0)
 							stat_X1_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y1= 5'd2;
-						end
-						else if(stat_X2_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y1 == 5'd0)
 							stat_X2_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y1= 5'd2;
-						end
-						else if(stat_X3_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y1 == 5'd0)
 							stat_X3_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y1= 5'd2;
-						end
-						else if(stat_X4_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y1 == 5'd0)
 							stat_X4_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y1 == 5'd3)
+							stat_X1_Y1= 5'd4;
+						if(old_we && stat_X2_Y1 == 5'd3)
+							stat_X2_Y1= 5'd4;
+						if(old_we && stat_X3_Y1 == 5'd3)
+							stat_X3_Y1= 5'd4;
+						if(old_we && stat_X4_Y1 == 5'd3)
+							stat_X4_Y1= 5'd4;
+						if( we )
+							stat_X1_Y1= 5'd3;
+						if( we )
+							stat_X2_Y1= 5'd3;
+						if( we )
+							stat_X3_Y1= 5'd3;
+						if( we )
+							stat_X4_Y1= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X1_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y1 == 5'd0)
 							stat_X1_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y1= 5'd2;
-						end
-						else if(stat_X2_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y1 == 5'd0)
 							stat_X2_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y1= 5'd2;
-						end
-						else if(stat_X3_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y1 == 5'd0)
 							stat_X3_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y1= 5'd2;
-						end
-						else if(stat_X4_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y1 == 5'd0)
 							stat_X4_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y1= 5'd2;
-						end
-						else if(stat_X5_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y1 == 5'd0)
 							stat_X5_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y1 == 5'd3)
+							stat_X1_Y1= 5'd4;
+						if(old_we && stat_X2_Y1 == 5'd3)
+							stat_X2_Y1= 5'd4;
+						if(old_we && stat_X3_Y1 == 5'd3)
+							stat_X3_Y1= 5'd4;
+						if(old_we && stat_X4_Y1 == 5'd3)
+							stat_X4_Y1= 5'd4;
+						if(old_we && stat_X5_Y1 == 5'd3)
+							stat_X5_Y1= 5'd4;
+						if( we )
+							stat_X1_Y1= 5'd3;
+						if( we )
+							stat_X2_Y1= 5'd3;
+						if( we )
+							stat_X3_Y1= 5'd3;
+						if( we )
+							stat_X4_Y1= 5'd3;
+						if( we )
+							stat_X5_Y1= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X1_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y1 == 5'd0)
 							stat_X1_Y1= 5'd1;
-						end
-						if(stat_X1_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y2 == 5'd0)
 							stat_X1_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y1 == 5'd3)
+							stat_X1_Y1= 5'd4;
+						if(old_we && stat_X1_Y2 == 5'd3)
+							stat_X1_Y2= 5'd4;
+						if( we )
+							stat_X1_Y1= 5'd3;
+						if( we )
+							stat_X1_Y2= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X1_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y1 == 5'd0)
 							stat_X1_Y1= 5'd1;
-						end
-						if(stat_X1_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y2 == 5'd0)
 							stat_X1_Y2= 5'd1;
-						end
-						if(stat_X1_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y3 == 5'd0)
 							stat_X1_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y1 == 5'd3)
+							stat_X1_Y1= 5'd4;
+						if(old_we && stat_X1_Y2 == 5'd3)
+							stat_X1_Y2= 5'd4;
+						if(old_we && stat_X1_Y3 == 5'd3)
+							stat_X1_Y3= 5'd4;
+						if( we )
+							stat_X1_Y1= 5'd3;
+						if( we )
+							stat_X1_Y2= 5'd3;
+						if( we )
+							stat_X1_Y3= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X1_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y1 == 5'd0)
 							stat_X1_Y1= 5'd1;
-						end
-						if(stat_X1_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y2 == 5'd0)
 							stat_X1_Y2= 5'd1;
-						end
-						if(stat_X1_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y3 == 5'd0)
 							stat_X1_Y3= 5'd1;
-						end
-						if(stat_X1_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y4 == 5'd0)
 							stat_X1_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y1 == 5'd3)
+							stat_X1_Y1= 5'd4;
+						if(old_we && stat_X1_Y2 == 5'd3)
+							stat_X1_Y2= 5'd4;
+						if(old_we && stat_X1_Y3 == 5'd3)
+							stat_X1_Y3= 5'd4;
+						if(old_we && stat_X1_Y4 == 5'd3)
+							stat_X1_Y4= 5'd4;
+						if( we )
+							stat_X1_Y1= 5'd3;
+						if( we )
+							stat_X1_Y2= 5'd3;
+						if( we )
+							stat_X1_Y3= 5'd3;
+						if( we )
+							stat_X1_Y4= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X1_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y1 == 5'd0)
 							stat_X1_Y1= 5'd1;
-						end
-						if(stat_X1_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y2 == 5'd0)
 							stat_X1_Y2= 5'd1;
-						end
-						if(stat_X1_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y3 == 5'd0)
 							stat_X1_Y3= 5'd1;
-						end
-						if(stat_X1_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y4 == 5'd0)
 							stat_X1_Y4= 5'd1;
-						end
-						if(stat_X1_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y5 == 5'd0)
 							stat_X1_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y1 == 5'd3)
+							stat_X1_Y1= 5'd4;
+						if(old_we && stat_X1_Y2 == 5'd3)
+							stat_X1_Y2= 5'd4;
+						if(old_we && stat_X1_Y3 == 5'd3)
+							stat_X1_Y3= 5'd4;
+						if(old_we && stat_X1_Y4 == 5'd3)
+							stat_X1_Y4= 5'd4;
+						if(old_we && stat_X1_Y5 == 5'd3)
+							stat_X1_Y5= 5'd4;
+						if( we )
+							stat_X1_Y1= 5'd3;
+						if( we )
+							stat_X1_Y2= 5'd3;
+						if( we )
+							stat_X1_Y3= 5'd3;
+						if( we )
+							stat_X1_Y4= 5'd3;
+						if( we )
+							stat_X1_Y5= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd1 && mouse_cell_y == 4'd2)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X1_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y2 == 5'd0)
 							stat_X1_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y2= 5'd2;
-						end
-						else if(stat_X2_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y2 == 5'd0)
 							stat_X2_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y2 == 5'd3)
+							stat_X1_Y2= 5'd4;
+						if(old_we && stat_X2_Y2 == 5'd3)
+							stat_X2_Y2= 5'd4;
+						if( we )
+							stat_X1_Y2= 5'd3;
+						if( we )
+							stat_X2_Y2= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X1_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y2 == 5'd0)
 							stat_X1_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y2= 5'd2;
-						end
-						else if(stat_X2_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y2 == 5'd0)
 							stat_X2_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y2= 5'd2;
-						end
-						else if(stat_X3_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y2 == 5'd0)
 							stat_X3_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y2 == 5'd3)
+							stat_X1_Y2= 5'd4;
+						if(old_we && stat_X2_Y2 == 5'd3)
+							stat_X2_Y2= 5'd4;
+						if(old_we && stat_X3_Y2 == 5'd3)
+							stat_X3_Y2= 5'd4;
+						if( we )
+							stat_X1_Y2= 5'd3;
+						if( we )
+							stat_X2_Y2= 5'd3;
+						if( we )
+							stat_X3_Y2= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X1_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y2 == 5'd0)
 							stat_X1_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y2= 5'd2;
-						end
-						else if(stat_X2_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y2 == 5'd0)
 							stat_X2_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y2= 5'd2;
-						end
-						else if(stat_X3_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y2 == 5'd0)
 							stat_X3_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y2= 5'd2;
-						end
-						else if(stat_X4_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y2 == 5'd0)
 							stat_X4_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y2 == 5'd3)
+							stat_X1_Y2= 5'd4;
+						if(old_we && stat_X2_Y2 == 5'd3)
+							stat_X2_Y2= 5'd4;
+						if(old_we && stat_X3_Y2 == 5'd3)
+							stat_X3_Y2= 5'd4;
+						if(old_we && stat_X4_Y2 == 5'd3)
+							stat_X4_Y2= 5'd4;
+						if( we )
+							stat_X1_Y2= 5'd3;
+						if( we )
+							stat_X2_Y2= 5'd3;
+						if( we )
+							stat_X3_Y2= 5'd3;
+						if( we )
+							stat_X4_Y2= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X1_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y2 == 5'd0)
 							stat_X1_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y2= 5'd2;
-						end
-						else if(stat_X2_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y2 == 5'd0)
 							stat_X2_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y2= 5'd2;
-						end
-						else if(stat_X3_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y2 == 5'd0)
 							stat_X3_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y2= 5'd2;
-						end
-						else if(stat_X4_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y2 == 5'd0)
 							stat_X4_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y2= 5'd2;
-						end
-						else if(stat_X5_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y2 == 5'd0)
 							stat_X5_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y2 == 5'd3)
+							stat_X1_Y2= 5'd4;
+						if(old_we && stat_X2_Y2 == 5'd3)
+							stat_X2_Y2= 5'd4;
+						if(old_we && stat_X3_Y2 == 5'd3)
+							stat_X3_Y2= 5'd4;
+						if(old_we && stat_X4_Y2 == 5'd3)
+							stat_X4_Y2= 5'd4;
+						if(old_we && stat_X5_Y2 == 5'd3)
+							stat_X5_Y2= 5'd4;
+						if( we )
+							stat_X1_Y2= 5'd3;
+						if( we )
+							stat_X2_Y2= 5'd3;
+						if( we )
+							stat_X3_Y2= 5'd3;
+						if( we )
+							stat_X4_Y2= 5'd3;
+						if( we )
+							stat_X5_Y2= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X1_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y2 == 5'd0)
 							stat_X1_Y2= 5'd1;
-						end
-						if(stat_X1_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y3 == 5'd0)
 							stat_X1_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y2 == 5'd3)
+							stat_X1_Y2= 5'd4;
+						if(old_we && stat_X1_Y3 == 5'd3)
+							stat_X1_Y3= 5'd4;
+						if( we )
+							stat_X1_Y2= 5'd3;
+						if( we )
+							stat_X1_Y3= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X1_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y2 == 5'd0)
 							stat_X1_Y2= 5'd1;
-						end
-						if(stat_X1_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y3 == 5'd0)
 							stat_X1_Y3= 5'd1;
-						end
-						if(stat_X1_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y4 == 5'd0)
 							stat_X1_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y2 == 5'd3)
+							stat_X1_Y2= 5'd4;
+						if(old_we && stat_X1_Y3 == 5'd3)
+							stat_X1_Y3= 5'd4;
+						if(old_we && stat_X1_Y4 == 5'd3)
+							stat_X1_Y4= 5'd4;
+						if( we )
+							stat_X1_Y2= 5'd3;
+						if( we )
+							stat_X1_Y3= 5'd3;
+						if( we )
+							stat_X1_Y4= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X1_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y2 == 5'd0)
 							stat_X1_Y2= 5'd1;
-						end
-						if(stat_X1_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y3 == 5'd0)
 							stat_X1_Y3= 5'd1;
-						end
-						if(stat_X1_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y4 == 5'd0)
 							stat_X1_Y4= 5'd1;
-						end
-						if(stat_X1_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y5 == 5'd0)
 							stat_X1_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y2 == 5'd3)
+							stat_X1_Y2= 5'd4;
+						if(old_we && stat_X1_Y3 == 5'd3)
+							stat_X1_Y3= 5'd4;
+						if(old_we && stat_X1_Y4 == 5'd3)
+							stat_X1_Y4= 5'd4;
+						if(old_we && stat_X1_Y5 == 5'd3)
+							stat_X1_Y5= 5'd4;
+						if( we )
+							stat_X1_Y2= 5'd3;
+						if( we )
+							stat_X1_Y3= 5'd3;
+						if( we )
+							stat_X1_Y4= 5'd3;
+						if( we )
+							stat_X1_Y5= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X1_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y2 == 5'd0)
 							stat_X1_Y2= 5'd1;
-						end
-						if(stat_X1_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y3 == 5'd0)
 							stat_X1_Y3= 5'd1;
-						end
-						if(stat_X1_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y4 == 5'd0)
 							stat_X1_Y4= 5'd1;
-						end
-						if(stat_X1_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y5 == 5'd0)
 							stat_X1_Y5= 5'd1;
-						end
-						if(stat_X1_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y6 == 5'd0)
 							stat_X1_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y2 == 5'd3)
+							stat_X1_Y2= 5'd4;
+						if(old_we && stat_X1_Y3 == 5'd3)
+							stat_X1_Y3= 5'd4;
+						if(old_we && stat_X1_Y4 == 5'd3)
+							stat_X1_Y4= 5'd4;
+						if(old_we && stat_X1_Y5 == 5'd3)
+							stat_X1_Y5= 5'd4;
+						if(old_we && stat_X1_Y6 == 5'd3)
+							stat_X1_Y6= 5'd4;
+						if( we )
+							stat_X1_Y2= 5'd3;
+						if( we )
+							stat_X1_Y3= 5'd3;
+						if( we )
+							stat_X1_Y4= 5'd3;
+						if( we )
+							stat_X1_Y5= 5'd3;
+						if( we )
+							stat_X1_Y6= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd1 && mouse_cell_y == 4'd3)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X1_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y3 == 5'd0)
 							stat_X1_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y3= 5'd2;
-						end
-						else if(stat_X2_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y3 == 5'd0)
 							stat_X2_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y3 == 5'd3)
+							stat_X1_Y3= 5'd4;
+						if(old_we && stat_X2_Y3 == 5'd3)
+							stat_X2_Y3= 5'd4;
+						if( we )
+							stat_X1_Y3= 5'd3;
+						if( we )
+							stat_X2_Y3= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X1_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y3 == 5'd0)
 							stat_X1_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y3= 5'd2;
-						end
-						else if(stat_X2_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y3 == 5'd0)
 							stat_X2_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y3= 5'd2;
-						end
-						else if(stat_X3_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y3 == 5'd0)
 							stat_X3_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y3 == 5'd3)
+							stat_X1_Y3= 5'd4;
+						if(old_we && stat_X2_Y3 == 5'd3)
+							stat_X2_Y3= 5'd4;
+						if(old_we && stat_X3_Y3 == 5'd3)
+							stat_X3_Y3= 5'd4;
+						if( we )
+							stat_X1_Y3= 5'd3;
+						if( we )
+							stat_X2_Y3= 5'd3;
+						if( we )
+							stat_X3_Y3= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X1_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y3 == 5'd0)
 							stat_X1_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y3= 5'd2;
-						end
-						else if(stat_X2_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y3 == 5'd0)
 							stat_X2_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y3= 5'd2;
-						end
-						else if(stat_X3_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y3 == 5'd0)
 							stat_X3_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y3= 5'd2;
-						end
-						else if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y3 == 5'd3)
+							stat_X1_Y3= 5'd4;
+						if(old_we && stat_X2_Y3 == 5'd3)
+							stat_X2_Y3= 5'd4;
+						if(old_we && stat_X3_Y3 == 5'd3)
+							stat_X3_Y3= 5'd4;
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if( we )
+							stat_X1_Y3= 5'd3;
+						if( we )
+							stat_X2_Y3= 5'd3;
+						if( we )
+							stat_X3_Y3= 5'd3;
+						if( we )
+							stat_X4_Y3= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X1_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y3 == 5'd0)
 							stat_X1_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y3= 5'd2;
-						end
-						else if(stat_X2_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y3 == 5'd0)
 							stat_X2_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y3= 5'd2;
-						end
-						else if(stat_X3_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y3 == 5'd0)
 							stat_X3_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y3= 5'd2;
-						end
-						else if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y3= 5'd2;
-						end
-						else if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y3 == 5'd3)
+							stat_X1_Y3= 5'd4;
+						if(old_we && stat_X2_Y3 == 5'd3)
+							stat_X2_Y3= 5'd4;
+						if(old_we && stat_X3_Y3 == 5'd3)
+							stat_X3_Y3= 5'd4;
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if( we )
+							stat_X1_Y3= 5'd3;
+						if( we )
+							stat_X2_Y3= 5'd3;
+						if( we )
+							stat_X3_Y3= 5'd3;
+						if( we )
+							stat_X4_Y3= 5'd3;
+						if( we )
+							stat_X5_Y3= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X1_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y3 == 5'd0)
 							stat_X1_Y3= 5'd1;
-						end
-						if(stat_X1_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y4 == 5'd0)
 							stat_X1_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y3 == 5'd3)
+							stat_X1_Y3= 5'd4;
+						if(old_we && stat_X1_Y4 == 5'd3)
+							stat_X1_Y4= 5'd4;
+						if( we )
+							stat_X1_Y3= 5'd3;
+						if( we )
+							stat_X1_Y4= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X1_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y3 == 5'd0)
 							stat_X1_Y3= 5'd1;
-						end
-						if(stat_X1_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y4 == 5'd0)
 							stat_X1_Y4= 5'd1;
-						end
-						if(stat_X1_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y5 == 5'd0)
 							stat_X1_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y3 == 5'd3)
+							stat_X1_Y3= 5'd4;
+						if(old_we && stat_X1_Y4 == 5'd3)
+							stat_X1_Y4= 5'd4;
+						if(old_we && stat_X1_Y5 == 5'd3)
+							stat_X1_Y5= 5'd4;
+						if( we )
+							stat_X1_Y3= 5'd3;
+						if( we )
+							stat_X1_Y4= 5'd3;
+						if( we )
+							stat_X1_Y5= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X1_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y3 == 5'd0)
 							stat_X1_Y3= 5'd1;
-						end
-						if(stat_X1_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y4 == 5'd0)
 							stat_X1_Y4= 5'd1;
-						end
-						if(stat_X1_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y5 == 5'd0)
 							stat_X1_Y5= 5'd1;
-						end
-						if(stat_X1_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y6 == 5'd0)
 							stat_X1_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y3 == 5'd3)
+							stat_X1_Y3= 5'd4;
+						if(old_we && stat_X1_Y4 == 5'd3)
+							stat_X1_Y4= 5'd4;
+						if(old_we && stat_X1_Y5 == 5'd3)
+							stat_X1_Y5= 5'd4;
+						if(old_we && stat_X1_Y6 == 5'd3)
+							stat_X1_Y6= 5'd4;
+						if( we )
+							stat_X1_Y3= 5'd3;
+						if( we )
+							stat_X1_Y4= 5'd3;
+						if( we )
+							stat_X1_Y5= 5'd3;
+						if( we )
+							stat_X1_Y6= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X1_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y3 == 5'd0)
 							stat_X1_Y3= 5'd1;
-						end
-						if(stat_X1_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y4 == 5'd0)
 							stat_X1_Y4= 5'd1;
-						end
-						if(stat_X1_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y5 == 5'd0)
 							stat_X1_Y5= 5'd1;
-						end
-						if(stat_X1_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y6 == 5'd0)
 							stat_X1_Y6= 5'd1;
-						end
-						if(stat_X1_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y7 == 5'd0)
 							stat_X1_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y3 == 5'd3)
+							stat_X1_Y3= 5'd4;
+						if(old_we && stat_X1_Y4 == 5'd3)
+							stat_X1_Y4= 5'd4;
+						if(old_we && stat_X1_Y5 == 5'd3)
+							stat_X1_Y5= 5'd4;
+						if(old_we && stat_X1_Y6 == 5'd3)
+							stat_X1_Y6= 5'd4;
+						if(old_we && stat_X1_Y7 == 5'd3)
+							stat_X1_Y7= 5'd4;
+						if( we )
+							stat_X1_Y3= 5'd3;
+						if( we )
+							stat_X1_Y4= 5'd3;
+						if( we )
+							stat_X1_Y5= 5'd3;
+						if( we )
+							stat_X1_Y6= 5'd3;
+						if( we )
+							stat_X1_Y7= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd1 && mouse_cell_y == 4'd4)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X1_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y4 == 5'd0)
 							stat_X1_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y4= 5'd2;
-						end
-						else if(stat_X2_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y4 == 5'd0)
 							stat_X2_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y4 == 5'd3)
+							stat_X1_Y4= 5'd4;
+						if(old_we && stat_X2_Y4 == 5'd3)
+							stat_X2_Y4= 5'd4;
+						if( we )
+							stat_X1_Y4= 5'd3;
+						if( we )
+							stat_X2_Y4= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X1_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y4 == 5'd0)
 							stat_X1_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y4= 5'd2;
-						end
-						else if(stat_X2_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y4 == 5'd0)
 							stat_X2_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y4= 5'd2;
-						end
-						else if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y4 == 5'd3)
+							stat_X1_Y4= 5'd4;
+						if(old_we && stat_X2_Y4 == 5'd3)
+							stat_X2_Y4= 5'd4;
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if( we )
+							stat_X1_Y4= 5'd3;
+						if( we )
+							stat_X2_Y4= 5'd3;
+						if( we )
+							stat_X3_Y4= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X1_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y4 == 5'd0)
 							stat_X1_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y4= 5'd2;
-						end
-						else if(stat_X2_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y4 == 5'd0)
 							stat_X2_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y4= 5'd2;
-						end
-						else if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y4= 5'd2;
-						end
-						else if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y4 == 5'd3)
+							stat_X1_Y4= 5'd4;
+						if(old_we && stat_X2_Y4 == 5'd3)
+							stat_X2_Y4= 5'd4;
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if( we )
+							stat_X1_Y4= 5'd3;
+						if( we )
+							stat_X2_Y4= 5'd3;
+						if( we )
+							stat_X3_Y4= 5'd3;
+						if( we )
+							stat_X4_Y4= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X1_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y4 == 5'd0)
 							stat_X1_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y4= 5'd2;
-						end
-						else if(stat_X2_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y4 == 5'd0)
 							stat_X2_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y4= 5'd2;
-						end
-						else if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y4= 5'd2;
-						end
-						else if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y4= 5'd2;
-						end
-						else if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y4 == 5'd3)
+							stat_X1_Y4= 5'd4;
+						if(old_we && stat_X2_Y4 == 5'd3)
+							stat_X2_Y4= 5'd4;
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if( we )
+							stat_X1_Y4= 5'd3;
+						if( we )
+							stat_X2_Y4= 5'd3;
+						if( we )
+							stat_X3_Y4= 5'd3;
+						if( we )
+							stat_X4_Y4= 5'd3;
+						if( we )
+							stat_X5_Y4= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X1_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y4 == 5'd0)
 							stat_X1_Y4= 5'd1;
-						end
-						if(stat_X1_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y5 == 5'd0)
 							stat_X1_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y4 == 5'd3)
+							stat_X1_Y4= 5'd4;
+						if(old_we && stat_X1_Y5 == 5'd3)
+							stat_X1_Y5= 5'd4;
+						if( we )
+							stat_X1_Y4= 5'd3;
+						if( we )
+							stat_X1_Y5= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X1_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y4 == 5'd0)
 							stat_X1_Y4= 5'd1;
-						end
-						if(stat_X1_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y5 == 5'd0)
 							stat_X1_Y5= 5'd1;
-						end
-						if(stat_X1_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y6 == 5'd0)
 							stat_X1_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y4 == 5'd3)
+							stat_X1_Y4= 5'd4;
+						if(old_we && stat_X1_Y5 == 5'd3)
+							stat_X1_Y5= 5'd4;
+						if(old_we && stat_X1_Y6 == 5'd3)
+							stat_X1_Y6= 5'd4;
+						if( we )
+							stat_X1_Y4= 5'd3;
+						if( we )
+							stat_X1_Y5= 5'd3;
+						if( we )
+							stat_X1_Y6= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X1_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y4 == 5'd0)
 							stat_X1_Y4= 5'd1;
-						end
-						if(stat_X1_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y5 == 5'd0)
 							stat_X1_Y5= 5'd1;
-						end
-						if(stat_X1_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y6 == 5'd0)
 							stat_X1_Y6= 5'd1;
-						end
-						if(stat_X1_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y7 == 5'd0)
 							stat_X1_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y4 == 5'd3)
+							stat_X1_Y4= 5'd4;
+						if(old_we && stat_X1_Y5 == 5'd3)
+							stat_X1_Y5= 5'd4;
+						if(old_we && stat_X1_Y6 == 5'd3)
+							stat_X1_Y6= 5'd4;
+						if(old_we && stat_X1_Y7 == 5'd3)
+							stat_X1_Y7= 5'd4;
+						if( we )
+							stat_X1_Y4= 5'd3;
+						if( we )
+							stat_X1_Y5= 5'd3;
+						if( we )
+							stat_X1_Y6= 5'd3;
+						if( we )
+							stat_X1_Y7= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X1_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y4 == 5'd0)
 							stat_X1_Y4= 5'd1;
-						end
-						if(stat_X1_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y5 == 5'd0)
 							stat_X1_Y5= 5'd1;
-						end
-						if(stat_X1_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y6 == 5'd0)
 							stat_X1_Y6= 5'd1;
-						end
-						if(stat_X1_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y7 == 5'd0)
 							stat_X1_Y7= 5'd1;
-						end
-						if(stat_X1_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y8 == 5'd0)
 							stat_X1_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y4 == 5'd3)
+							stat_X1_Y4= 5'd4;
+						if(old_we && stat_X1_Y5 == 5'd3)
+							stat_X1_Y5= 5'd4;
+						if(old_we && stat_X1_Y6 == 5'd3)
+							stat_X1_Y6= 5'd4;
+						if(old_we && stat_X1_Y7 == 5'd3)
+							stat_X1_Y7= 5'd4;
+						if(old_we && stat_X1_Y8 == 5'd3)
+							stat_X1_Y8= 5'd4;
+						if( we )
+							stat_X1_Y4= 5'd3;
+						if( we )
+							stat_X1_Y5= 5'd3;
+						if( we )
+							stat_X1_Y6= 5'd3;
+						if( we )
+							stat_X1_Y7= 5'd3;
+						if( we )
+							stat_X1_Y8= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd1 && mouse_cell_y == 4'd5)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X0_Y9 == 5'd1)
-				 stat_X0_Y9 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X1_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y5 == 5'd0)
 							stat_X1_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y5= 5'd2;
-						end
-						else if(stat_X2_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y5 == 5'd0)
 							stat_X2_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y5 == 5'd3)
+							stat_X1_Y5= 5'd4;
+						if(old_we && stat_X2_Y5 == 5'd3)
+							stat_X2_Y5= 5'd4;
+						if( we )
+							stat_X1_Y5= 5'd3;
+						if( we )
+							stat_X2_Y5= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X1_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y5 == 5'd0)
 							stat_X1_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y5= 5'd2;
-						end
-						else if(stat_X2_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y5 == 5'd0)
 							stat_X2_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y5= 5'd2;
-						end
-						else if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y5 == 5'd3)
+							stat_X1_Y5= 5'd4;
+						if(old_we && stat_X2_Y5 == 5'd3)
+							stat_X2_Y5= 5'd4;
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if( we )
+							stat_X1_Y5= 5'd3;
+						if( we )
+							stat_X2_Y5= 5'd3;
+						if( we )
+							stat_X3_Y5= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X1_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y5 == 5'd0)
 							stat_X1_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y5= 5'd2;
-						end
-						else if(stat_X2_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y5 == 5'd0)
 							stat_X2_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y5= 5'd2;
-						end
-						else if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y5= 5'd2;
-						end
-						else if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y5 == 5'd3)
+							stat_X1_Y5= 5'd4;
+						if(old_we && stat_X2_Y5 == 5'd3)
+							stat_X2_Y5= 5'd4;
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if( we )
+							stat_X1_Y5= 5'd3;
+						if( we )
+							stat_X2_Y5= 5'd3;
+						if( we )
+							stat_X3_Y5= 5'd3;
+						if( we )
+							stat_X4_Y5= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X1_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y5 == 5'd0)
 							stat_X1_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y5= 5'd2;
-						end
-						else if(stat_X2_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y5 == 5'd0)
 							stat_X2_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y5= 5'd2;
-						end
-						else if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y5= 5'd2;
-						end
-						else if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y5= 5'd2;
-						end
-						else if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y5 == 5'd3)
+							stat_X1_Y5= 5'd4;
+						if(old_we && stat_X2_Y5 == 5'd3)
+							stat_X2_Y5= 5'd4;
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if( we )
+							stat_X1_Y5= 5'd3;
+						if( we )
+							stat_X2_Y5= 5'd3;
+						if( we )
+							stat_X3_Y5= 5'd3;
+						if( we )
+							stat_X4_Y5= 5'd3;
+						if( we )
+							stat_X5_Y5= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X1_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y5 == 5'd0)
 							stat_X1_Y5= 5'd1;
-						end
-						if(stat_X1_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y6 == 5'd0)
 							stat_X1_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y5 == 5'd3)
+							stat_X1_Y5= 5'd4;
+						if(old_we && stat_X1_Y6 == 5'd3)
+							stat_X1_Y6= 5'd4;
+						if( we )
+							stat_X1_Y5= 5'd3;
+						if( we )
+							stat_X1_Y6= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X1_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y5 == 5'd0)
 							stat_X1_Y5= 5'd1;
-						end
-						if(stat_X1_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y6 == 5'd0)
 							stat_X1_Y6= 5'd1;
-						end
-						if(stat_X1_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y7 == 5'd0)
 							stat_X1_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y5 == 5'd3)
+							stat_X1_Y5= 5'd4;
+						if(old_we && stat_X1_Y6 == 5'd3)
+							stat_X1_Y6= 5'd4;
+						if(old_we && stat_X1_Y7 == 5'd3)
+							stat_X1_Y7= 5'd4;
+						if( we )
+							stat_X1_Y5= 5'd3;
+						if( we )
+							stat_X1_Y6= 5'd3;
+						if( we )
+							stat_X1_Y7= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X1_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y5 == 5'd0)
 							stat_X1_Y5= 5'd1;
-						end
-						if(stat_X1_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y6 == 5'd0)
 							stat_X1_Y6= 5'd1;
-						end
-						if(stat_X1_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y7 == 5'd0)
 							stat_X1_Y7= 5'd1;
-						end
-						if(stat_X1_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y8 == 5'd0)
 							stat_X1_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y5 == 5'd3)
+							stat_X1_Y5= 5'd4;
+						if(old_we && stat_X1_Y6 == 5'd3)
+							stat_X1_Y6= 5'd4;
+						if(old_we && stat_X1_Y7 == 5'd3)
+							stat_X1_Y7= 5'd4;
+						if(old_we && stat_X1_Y8 == 5'd3)
+							stat_X1_Y8= 5'd4;
+						if( we )
+							stat_X1_Y5= 5'd3;
+						if( we )
+							stat_X1_Y6= 5'd3;
+						if( we )
+							stat_X1_Y7= 5'd3;
+						if( we )
+							stat_X1_Y8= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X1_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y5 == 5'd0)
 							stat_X1_Y5= 5'd1;
-						end
-						if(stat_X1_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y6 == 5'd0)
 							stat_X1_Y6= 5'd1;
-						end
-						if(stat_X1_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y7 == 5'd0)
 							stat_X1_Y7= 5'd1;
-						end
-						if(stat_X1_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y8 == 5'd0)
 							stat_X1_Y8= 5'd1;
-						end
-						if(stat_X1_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y9 == 5'd0)
 							stat_X1_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y5 == 5'd3)
+							stat_X1_Y5= 5'd4;
+						if(old_we && stat_X1_Y6 == 5'd3)
+							stat_X1_Y6= 5'd4;
+						if(old_we && stat_X1_Y7 == 5'd3)
+							stat_X1_Y7= 5'd4;
+						if(old_we && stat_X1_Y8 == 5'd3)
+							stat_X1_Y8= 5'd4;
+						if(old_we && stat_X1_Y9 == 5'd3)
+							stat_X1_Y9= 5'd4;
+						if( we )
+							stat_X1_Y5= 5'd3;
+						if( we )
+							stat_X1_Y6= 5'd3;
+						if( we )
+							stat_X1_Y7= 5'd3;
+						if( we )
+							stat_X1_Y8= 5'd3;
+						if( we )
+							stat_X1_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd1 && mouse_cell_y == 4'd6)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X0_Y9 == 5'd1)
-				 stat_X0_Y9 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X1_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y6 == 5'd0)
 							stat_X1_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y6= 5'd2;
-						end
-						else if(stat_X2_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y6 == 5'd0)
 							stat_X2_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y6 == 5'd3)
+							stat_X1_Y6= 5'd4;
+						if(old_we && stat_X2_Y6 == 5'd3)
+							stat_X2_Y6= 5'd4;
+						if( we )
+							stat_X1_Y6= 5'd3;
+						if( we )
+							stat_X2_Y6= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X1_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y6 == 5'd0)
 							stat_X1_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y6= 5'd2;
-						end
-						else if(stat_X2_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y6 == 5'd0)
 							stat_X2_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y6= 5'd2;
-						end
-						else if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y6 == 5'd3)
+							stat_X1_Y6= 5'd4;
+						if(old_we && stat_X2_Y6 == 5'd3)
+							stat_X2_Y6= 5'd4;
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if( we )
+							stat_X1_Y6= 5'd3;
+						if( we )
+							stat_X2_Y6= 5'd3;
+						if( we )
+							stat_X3_Y6= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X1_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y6 == 5'd0)
 							stat_X1_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y6= 5'd2;
-						end
-						else if(stat_X2_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y6 == 5'd0)
 							stat_X2_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y6= 5'd2;
-						end
-						else if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y6= 5'd2;
-						end
-						else if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y6 == 5'd3)
+							stat_X1_Y6= 5'd4;
+						if(old_we && stat_X2_Y6 == 5'd3)
+							stat_X2_Y6= 5'd4;
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if( we )
+							stat_X1_Y6= 5'd3;
+						if( we )
+							stat_X2_Y6= 5'd3;
+						if( we )
+							stat_X3_Y6= 5'd3;
+						if( we )
+							stat_X4_Y6= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X1_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y6 == 5'd0)
 							stat_X1_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y6= 5'd2;
-						end
-						else if(stat_X2_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y6 == 5'd0)
 							stat_X2_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y6= 5'd2;
-						end
-						else if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y6= 5'd2;
-						end
-						else if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y6= 5'd2;
-						end
-						else if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X5_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y6 == 5'd3)
+							stat_X1_Y6= 5'd4;
+						if(old_we && stat_X2_Y6 == 5'd3)
+							stat_X2_Y6= 5'd4;
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if( we )
+							stat_X1_Y6= 5'd3;
+						if( we )
+							stat_X2_Y6= 5'd3;
+						if( we )
+							stat_X3_Y6= 5'd3;
+						if( we )
+							stat_X4_Y6= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X1_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y6 == 5'd0)
 							stat_X1_Y6= 5'd1;
-						end
-						if(stat_X1_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y7 == 5'd0)
 							stat_X1_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y6 == 5'd3)
+							stat_X1_Y6= 5'd4;
+						if(old_we && stat_X1_Y7 == 5'd3)
+							stat_X1_Y7= 5'd4;
+						if( we )
+							stat_X1_Y6= 5'd3;
+						if( we )
+							stat_X1_Y7= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X1_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y6 == 5'd0)
 							stat_X1_Y6= 5'd1;
-						end
-						if(stat_X1_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y7 == 5'd0)
 							stat_X1_Y7= 5'd1;
-						end
-						if(stat_X1_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y8 == 5'd0)
 							stat_X1_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y6 == 5'd3)
+							stat_X1_Y6= 5'd4;
+						if(old_we && stat_X1_Y7 == 5'd3)
+							stat_X1_Y7= 5'd4;
+						if(old_we && stat_X1_Y8 == 5'd3)
+							stat_X1_Y8= 5'd4;
+						if( we )
+							stat_X1_Y6= 5'd3;
+						if( we )
+							stat_X1_Y7= 5'd3;
+						if( we )
+							stat_X1_Y8= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X1_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y6 == 5'd0)
 							stat_X1_Y6= 5'd1;
-						end
-						if(stat_X1_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y7 == 5'd0)
 							stat_X1_Y7= 5'd1;
-						end
-						if(stat_X1_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y8 == 5'd0)
 							stat_X1_Y8= 5'd1;
-						end
-						if(stat_X1_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y9 == 5'd0)
 							stat_X1_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y6 == 5'd3)
+							stat_X1_Y6= 5'd4;
+						if(old_we && stat_X1_Y7 == 5'd3)
+							stat_X1_Y7= 5'd4;
+						if(old_we && stat_X1_Y8 == 5'd3)
+							stat_X1_Y8= 5'd4;
+						if(old_we && stat_X1_Y9 == 5'd3)
+							stat_X1_Y9= 5'd4;
+						if( we )
+							stat_X1_Y6= 5'd3;
+						if( we )
+							stat_X1_Y7= 5'd3;
+						if( we )
+							stat_X1_Y8= 5'd3;
+						if( we )
+							stat_X1_Y9= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X1_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y6 == 5'd0)
 							stat_X1_Y6= 5'd1;
-						end
-						if(stat_X1_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y7 == 5'd0)
 							stat_X1_Y7= 5'd1;
-						end
-						if(stat_X1_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y8 == 5'd0)
 							stat_X1_Y8= 5'd1;
-						end
-						if(stat_X1_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y9 == 5'd0)
 							stat_X1_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y6 == 5'd3)
+							stat_X1_Y6= 5'd4;
+						if(old_we && stat_X1_Y7 == 5'd3)
+							stat_X1_Y7= 5'd4;
+						if(old_we && stat_X1_Y8 == 5'd3)
+							stat_X1_Y8= 5'd4;
+						if(old_we && stat_X1_Y9 == 5'd3)
+							stat_X1_Y9= 5'd4;
+						if( we )
+							stat_X1_Y6= 5'd3;
+						if( we )
+							stat_X1_Y7= 5'd3;
+						if( we )
+							stat_X1_Y8= 5'd3;
+						if( we )
+							stat_X1_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd1 && mouse_cell_y == 4'd7)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X0_Y9 == 5'd1)
-				 stat_X0_Y9 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X1_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y7 == 5'd0)
 							stat_X1_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y7= 5'd2;
-						end
-						else if(stat_X2_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y7 == 5'd0)
 							stat_X2_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y7 == 5'd3)
+							stat_X1_Y7= 5'd4;
+						if(old_we && stat_X2_Y7 == 5'd3)
+							stat_X2_Y7= 5'd4;
+						if( we )
+							stat_X1_Y7= 5'd3;
+						if( we )
+							stat_X2_Y7= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X1_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y7 == 5'd0)
 							stat_X1_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y7= 5'd2;
-						end
-						else if(stat_X2_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y7 == 5'd0)
 							stat_X2_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y7= 5'd2;
-						end
-						else if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y7 == 5'd0)
 							stat_X3_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y7 == 5'd3)
+							stat_X1_Y7= 5'd4;
+						if(old_we && stat_X2_Y7 == 5'd3)
+							stat_X2_Y7= 5'd4;
+						if(old_we && stat_X3_Y7 == 5'd3)
+							stat_X3_Y7= 5'd4;
+						if( we )
+							stat_X1_Y7= 5'd3;
+						if( we )
+							stat_X2_Y7= 5'd3;
+						if( we )
+							stat_X3_Y7= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X1_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y7 == 5'd0)
 							stat_X1_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y7= 5'd2;
-						end
-						else if(stat_X2_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y7 == 5'd0)
 							stat_X2_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y7= 5'd2;
-						end
-						else if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y7 == 5'd0)
 							stat_X3_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y7= 5'd2;
-						end
-						else if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X4_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y7 == 5'd3)
+							stat_X1_Y7= 5'd4;
+						if(old_we && stat_X2_Y7 == 5'd3)
+							stat_X2_Y7= 5'd4;
+						if(old_we && stat_X3_Y7 == 5'd3)
+							stat_X3_Y7= 5'd4;
+						if( we )
+							stat_X1_Y7= 5'd3;
+						if( we )
+							stat_X2_Y7= 5'd3;
+						if( we )
+							stat_X3_Y7= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X1_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y7 == 5'd0)
 							stat_X1_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y7= 5'd2;
-						end
-						else if(stat_X2_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y7 == 5'd0)
 							stat_X2_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y7= 5'd2;
-						end
-						else if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y7 == 5'd0)
 							stat_X3_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y7= 5'd2;
-						end
-						else if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X4_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y7= 5'd2;
-						end
-						else if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X5_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y7 == 5'd3)
+							stat_X1_Y7= 5'd4;
+						if(old_we && stat_X2_Y7 == 5'd3)
+							stat_X2_Y7= 5'd4;
+						if(old_we && stat_X3_Y7 == 5'd3)
+							stat_X3_Y7= 5'd4;
+						if( we )
+							stat_X1_Y7= 5'd3;
+						if( we )
+							stat_X2_Y7= 5'd3;
+						if( we )
+							stat_X3_Y7= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X1_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y7 == 5'd0)
 							stat_X1_Y7= 5'd1;
-						end
-						if(stat_X1_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y8 == 5'd0)
 							stat_X1_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y7 == 5'd3)
+							stat_X1_Y7= 5'd4;
+						if(old_we && stat_X1_Y8 == 5'd3)
+							stat_X1_Y8= 5'd4;
+						if( we )
+							stat_X1_Y7= 5'd3;
+						if( we )
+							stat_X1_Y8= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X1_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y7 == 5'd0)
 							stat_X1_Y7= 5'd1;
-						end
-						if(stat_X1_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y8 == 5'd0)
 							stat_X1_Y8= 5'd1;
-						end
-						if(stat_X1_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y9 == 5'd0)
 							stat_X1_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y7 == 5'd3)
+							stat_X1_Y7= 5'd4;
+						if(old_we && stat_X1_Y8 == 5'd3)
+							stat_X1_Y8= 5'd4;
+						if(old_we && stat_X1_Y9 == 5'd3)
+							stat_X1_Y9= 5'd4;
+						if( we )
+							stat_X1_Y7= 5'd3;
+						if( we )
+							stat_X1_Y8= 5'd3;
+						if( we )
+							stat_X1_Y9= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X1_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y7 == 5'd0)
 							stat_X1_Y7= 5'd1;
-						end
-						if(stat_X1_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y8 == 5'd0)
 							stat_X1_Y8= 5'd1;
-						end
-						if(stat_X1_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y9 == 5'd0)
 							stat_X1_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y7 == 5'd3)
+							stat_X1_Y7= 5'd4;
+						if(old_we && stat_X1_Y8 == 5'd3)
+							stat_X1_Y8= 5'd4;
+						if(old_we && stat_X1_Y9 == 5'd3)
+							stat_X1_Y9= 5'd4;
+						if( we )
+							stat_X1_Y7= 5'd3;
+						if( we )
+							stat_X1_Y8= 5'd3;
+						if( we )
+							stat_X1_Y9= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X1_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y7 == 5'd0)
 							stat_X1_Y7= 5'd1;
-						end
-						if(stat_X1_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y8 == 5'd0)
 							stat_X1_Y8= 5'd1;
-						end
-						if(stat_X1_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y9 == 5'd0)
 							stat_X1_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y7 == 5'd3)
+							stat_X1_Y7= 5'd4;
+						if(old_we && stat_X1_Y8 == 5'd3)
+							stat_X1_Y8= 5'd4;
+						if(old_we && stat_X1_Y9 == 5'd3)
+							stat_X1_Y9= 5'd4;
+						if( we )
+							stat_X1_Y7= 5'd3;
+						if( we )
+							stat_X1_Y8= 5'd3;
+						if( we )
+							stat_X1_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd1 && mouse_cell_y == 4'd8)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X0_Y9 == 5'd1)
-				 stat_X0_Y9 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X1_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y8 == 5'd0)
 							stat_X1_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y8= 5'd2;
-						end
-						else if(stat_X2_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y8 == 5'd0)
 							stat_X2_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y8 == 5'd3)
+							stat_X1_Y8= 5'd4;
+						if(old_we && stat_X2_Y8 == 5'd3)
+							stat_X2_Y8= 5'd4;
+						if( we )
+							stat_X1_Y8= 5'd3;
+						if( we )
+							stat_X2_Y8= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X1_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y8 == 5'd0)
 							stat_X1_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y8= 5'd2;
-						end
-						else if(stat_X2_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y8 == 5'd0)
 							stat_X2_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y8= 5'd2;
-						end
-						else if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X3_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y8 == 5'd3)
+							stat_X1_Y8= 5'd4;
+						if(old_we && stat_X2_Y8 == 5'd3)
+							stat_X2_Y8= 5'd4;
+						if( we )
+							stat_X1_Y8= 5'd3;
+						if( we )
+							stat_X2_Y8= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X1_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y8 == 5'd0)
 							stat_X1_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y8= 5'd2;
-						end
-						else if(stat_X2_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y8 == 5'd0)
 							stat_X2_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y8= 5'd2;
-						end
-						else if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X3_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y8= 5'd2;
-						end
-						else if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X4_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y8 == 5'd3)
+							stat_X1_Y8= 5'd4;
+						if(old_we && stat_X2_Y8 == 5'd3)
+							stat_X2_Y8= 5'd4;
+						if( we )
+							stat_X1_Y8= 5'd3;
+						if( we )
+							stat_X2_Y8= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X1_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y8 == 5'd0)
 							stat_X1_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X2_Y8= 5'd2;
-						end
-						else if(stat_X2_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y8 == 5'd0)
 							stat_X2_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y8= 5'd2;
-						end
-						else if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X3_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y8= 5'd2;
-						end
-						else if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X4_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y8= 5'd2;
-						end
-						else if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X5_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y8 == 5'd3)
+							stat_X1_Y8= 5'd4;
+						if(old_we && stat_X2_Y8 == 5'd3)
+							stat_X2_Y8= 5'd4;
+						if( we )
+							stat_X1_Y8= 5'd3;
+						if( we )
+							stat_X2_Y8= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X1_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y8 == 5'd0)
 							stat_X1_Y8= 5'd1;
-						end
-						if(stat_X1_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y9 == 5'd0)
 							stat_X1_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y8 == 5'd3)
+							stat_X1_Y8= 5'd4;
+						if(old_we && stat_X1_Y9 == 5'd3)
+							stat_X1_Y9= 5'd4;
+						if( we )
+							stat_X1_Y8= 5'd3;
+						if( we )
+							stat_X1_Y9= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X1_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y8 == 5'd0)
 							stat_X1_Y8= 5'd1;
-						end
-						if(stat_X1_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y9 == 5'd0)
 							stat_X1_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y8 == 5'd3)
+							stat_X1_Y8= 5'd4;
+						if(old_we && stat_X1_Y9 == 5'd3)
+							stat_X1_Y9= 5'd4;
+						if( we )
+							stat_X1_Y8= 5'd3;
+						if( we )
+							stat_X1_Y9= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X1_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y8 == 5'd0)
 							stat_X1_Y8= 5'd1;
-						end
-						if(stat_X1_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y9 == 5'd0)
 							stat_X1_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y8 == 5'd3)
+							stat_X1_Y8= 5'd4;
+						if(old_we && stat_X1_Y9 == 5'd3)
+							stat_X1_Y9= 5'd4;
+						if( we )
+							stat_X1_Y8= 5'd3;
+						if( we )
+							stat_X1_Y9= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X1_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y8 == 5'd0)
 							stat_X1_Y8= 5'd1;
-						end
-						if(stat_X1_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X1_Y9 == 5'd0)
 							stat_X1_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X1_Y8 == 5'd3)
+							stat_X1_Y8= 5'd4;
+						if(old_we && stat_X1_Y9 == 5'd3)
+							stat_X1_Y9= 5'd4;
+						if( we )
+							stat_X1_Y8= 5'd3;
+						if( we )
+							stat_X1_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
+		//controllo la posizione: capisco in che cella sono
+		else if(mouse_cell_x == 4'd1 && mouse_cell_y == 4'd9)
+		begin//controllo la direzione
+			if(!direction)
+			begin//controllo la dimensione della nave
+				case (dimension)
+					4'd2:
+					begin
+						if( !we && stat_X1_Y9 == 5'd0)
+							stat_X1_Y9= 5'd1;
+						if(old_we && stat_X1_Y9 == 5'd3)
+							stat_X1_Y9= 5'd4;
+						if( we )
+							stat_X1_Y9= 5'd3;
+					end//interno case
+					4'd3:
+					begin
+						if( !we && stat_X1_Y9 == 5'd0)
+							stat_X1_Y9= 5'd1;
+						if(old_we && stat_X1_Y9 == 5'd3)
+							stat_X1_Y9= 5'd4;
+						if( we )
+							stat_X1_Y9= 5'd3;
+					end//interno case
+					4'd4:
+					begin
+						if( !we && stat_X1_Y9 == 5'd0)
+							stat_X1_Y9= 5'd1;
+						if(old_we && stat_X1_Y9 == 5'd3)
+							stat_X1_Y9= 5'd4;
+						if( we )
+							stat_X1_Y9= 5'd3;
+					end//interno case
+					4'd5:
+					begin
+						if( !we && stat_X1_Y9 == 5'd0)
+							stat_X1_Y9= 5'd1;
+						if(old_we && stat_X1_Y9 == 5'd3)
+							stat_X1_Y9= 5'd4;
+						if( we )
+							stat_X1_Y9= 5'd3;
+					end//interno case
+				endcase
+			end//direzione
+			else
+			begin//controllo la dimensione della nave
+				case (dimension)
+					4'd2:
+					begin
+						if( !we && stat_X1_Y9 == 5'd0)
+							stat_X1_Y9= 5'd1;
+						if(old_we && stat_X1_Y9 == 5'd3)
+							stat_X1_Y9= 5'd4;
+						if( we )
+							stat_X1_Y9= 5'd3;
+					end//interno case
+					4'd3:
+					begin
+						if( !we && stat_X1_Y9 == 5'd0)
+							stat_X1_Y9= 5'd1;
+						if(old_we && stat_X1_Y9 == 5'd3)
+							stat_X1_Y9= 5'd4;
+						if( we )
+							stat_X1_Y9= 5'd3;
+					end//interno case
+					4'd4:
+					begin
+						if( !we && stat_X1_Y9 == 5'd0)
+							stat_X1_Y9= 5'd1;
+						if(old_we && stat_X1_Y9 == 5'd3)
+							stat_X1_Y9= 5'd4;
+						if( we )
+							stat_X1_Y9= 5'd3;
+					end//interno case
+					4'd5:
+					begin
+						if( !we && stat_X1_Y9 == 5'd0)
+							stat_X1_Y9= 5'd1;
+						if(old_we && stat_X1_Y9 == 5'd3)
+							stat_X1_Y9= 5'd4;
+						if( we )
+							stat_X1_Y9= 5'd3;
+					end//interno case
+				endcase
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd2 && mouse_cell_y == 4'd0)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X2_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y0 == 5'd0)
 							stat_X2_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y0= 5'd2;
-						end
-						else if(stat_X3_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y0 == 5'd0)
 							stat_X3_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y0 == 5'd3)
+							stat_X2_Y0= 5'd4;
+						if(old_we && stat_X3_Y0 == 5'd3)
+							stat_X3_Y0= 5'd4;
+						if( we )
+							stat_X2_Y0= 5'd3;
+						if( we )
+							stat_X3_Y0= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X2_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y0 == 5'd0)
 							stat_X2_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y0= 5'd2;
-						end
-						else if(stat_X3_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y0 == 5'd0)
 							stat_X3_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y0= 5'd2;
-						end
-						else if(stat_X4_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y0 == 5'd0)
 							stat_X4_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y0 == 5'd3)
+							stat_X2_Y0= 5'd4;
+						if(old_we && stat_X3_Y0 == 5'd3)
+							stat_X3_Y0= 5'd4;
+						if(old_we && stat_X4_Y0 == 5'd3)
+							stat_X4_Y0= 5'd4;
+						if( we )
+							stat_X2_Y0= 5'd3;
+						if( we )
+							stat_X3_Y0= 5'd3;
+						if( we )
+							stat_X4_Y0= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X2_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y0 == 5'd0)
 							stat_X2_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y0= 5'd2;
-						end
-						else if(stat_X3_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y0 == 5'd0)
 							stat_X3_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y0= 5'd2;
-						end
-						else if(stat_X4_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y0 == 5'd0)
 							stat_X4_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y0= 5'd2;
-						end
-						else if(stat_X5_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y0 == 5'd0)
 							stat_X5_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y0 == 5'd3)
+							stat_X2_Y0= 5'd4;
+						if(old_we && stat_X3_Y0 == 5'd3)
+							stat_X3_Y0= 5'd4;
+						if(old_we && stat_X4_Y0 == 5'd3)
+							stat_X4_Y0= 5'd4;
+						if(old_we && stat_X5_Y0 == 5'd3)
+							stat_X5_Y0= 5'd4;
+						if( we )
+							stat_X2_Y0= 5'd3;
+						if( we )
+							stat_X3_Y0= 5'd3;
+						if( we )
+							stat_X4_Y0= 5'd3;
+						if( we )
+							stat_X5_Y0= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X2_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y0 == 5'd0)
 							stat_X2_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y0= 5'd2;
-						end
-						else if(stat_X3_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y0 == 5'd0)
 							stat_X3_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y0= 5'd2;
-						end
-						else if(stat_X4_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y0 == 5'd0)
 							stat_X4_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y0= 5'd2;
-						end
-						else if(stat_X5_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y0 == 5'd0)
 							stat_X5_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y0= 5'd2;
-						end
-						else if(stat_X6_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y0 == 5'd0)
 							stat_X6_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y0 == 5'd3)
+							stat_X2_Y0= 5'd4;
+						if(old_we && stat_X3_Y0 == 5'd3)
+							stat_X3_Y0= 5'd4;
+						if(old_we && stat_X4_Y0 == 5'd3)
+							stat_X4_Y0= 5'd4;
+						if(old_we && stat_X5_Y0 == 5'd3)
+							stat_X5_Y0= 5'd4;
+						if(old_we && stat_X6_Y0 == 5'd3)
+							stat_X6_Y0= 5'd4;
+						if( we )
+							stat_X2_Y0= 5'd3;
+						if( we )
+							stat_X3_Y0= 5'd3;
+						if( we )
+							stat_X4_Y0= 5'd3;
+						if( we )
+							stat_X5_Y0= 5'd3;
+						if( we )
+							stat_X6_Y0= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X2_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y0 == 5'd0)
 							stat_X2_Y0= 5'd1;
-						end
-						if(stat_X2_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y1 == 5'd0)
 							stat_X2_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y0 == 5'd3)
+							stat_X2_Y0= 5'd4;
+						if(old_we && stat_X2_Y1 == 5'd3)
+							stat_X2_Y1= 5'd4;
+						if( we )
+							stat_X2_Y0= 5'd3;
+						if( we )
+							stat_X2_Y1= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X2_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y0 == 5'd0)
 							stat_X2_Y0= 5'd1;
-						end
-						if(stat_X2_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y1 == 5'd0)
 							stat_X2_Y1= 5'd1;
-						end
-						if(stat_X2_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y2 == 5'd0)
 							stat_X2_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y0 == 5'd3)
+							stat_X2_Y0= 5'd4;
+						if(old_we && stat_X2_Y1 == 5'd3)
+							stat_X2_Y1= 5'd4;
+						if(old_we && stat_X2_Y2 == 5'd3)
+							stat_X2_Y2= 5'd4;
+						if( we )
+							stat_X2_Y0= 5'd3;
+						if( we )
+							stat_X2_Y1= 5'd3;
+						if( we )
+							stat_X2_Y2= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X2_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y0 == 5'd0)
 							stat_X2_Y0= 5'd1;
-						end
-						if(stat_X2_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y1 == 5'd0)
 							stat_X2_Y1= 5'd1;
-						end
-						if(stat_X2_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y2 == 5'd0)
 							stat_X2_Y2= 5'd1;
-						end
-						if(stat_X2_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y3 == 5'd0)
 							stat_X2_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y0 == 5'd3)
+							stat_X2_Y0= 5'd4;
+						if(old_we && stat_X2_Y1 == 5'd3)
+							stat_X2_Y1= 5'd4;
+						if(old_we && stat_X2_Y2 == 5'd3)
+							stat_X2_Y2= 5'd4;
+						if(old_we && stat_X2_Y3 == 5'd3)
+							stat_X2_Y3= 5'd4;
+						if( we )
+							stat_X2_Y0= 5'd3;
+						if( we )
+							stat_X2_Y1= 5'd3;
+						if( we )
+							stat_X2_Y2= 5'd3;
+						if( we )
+							stat_X2_Y3= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X2_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y0 == 5'd0)
 							stat_X2_Y0= 5'd1;
-						end
-						if(stat_X2_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y1 == 5'd0)
 							stat_X2_Y1= 5'd1;
-						end
-						if(stat_X2_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y2 == 5'd0)
 							stat_X2_Y2= 5'd1;
-						end
-						if(stat_X2_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y3 == 5'd0)
 							stat_X2_Y3= 5'd1;
-						end
-						if(stat_X2_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y4 == 5'd0)
 							stat_X2_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y0 == 5'd3)
+							stat_X2_Y0= 5'd4;
+						if(old_we && stat_X2_Y1 == 5'd3)
+							stat_X2_Y1= 5'd4;
+						if(old_we && stat_X2_Y2 == 5'd3)
+							stat_X2_Y2= 5'd4;
+						if(old_we && stat_X2_Y3 == 5'd3)
+							stat_X2_Y3= 5'd4;
+						if(old_we && stat_X2_Y4 == 5'd3)
+							stat_X2_Y4= 5'd4;
+						if( we )
+							stat_X2_Y0= 5'd3;
+						if( we )
+							stat_X2_Y1= 5'd3;
+						if( we )
+							stat_X2_Y2= 5'd3;
+						if( we )
+							stat_X2_Y3= 5'd3;
+						if( we )
+							stat_X2_Y4= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd2 && mouse_cell_y == 4'd1)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X2_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y1 == 5'd0)
 							stat_X2_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y1= 5'd2;
-						end
-						else if(stat_X3_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y1 == 5'd0)
 							stat_X3_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y1 == 5'd3)
+							stat_X2_Y1= 5'd4;
+						if(old_we && stat_X3_Y1 == 5'd3)
+							stat_X3_Y1= 5'd4;
+						if( we )
+							stat_X2_Y1= 5'd3;
+						if( we )
+							stat_X3_Y1= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X2_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y1 == 5'd0)
 							stat_X2_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y1= 5'd2;
-						end
-						else if(stat_X3_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y1 == 5'd0)
 							stat_X3_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y1= 5'd2;
-						end
-						else if(stat_X4_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y1 == 5'd0)
 							stat_X4_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y1 == 5'd3)
+							stat_X2_Y1= 5'd4;
+						if(old_we && stat_X3_Y1 == 5'd3)
+							stat_X3_Y1= 5'd4;
+						if(old_we && stat_X4_Y1 == 5'd3)
+							stat_X4_Y1= 5'd4;
+						if( we )
+							stat_X2_Y1= 5'd3;
+						if( we )
+							stat_X3_Y1= 5'd3;
+						if( we )
+							stat_X4_Y1= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X2_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y1 == 5'd0)
 							stat_X2_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y1= 5'd2;
-						end
-						else if(stat_X3_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y1 == 5'd0)
 							stat_X3_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y1= 5'd2;
-						end
-						else if(stat_X4_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y1 == 5'd0)
 							stat_X4_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y1= 5'd2;
-						end
-						else if(stat_X5_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y1 == 5'd0)
 							stat_X5_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y1 == 5'd3)
+							stat_X2_Y1= 5'd4;
+						if(old_we && stat_X3_Y1 == 5'd3)
+							stat_X3_Y1= 5'd4;
+						if(old_we && stat_X4_Y1 == 5'd3)
+							stat_X4_Y1= 5'd4;
+						if(old_we && stat_X5_Y1 == 5'd3)
+							stat_X5_Y1= 5'd4;
+						if( we )
+							stat_X2_Y1= 5'd3;
+						if( we )
+							stat_X3_Y1= 5'd3;
+						if( we )
+							stat_X4_Y1= 5'd3;
+						if( we )
+							stat_X5_Y1= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X2_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y1 == 5'd0)
 							stat_X2_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y1= 5'd2;
-						end
-						else if(stat_X3_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y1 == 5'd0)
 							stat_X3_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y1= 5'd2;
-						end
-						else if(stat_X4_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y1 == 5'd0)
 							stat_X4_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y1= 5'd2;
-						end
-						else if(stat_X5_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y1 == 5'd0)
 							stat_X5_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y1= 5'd2;
-						end
-						else if(stat_X6_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y1 == 5'd0)
 							stat_X6_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y1 == 5'd3)
+							stat_X2_Y1= 5'd4;
+						if(old_we && stat_X3_Y1 == 5'd3)
+							stat_X3_Y1= 5'd4;
+						if(old_we && stat_X4_Y1 == 5'd3)
+							stat_X4_Y1= 5'd4;
+						if(old_we && stat_X5_Y1 == 5'd3)
+							stat_X5_Y1= 5'd4;
+						if(old_we && stat_X6_Y1 == 5'd3)
+							stat_X6_Y1= 5'd4;
+						if( we )
+							stat_X2_Y1= 5'd3;
+						if( we )
+							stat_X3_Y1= 5'd3;
+						if( we )
+							stat_X4_Y1= 5'd3;
+						if( we )
+							stat_X5_Y1= 5'd3;
+						if( we )
+							stat_X6_Y1= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X2_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y1 == 5'd0)
 							stat_X2_Y1= 5'd1;
-						end
-						if(stat_X2_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y2 == 5'd0)
 							stat_X2_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y1 == 5'd3)
+							stat_X2_Y1= 5'd4;
+						if(old_we && stat_X2_Y2 == 5'd3)
+							stat_X2_Y2= 5'd4;
+						if( we )
+							stat_X2_Y1= 5'd3;
+						if( we )
+							stat_X2_Y2= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X2_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y1 == 5'd0)
 							stat_X2_Y1= 5'd1;
-						end
-						if(stat_X2_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y2 == 5'd0)
 							stat_X2_Y2= 5'd1;
-						end
-						if(stat_X2_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y3 == 5'd0)
 							stat_X2_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y1 == 5'd3)
+							stat_X2_Y1= 5'd4;
+						if(old_we && stat_X2_Y2 == 5'd3)
+							stat_X2_Y2= 5'd4;
+						if(old_we && stat_X2_Y3 == 5'd3)
+							stat_X2_Y3= 5'd4;
+						if( we )
+							stat_X2_Y1= 5'd3;
+						if( we )
+							stat_X2_Y2= 5'd3;
+						if( we )
+							stat_X2_Y3= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X2_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y1 == 5'd0)
 							stat_X2_Y1= 5'd1;
-						end
-						if(stat_X2_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y2 == 5'd0)
 							stat_X2_Y2= 5'd1;
-						end
-						if(stat_X2_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y3 == 5'd0)
 							stat_X2_Y3= 5'd1;
-						end
-						if(stat_X2_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y4 == 5'd0)
 							stat_X2_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y1 == 5'd3)
+							stat_X2_Y1= 5'd4;
+						if(old_we && stat_X2_Y2 == 5'd3)
+							stat_X2_Y2= 5'd4;
+						if(old_we && stat_X2_Y3 == 5'd3)
+							stat_X2_Y3= 5'd4;
+						if(old_we && stat_X2_Y4 == 5'd3)
+							stat_X2_Y4= 5'd4;
+						if( we )
+							stat_X2_Y1= 5'd3;
+						if( we )
+							stat_X2_Y2= 5'd3;
+						if( we )
+							stat_X2_Y3= 5'd3;
+						if( we )
+							stat_X2_Y4= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X2_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y1 == 5'd0)
 							stat_X2_Y1= 5'd1;
-						end
-						if(stat_X2_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y2 == 5'd0)
 							stat_X2_Y2= 5'd1;
-						end
-						if(stat_X2_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y3 == 5'd0)
 							stat_X2_Y3= 5'd1;
-						end
-						if(stat_X2_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y4 == 5'd0)
 							stat_X2_Y4= 5'd1;
-						end
-						if(stat_X2_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y5 == 5'd0)
 							stat_X2_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y1 == 5'd3)
+							stat_X2_Y1= 5'd4;
+						if(old_we && stat_X2_Y2 == 5'd3)
+							stat_X2_Y2= 5'd4;
+						if(old_we && stat_X2_Y3 == 5'd3)
+							stat_X2_Y3= 5'd4;
+						if(old_we && stat_X2_Y4 == 5'd3)
+							stat_X2_Y4= 5'd4;
+						if(old_we && stat_X2_Y5 == 5'd3)
+							stat_X2_Y5= 5'd4;
+						if( we )
+							stat_X2_Y1= 5'd3;
+						if( we )
+							stat_X2_Y2= 5'd3;
+						if( we )
+							stat_X2_Y3= 5'd3;
+						if( we )
+							stat_X2_Y4= 5'd3;
+						if( we )
+							stat_X2_Y5= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd2 && mouse_cell_y == 4'd2)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X2_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y2 == 5'd0)
 							stat_X2_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y2= 5'd2;
-						end
-						else if(stat_X3_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y2 == 5'd0)
 							stat_X3_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y2 == 5'd3)
+							stat_X2_Y2= 5'd4;
+						if(old_we && stat_X3_Y2 == 5'd3)
+							stat_X3_Y2= 5'd4;
+						if( we )
+							stat_X2_Y2= 5'd3;
+						if( we )
+							stat_X3_Y2= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X2_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y2 == 5'd0)
 							stat_X2_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y2= 5'd2;
-						end
-						else if(stat_X3_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y2 == 5'd0)
 							stat_X3_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y2= 5'd2;
-						end
-						else if(stat_X4_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y2 == 5'd0)
 							stat_X4_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y2 == 5'd3)
+							stat_X2_Y2= 5'd4;
+						if(old_we && stat_X3_Y2 == 5'd3)
+							stat_X3_Y2= 5'd4;
+						if(old_we && stat_X4_Y2 == 5'd3)
+							stat_X4_Y2= 5'd4;
+						if( we )
+							stat_X2_Y2= 5'd3;
+						if( we )
+							stat_X3_Y2= 5'd3;
+						if( we )
+							stat_X4_Y2= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X2_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y2 == 5'd0)
 							stat_X2_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y2= 5'd2;
-						end
-						else if(stat_X3_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y2 == 5'd0)
 							stat_X3_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y2= 5'd2;
-						end
-						else if(stat_X4_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y2 == 5'd0)
 							stat_X4_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y2= 5'd2;
-						end
-						else if(stat_X5_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y2 == 5'd0)
 							stat_X5_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y2 == 5'd3)
+							stat_X2_Y2= 5'd4;
+						if(old_we && stat_X3_Y2 == 5'd3)
+							stat_X3_Y2= 5'd4;
+						if(old_we && stat_X4_Y2 == 5'd3)
+							stat_X4_Y2= 5'd4;
+						if(old_we && stat_X5_Y2 == 5'd3)
+							stat_X5_Y2= 5'd4;
+						if( we )
+							stat_X2_Y2= 5'd3;
+						if( we )
+							stat_X3_Y2= 5'd3;
+						if( we )
+							stat_X4_Y2= 5'd3;
+						if( we )
+							stat_X5_Y2= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X2_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y2 == 5'd0)
 							stat_X2_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y2= 5'd2;
-						end
-						else if(stat_X3_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y2 == 5'd0)
 							stat_X3_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y2= 5'd2;
-						end
-						else if(stat_X4_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y2 == 5'd0)
 							stat_X4_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y2= 5'd2;
-						end
-						else if(stat_X5_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y2 == 5'd0)
 							stat_X5_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y2= 5'd2;
-						end
-						else if(stat_X6_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y2 == 5'd0)
 							stat_X6_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y2 == 5'd3)
+							stat_X2_Y2= 5'd4;
+						if(old_we && stat_X3_Y2 == 5'd3)
+							stat_X3_Y2= 5'd4;
+						if(old_we && stat_X4_Y2 == 5'd3)
+							stat_X4_Y2= 5'd4;
+						if(old_we && stat_X5_Y2 == 5'd3)
+							stat_X5_Y2= 5'd4;
+						if(old_we && stat_X6_Y2 == 5'd3)
+							stat_X6_Y2= 5'd4;
+						if( we )
+							stat_X2_Y2= 5'd3;
+						if( we )
+							stat_X3_Y2= 5'd3;
+						if( we )
+							stat_X4_Y2= 5'd3;
+						if( we )
+							stat_X5_Y2= 5'd3;
+						if( we )
+							stat_X6_Y2= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X2_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y2 == 5'd0)
 							stat_X2_Y2= 5'd1;
-						end
-						if(stat_X2_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y3 == 5'd0)
 							stat_X2_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y2 == 5'd3)
+							stat_X2_Y2= 5'd4;
+						if(old_we && stat_X2_Y3 == 5'd3)
+							stat_X2_Y3= 5'd4;
+						if( we )
+							stat_X2_Y2= 5'd3;
+						if( we )
+							stat_X2_Y3= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X2_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y2 == 5'd0)
 							stat_X2_Y2= 5'd1;
-						end
-						if(stat_X2_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y3 == 5'd0)
 							stat_X2_Y3= 5'd1;
-						end
-						if(stat_X2_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y4 == 5'd0)
 							stat_X2_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y2 == 5'd3)
+							stat_X2_Y2= 5'd4;
+						if(old_we && stat_X2_Y3 == 5'd3)
+							stat_X2_Y3= 5'd4;
+						if(old_we && stat_X2_Y4 == 5'd3)
+							stat_X2_Y4= 5'd4;
+						if( we )
+							stat_X2_Y2= 5'd3;
+						if( we )
+							stat_X2_Y3= 5'd3;
+						if( we )
+							stat_X2_Y4= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X2_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y2 == 5'd0)
 							stat_X2_Y2= 5'd1;
-						end
-						if(stat_X2_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y3 == 5'd0)
 							stat_X2_Y3= 5'd1;
-						end
-						if(stat_X2_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y4 == 5'd0)
 							stat_X2_Y4= 5'd1;
-						end
-						if(stat_X2_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y5 == 5'd0)
 							stat_X2_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y2 == 5'd3)
+							stat_X2_Y2= 5'd4;
+						if(old_we && stat_X2_Y3 == 5'd3)
+							stat_X2_Y3= 5'd4;
+						if(old_we && stat_X2_Y4 == 5'd3)
+							stat_X2_Y4= 5'd4;
+						if(old_we && stat_X2_Y5 == 5'd3)
+							stat_X2_Y5= 5'd4;
+						if( we )
+							stat_X2_Y2= 5'd3;
+						if( we )
+							stat_X2_Y3= 5'd3;
+						if( we )
+							stat_X2_Y4= 5'd3;
+						if( we )
+							stat_X2_Y5= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X2_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y2 == 5'd0)
 							stat_X2_Y2= 5'd1;
-						end
-						if(stat_X2_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y3 == 5'd0)
 							stat_X2_Y3= 5'd1;
-						end
-						if(stat_X2_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y4 == 5'd0)
 							stat_X2_Y4= 5'd1;
-						end
-						if(stat_X2_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y5 == 5'd0)
 							stat_X2_Y5= 5'd1;
-						end
-						if(stat_X2_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y6 == 5'd0)
 							stat_X2_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y2 == 5'd3)
+							stat_X2_Y2= 5'd4;
+						if(old_we && stat_X2_Y3 == 5'd3)
+							stat_X2_Y3= 5'd4;
+						if(old_we && stat_X2_Y4 == 5'd3)
+							stat_X2_Y4= 5'd4;
+						if(old_we && stat_X2_Y5 == 5'd3)
+							stat_X2_Y5= 5'd4;
+						if(old_we && stat_X2_Y6 == 5'd3)
+							stat_X2_Y6= 5'd4;
+						if( we )
+							stat_X2_Y2= 5'd3;
+						if( we )
+							stat_X2_Y3= 5'd3;
+						if( we )
+							stat_X2_Y4= 5'd3;
+						if( we )
+							stat_X2_Y5= 5'd3;
+						if( we )
+							stat_X2_Y6= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd2 && mouse_cell_y == 4'd3)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X2_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y3 == 5'd0)
 							stat_X2_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y3= 5'd2;
-						end
-						else if(stat_X3_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y3 == 5'd0)
 							stat_X3_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y3 == 5'd3)
+							stat_X2_Y3= 5'd4;
+						if(old_we && stat_X3_Y3 == 5'd3)
+							stat_X3_Y3= 5'd4;
+						if( we )
+							stat_X2_Y3= 5'd3;
+						if( we )
+							stat_X3_Y3= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X2_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y3 == 5'd0)
 							stat_X2_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y3= 5'd2;
-						end
-						else if(stat_X3_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y3 == 5'd0)
 							stat_X3_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y3= 5'd2;
-						end
-						else if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y3 == 5'd3)
+							stat_X2_Y3= 5'd4;
+						if(old_we && stat_X3_Y3 == 5'd3)
+							stat_X3_Y3= 5'd4;
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if( we )
+							stat_X2_Y3= 5'd3;
+						if( we )
+							stat_X3_Y3= 5'd3;
+						if( we )
+							stat_X4_Y3= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X2_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y3 == 5'd0)
 							stat_X2_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y3= 5'd2;
-						end
-						else if(stat_X3_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y3 == 5'd0)
 							stat_X3_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y3= 5'd2;
-						end
-						else if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y3= 5'd2;
-						end
-						else if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y3 == 5'd3)
+							stat_X2_Y3= 5'd4;
+						if(old_we && stat_X3_Y3 == 5'd3)
+							stat_X3_Y3= 5'd4;
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if( we )
+							stat_X2_Y3= 5'd3;
+						if( we )
+							stat_X3_Y3= 5'd3;
+						if( we )
+							stat_X4_Y3= 5'd3;
+						if( we )
+							stat_X5_Y3= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X2_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y3 == 5'd0)
 							stat_X2_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y3= 5'd2;
-						end
-						else if(stat_X3_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y3 == 5'd0)
 							stat_X3_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y3= 5'd2;
-						end
-						else if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y3= 5'd2;
-						end
-						else if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y3= 5'd2;
-						end
-						else if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y3 == 5'd3)
+							stat_X2_Y3= 5'd4;
+						if(old_we && stat_X3_Y3 == 5'd3)
+							stat_X3_Y3= 5'd4;
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if( we )
+							stat_X2_Y3= 5'd3;
+						if( we )
+							stat_X3_Y3= 5'd3;
+						if( we )
+							stat_X4_Y3= 5'd3;
+						if( we )
+							stat_X5_Y3= 5'd3;
+						if( we )
+							stat_X6_Y3= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X2_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y3 == 5'd0)
 							stat_X2_Y3= 5'd1;
-						end
-						if(stat_X2_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y4 == 5'd0)
 							stat_X2_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y3 == 5'd3)
+							stat_X2_Y3= 5'd4;
+						if(old_we && stat_X2_Y4 == 5'd3)
+							stat_X2_Y4= 5'd4;
+						if( we )
+							stat_X2_Y3= 5'd3;
+						if( we )
+							stat_X2_Y4= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X2_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y3 == 5'd0)
 							stat_X2_Y3= 5'd1;
-						end
-						if(stat_X2_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y4 == 5'd0)
 							stat_X2_Y4= 5'd1;
-						end
-						if(stat_X2_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y5 == 5'd0)
 							stat_X2_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y3 == 5'd3)
+							stat_X2_Y3= 5'd4;
+						if(old_we && stat_X2_Y4 == 5'd3)
+							stat_X2_Y4= 5'd4;
+						if(old_we && stat_X2_Y5 == 5'd3)
+							stat_X2_Y5= 5'd4;
+						if( we )
+							stat_X2_Y3= 5'd3;
+						if( we )
+							stat_X2_Y4= 5'd3;
+						if( we )
+							stat_X2_Y5= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X2_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y3 == 5'd0)
 							stat_X2_Y3= 5'd1;
-						end
-						if(stat_X2_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y4 == 5'd0)
 							stat_X2_Y4= 5'd1;
-						end
-						if(stat_X2_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y5 == 5'd0)
 							stat_X2_Y5= 5'd1;
-						end
-						if(stat_X2_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y6 == 5'd0)
 							stat_X2_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y3 == 5'd3)
+							stat_X2_Y3= 5'd4;
+						if(old_we && stat_X2_Y4 == 5'd3)
+							stat_X2_Y4= 5'd4;
+						if(old_we && stat_X2_Y5 == 5'd3)
+							stat_X2_Y5= 5'd4;
+						if(old_we && stat_X2_Y6 == 5'd3)
+							stat_X2_Y6= 5'd4;
+						if( we )
+							stat_X2_Y3= 5'd3;
+						if( we )
+							stat_X2_Y4= 5'd3;
+						if( we )
+							stat_X2_Y5= 5'd3;
+						if( we )
+							stat_X2_Y6= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X2_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y3 == 5'd0)
 							stat_X2_Y3= 5'd1;
-						end
-						if(stat_X2_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y4 == 5'd0)
 							stat_X2_Y4= 5'd1;
-						end
-						if(stat_X2_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y5 == 5'd0)
 							stat_X2_Y5= 5'd1;
-						end
-						if(stat_X2_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y6 == 5'd0)
 							stat_X2_Y6= 5'd1;
-						end
-						if(stat_X2_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y7 == 5'd0)
 							stat_X2_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y3 == 5'd3)
+							stat_X2_Y3= 5'd4;
+						if(old_we && stat_X2_Y4 == 5'd3)
+							stat_X2_Y4= 5'd4;
+						if(old_we && stat_X2_Y5 == 5'd3)
+							stat_X2_Y5= 5'd4;
+						if(old_we && stat_X2_Y6 == 5'd3)
+							stat_X2_Y6= 5'd4;
+						if(old_we && stat_X2_Y7 == 5'd3)
+							stat_X2_Y7= 5'd4;
+						if( we )
+							stat_X2_Y3= 5'd3;
+						if( we )
+							stat_X2_Y4= 5'd3;
+						if( we )
+							stat_X2_Y5= 5'd3;
+						if( we )
+							stat_X2_Y6= 5'd3;
+						if( we )
+							stat_X2_Y7= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd2 && mouse_cell_y == 4'd4)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X2_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y4 == 5'd0)
 							stat_X2_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y4= 5'd2;
-						end
-						else if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y4 == 5'd3)
+							stat_X2_Y4= 5'd4;
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if( we )
+							stat_X2_Y4= 5'd3;
+						if( we )
+							stat_X3_Y4= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X2_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y4 == 5'd0)
 							stat_X2_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y4= 5'd2;
-						end
-						else if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y4= 5'd2;
-						end
-						else if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y4 == 5'd3)
+							stat_X2_Y4= 5'd4;
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if( we )
+							stat_X2_Y4= 5'd3;
+						if( we )
+							stat_X3_Y4= 5'd3;
+						if( we )
+							stat_X4_Y4= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X2_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y4 == 5'd0)
 							stat_X2_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y4= 5'd2;
-						end
-						else if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y4= 5'd2;
-						end
-						else if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y4= 5'd2;
-						end
-						else if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y4 == 5'd3)
+							stat_X2_Y4= 5'd4;
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if( we )
+							stat_X2_Y4= 5'd3;
+						if( we )
+							stat_X3_Y4= 5'd3;
+						if( we )
+							stat_X4_Y4= 5'd3;
+						if( we )
+							stat_X5_Y4= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X2_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y4 == 5'd0)
 							stat_X2_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y4= 5'd2;
-						end
-						else if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y4= 5'd2;
-						end
-						else if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y4= 5'd2;
-						end
-						else if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y4= 5'd2;
-						end
-						else if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y4 == 5'd3)
+							stat_X2_Y4= 5'd4;
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if( we )
+							stat_X2_Y4= 5'd3;
+						if( we )
+							stat_X3_Y4= 5'd3;
+						if( we )
+							stat_X4_Y4= 5'd3;
+						if( we )
+							stat_X5_Y4= 5'd3;
+						if( we )
+							stat_X6_Y4= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X2_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y4 == 5'd0)
 							stat_X2_Y4= 5'd1;
-						end
-						if(stat_X2_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y5 == 5'd0)
 							stat_X2_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y4 == 5'd3)
+							stat_X2_Y4= 5'd4;
+						if(old_we && stat_X2_Y5 == 5'd3)
+							stat_X2_Y5= 5'd4;
+						if( we )
+							stat_X2_Y4= 5'd3;
+						if( we )
+							stat_X2_Y5= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X2_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y4 == 5'd0)
 							stat_X2_Y4= 5'd1;
-						end
-						if(stat_X2_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y5 == 5'd0)
 							stat_X2_Y5= 5'd1;
-						end
-						if(stat_X2_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y6 == 5'd0)
 							stat_X2_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y4 == 5'd3)
+							stat_X2_Y4= 5'd4;
+						if(old_we && stat_X2_Y5 == 5'd3)
+							stat_X2_Y5= 5'd4;
+						if(old_we && stat_X2_Y6 == 5'd3)
+							stat_X2_Y6= 5'd4;
+						if( we )
+							stat_X2_Y4= 5'd3;
+						if( we )
+							stat_X2_Y5= 5'd3;
+						if( we )
+							stat_X2_Y6= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X2_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y4 == 5'd0)
 							stat_X2_Y4= 5'd1;
-						end
-						if(stat_X2_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y5 == 5'd0)
 							stat_X2_Y5= 5'd1;
-						end
-						if(stat_X2_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y6 == 5'd0)
 							stat_X2_Y6= 5'd1;
-						end
-						if(stat_X2_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y7 == 5'd0)
 							stat_X2_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y4 == 5'd3)
+							stat_X2_Y4= 5'd4;
+						if(old_we && stat_X2_Y5 == 5'd3)
+							stat_X2_Y5= 5'd4;
+						if(old_we && stat_X2_Y6 == 5'd3)
+							stat_X2_Y6= 5'd4;
+						if(old_we && stat_X2_Y7 == 5'd3)
+							stat_X2_Y7= 5'd4;
+						if( we )
+							stat_X2_Y4= 5'd3;
+						if( we )
+							stat_X2_Y5= 5'd3;
+						if( we )
+							stat_X2_Y6= 5'd3;
+						if( we )
+							stat_X2_Y7= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X2_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y4 == 5'd0)
 							stat_X2_Y4= 5'd1;
-						end
-						if(stat_X2_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y5 == 5'd0)
 							stat_X2_Y5= 5'd1;
-						end
-						if(stat_X2_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y6 == 5'd0)
 							stat_X2_Y6= 5'd1;
-						end
-						if(stat_X2_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y7 == 5'd0)
 							stat_X2_Y7= 5'd1;
-						end
-						if(stat_X2_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y8 == 5'd0)
 							stat_X2_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y4 == 5'd3)
+							stat_X2_Y4= 5'd4;
+						if(old_we && stat_X2_Y5 == 5'd3)
+							stat_X2_Y5= 5'd4;
+						if(old_we && stat_X2_Y6 == 5'd3)
+							stat_X2_Y6= 5'd4;
+						if(old_we && stat_X2_Y7 == 5'd3)
+							stat_X2_Y7= 5'd4;
+						if(old_we && stat_X2_Y8 == 5'd3)
+							stat_X2_Y8= 5'd4;
+						if( we )
+							stat_X2_Y4= 5'd3;
+						if( we )
+							stat_X2_Y5= 5'd3;
+						if( we )
+							stat_X2_Y6= 5'd3;
+						if( we )
+							stat_X2_Y7= 5'd3;
+						if( we )
+							stat_X2_Y8= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd2 && mouse_cell_y == 4'd5)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X0_Y9 == 5'd1)
-				 stat_X0_Y9 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X2_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y5 == 5'd0)
 							stat_X2_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y5= 5'd2;
-						end
-						else if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y5 == 5'd3)
+							stat_X2_Y5= 5'd4;
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if( we )
+							stat_X2_Y5= 5'd3;
+						if( we )
+							stat_X3_Y5= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X2_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y5 == 5'd0)
 							stat_X2_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y5= 5'd2;
-						end
-						else if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y5= 5'd2;
-						end
-						else if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y5 == 5'd3)
+							stat_X2_Y5= 5'd4;
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if( we )
+							stat_X2_Y5= 5'd3;
+						if( we )
+							stat_X3_Y5= 5'd3;
+						if( we )
+							stat_X4_Y5= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X2_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y5 == 5'd0)
 							stat_X2_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y5= 5'd2;
-						end
-						else if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y5= 5'd2;
-						end
-						else if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y5= 5'd2;
-						end
-						else if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y5 == 5'd3)
+							stat_X2_Y5= 5'd4;
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if( we )
+							stat_X2_Y5= 5'd3;
+						if( we )
+							stat_X3_Y5= 5'd3;
+						if( we )
+							stat_X4_Y5= 5'd3;
+						if( we )
+							stat_X5_Y5= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X2_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y5 == 5'd0)
 							stat_X2_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y5= 5'd2;
-						end
-						else if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y5= 5'd2;
-						end
-						else if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y5= 5'd2;
-						end
-						else if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y5= 5'd2;
-						end
-						else if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y5 == 5'd3)
+							stat_X2_Y5= 5'd4;
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if( we )
+							stat_X2_Y5= 5'd3;
+						if( we )
+							stat_X3_Y5= 5'd3;
+						if( we )
+							stat_X4_Y5= 5'd3;
+						if( we )
+							stat_X5_Y5= 5'd3;
+						if( we )
+							stat_X6_Y5= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X2_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y5 == 5'd0)
 							stat_X2_Y5= 5'd1;
-						end
-						if(stat_X2_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y6 == 5'd0)
 							stat_X2_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y5 == 5'd3)
+							stat_X2_Y5= 5'd4;
+						if(old_we && stat_X2_Y6 == 5'd3)
+							stat_X2_Y6= 5'd4;
+						if( we )
+							stat_X2_Y5= 5'd3;
+						if( we )
+							stat_X2_Y6= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X2_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y5 == 5'd0)
 							stat_X2_Y5= 5'd1;
-						end
-						if(stat_X2_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y6 == 5'd0)
 							stat_X2_Y6= 5'd1;
-						end
-						if(stat_X2_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y7 == 5'd0)
 							stat_X2_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y5 == 5'd3)
+							stat_X2_Y5= 5'd4;
+						if(old_we && stat_X2_Y6 == 5'd3)
+							stat_X2_Y6= 5'd4;
+						if(old_we && stat_X2_Y7 == 5'd3)
+							stat_X2_Y7= 5'd4;
+						if( we )
+							stat_X2_Y5= 5'd3;
+						if( we )
+							stat_X2_Y6= 5'd3;
+						if( we )
+							stat_X2_Y7= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X2_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y5 == 5'd0)
 							stat_X2_Y5= 5'd1;
-						end
-						if(stat_X2_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y6 == 5'd0)
 							stat_X2_Y6= 5'd1;
-						end
-						if(stat_X2_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y7 == 5'd0)
 							stat_X2_Y7= 5'd1;
-						end
-						if(stat_X2_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y8 == 5'd0)
 							stat_X2_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y5 == 5'd3)
+							stat_X2_Y5= 5'd4;
+						if(old_we && stat_X2_Y6 == 5'd3)
+							stat_X2_Y6= 5'd4;
+						if(old_we && stat_X2_Y7 == 5'd3)
+							stat_X2_Y7= 5'd4;
+						if(old_we && stat_X2_Y8 == 5'd3)
+							stat_X2_Y8= 5'd4;
+						if( we )
+							stat_X2_Y5= 5'd3;
+						if( we )
+							stat_X2_Y6= 5'd3;
+						if( we )
+							stat_X2_Y7= 5'd3;
+						if( we )
+							stat_X2_Y8= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X2_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y5 == 5'd0)
 							stat_X2_Y5= 5'd1;
-						end
-						if(stat_X2_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y6 == 5'd0)
 							stat_X2_Y6= 5'd1;
-						end
-						if(stat_X2_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y7 == 5'd0)
 							stat_X2_Y7= 5'd1;
-						end
-						if(stat_X2_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y8 == 5'd0)
 							stat_X2_Y8= 5'd1;
-						end
-						if(stat_X2_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y9 == 5'd0)
 							stat_X2_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y5 == 5'd3)
+							stat_X2_Y5= 5'd4;
+						if(old_we && stat_X2_Y6 == 5'd3)
+							stat_X2_Y6= 5'd4;
+						if(old_we && stat_X2_Y7 == 5'd3)
+							stat_X2_Y7= 5'd4;
+						if(old_we && stat_X2_Y8 == 5'd3)
+							stat_X2_Y8= 5'd4;
+						if(old_we && stat_X2_Y9 == 5'd3)
+							stat_X2_Y9= 5'd4;
+						if( we )
+							stat_X2_Y5= 5'd3;
+						if( we )
+							stat_X2_Y6= 5'd3;
+						if( we )
+							stat_X2_Y7= 5'd3;
+						if( we )
+							stat_X2_Y8= 5'd3;
+						if( we )
+							stat_X2_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd2 && mouse_cell_y == 4'd6)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X0_Y9 == 5'd1)
-				 stat_X0_Y9 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X2_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y6 == 5'd0)
 							stat_X2_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y6= 5'd2;
-						end
-						else if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y6 == 5'd3)
+							stat_X2_Y6= 5'd4;
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if( we )
+							stat_X2_Y6= 5'd3;
+						if( we )
+							stat_X3_Y6= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X2_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y6 == 5'd0)
 							stat_X2_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y6= 5'd2;
-						end
-						else if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y6= 5'd2;
-						end
-						else if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y6 == 5'd3)
+							stat_X2_Y6= 5'd4;
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if( we )
+							stat_X2_Y6= 5'd3;
+						if( we )
+							stat_X3_Y6= 5'd3;
+						if( we )
+							stat_X4_Y6= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X2_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y6 == 5'd0)
 							stat_X2_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y6= 5'd2;
-						end
-						else if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y6= 5'd2;
-						end
-						else if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y6= 5'd2;
-						end
-						else if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y6 == 5'd3)
+							stat_X2_Y6= 5'd4;
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if( we )
+							stat_X2_Y6= 5'd3;
+						if( we )
+							stat_X3_Y6= 5'd3;
+						if( we )
+							stat_X4_Y6= 5'd3;
+						if( we )
+							stat_X5_Y6= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X2_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y6 == 5'd0)
 							stat_X2_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y6= 5'd2;
-						end
-						else if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y6= 5'd2;
-						end
-						else if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y6= 5'd2;
-						end
-						else if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y6= 5'd2;
-						end
-						else if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X6_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y6 == 5'd3)
+							stat_X2_Y6= 5'd4;
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if( we )
+							stat_X2_Y6= 5'd3;
+						if( we )
+							stat_X3_Y6= 5'd3;
+						if( we )
+							stat_X4_Y6= 5'd3;
+						if( we )
+							stat_X5_Y6= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X2_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y6 == 5'd0)
 							stat_X2_Y6= 5'd1;
-						end
-						if(stat_X2_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y7 == 5'd0)
 							stat_X2_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y6 == 5'd3)
+							stat_X2_Y6= 5'd4;
+						if(old_we && stat_X2_Y7 == 5'd3)
+							stat_X2_Y7= 5'd4;
+						if( we )
+							stat_X2_Y6= 5'd3;
+						if( we )
+							stat_X2_Y7= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X2_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y6 == 5'd0)
 							stat_X2_Y6= 5'd1;
-						end
-						if(stat_X2_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y7 == 5'd0)
 							stat_X2_Y7= 5'd1;
-						end
-						if(stat_X2_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y8 == 5'd0)
 							stat_X2_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y6 == 5'd3)
+							stat_X2_Y6= 5'd4;
+						if(old_we && stat_X2_Y7 == 5'd3)
+							stat_X2_Y7= 5'd4;
+						if(old_we && stat_X2_Y8 == 5'd3)
+							stat_X2_Y8= 5'd4;
+						if( we )
+							stat_X2_Y6= 5'd3;
+						if( we )
+							stat_X2_Y7= 5'd3;
+						if( we )
+							stat_X2_Y8= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X2_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y6 == 5'd0)
 							stat_X2_Y6= 5'd1;
-						end
-						if(stat_X2_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y7 == 5'd0)
 							stat_X2_Y7= 5'd1;
-						end
-						if(stat_X2_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y8 == 5'd0)
 							stat_X2_Y8= 5'd1;
-						end
-						if(stat_X2_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y9 == 5'd0)
 							stat_X2_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y6 == 5'd3)
+							stat_X2_Y6= 5'd4;
+						if(old_we && stat_X2_Y7 == 5'd3)
+							stat_X2_Y7= 5'd4;
+						if(old_we && stat_X2_Y8 == 5'd3)
+							stat_X2_Y8= 5'd4;
+						if(old_we && stat_X2_Y9 == 5'd3)
+							stat_X2_Y9= 5'd4;
+						if( we )
+							stat_X2_Y6= 5'd3;
+						if( we )
+							stat_X2_Y7= 5'd3;
+						if( we )
+							stat_X2_Y8= 5'd3;
+						if( we )
+							stat_X2_Y9= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X2_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y6 == 5'd0)
 							stat_X2_Y6= 5'd1;
-						end
-						if(stat_X2_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y7 == 5'd0)
 							stat_X2_Y7= 5'd1;
-						end
-						if(stat_X2_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y8 == 5'd0)
 							stat_X2_Y8= 5'd1;
-						end
-						if(stat_X2_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y9 == 5'd0)
 							stat_X2_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y6 == 5'd3)
+							stat_X2_Y6= 5'd4;
+						if(old_we && stat_X2_Y7 == 5'd3)
+							stat_X2_Y7= 5'd4;
+						if(old_we && stat_X2_Y8 == 5'd3)
+							stat_X2_Y8= 5'd4;
+						if(old_we && stat_X2_Y9 == 5'd3)
+							stat_X2_Y9= 5'd4;
+						if( we )
+							stat_X2_Y6= 5'd3;
+						if( we )
+							stat_X2_Y7= 5'd3;
+						if( we )
+							stat_X2_Y8= 5'd3;
+						if( we )
+							stat_X2_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd2 && mouse_cell_y == 4'd7)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X0_Y9 == 5'd1)
-				 stat_X0_Y9 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X2_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y7 == 5'd0)
 							stat_X2_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y7= 5'd2;
-						end
-						else if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y7 == 5'd0)
 							stat_X3_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y7 == 5'd3)
+							stat_X2_Y7= 5'd4;
+						if(old_we && stat_X3_Y7 == 5'd3)
+							stat_X3_Y7= 5'd4;
+						if( we )
+							stat_X2_Y7= 5'd3;
+						if( we )
+							stat_X3_Y7= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X2_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y7 == 5'd0)
 							stat_X2_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y7= 5'd2;
-						end
-						else if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y7 == 5'd0)
 							stat_X3_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y7= 5'd2;
-						end
-						else if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y7 == 5'd0)
 							stat_X4_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y7 == 5'd3)
+							stat_X2_Y7= 5'd4;
+						if(old_we && stat_X3_Y7 == 5'd3)
+							stat_X3_Y7= 5'd4;
+						if(old_we && stat_X4_Y7 == 5'd3)
+							stat_X4_Y7= 5'd4;
+						if( we )
+							stat_X2_Y7= 5'd3;
+						if( we )
+							stat_X3_Y7= 5'd3;
+						if( we )
+							stat_X4_Y7= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X2_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y7 == 5'd0)
 							stat_X2_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y7= 5'd2;
-						end
-						else if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y7 == 5'd0)
 							stat_X3_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y7= 5'd2;
-						end
-						else if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y7 == 5'd0)
 							stat_X4_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y7= 5'd2;
-						end
-						else if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X5_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y7 == 5'd3)
+							stat_X2_Y7= 5'd4;
+						if(old_we && stat_X3_Y7 == 5'd3)
+							stat_X3_Y7= 5'd4;
+						if(old_we && stat_X4_Y7 == 5'd3)
+							stat_X4_Y7= 5'd4;
+						if( we )
+							stat_X2_Y7= 5'd3;
+						if( we )
+							stat_X3_Y7= 5'd3;
+						if( we )
+							stat_X4_Y7= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X2_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y7 == 5'd0)
 							stat_X2_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y7= 5'd2;
-						end
-						else if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y7 == 5'd0)
 							stat_X3_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y7= 5'd2;
-						end
-						else if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y7 == 5'd0)
 							stat_X4_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y7= 5'd2;
-						end
-						else if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X5_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y7= 5'd2;
-						end
-						else if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X6_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y7 == 5'd3)
+							stat_X2_Y7= 5'd4;
+						if(old_we && stat_X3_Y7 == 5'd3)
+							stat_X3_Y7= 5'd4;
+						if(old_we && stat_X4_Y7 == 5'd3)
+							stat_X4_Y7= 5'd4;
+						if( we )
+							stat_X2_Y7= 5'd3;
+						if( we )
+							stat_X3_Y7= 5'd3;
+						if( we )
+							stat_X4_Y7= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X2_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y7 == 5'd0)
 							stat_X2_Y7= 5'd1;
-						end
-						if(stat_X2_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y8 == 5'd0)
 							stat_X2_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y7 == 5'd3)
+							stat_X2_Y7= 5'd4;
+						if(old_we && stat_X2_Y8 == 5'd3)
+							stat_X2_Y8= 5'd4;
+						if( we )
+							stat_X2_Y7= 5'd3;
+						if( we )
+							stat_X2_Y8= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X2_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y7 == 5'd0)
 							stat_X2_Y7= 5'd1;
-						end
-						if(stat_X2_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y8 == 5'd0)
 							stat_X2_Y8= 5'd1;
-						end
-						if(stat_X2_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y9 == 5'd0)
 							stat_X2_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y7 == 5'd3)
+							stat_X2_Y7= 5'd4;
+						if(old_we && stat_X2_Y8 == 5'd3)
+							stat_X2_Y8= 5'd4;
+						if(old_we && stat_X2_Y9 == 5'd3)
+							stat_X2_Y9= 5'd4;
+						if( we )
+							stat_X2_Y7= 5'd3;
+						if( we )
+							stat_X2_Y8= 5'd3;
+						if( we )
+							stat_X2_Y9= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X2_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y7 == 5'd0)
 							stat_X2_Y7= 5'd1;
-						end
-						if(stat_X2_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y8 == 5'd0)
 							stat_X2_Y8= 5'd1;
-						end
-						if(stat_X2_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y9 == 5'd0)
 							stat_X2_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y7 == 5'd3)
+							stat_X2_Y7= 5'd4;
+						if(old_we && stat_X2_Y8 == 5'd3)
+							stat_X2_Y8= 5'd4;
+						if(old_we && stat_X2_Y9 == 5'd3)
+							stat_X2_Y9= 5'd4;
+						if( we )
+							stat_X2_Y7= 5'd3;
+						if( we )
+							stat_X2_Y8= 5'd3;
+						if( we )
+							stat_X2_Y9= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X2_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y7 == 5'd0)
 							stat_X2_Y7= 5'd1;
-						end
-						if(stat_X2_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y8 == 5'd0)
 							stat_X2_Y8= 5'd1;
-						end
-						if(stat_X2_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y9 == 5'd0)
 							stat_X2_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y7 == 5'd3)
+							stat_X2_Y7= 5'd4;
+						if(old_we && stat_X2_Y8 == 5'd3)
+							stat_X2_Y8= 5'd4;
+						if(old_we && stat_X2_Y9 == 5'd3)
+							stat_X2_Y9= 5'd4;
+						if( we )
+							stat_X2_Y7= 5'd3;
+						if( we )
+							stat_X2_Y8= 5'd3;
+						if( we )
+							stat_X2_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd2 && mouse_cell_y == 4'd8)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X0_Y9 == 5'd1)
-				 stat_X0_Y9 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X2_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y8 == 5'd0)
 							stat_X2_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y8= 5'd2;
-						end
-						else if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y8 == 5'd0)
 							stat_X3_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y8 == 5'd3)
+							stat_X2_Y8= 5'd4;
+						if(old_we && stat_X3_Y8 == 5'd3)
+							stat_X3_Y8= 5'd4;
+						if( we )
+							stat_X2_Y8= 5'd3;
+						if( we )
+							stat_X3_Y8= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X2_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y8 == 5'd0)
 							stat_X2_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y8= 5'd2;
-						end
-						else if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y8 == 5'd0)
 							stat_X3_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y8= 5'd2;
-						end
-						else if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X4_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y8 == 5'd3)
+							stat_X2_Y8= 5'd4;
+						if(old_we && stat_X3_Y8 == 5'd3)
+							stat_X3_Y8= 5'd4;
+						if( we )
+							stat_X2_Y8= 5'd3;
+						if( we )
+							stat_X3_Y8= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X2_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y8 == 5'd0)
 							stat_X2_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y8= 5'd2;
-						end
-						else if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y8 == 5'd0)
 							stat_X3_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y8= 5'd2;
-						end
-						else if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X4_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y8= 5'd2;
-						end
-						else if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X5_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y8 == 5'd3)
+							stat_X2_Y8= 5'd4;
+						if(old_we && stat_X3_Y8 == 5'd3)
+							stat_X3_Y8= 5'd4;
+						if( we )
+							stat_X2_Y8= 5'd3;
+						if( we )
+							stat_X3_Y8= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X2_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y8 == 5'd0)
 							stat_X2_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X3_Y8= 5'd2;
-						end
-						else if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y8 == 5'd0)
 							stat_X3_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y8= 5'd2;
-						end
-						else if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X4_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y8= 5'd2;
-						end
-						else if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X5_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y8= 5'd2;
-						end
-						else if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X6_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y8 == 5'd3)
+							stat_X2_Y8= 5'd4;
+						if(old_we && stat_X3_Y8 == 5'd3)
+							stat_X3_Y8= 5'd4;
+						if( we )
+							stat_X2_Y8= 5'd3;
+						if( we )
+							stat_X3_Y8= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X2_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y8 == 5'd0)
 							stat_X2_Y8= 5'd1;
-						end
-						if(stat_X2_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y9 == 5'd0)
 							stat_X2_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y8 == 5'd3)
+							stat_X2_Y8= 5'd4;
+						if(old_we && stat_X2_Y9 == 5'd3)
+							stat_X2_Y9= 5'd4;
+						if( we )
+							stat_X2_Y8= 5'd3;
+						if( we )
+							stat_X2_Y9= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X2_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y8 == 5'd0)
 							stat_X2_Y8= 5'd1;
-						end
-						if(stat_X2_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y9 == 5'd0)
 							stat_X2_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y8 == 5'd3)
+							stat_X2_Y8= 5'd4;
+						if(old_we && stat_X2_Y9 == 5'd3)
+							stat_X2_Y9= 5'd4;
+						if( we )
+							stat_X2_Y8= 5'd3;
+						if( we )
+							stat_X2_Y9= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X2_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y8 == 5'd0)
 							stat_X2_Y8= 5'd1;
-						end
-						if(stat_X2_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y9 == 5'd0)
 							stat_X2_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y8 == 5'd3)
+							stat_X2_Y8= 5'd4;
+						if(old_we && stat_X2_Y9 == 5'd3)
+							stat_X2_Y9= 5'd4;
+						if( we )
+							stat_X2_Y8= 5'd3;
+						if( we )
+							stat_X2_Y9= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X2_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y8 == 5'd0)
 							stat_X2_Y8= 5'd1;
-						end
-						if(stat_X2_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X2_Y9 == 5'd0)
 							stat_X2_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X2_Y8 == 5'd3)
+							stat_X2_Y8= 5'd4;
+						if(old_we && stat_X2_Y9 == 5'd3)
+							stat_X2_Y9= 5'd4;
+						if( we )
+							stat_X2_Y8= 5'd3;
+						if( we )
+							stat_X2_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
+		//controllo la posizione: capisco in che cella sono
+		else if(mouse_cell_x == 4'd2 && mouse_cell_y == 4'd9)
+		begin//controllo la direzione
+			if(!direction)
+			begin//controllo la dimensione della nave
+				case (dimension)
+					4'd2:
+					begin
+						if( !we && stat_X2_Y9 == 5'd0)
+							stat_X2_Y9= 5'd1;
+						if(old_we && stat_X2_Y9 == 5'd3)
+							stat_X2_Y9= 5'd4;
+						if( we )
+							stat_X2_Y9= 5'd3;
+					end//interno case
+					4'd3:
+					begin
+						if( !we && stat_X2_Y9 == 5'd0)
+							stat_X2_Y9= 5'd1;
+						if(old_we && stat_X2_Y9 == 5'd3)
+							stat_X2_Y9= 5'd4;
+						if( we )
+							stat_X2_Y9= 5'd3;
+					end//interno case
+					4'd4:
+					begin
+						if( !we && stat_X2_Y9 == 5'd0)
+							stat_X2_Y9= 5'd1;
+						if(old_we && stat_X2_Y9 == 5'd3)
+							stat_X2_Y9= 5'd4;
+						if( we )
+							stat_X2_Y9= 5'd3;
+					end//interno case
+					4'd5:
+					begin
+						if( !we && stat_X2_Y9 == 5'd0)
+							stat_X2_Y9= 5'd1;
+						if(old_we && stat_X2_Y9 == 5'd3)
+							stat_X2_Y9= 5'd4;
+						if( we )
+							stat_X2_Y9= 5'd3;
+					end//interno case
+				endcase
+			end//direzione
+			else
+			begin//controllo la dimensione della nave
+				case (dimension)
+					4'd2:
+					begin
+						if( !we && stat_X2_Y9 == 5'd0)
+							stat_X2_Y9= 5'd1;
+						if(old_we && stat_X2_Y9 == 5'd3)
+							stat_X2_Y9= 5'd4;
+						if( we )
+							stat_X2_Y9= 5'd3;
+					end//interno case
+					4'd3:
+					begin
+						if( !we && stat_X2_Y9 == 5'd0)
+							stat_X2_Y9= 5'd1;
+						if(old_we && stat_X2_Y9 == 5'd3)
+							stat_X2_Y9= 5'd4;
+						if( we )
+							stat_X2_Y9= 5'd3;
+					end//interno case
+					4'd4:
+					begin
+						if( !we && stat_X2_Y9 == 5'd0)
+							stat_X2_Y9= 5'd1;
+						if(old_we && stat_X2_Y9 == 5'd3)
+							stat_X2_Y9= 5'd4;
+						if( we )
+							stat_X2_Y9= 5'd3;
+					end//interno case
+					4'd5:
+					begin
+						if( !we && stat_X2_Y9 == 5'd0)
+							stat_X2_Y9= 5'd1;
+						if(old_we && stat_X2_Y9 == 5'd3)
+							stat_X2_Y9= 5'd4;
+						if( we )
+							stat_X2_Y9= 5'd3;
+					end//interno case
+				endcase
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd3 && mouse_cell_y == 4'd0)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X3_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y0 == 5'd0)
 							stat_X3_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y0= 5'd2;
-						end
-						else if(stat_X4_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y0 == 5'd0)
 							stat_X4_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y0 == 5'd3)
+							stat_X3_Y0= 5'd4;
+						if(old_we && stat_X4_Y0 == 5'd3)
+							stat_X4_Y0= 5'd4;
+						if( we )
+							stat_X3_Y0= 5'd3;
+						if( we )
+							stat_X4_Y0= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X3_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y0 == 5'd0)
 							stat_X3_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y0= 5'd2;
-						end
-						else if(stat_X4_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y0 == 5'd0)
 							stat_X4_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y0= 5'd2;
-						end
-						else if(stat_X5_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y0 == 5'd0)
 							stat_X5_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y0 == 5'd3)
+							stat_X3_Y0= 5'd4;
+						if(old_we && stat_X4_Y0 == 5'd3)
+							stat_X4_Y0= 5'd4;
+						if(old_we && stat_X5_Y0 == 5'd3)
+							stat_X5_Y0= 5'd4;
+						if( we )
+							stat_X3_Y0= 5'd3;
+						if( we )
+							stat_X4_Y0= 5'd3;
+						if( we )
+							stat_X5_Y0= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X3_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y0 == 5'd0)
 							stat_X3_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y0= 5'd2;
-						end
-						else if(stat_X4_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y0 == 5'd0)
 							stat_X4_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y0= 5'd2;
-						end
-						else if(stat_X5_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y0 == 5'd0)
 							stat_X5_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y0= 5'd2;
-						end
-						else if(stat_X6_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y0 == 5'd0)
 							stat_X6_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y0 == 5'd3)
+							stat_X3_Y0= 5'd4;
+						if(old_we && stat_X4_Y0 == 5'd3)
+							stat_X4_Y0= 5'd4;
+						if(old_we && stat_X5_Y0 == 5'd3)
+							stat_X5_Y0= 5'd4;
+						if(old_we && stat_X6_Y0 == 5'd3)
+							stat_X6_Y0= 5'd4;
+						if( we )
+							stat_X3_Y0= 5'd3;
+						if( we )
+							stat_X4_Y0= 5'd3;
+						if( we )
+							stat_X5_Y0= 5'd3;
+						if( we )
+							stat_X6_Y0= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X3_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y0 == 5'd0)
 							stat_X3_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y0= 5'd2;
-						end
-						else if(stat_X4_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y0 == 5'd0)
 							stat_X4_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y0= 5'd2;
-						end
-						else if(stat_X5_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y0 == 5'd0)
 							stat_X5_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y0= 5'd2;
-						end
-						else if(stat_X6_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y0 == 5'd0)
 							stat_X6_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y0= 5'd2;
-						end
-						else if(stat_X7_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y0 == 5'd0)
 							stat_X7_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y0 == 5'd3)
+							stat_X3_Y0= 5'd4;
+						if(old_we && stat_X4_Y0 == 5'd3)
+							stat_X4_Y0= 5'd4;
+						if(old_we && stat_X5_Y0 == 5'd3)
+							stat_X5_Y0= 5'd4;
+						if(old_we && stat_X6_Y0 == 5'd3)
+							stat_X6_Y0= 5'd4;
+						if(old_we && stat_X7_Y0 == 5'd3)
+							stat_X7_Y0= 5'd4;
+						if( we )
+							stat_X3_Y0= 5'd3;
+						if( we )
+							stat_X4_Y0= 5'd3;
+						if( we )
+							stat_X5_Y0= 5'd3;
+						if( we )
+							stat_X6_Y0= 5'd3;
+						if( we )
+							stat_X7_Y0= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X3_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y0 == 5'd0)
 							stat_X3_Y0= 5'd1;
-						end
-						if(stat_X3_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y1 == 5'd0)
 							stat_X3_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y0 == 5'd3)
+							stat_X3_Y0= 5'd4;
+						if(old_we && stat_X3_Y1 == 5'd3)
+							stat_X3_Y1= 5'd4;
+						if( we )
+							stat_X3_Y0= 5'd3;
+						if( we )
+							stat_X3_Y1= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X3_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y0 == 5'd0)
 							stat_X3_Y0= 5'd1;
-						end
-						if(stat_X3_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y1 == 5'd0)
 							stat_X3_Y1= 5'd1;
-						end
-						if(stat_X3_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y2 == 5'd0)
 							stat_X3_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y0 == 5'd3)
+							stat_X3_Y0= 5'd4;
+						if(old_we && stat_X3_Y1 == 5'd3)
+							stat_X3_Y1= 5'd4;
+						if(old_we && stat_X3_Y2 == 5'd3)
+							stat_X3_Y2= 5'd4;
+						if( we )
+							stat_X3_Y0= 5'd3;
+						if( we )
+							stat_X3_Y1= 5'd3;
+						if( we )
+							stat_X3_Y2= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X3_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y0 == 5'd0)
 							stat_X3_Y0= 5'd1;
-						end
-						if(stat_X3_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y1 == 5'd0)
 							stat_X3_Y1= 5'd1;
-						end
-						if(stat_X3_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y2 == 5'd0)
 							stat_X3_Y2= 5'd1;
-						end
-						if(stat_X3_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y3 == 5'd0)
 							stat_X3_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y0 == 5'd3)
+							stat_X3_Y0= 5'd4;
+						if(old_we && stat_X3_Y1 == 5'd3)
+							stat_X3_Y1= 5'd4;
+						if(old_we && stat_X3_Y2 == 5'd3)
+							stat_X3_Y2= 5'd4;
+						if(old_we && stat_X3_Y3 == 5'd3)
+							stat_X3_Y3= 5'd4;
+						if( we )
+							stat_X3_Y0= 5'd3;
+						if( we )
+							stat_X3_Y1= 5'd3;
+						if( we )
+							stat_X3_Y2= 5'd3;
+						if( we )
+							stat_X3_Y3= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X3_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y0 == 5'd0)
 							stat_X3_Y0= 5'd1;
-						end
-						if(stat_X3_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y1 == 5'd0)
 							stat_X3_Y1= 5'd1;
-						end
-						if(stat_X3_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y2 == 5'd0)
 							stat_X3_Y2= 5'd1;
-						end
-						if(stat_X3_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y3 == 5'd0)
 							stat_X3_Y3= 5'd1;
-						end
-						if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y0 == 5'd3)
+							stat_X3_Y0= 5'd4;
+						if(old_we && stat_X3_Y1 == 5'd3)
+							stat_X3_Y1= 5'd4;
+						if(old_we && stat_X3_Y2 == 5'd3)
+							stat_X3_Y2= 5'd4;
+						if(old_we && stat_X3_Y3 == 5'd3)
+							stat_X3_Y3= 5'd4;
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if( we )
+							stat_X3_Y0= 5'd3;
+						if( we )
+							stat_X3_Y1= 5'd3;
+						if( we )
+							stat_X3_Y2= 5'd3;
+						if( we )
+							stat_X3_Y3= 5'd3;
+						if( we )
+							stat_X3_Y4= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd3 && mouse_cell_y == 4'd1)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X3_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y1 == 5'd0)
 							stat_X3_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y1= 5'd2;
-						end
-						else if(stat_X4_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y1 == 5'd0)
 							stat_X4_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y1 == 5'd3)
+							stat_X3_Y1= 5'd4;
+						if(old_we && stat_X4_Y1 == 5'd3)
+							stat_X4_Y1= 5'd4;
+						if( we )
+							stat_X3_Y1= 5'd3;
+						if( we )
+							stat_X4_Y1= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X3_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y1 == 5'd0)
 							stat_X3_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y1= 5'd2;
-						end
-						else if(stat_X4_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y1 == 5'd0)
 							stat_X4_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y1= 5'd2;
-						end
-						else if(stat_X5_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y1 == 5'd0)
 							stat_X5_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y1 == 5'd3)
+							stat_X3_Y1= 5'd4;
+						if(old_we && stat_X4_Y1 == 5'd3)
+							stat_X4_Y1= 5'd4;
+						if(old_we && stat_X5_Y1 == 5'd3)
+							stat_X5_Y1= 5'd4;
+						if( we )
+							stat_X3_Y1= 5'd3;
+						if( we )
+							stat_X4_Y1= 5'd3;
+						if( we )
+							stat_X5_Y1= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X3_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y1 == 5'd0)
 							stat_X3_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y1= 5'd2;
-						end
-						else if(stat_X4_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y1 == 5'd0)
 							stat_X4_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y1= 5'd2;
-						end
-						else if(stat_X5_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y1 == 5'd0)
 							stat_X5_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y1= 5'd2;
-						end
-						else if(stat_X6_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y1 == 5'd0)
 							stat_X6_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y1 == 5'd3)
+							stat_X3_Y1= 5'd4;
+						if(old_we && stat_X4_Y1 == 5'd3)
+							stat_X4_Y1= 5'd4;
+						if(old_we && stat_X5_Y1 == 5'd3)
+							stat_X5_Y1= 5'd4;
+						if(old_we && stat_X6_Y1 == 5'd3)
+							stat_X6_Y1= 5'd4;
+						if( we )
+							stat_X3_Y1= 5'd3;
+						if( we )
+							stat_X4_Y1= 5'd3;
+						if( we )
+							stat_X5_Y1= 5'd3;
+						if( we )
+							stat_X6_Y1= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X3_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y1 == 5'd0)
 							stat_X3_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y1= 5'd2;
-						end
-						else if(stat_X4_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y1 == 5'd0)
 							stat_X4_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y1= 5'd2;
-						end
-						else if(stat_X5_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y1 == 5'd0)
 							stat_X5_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y1= 5'd2;
-						end
-						else if(stat_X6_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y1 == 5'd0)
 							stat_X6_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y1= 5'd2;
-						end
-						else if(stat_X7_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y1 == 5'd0)
 							stat_X7_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y1 == 5'd3)
+							stat_X3_Y1= 5'd4;
+						if(old_we && stat_X4_Y1 == 5'd3)
+							stat_X4_Y1= 5'd4;
+						if(old_we && stat_X5_Y1 == 5'd3)
+							stat_X5_Y1= 5'd4;
+						if(old_we && stat_X6_Y1 == 5'd3)
+							stat_X6_Y1= 5'd4;
+						if(old_we && stat_X7_Y1 == 5'd3)
+							stat_X7_Y1= 5'd4;
+						if( we )
+							stat_X3_Y1= 5'd3;
+						if( we )
+							stat_X4_Y1= 5'd3;
+						if( we )
+							stat_X5_Y1= 5'd3;
+						if( we )
+							stat_X6_Y1= 5'd3;
+						if( we )
+							stat_X7_Y1= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X3_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y1 == 5'd0)
 							stat_X3_Y1= 5'd1;
-						end
-						if(stat_X3_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y2 == 5'd0)
 							stat_X3_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y1 == 5'd3)
+							stat_X3_Y1= 5'd4;
+						if(old_we && stat_X3_Y2 == 5'd3)
+							stat_X3_Y2= 5'd4;
+						if( we )
+							stat_X3_Y1= 5'd3;
+						if( we )
+							stat_X3_Y2= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X3_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y1 == 5'd0)
 							stat_X3_Y1= 5'd1;
-						end
-						if(stat_X3_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y2 == 5'd0)
 							stat_X3_Y2= 5'd1;
-						end
-						if(stat_X3_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y3 == 5'd0)
 							stat_X3_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y1 == 5'd3)
+							stat_X3_Y1= 5'd4;
+						if(old_we && stat_X3_Y2 == 5'd3)
+							stat_X3_Y2= 5'd4;
+						if(old_we && stat_X3_Y3 == 5'd3)
+							stat_X3_Y3= 5'd4;
+						if( we )
+							stat_X3_Y1= 5'd3;
+						if( we )
+							stat_X3_Y2= 5'd3;
+						if( we )
+							stat_X3_Y3= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X3_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y1 == 5'd0)
 							stat_X3_Y1= 5'd1;
-						end
-						if(stat_X3_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y2 == 5'd0)
 							stat_X3_Y2= 5'd1;
-						end
-						if(stat_X3_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y3 == 5'd0)
 							stat_X3_Y3= 5'd1;
-						end
-						if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y1 == 5'd3)
+							stat_X3_Y1= 5'd4;
+						if(old_we && stat_X3_Y2 == 5'd3)
+							stat_X3_Y2= 5'd4;
+						if(old_we && stat_X3_Y3 == 5'd3)
+							stat_X3_Y3= 5'd4;
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if( we )
+							stat_X3_Y1= 5'd3;
+						if( we )
+							stat_X3_Y2= 5'd3;
+						if( we )
+							stat_X3_Y3= 5'd3;
+						if( we )
+							stat_X3_Y4= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X3_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y1 == 5'd0)
 							stat_X3_Y1= 5'd1;
-						end
-						if(stat_X3_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y2 == 5'd0)
 							stat_X3_Y2= 5'd1;
-						end
-						if(stat_X3_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y3 == 5'd0)
 							stat_X3_Y3= 5'd1;
-						end
-						if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-						if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y1 == 5'd3)
+							stat_X3_Y1= 5'd4;
+						if(old_we && stat_X3_Y2 == 5'd3)
+							stat_X3_Y2= 5'd4;
+						if(old_we && stat_X3_Y3 == 5'd3)
+							stat_X3_Y3= 5'd4;
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if( we )
+							stat_X3_Y1= 5'd3;
+						if( we )
+							stat_X3_Y2= 5'd3;
+						if( we )
+							stat_X3_Y3= 5'd3;
+						if( we )
+							stat_X3_Y4= 5'd3;
+						if( we )
+							stat_X3_Y5= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd3 && mouse_cell_y == 4'd2)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X3_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y2 == 5'd0)
 							stat_X3_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y2= 5'd2;
-						end
-						else if(stat_X4_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y2 == 5'd0)
 							stat_X4_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y2 == 5'd3)
+							stat_X3_Y2= 5'd4;
+						if(old_we && stat_X4_Y2 == 5'd3)
+							stat_X4_Y2= 5'd4;
+						if( we )
+							stat_X3_Y2= 5'd3;
+						if( we )
+							stat_X4_Y2= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X3_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y2 == 5'd0)
 							stat_X3_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y2= 5'd2;
-						end
-						else if(stat_X4_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y2 == 5'd0)
 							stat_X4_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y2= 5'd2;
-						end
-						else if(stat_X5_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y2 == 5'd0)
 							stat_X5_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y2 == 5'd3)
+							stat_X3_Y2= 5'd4;
+						if(old_we && stat_X4_Y2 == 5'd3)
+							stat_X4_Y2= 5'd4;
+						if(old_we && stat_X5_Y2 == 5'd3)
+							stat_X5_Y2= 5'd4;
+						if( we )
+							stat_X3_Y2= 5'd3;
+						if( we )
+							stat_X4_Y2= 5'd3;
+						if( we )
+							stat_X5_Y2= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X3_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y2 == 5'd0)
 							stat_X3_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y2= 5'd2;
-						end
-						else if(stat_X4_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y2 == 5'd0)
 							stat_X4_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y2= 5'd2;
-						end
-						else if(stat_X5_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y2 == 5'd0)
 							stat_X5_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y2= 5'd2;
-						end
-						else if(stat_X6_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y2 == 5'd0)
 							stat_X6_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y2 == 5'd3)
+							stat_X3_Y2= 5'd4;
+						if(old_we && stat_X4_Y2 == 5'd3)
+							stat_X4_Y2= 5'd4;
+						if(old_we && stat_X5_Y2 == 5'd3)
+							stat_X5_Y2= 5'd4;
+						if(old_we && stat_X6_Y2 == 5'd3)
+							stat_X6_Y2= 5'd4;
+						if( we )
+							stat_X3_Y2= 5'd3;
+						if( we )
+							stat_X4_Y2= 5'd3;
+						if( we )
+							stat_X5_Y2= 5'd3;
+						if( we )
+							stat_X6_Y2= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X3_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y2 == 5'd0)
 							stat_X3_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y2= 5'd2;
-						end
-						else if(stat_X4_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y2 == 5'd0)
 							stat_X4_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y2= 5'd2;
-						end
-						else if(stat_X5_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y2 == 5'd0)
 							stat_X5_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y2= 5'd2;
-						end
-						else if(stat_X6_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y2 == 5'd0)
 							stat_X6_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y2= 5'd2;
-						end
-						else if(stat_X7_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y2 == 5'd0)
 							stat_X7_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y2 == 5'd3)
+							stat_X3_Y2= 5'd4;
+						if(old_we && stat_X4_Y2 == 5'd3)
+							stat_X4_Y2= 5'd4;
+						if(old_we && stat_X5_Y2 == 5'd3)
+							stat_X5_Y2= 5'd4;
+						if(old_we && stat_X6_Y2 == 5'd3)
+							stat_X6_Y2= 5'd4;
+						if(old_we && stat_X7_Y2 == 5'd3)
+							stat_X7_Y2= 5'd4;
+						if( we )
+							stat_X3_Y2= 5'd3;
+						if( we )
+							stat_X4_Y2= 5'd3;
+						if( we )
+							stat_X5_Y2= 5'd3;
+						if( we )
+							stat_X6_Y2= 5'd3;
+						if( we )
+							stat_X7_Y2= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X3_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y2 == 5'd0)
 							stat_X3_Y2= 5'd1;
-						end
-						if(stat_X3_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y3 == 5'd0)
 							stat_X3_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y2 == 5'd3)
+							stat_X3_Y2= 5'd4;
+						if(old_we && stat_X3_Y3 == 5'd3)
+							stat_X3_Y3= 5'd4;
+						if( we )
+							stat_X3_Y2= 5'd3;
+						if( we )
+							stat_X3_Y3= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X3_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y2 == 5'd0)
 							stat_X3_Y2= 5'd1;
-						end
-						if(stat_X3_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y3 == 5'd0)
 							stat_X3_Y3= 5'd1;
-						end
-						if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y2 == 5'd3)
+							stat_X3_Y2= 5'd4;
+						if(old_we && stat_X3_Y3 == 5'd3)
+							stat_X3_Y3= 5'd4;
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if( we )
+							stat_X3_Y2= 5'd3;
+						if( we )
+							stat_X3_Y3= 5'd3;
+						if( we )
+							stat_X3_Y4= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X3_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y2 == 5'd0)
 							stat_X3_Y2= 5'd1;
-						end
-						if(stat_X3_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y3 == 5'd0)
 							stat_X3_Y3= 5'd1;
-						end
-						if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-						if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y2 == 5'd3)
+							stat_X3_Y2= 5'd4;
+						if(old_we && stat_X3_Y3 == 5'd3)
+							stat_X3_Y3= 5'd4;
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if( we )
+							stat_X3_Y2= 5'd3;
+						if( we )
+							stat_X3_Y3= 5'd3;
+						if( we )
+							stat_X3_Y4= 5'd3;
+						if( we )
+							stat_X3_Y5= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X3_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y2 == 5'd0)
 							stat_X3_Y2= 5'd1;
-						end
-						if(stat_X3_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y3 == 5'd0)
 							stat_X3_Y3= 5'd1;
-						end
-						if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-						if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-						if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y2 == 5'd3)
+							stat_X3_Y2= 5'd4;
+						if(old_we && stat_X3_Y3 == 5'd3)
+							stat_X3_Y3= 5'd4;
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if( we )
+							stat_X3_Y2= 5'd3;
+						if( we )
+							stat_X3_Y3= 5'd3;
+						if( we )
+							stat_X3_Y4= 5'd3;
+						if( we )
+							stat_X3_Y5= 5'd3;
+						if( we )
+							stat_X3_Y6= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd3 && mouse_cell_y == 4'd3)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X3_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y3 == 5'd0)
 							stat_X3_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y3= 5'd2;
-						end
-						else if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y3 == 5'd3)
+							stat_X3_Y3= 5'd4;
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if( we )
+							stat_X3_Y3= 5'd3;
+						if( we )
+							stat_X4_Y3= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X3_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y3 == 5'd0)
 							stat_X3_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y3= 5'd2;
-						end
-						else if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y3= 5'd2;
-						end
-						else if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y3 == 5'd3)
+							stat_X3_Y3= 5'd4;
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if( we )
+							stat_X3_Y3= 5'd3;
+						if( we )
+							stat_X4_Y3= 5'd3;
+						if( we )
+							stat_X5_Y3= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X3_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y3 == 5'd0)
 							stat_X3_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y3= 5'd2;
-						end
-						else if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y3= 5'd2;
-						end
-						else if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y3= 5'd2;
-						end
-						else if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y3 == 5'd3)
+							stat_X3_Y3= 5'd4;
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if( we )
+							stat_X3_Y3= 5'd3;
+						if( we )
+							stat_X4_Y3= 5'd3;
+						if( we )
+							stat_X5_Y3= 5'd3;
+						if( we )
+							stat_X6_Y3= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X3_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y3 == 5'd0)
 							stat_X3_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y3= 5'd2;
-						end
-						else if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y3= 5'd2;
-						end
-						else if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y3= 5'd2;
-						end
-						else if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y3= 5'd2;
-						end
-						else if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y3 == 5'd0)
 							stat_X7_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y3 == 5'd3)
+							stat_X3_Y3= 5'd4;
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if(old_we && stat_X7_Y3 == 5'd3)
+							stat_X7_Y3= 5'd4;
+						if( we )
+							stat_X3_Y3= 5'd3;
+						if( we )
+							stat_X4_Y3= 5'd3;
+						if( we )
+							stat_X5_Y3= 5'd3;
+						if( we )
+							stat_X6_Y3= 5'd3;
+						if( we )
+							stat_X7_Y3= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X3_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y3 == 5'd0)
 							stat_X3_Y3= 5'd1;
-						end
-						if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y3 == 5'd3)
+							stat_X3_Y3= 5'd4;
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if( we )
+							stat_X3_Y3= 5'd3;
+						if( we )
+							stat_X3_Y4= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X3_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y3 == 5'd0)
 							stat_X3_Y3= 5'd1;
-						end
-						if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-						if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y3 == 5'd3)
+							stat_X3_Y3= 5'd4;
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if( we )
+							stat_X3_Y3= 5'd3;
+						if( we )
+							stat_X3_Y4= 5'd3;
+						if( we )
+							stat_X3_Y5= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X3_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y3 == 5'd0)
 							stat_X3_Y3= 5'd1;
-						end
-						if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-						if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-						if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y3 == 5'd3)
+							stat_X3_Y3= 5'd4;
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if( we )
+							stat_X3_Y3= 5'd3;
+						if( we )
+							stat_X3_Y4= 5'd3;
+						if( we )
+							stat_X3_Y5= 5'd3;
+						if( we )
+							stat_X3_Y6= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X3_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y3 == 5'd0)
 							stat_X3_Y3= 5'd1;
-						end
-						if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-						if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-						if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-						if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y7 == 5'd0)
 							stat_X3_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y3 == 5'd3)
+							stat_X3_Y3= 5'd4;
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if(old_we && stat_X3_Y7 == 5'd3)
+							stat_X3_Y7= 5'd4;
+						if( we )
+							stat_X3_Y3= 5'd3;
+						if( we )
+							stat_X3_Y4= 5'd3;
+						if( we )
+							stat_X3_Y5= 5'd3;
+						if( we )
+							stat_X3_Y6= 5'd3;
+						if( we )
+							stat_X3_Y7= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd3 && mouse_cell_y == 4'd4)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y4= 5'd2;
-						end
-						else if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if( we )
+							stat_X3_Y4= 5'd3;
+						if( we )
+							stat_X4_Y4= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y4= 5'd2;
-						end
-						else if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y4= 5'd2;
-						end
-						else if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if( we )
+							stat_X3_Y4= 5'd3;
+						if( we )
+							stat_X4_Y4= 5'd3;
+						if( we )
+							stat_X5_Y4= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y4= 5'd2;
-						end
-						else if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y4= 5'd2;
-						end
-						else if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y4= 5'd2;
-						end
-						else if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if( we )
+							stat_X3_Y4= 5'd3;
+						if( we )
+							stat_X4_Y4= 5'd3;
+						if( we )
+							stat_X5_Y4= 5'd3;
+						if( we )
+							stat_X6_Y4= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y4= 5'd2;
-						end
-						else if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y4= 5'd2;
-						end
-						else if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y4= 5'd2;
-						end
-						else if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y4= 5'd2;
-						end
-						else if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y4 == 5'd0)
 							stat_X7_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if(old_we && stat_X7_Y4 == 5'd3)
+							stat_X7_Y4= 5'd4;
+						if( we )
+							stat_X3_Y4= 5'd3;
+						if( we )
+							stat_X4_Y4= 5'd3;
+						if( we )
+							stat_X5_Y4= 5'd3;
+						if( we )
+							stat_X6_Y4= 5'd3;
+						if( we )
+							stat_X7_Y4= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-						if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if( we )
+							stat_X3_Y4= 5'd3;
+						if( we )
+							stat_X3_Y5= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-						if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-						if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if( we )
+							stat_X3_Y4= 5'd3;
+						if( we )
+							stat_X3_Y5= 5'd3;
+						if( we )
+							stat_X3_Y6= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-						if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-						if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-						if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y7 == 5'd0)
 							stat_X3_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if(old_we && stat_X3_Y7 == 5'd3)
+							stat_X3_Y7= 5'd4;
+						if( we )
+							stat_X3_Y4= 5'd3;
+						if( we )
+							stat_X3_Y5= 5'd3;
+						if( we )
+							stat_X3_Y6= 5'd3;
+						if( we )
+							stat_X3_Y7= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X3_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y4 == 5'd0)
 							stat_X3_Y4= 5'd1;
-						end
-						if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-						if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-						if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y7 == 5'd0)
 							stat_X3_Y7= 5'd1;
-						end
-						if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y8 == 5'd0)
 							stat_X3_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y4 == 5'd3)
+							stat_X3_Y4= 5'd4;
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if(old_we && stat_X3_Y7 == 5'd3)
+							stat_X3_Y7= 5'd4;
+						if(old_we && stat_X3_Y8 == 5'd3)
+							stat_X3_Y8= 5'd4;
+						if( we )
+							stat_X3_Y4= 5'd3;
+						if( we )
+							stat_X3_Y5= 5'd3;
+						if( we )
+							stat_X3_Y6= 5'd3;
+						if( we )
+							stat_X3_Y7= 5'd3;
+						if( we )
+							stat_X3_Y8= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd3 && mouse_cell_y == 4'd5)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X0_Y9 == 5'd1)
-				 stat_X0_Y9 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X7_Y9 == 5'd1)
-				 stat_X7_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y5= 5'd2;
-						end
-						else if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if( we )
+							stat_X3_Y5= 5'd3;
+						if( we )
+							stat_X4_Y5= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y5= 5'd2;
-						end
-						else if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y5= 5'd2;
-						end
-						else if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if( we )
+							stat_X3_Y5= 5'd3;
+						if( we )
+							stat_X4_Y5= 5'd3;
+						if( we )
+							stat_X5_Y5= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y5= 5'd2;
-						end
-						else if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y5= 5'd2;
-						end
-						else if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y5= 5'd2;
-						end
-						else if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if( we )
+							stat_X3_Y5= 5'd3;
+						if( we )
+							stat_X4_Y5= 5'd3;
+						if( we )
+							stat_X5_Y5= 5'd3;
+						if( we )
+							stat_X6_Y5= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y5= 5'd2;
-						end
-						else if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y5= 5'd2;
-						end
-						else if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y5= 5'd2;
-						end
-						else if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y5= 5'd2;
-						end
-						else if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y5 == 5'd0)
 							stat_X7_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if(old_we && stat_X7_Y5 == 5'd3)
+							stat_X7_Y5= 5'd4;
+						if( we )
+							stat_X3_Y5= 5'd3;
+						if( we )
+							stat_X4_Y5= 5'd3;
+						if( we )
+							stat_X5_Y5= 5'd3;
+						if( we )
+							stat_X6_Y5= 5'd3;
+						if( we )
+							stat_X7_Y5= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-						if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if( we )
+							stat_X3_Y5= 5'd3;
+						if( we )
+							stat_X3_Y6= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-						if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-						if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y7 == 5'd0)
 							stat_X3_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if(old_we && stat_X3_Y7 == 5'd3)
+							stat_X3_Y7= 5'd4;
+						if( we )
+							stat_X3_Y5= 5'd3;
+						if( we )
+							stat_X3_Y6= 5'd3;
+						if( we )
+							stat_X3_Y7= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-						if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-						if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y7 == 5'd0)
 							stat_X3_Y7= 5'd1;
-						end
-						if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y8 == 5'd0)
 							stat_X3_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if(old_we && stat_X3_Y7 == 5'd3)
+							stat_X3_Y7= 5'd4;
+						if(old_we && stat_X3_Y8 == 5'd3)
+							stat_X3_Y8= 5'd4;
+						if( we )
+							stat_X3_Y5= 5'd3;
+						if( we )
+							stat_X3_Y6= 5'd3;
+						if( we )
+							stat_X3_Y7= 5'd3;
+						if( we )
+							stat_X3_Y8= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X3_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y5 == 5'd0)
 							stat_X3_Y5= 5'd1;
-						end
-						if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-						if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y7 == 5'd0)
 							stat_X3_Y7= 5'd1;
-						end
-						if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y8 == 5'd0)
 							stat_X3_Y8= 5'd1;
-						end
-						if(stat_X3_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y9 == 5'd0)
 							stat_X3_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y5 == 5'd3)
+							stat_X3_Y5= 5'd4;
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if(old_we && stat_X3_Y7 == 5'd3)
+							stat_X3_Y7= 5'd4;
+						if(old_we && stat_X3_Y8 == 5'd3)
+							stat_X3_Y8= 5'd4;
+						if(old_we && stat_X3_Y9 == 5'd3)
+							stat_X3_Y9= 5'd4;
+						if( we )
+							stat_X3_Y5= 5'd3;
+						if( we )
+							stat_X3_Y6= 5'd3;
+						if( we )
+							stat_X3_Y7= 5'd3;
+						if( we )
+							stat_X3_Y8= 5'd3;
+						if( we )
+							stat_X3_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd3 && mouse_cell_y == 4'd6)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X0_Y9 == 5'd1)
-				 stat_X0_Y9 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X7_Y9 == 5'd1)
-				 stat_X7_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y6= 5'd2;
-						end
-						else if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if( we )
+							stat_X3_Y6= 5'd3;
+						if( we )
+							stat_X4_Y6= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y6= 5'd2;
-						end
-						else if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y6= 5'd2;
-						end
-						else if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if( we )
+							stat_X3_Y6= 5'd3;
+						if( we )
+							stat_X4_Y6= 5'd3;
+						if( we )
+							stat_X5_Y6= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y6= 5'd2;
-						end
-						else if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y6= 5'd2;
-						end
-						else if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y6= 5'd2;
-						end
-						else if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y6 == 5'd0)
 							stat_X6_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if(old_we && stat_X6_Y6 == 5'd3)
+							stat_X6_Y6= 5'd4;
+						if( we )
+							stat_X3_Y6= 5'd3;
+						if( we )
+							stat_X4_Y6= 5'd3;
+						if( we )
+							stat_X5_Y6= 5'd3;
+						if( we )
+							stat_X6_Y6= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y6= 5'd2;
-						end
-						else if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y6= 5'd2;
-						end
-						else if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y6= 5'd2;
-						end
-						else if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y6 == 5'd0)
 							stat_X6_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y6= 5'd2;
-						end
-						else if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if(old_we && stat_X6_Y6 == 5'd3)
+							stat_X6_Y6= 5'd4;
+						if( we )
+							stat_X3_Y6= 5'd3;
+						if( we )
+							stat_X4_Y6= 5'd3;
+						if( we )
+							stat_X5_Y6= 5'd3;
+						if( we )
+							stat_X6_Y6= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-						if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y7 == 5'd0)
 							stat_X3_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if(old_we && stat_X3_Y7 == 5'd3)
+							stat_X3_Y7= 5'd4;
+						if( we )
+							stat_X3_Y6= 5'd3;
+						if( we )
+							stat_X3_Y7= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-						if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y7 == 5'd0)
 							stat_X3_Y7= 5'd1;
-						end
-						if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y8 == 5'd0)
 							stat_X3_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if(old_we && stat_X3_Y7 == 5'd3)
+							stat_X3_Y7= 5'd4;
+						if(old_we && stat_X3_Y8 == 5'd3)
+							stat_X3_Y8= 5'd4;
+						if( we )
+							stat_X3_Y6= 5'd3;
+						if( we )
+							stat_X3_Y7= 5'd3;
+						if( we )
+							stat_X3_Y8= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-						if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y7 == 5'd0)
 							stat_X3_Y7= 5'd1;
-						end
-						if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y8 == 5'd0)
 							stat_X3_Y8= 5'd1;
-						end
-						if(stat_X3_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y9 == 5'd0)
 							stat_X3_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if(old_we && stat_X3_Y7 == 5'd3)
+							stat_X3_Y7= 5'd4;
+						if(old_we && stat_X3_Y8 == 5'd3)
+							stat_X3_Y8= 5'd4;
+						if(old_we && stat_X3_Y9 == 5'd3)
+							stat_X3_Y9= 5'd4;
+						if( we )
+							stat_X3_Y6= 5'd3;
+						if( we )
+							stat_X3_Y7= 5'd3;
+						if( we )
+							stat_X3_Y8= 5'd3;
+						if( we )
+							stat_X3_Y9= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X3_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y6 == 5'd0)
 							stat_X3_Y6= 5'd1;
-						end
-						if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y7 == 5'd0)
 							stat_X3_Y7= 5'd1;
-						end
-						if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y8 == 5'd0)
 							stat_X3_Y8= 5'd1;
-						end
-						if(stat_X3_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y9 == 5'd0)
 							stat_X3_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y6 == 5'd3)
+							stat_X3_Y6= 5'd4;
+						if(old_we && stat_X3_Y7 == 5'd3)
+							stat_X3_Y7= 5'd4;
+						if(old_we && stat_X3_Y8 == 5'd3)
+							stat_X3_Y8= 5'd4;
+						if(old_we && stat_X3_Y9 == 5'd3)
+							stat_X3_Y9= 5'd4;
+						if( we )
+							stat_X3_Y6= 5'd3;
+						if( we )
+							stat_X3_Y7= 5'd3;
+						if( we )
+							stat_X3_Y8= 5'd3;
+						if( we )
+							stat_X3_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd3 && mouse_cell_y == 4'd7)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X0_Y9 == 5'd1)
-				 stat_X0_Y9 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X7_Y9 == 5'd1)
-				 stat_X7_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y7 == 5'd0)
 							stat_X3_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y7= 5'd2;
-						end
-						else if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y7 == 5'd0)
 							stat_X4_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y7 == 5'd3)
+							stat_X3_Y7= 5'd4;
+						if(old_we && stat_X4_Y7 == 5'd3)
+							stat_X4_Y7= 5'd4;
+						if( we )
+							stat_X3_Y7= 5'd3;
+						if( we )
+							stat_X4_Y7= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y7 == 5'd0)
 							stat_X3_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y7= 5'd2;
-						end
-						else if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y7 == 5'd0)
 							stat_X4_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y7= 5'd2;
-						end
-						else if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y7 == 5'd0)
 							stat_X5_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y7 == 5'd3)
+							stat_X3_Y7= 5'd4;
+						if(old_we && stat_X4_Y7 == 5'd3)
+							stat_X4_Y7= 5'd4;
+						if(old_we && stat_X5_Y7 == 5'd3)
+							stat_X5_Y7= 5'd4;
+						if( we )
+							stat_X3_Y7= 5'd3;
+						if( we )
+							stat_X4_Y7= 5'd3;
+						if( we )
+							stat_X5_Y7= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y7 == 5'd0)
 							stat_X3_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y7= 5'd2;
-						end
-						else if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y7 == 5'd0)
 							stat_X4_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y7= 5'd2;
-						end
-						else if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y7 == 5'd0)
 							stat_X5_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y7= 5'd2;
-						end
-						else if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X6_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y7 == 5'd3)
+							stat_X3_Y7= 5'd4;
+						if(old_we && stat_X4_Y7 == 5'd3)
+							stat_X4_Y7= 5'd4;
+						if(old_we && stat_X5_Y7 == 5'd3)
+							stat_X5_Y7= 5'd4;
+						if( we )
+							stat_X3_Y7= 5'd3;
+						if( we )
+							stat_X4_Y7= 5'd3;
+						if( we )
+							stat_X5_Y7= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y7 == 5'd0)
 							stat_X3_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y7= 5'd2;
-						end
-						else if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y7 == 5'd0)
 							stat_X4_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y7= 5'd2;
-						end
-						else if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y7 == 5'd0)
 							stat_X5_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y7= 5'd2;
-						end
-						else if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X6_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y7= 5'd2;
-						end
-						else if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y7 == 5'd3)
+							stat_X3_Y7= 5'd4;
+						if(old_we && stat_X4_Y7 == 5'd3)
+							stat_X4_Y7= 5'd4;
+						if(old_we && stat_X5_Y7 == 5'd3)
+							stat_X5_Y7= 5'd4;
+						if( we )
+							stat_X3_Y7= 5'd3;
+						if( we )
+							stat_X4_Y7= 5'd3;
+						if( we )
+							stat_X5_Y7= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y7 == 5'd0)
 							stat_X3_Y7= 5'd1;
-						end
-						if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y8 == 5'd0)
 							stat_X3_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y7 == 5'd3)
+							stat_X3_Y7= 5'd4;
+						if(old_we && stat_X3_Y8 == 5'd3)
+							stat_X3_Y8= 5'd4;
+						if( we )
+							stat_X3_Y7= 5'd3;
+						if( we )
+							stat_X3_Y8= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y7 == 5'd0)
 							stat_X3_Y7= 5'd1;
-						end
-						if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y8 == 5'd0)
 							stat_X3_Y8= 5'd1;
-						end
-						if(stat_X3_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y9 == 5'd0)
 							stat_X3_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y7 == 5'd3)
+							stat_X3_Y7= 5'd4;
+						if(old_we && stat_X3_Y8 == 5'd3)
+							stat_X3_Y8= 5'd4;
+						if(old_we && stat_X3_Y9 == 5'd3)
+							stat_X3_Y9= 5'd4;
+						if( we )
+							stat_X3_Y7= 5'd3;
+						if( we )
+							stat_X3_Y8= 5'd3;
+						if( we )
+							stat_X3_Y9= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y7 == 5'd0)
 							stat_X3_Y7= 5'd1;
-						end
-						if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y8 == 5'd0)
 							stat_X3_Y8= 5'd1;
-						end
-						if(stat_X3_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y9 == 5'd0)
 							stat_X3_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y7 == 5'd3)
+							stat_X3_Y7= 5'd4;
+						if(old_we && stat_X3_Y8 == 5'd3)
+							stat_X3_Y8= 5'd4;
+						if(old_we && stat_X3_Y9 == 5'd3)
+							stat_X3_Y9= 5'd4;
+						if( we )
+							stat_X3_Y7= 5'd3;
+						if( we )
+							stat_X3_Y8= 5'd3;
+						if( we )
+							stat_X3_Y9= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X3_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y7 == 5'd0)
 							stat_X3_Y7= 5'd1;
-						end
-						if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y8 == 5'd0)
 							stat_X3_Y8= 5'd1;
-						end
-						if(stat_X3_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y9 == 5'd0)
 							stat_X3_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y7 == 5'd3)
+							stat_X3_Y7= 5'd4;
+						if(old_we && stat_X3_Y8 == 5'd3)
+							stat_X3_Y8= 5'd4;
+						if(old_we && stat_X3_Y9 == 5'd3)
+							stat_X3_Y9= 5'd4;
+						if( we )
+							stat_X3_Y7= 5'd3;
+						if( we )
+							stat_X3_Y8= 5'd3;
+						if( we )
+							stat_X3_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd3 && mouse_cell_y == 4'd8)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X0_Y9 == 5'd1)
-				 stat_X0_Y9 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X7_Y9 == 5'd1)
-				 stat_X7_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y8 == 5'd0)
 							stat_X3_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y8= 5'd2;
-						end
-						else if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y8 == 5'd0)
 							stat_X4_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y8 == 5'd3)
+							stat_X3_Y8= 5'd4;
+						if(old_we && stat_X4_Y8 == 5'd3)
+							stat_X4_Y8= 5'd4;
+						if( we )
+							stat_X3_Y8= 5'd3;
+						if( we )
+							stat_X4_Y8= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y8 == 5'd0)
 							stat_X3_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y8= 5'd2;
-						end
-						else if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y8 == 5'd0)
 							stat_X4_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y8= 5'd2;
-						end
-						else if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X5_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y8 == 5'd3)
+							stat_X3_Y8= 5'd4;
+						if(old_we && stat_X4_Y8 == 5'd3)
+							stat_X4_Y8= 5'd4;
+						if( we )
+							stat_X3_Y8= 5'd3;
+						if( we )
+							stat_X4_Y8= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y8 == 5'd0)
 							stat_X3_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y8= 5'd2;
-						end
-						else if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y8 == 5'd0)
 							stat_X4_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y8= 5'd2;
-						end
-						else if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X5_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y8= 5'd2;
-						end
-						else if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X6_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y8 == 5'd3)
+							stat_X3_Y8= 5'd4;
+						if(old_we && stat_X4_Y8 == 5'd3)
+							stat_X4_Y8= 5'd4;
+						if( we )
+							stat_X3_Y8= 5'd3;
+						if( we )
+							stat_X4_Y8= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y8 == 5'd0)
 							stat_X3_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X4_Y8= 5'd2;
-						end
-						else if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y8 == 5'd0)
 							stat_X4_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y8= 5'd2;
-						end
-						else if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X5_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y8= 5'd2;
-						end
-						else if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X6_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y8= 5'd2;
-						end
-						else if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y8 == 5'd3)
+							stat_X3_Y8= 5'd4;
+						if(old_we && stat_X4_Y8 == 5'd3)
+							stat_X4_Y8= 5'd4;
+						if( we )
+							stat_X3_Y8= 5'd3;
+						if( we )
+							stat_X4_Y8= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y8 == 5'd0)
 							stat_X3_Y8= 5'd1;
-						end
-						if(stat_X3_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y9 == 5'd0)
 							stat_X3_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y8 == 5'd3)
+							stat_X3_Y8= 5'd4;
+						if(old_we && stat_X3_Y9 == 5'd3)
+							stat_X3_Y9= 5'd4;
+						if( we )
+							stat_X3_Y8= 5'd3;
+						if( we )
+							stat_X3_Y9= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y8 == 5'd0)
 							stat_X3_Y8= 5'd1;
-						end
-						if(stat_X3_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y9 == 5'd0)
 							stat_X3_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y8 == 5'd3)
+							stat_X3_Y8= 5'd4;
+						if(old_we && stat_X3_Y9 == 5'd3)
+							stat_X3_Y9= 5'd4;
+						if( we )
+							stat_X3_Y8= 5'd3;
+						if( we )
+							stat_X3_Y9= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y8 == 5'd0)
 							stat_X3_Y8= 5'd1;
-						end
-						if(stat_X3_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y9 == 5'd0)
 							stat_X3_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y8 == 5'd3)
+							stat_X3_Y8= 5'd4;
+						if(old_we && stat_X3_Y9 == 5'd3)
+							stat_X3_Y9= 5'd4;
+						if( we )
+							stat_X3_Y8= 5'd3;
+						if( we )
+							stat_X3_Y9= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X3_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y8 == 5'd0)
 							stat_X3_Y8= 5'd1;
-						end
-						if(stat_X3_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X3_Y9 == 5'd0)
 							stat_X3_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X3_Y8 == 5'd3)
+							stat_X3_Y8= 5'd4;
+						if(old_we && stat_X3_Y9 == 5'd3)
+							stat_X3_Y9= 5'd4;
+						if( we )
+							stat_X3_Y8= 5'd3;
+						if( we )
+							stat_X3_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
+		//controllo la posizione: capisco in che cella sono
+		else if(mouse_cell_x == 4'd3 && mouse_cell_y == 4'd9)
+		begin//controllo la direzione
+			if(!direction)
+			begin//controllo la dimensione della nave
+				case (dimension)
+					4'd2:
+					begin
+						if( !we && stat_X3_Y9 == 5'd0)
+							stat_X3_Y9= 5'd1;
+						if(old_we && stat_X3_Y9 == 5'd3)
+							stat_X3_Y9= 5'd4;
+						if( we )
+							stat_X3_Y9= 5'd3;
+					end//interno case
+					4'd3:
+					begin
+						if( !we && stat_X3_Y9 == 5'd0)
+							stat_X3_Y9= 5'd1;
+						if(old_we && stat_X3_Y9 == 5'd3)
+							stat_X3_Y9= 5'd4;
+						if( we )
+							stat_X3_Y9= 5'd3;
+					end//interno case
+					4'd4:
+					begin
+						if( !we && stat_X3_Y9 == 5'd0)
+							stat_X3_Y9= 5'd1;
+						if(old_we && stat_X3_Y9 == 5'd3)
+							stat_X3_Y9= 5'd4;
+						if( we )
+							stat_X3_Y9= 5'd3;
+					end//interno case
+					4'd5:
+					begin
+						if( !we && stat_X3_Y9 == 5'd0)
+							stat_X3_Y9= 5'd1;
+						if(old_we && stat_X3_Y9 == 5'd3)
+							stat_X3_Y9= 5'd4;
+						if( we )
+							stat_X3_Y9= 5'd3;
+					end//interno case
+				endcase
+			end//direzione
+			else
+			begin//controllo la dimensione della nave
+				case (dimension)
+					4'd2:
+					begin
+						if( !we && stat_X3_Y9 == 5'd0)
+							stat_X3_Y9= 5'd1;
+						if(old_we && stat_X3_Y9 == 5'd3)
+							stat_X3_Y9= 5'd4;
+						if( we )
+							stat_X3_Y9= 5'd3;
+					end//interno case
+					4'd3:
+					begin
+						if( !we && stat_X3_Y9 == 5'd0)
+							stat_X3_Y9= 5'd1;
+						if(old_we && stat_X3_Y9 == 5'd3)
+							stat_X3_Y9= 5'd4;
+						if( we )
+							stat_X3_Y9= 5'd3;
+					end//interno case
+					4'd4:
+					begin
+						if( !we && stat_X3_Y9 == 5'd0)
+							stat_X3_Y9= 5'd1;
+						if(old_we && stat_X3_Y9 == 5'd3)
+							stat_X3_Y9= 5'd4;
+						if( we )
+							stat_X3_Y9= 5'd3;
+					end//interno case
+					4'd5:
+					begin
+						if( !we && stat_X3_Y9 == 5'd0)
+							stat_X3_Y9= 5'd1;
+						if(old_we && stat_X3_Y9 == 5'd3)
+							stat_X3_Y9= 5'd4;
+						if( we )
+							stat_X3_Y9= 5'd3;
+					end//interno case
+				endcase
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd4 && mouse_cell_y == 4'd0)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X4_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y0 == 5'd0)
 							stat_X4_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y0= 5'd2;
-						end
-						else if(stat_X5_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y0 == 5'd0)
 							stat_X5_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y0 == 5'd3)
+							stat_X4_Y0= 5'd4;
+						if(old_we && stat_X5_Y0 == 5'd3)
+							stat_X5_Y0= 5'd4;
+						if( we )
+							stat_X4_Y0= 5'd3;
+						if( we )
+							stat_X5_Y0= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X4_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y0 == 5'd0)
 							stat_X4_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y0= 5'd2;
-						end
-						else if(stat_X5_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y0 == 5'd0)
 							stat_X5_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y0= 5'd2;
-						end
-						else if(stat_X6_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y0 == 5'd0)
 							stat_X6_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y0 == 5'd3)
+							stat_X4_Y0= 5'd4;
+						if(old_we && stat_X5_Y0 == 5'd3)
+							stat_X5_Y0= 5'd4;
+						if(old_we && stat_X6_Y0 == 5'd3)
+							stat_X6_Y0= 5'd4;
+						if( we )
+							stat_X4_Y0= 5'd3;
+						if( we )
+							stat_X5_Y0= 5'd3;
+						if( we )
+							stat_X6_Y0= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X4_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y0 == 5'd0)
 							stat_X4_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y0= 5'd2;
-						end
-						else if(stat_X5_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y0 == 5'd0)
 							stat_X5_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y0= 5'd2;
-						end
-						else if(stat_X6_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y0 == 5'd0)
 							stat_X6_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y0= 5'd2;
-						end
-						else if(stat_X7_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y0 == 5'd0)
 							stat_X7_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y0 == 5'd3)
+							stat_X4_Y0= 5'd4;
+						if(old_we && stat_X5_Y0 == 5'd3)
+							stat_X5_Y0= 5'd4;
+						if(old_we && stat_X6_Y0 == 5'd3)
+							stat_X6_Y0= 5'd4;
+						if(old_we && stat_X7_Y0 == 5'd3)
+							stat_X7_Y0= 5'd4;
+						if( we )
+							stat_X4_Y0= 5'd3;
+						if( we )
+							stat_X5_Y0= 5'd3;
+						if( we )
+							stat_X6_Y0= 5'd3;
+						if( we )
+							stat_X7_Y0= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X4_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y0 == 5'd0)
 							stat_X4_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y0= 5'd2;
-						end
-						else if(stat_X5_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y0 == 5'd0)
 							stat_X5_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y0= 5'd2;
-						end
-						else if(stat_X6_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y0 == 5'd0)
 							stat_X6_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y0= 5'd2;
-						end
-						else if(stat_X7_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y0 == 5'd0)
 							stat_X7_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y0= 5'd2;
-						end
-						else if(stat_X8_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y0 == 5'd0)
 							stat_X8_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y0 == 5'd3)
+							stat_X4_Y0= 5'd4;
+						if(old_we && stat_X5_Y0 == 5'd3)
+							stat_X5_Y0= 5'd4;
+						if(old_we && stat_X6_Y0 == 5'd3)
+							stat_X6_Y0= 5'd4;
+						if(old_we && stat_X7_Y0 == 5'd3)
+							stat_X7_Y0= 5'd4;
+						if(old_we && stat_X8_Y0 == 5'd3)
+							stat_X8_Y0= 5'd4;
+						if( we )
+							stat_X4_Y0= 5'd3;
+						if( we )
+							stat_X5_Y0= 5'd3;
+						if( we )
+							stat_X6_Y0= 5'd3;
+						if( we )
+							stat_X7_Y0= 5'd3;
+						if( we )
+							stat_X8_Y0= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X4_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y0 == 5'd0)
 							stat_X4_Y0= 5'd1;
-						end
-						if(stat_X4_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y1 == 5'd0)
 							stat_X4_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y0 == 5'd3)
+							stat_X4_Y0= 5'd4;
+						if(old_we && stat_X4_Y1 == 5'd3)
+							stat_X4_Y1= 5'd4;
+						if( we )
+							stat_X4_Y0= 5'd3;
+						if( we )
+							stat_X4_Y1= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X4_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y0 == 5'd0)
 							stat_X4_Y0= 5'd1;
-						end
-						if(stat_X4_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y1 == 5'd0)
 							stat_X4_Y1= 5'd1;
-						end
-						if(stat_X4_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y2 == 5'd0)
 							stat_X4_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y0 == 5'd3)
+							stat_X4_Y0= 5'd4;
+						if(old_we && stat_X4_Y1 == 5'd3)
+							stat_X4_Y1= 5'd4;
+						if(old_we && stat_X4_Y2 == 5'd3)
+							stat_X4_Y2= 5'd4;
+						if( we )
+							stat_X4_Y0= 5'd3;
+						if( we )
+							stat_X4_Y1= 5'd3;
+						if( we )
+							stat_X4_Y2= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X4_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y0 == 5'd0)
 							stat_X4_Y0= 5'd1;
-						end
-						if(stat_X4_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y1 == 5'd0)
 							stat_X4_Y1= 5'd1;
-						end
-						if(stat_X4_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y2 == 5'd0)
 							stat_X4_Y2= 5'd1;
-						end
-						if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y0 == 5'd3)
+							stat_X4_Y0= 5'd4;
+						if(old_we && stat_X4_Y1 == 5'd3)
+							stat_X4_Y1= 5'd4;
+						if(old_we && stat_X4_Y2 == 5'd3)
+							stat_X4_Y2= 5'd4;
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if( we )
+							stat_X4_Y0= 5'd3;
+						if( we )
+							stat_X4_Y1= 5'd3;
+						if( we )
+							stat_X4_Y2= 5'd3;
+						if( we )
+							stat_X4_Y3= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X4_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y0 == 5'd0)
 							stat_X4_Y0= 5'd1;
-						end
-						if(stat_X4_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y1 == 5'd0)
 							stat_X4_Y1= 5'd1;
-						end
-						if(stat_X4_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y2 == 5'd0)
 							stat_X4_Y2= 5'd1;
-						end
-						if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-						if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y0 == 5'd3)
+							stat_X4_Y0= 5'd4;
+						if(old_we && stat_X4_Y1 == 5'd3)
+							stat_X4_Y1= 5'd4;
+						if(old_we && stat_X4_Y2 == 5'd3)
+							stat_X4_Y2= 5'd4;
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if( we )
+							stat_X4_Y0= 5'd3;
+						if( we )
+							stat_X4_Y1= 5'd3;
+						if( we )
+							stat_X4_Y2= 5'd3;
+						if( we )
+							stat_X4_Y3= 5'd3;
+						if( we )
+							stat_X4_Y4= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd4 && mouse_cell_y == 4'd1)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X4_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y1 == 5'd0)
 							stat_X4_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y1= 5'd2;
-						end
-						else if(stat_X5_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y1 == 5'd0)
 							stat_X5_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y1 == 5'd3)
+							stat_X4_Y1= 5'd4;
+						if(old_we && stat_X5_Y1 == 5'd3)
+							stat_X5_Y1= 5'd4;
+						if( we )
+							stat_X4_Y1= 5'd3;
+						if( we )
+							stat_X5_Y1= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X4_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y1 == 5'd0)
 							stat_X4_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y1= 5'd2;
-						end
-						else if(stat_X5_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y1 == 5'd0)
 							stat_X5_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y1= 5'd2;
-						end
-						else if(stat_X6_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y1 == 5'd0)
 							stat_X6_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y1 == 5'd3)
+							stat_X4_Y1= 5'd4;
+						if(old_we && stat_X5_Y1 == 5'd3)
+							stat_X5_Y1= 5'd4;
+						if(old_we && stat_X6_Y1 == 5'd3)
+							stat_X6_Y1= 5'd4;
+						if( we )
+							stat_X4_Y1= 5'd3;
+						if( we )
+							stat_X5_Y1= 5'd3;
+						if( we )
+							stat_X6_Y1= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X4_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y1 == 5'd0)
 							stat_X4_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y1= 5'd2;
-						end
-						else if(stat_X5_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y1 == 5'd0)
 							stat_X5_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y1= 5'd2;
-						end
-						else if(stat_X6_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y1 == 5'd0)
 							stat_X6_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y1= 5'd2;
-						end
-						else if(stat_X7_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y1 == 5'd0)
 							stat_X7_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y1 == 5'd3)
+							stat_X4_Y1= 5'd4;
+						if(old_we && stat_X5_Y1 == 5'd3)
+							stat_X5_Y1= 5'd4;
+						if(old_we && stat_X6_Y1 == 5'd3)
+							stat_X6_Y1= 5'd4;
+						if(old_we && stat_X7_Y1 == 5'd3)
+							stat_X7_Y1= 5'd4;
+						if( we )
+							stat_X4_Y1= 5'd3;
+						if( we )
+							stat_X5_Y1= 5'd3;
+						if( we )
+							stat_X6_Y1= 5'd3;
+						if( we )
+							stat_X7_Y1= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X4_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y1 == 5'd0)
 							stat_X4_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y1= 5'd2;
-						end
-						else if(stat_X5_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y1 == 5'd0)
 							stat_X5_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y1= 5'd2;
-						end
-						else if(stat_X6_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y1 == 5'd0)
 							stat_X6_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y1= 5'd2;
-						end
-						else if(stat_X7_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y1 == 5'd0)
 							stat_X7_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y1= 5'd2;
-						end
-						else if(stat_X8_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y1 == 5'd0)
 							stat_X8_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y1 == 5'd3)
+							stat_X4_Y1= 5'd4;
+						if(old_we && stat_X5_Y1 == 5'd3)
+							stat_X5_Y1= 5'd4;
+						if(old_we && stat_X6_Y1 == 5'd3)
+							stat_X6_Y1= 5'd4;
+						if(old_we && stat_X7_Y1 == 5'd3)
+							stat_X7_Y1= 5'd4;
+						if(old_we && stat_X8_Y1 == 5'd3)
+							stat_X8_Y1= 5'd4;
+						if( we )
+							stat_X4_Y1= 5'd3;
+						if( we )
+							stat_X5_Y1= 5'd3;
+						if( we )
+							stat_X6_Y1= 5'd3;
+						if( we )
+							stat_X7_Y1= 5'd3;
+						if( we )
+							stat_X8_Y1= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X4_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y1 == 5'd0)
 							stat_X4_Y1= 5'd1;
-						end
-						if(stat_X4_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y2 == 5'd0)
 							stat_X4_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y1 == 5'd3)
+							stat_X4_Y1= 5'd4;
+						if(old_we && stat_X4_Y2 == 5'd3)
+							stat_X4_Y2= 5'd4;
+						if( we )
+							stat_X4_Y1= 5'd3;
+						if( we )
+							stat_X4_Y2= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X4_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y1 == 5'd0)
 							stat_X4_Y1= 5'd1;
-						end
-						if(stat_X4_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y2 == 5'd0)
 							stat_X4_Y2= 5'd1;
-						end
-						if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y1 == 5'd3)
+							stat_X4_Y1= 5'd4;
+						if(old_we && stat_X4_Y2 == 5'd3)
+							stat_X4_Y2= 5'd4;
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if( we )
+							stat_X4_Y1= 5'd3;
+						if( we )
+							stat_X4_Y2= 5'd3;
+						if( we )
+							stat_X4_Y3= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X4_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y1 == 5'd0)
 							stat_X4_Y1= 5'd1;
-						end
-						if(stat_X4_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y2 == 5'd0)
 							stat_X4_Y2= 5'd1;
-						end
-						if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-						if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y1 == 5'd3)
+							stat_X4_Y1= 5'd4;
+						if(old_we && stat_X4_Y2 == 5'd3)
+							stat_X4_Y2= 5'd4;
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if( we )
+							stat_X4_Y1= 5'd3;
+						if( we )
+							stat_X4_Y2= 5'd3;
+						if( we )
+							stat_X4_Y3= 5'd3;
+						if( we )
+							stat_X4_Y4= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X4_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y1 == 5'd0)
 							stat_X4_Y1= 5'd1;
-						end
-						if(stat_X4_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y2 == 5'd0)
 							stat_X4_Y2= 5'd1;
-						end
-						if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-						if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-						if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y1 == 5'd3)
+							stat_X4_Y1= 5'd4;
+						if(old_we && stat_X4_Y2 == 5'd3)
+							stat_X4_Y2= 5'd4;
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if( we )
+							stat_X4_Y1= 5'd3;
+						if( we )
+							stat_X4_Y2= 5'd3;
+						if( we )
+							stat_X4_Y3= 5'd3;
+						if( we )
+							stat_X4_Y4= 5'd3;
+						if( we )
+							stat_X4_Y5= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd4 && mouse_cell_y == 4'd2)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X4_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y2 == 5'd0)
 							stat_X4_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y2= 5'd2;
-						end
-						else if(stat_X5_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y2 == 5'd0)
 							stat_X5_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y2 == 5'd3)
+							stat_X4_Y2= 5'd4;
+						if(old_we && stat_X5_Y2 == 5'd3)
+							stat_X5_Y2= 5'd4;
+						if( we )
+							stat_X4_Y2= 5'd3;
+						if( we )
+							stat_X5_Y2= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X4_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y2 == 5'd0)
 							stat_X4_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y2= 5'd2;
-						end
-						else if(stat_X5_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y2 == 5'd0)
 							stat_X5_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y2= 5'd2;
-						end
-						else if(stat_X6_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y2 == 5'd0)
 							stat_X6_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y2 == 5'd3)
+							stat_X4_Y2= 5'd4;
+						if(old_we && stat_X5_Y2 == 5'd3)
+							stat_X5_Y2= 5'd4;
+						if(old_we && stat_X6_Y2 == 5'd3)
+							stat_X6_Y2= 5'd4;
+						if( we )
+							stat_X4_Y2= 5'd3;
+						if( we )
+							stat_X5_Y2= 5'd3;
+						if( we )
+							stat_X6_Y2= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X4_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y2 == 5'd0)
 							stat_X4_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y2= 5'd2;
-						end
-						else if(stat_X5_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y2 == 5'd0)
 							stat_X5_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y2= 5'd2;
-						end
-						else if(stat_X6_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y2 == 5'd0)
 							stat_X6_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y2= 5'd2;
-						end
-						else if(stat_X7_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y2 == 5'd0)
 							stat_X7_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y2 == 5'd3)
+							stat_X4_Y2= 5'd4;
+						if(old_we && stat_X5_Y2 == 5'd3)
+							stat_X5_Y2= 5'd4;
+						if(old_we && stat_X6_Y2 == 5'd3)
+							stat_X6_Y2= 5'd4;
+						if(old_we && stat_X7_Y2 == 5'd3)
+							stat_X7_Y2= 5'd4;
+						if( we )
+							stat_X4_Y2= 5'd3;
+						if( we )
+							stat_X5_Y2= 5'd3;
+						if( we )
+							stat_X6_Y2= 5'd3;
+						if( we )
+							stat_X7_Y2= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X4_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y2 == 5'd0)
 							stat_X4_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y2= 5'd2;
-						end
-						else if(stat_X5_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y2 == 5'd0)
 							stat_X5_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y2= 5'd2;
-						end
-						else if(stat_X6_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y2 == 5'd0)
 							stat_X6_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y2= 5'd2;
-						end
-						else if(stat_X7_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y2 == 5'd0)
 							stat_X7_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y2= 5'd2;
-						end
-						else if(stat_X8_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y2 == 5'd0)
 							stat_X8_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y2 == 5'd3)
+							stat_X4_Y2= 5'd4;
+						if(old_we && stat_X5_Y2 == 5'd3)
+							stat_X5_Y2= 5'd4;
+						if(old_we && stat_X6_Y2 == 5'd3)
+							stat_X6_Y2= 5'd4;
+						if(old_we && stat_X7_Y2 == 5'd3)
+							stat_X7_Y2= 5'd4;
+						if(old_we && stat_X8_Y2 == 5'd3)
+							stat_X8_Y2= 5'd4;
+						if( we )
+							stat_X4_Y2= 5'd3;
+						if( we )
+							stat_X5_Y2= 5'd3;
+						if( we )
+							stat_X6_Y2= 5'd3;
+						if( we )
+							stat_X7_Y2= 5'd3;
+						if( we )
+							stat_X8_Y2= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X4_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y2 == 5'd0)
 							stat_X4_Y2= 5'd1;
-						end
-						if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y2 == 5'd3)
+							stat_X4_Y2= 5'd4;
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if( we )
+							stat_X4_Y2= 5'd3;
+						if( we )
+							stat_X4_Y3= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X4_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y2 == 5'd0)
 							stat_X4_Y2= 5'd1;
-						end
-						if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-						if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y2 == 5'd3)
+							stat_X4_Y2= 5'd4;
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if( we )
+							stat_X4_Y2= 5'd3;
+						if( we )
+							stat_X4_Y3= 5'd3;
+						if( we )
+							stat_X4_Y4= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X4_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y2 == 5'd0)
 							stat_X4_Y2= 5'd1;
-						end
-						if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-						if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-						if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y2 == 5'd3)
+							stat_X4_Y2= 5'd4;
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if( we )
+							stat_X4_Y2= 5'd3;
+						if( we )
+							stat_X4_Y3= 5'd3;
+						if( we )
+							stat_X4_Y4= 5'd3;
+						if( we )
+							stat_X4_Y5= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X4_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y2 == 5'd0)
 							stat_X4_Y2= 5'd1;
-						end
-						if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-						if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-						if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-						if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y2 == 5'd3)
+							stat_X4_Y2= 5'd4;
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if( we )
+							stat_X4_Y2= 5'd3;
+						if( we )
+							stat_X4_Y3= 5'd3;
+						if( we )
+							stat_X4_Y4= 5'd3;
+						if( we )
+							stat_X4_Y5= 5'd3;
+						if( we )
+							stat_X4_Y6= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd4 && mouse_cell_y == 4'd3)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y3= 5'd2;
-						end
-						else if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if( we )
+							stat_X4_Y3= 5'd3;
+						if( we )
+							stat_X5_Y3= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y3= 5'd2;
-						end
-						else if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y3= 5'd2;
-						end
-						else if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if( we )
+							stat_X4_Y3= 5'd3;
+						if( we )
+							stat_X5_Y3= 5'd3;
+						if( we )
+							stat_X6_Y3= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y3= 5'd2;
-						end
-						else if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y3= 5'd2;
-						end
-						else if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y3= 5'd2;
-						end
-						else if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y3 == 5'd0)
 							stat_X7_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if(old_we && stat_X7_Y3 == 5'd3)
+							stat_X7_Y3= 5'd4;
+						if( we )
+							stat_X4_Y3= 5'd3;
+						if( we )
+							stat_X5_Y3= 5'd3;
+						if( we )
+							stat_X6_Y3= 5'd3;
+						if( we )
+							stat_X7_Y3= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y3= 5'd2;
-						end
-						else if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y3= 5'd2;
-						end
-						else if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y3= 5'd2;
-						end
-						else if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y3 == 5'd0)
 							stat_X7_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y3= 5'd2;
-						end
-						else if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y3 == 5'd0)
 							stat_X8_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if(old_we && stat_X7_Y3 == 5'd3)
+							stat_X7_Y3= 5'd4;
+						if(old_we && stat_X8_Y3 == 5'd3)
+							stat_X8_Y3= 5'd4;
+						if( we )
+							stat_X4_Y3= 5'd3;
+						if( we )
+							stat_X5_Y3= 5'd3;
+						if( we )
+							stat_X6_Y3= 5'd3;
+						if( we )
+							stat_X7_Y3= 5'd3;
+						if( we )
+							stat_X8_Y3= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-						if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if( we )
+							stat_X4_Y3= 5'd3;
+						if( we )
+							stat_X4_Y4= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-						if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-						if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if( we )
+							stat_X4_Y3= 5'd3;
+						if( we )
+							stat_X4_Y4= 5'd3;
+						if( we )
+							stat_X4_Y5= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-						if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-						if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-						if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if( we )
+							stat_X4_Y3= 5'd3;
+						if( we )
+							stat_X4_Y4= 5'd3;
+						if( we )
+							stat_X4_Y5= 5'd3;
+						if( we )
+							stat_X4_Y6= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X4_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y3 == 5'd0)
 							stat_X4_Y3= 5'd1;
-						end
-						if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-						if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-						if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-						if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y7 == 5'd0)
 							stat_X4_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y3 == 5'd3)
+							stat_X4_Y3= 5'd4;
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if(old_we && stat_X4_Y7 == 5'd3)
+							stat_X4_Y7= 5'd4;
+						if( we )
+							stat_X4_Y3= 5'd3;
+						if( we )
+							stat_X4_Y4= 5'd3;
+						if( we )
+							stat_X4_Y5= 5'd3;
+						if( we )
+							stat_X4_Y6= 5'd3;
+						if( we )
+							stat_X4_Y7= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd4 && mouse_cell_y == 4'd4)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X8_Y8 == 5'd1)
-				 stat_X8_Y8 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y4= 5'd2;
-						end
-						else if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if( we )
+							stat_X4_Y4= 5'd3;
+						if( we )
+							stat_X5_Y4= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y4= 5'd2;
-						end
-						else if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y4= 5'd2;
-						end
-						else if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if( we )
+							stat_X4_Y4= 5'd3;
+						if( we )
+							stat_X5_Y4= 5'd3;
+						if( we )
+							stat_X6_Y4= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y4= 5'd2;
-						end
-						else if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y4= 5'd2;
-						end
-						else if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y4= 5'd2;
-						end
-						else if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y4 == 5'd0)
 							stat_X7_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if(old_we && stat_X7_Y4 == 5'd3)
+							stat_X7_Y4= 5'd4;
+						if( we )
+							stat_X4_Y4= 5'd3;
+						if( we )
+							stat_X5_Y4= 5'd3;
+						if( we )
+							stat_X6_Y4= 5'd3;
+						if( we )
+							stat_X7_Y4= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y4= 5'd2;
-						end
-						else if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y4= 5'd2;
-						end
-						else if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y4= 5'd2;
-						end
-						else if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y4 == 5'd0)
 							stat_X7_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y4= 5'd2;
-						end
-						else if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y4 == 5'd0)
 							stat_X8_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if(old_we && stat_X7_Y4 == 5'd3)
+							stat_X7_Y4= 5'd4;
+						if(old_we && stat_X8_Y4 == 5'd3)
+							stat_X8_Y4= 5'd4;
+						if( we )
+							stat_X4_Y4= 5'd3;
+						if( we )
+							stat_X5_Y4= 5'd3;
+						if( we )
+							stat_X6_Y4= 5'd3;
+						if( we )
+							stat_X7_Y4= 5'd3;
+						if( we )
+							stat_X8_Y4= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-						if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if( we )
+							stat_X4_Y4= 5'd3;
+						if( we )
+							stat_X4_Y5= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-						if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-						if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if( we )
+							stat_X4_Y4= 5'd3;
+						if( we )
+							stat_X4_Y5= 5'd3;
+						if( we )
+							stat_X4_Y6= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-						if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-						if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-						if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y7 == 5'd0)
 							stat_X4_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if(old_we && stat_X4_Y7 == 5'd3)
+							stat_X4_Y7= 5'd4;
+						if( we )
+							stat_X4_Y4= 5'd3;
+						if( we )
+							stat_X4_Y5= 5'd3;
+						if( we )
+							stat_X4_Y6= 5'd3;
+						if( we )
+							stat_X4_Y7= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X4_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y4 == 5'd0)
 							stat_X4_Y4= 5'd1;
-						end
-						if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-						if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-						if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y7 == 5'd0)
 							stat_X4_Y7= 5'd1;
-						end
-						if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y8 == 5'd0)
 							stat_X4_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y4 == 5'd3)
+							stat_X4_Y4= 5'd4;
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if(old_we && stat_X4_Y7 == 5'd3)
+							stat_X4_Y7= 5'd4;
+						if(old_we && stat_X4_Y8 == 5'd3)
+							stat_X4_Y8= 5'd4;
+						if( we )
+							stat_X4_Y4= 5'd3;
+						if( we )
+							stat_X4_Y5= 5'd3;
+						if( we )
+							stat_X4_Y6= 5'd3;
+						if( we )
+							stat_X4_Y7= 5'd3;
+						if( we )
+							stat_X4_Y8= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd4 && mouse_cell_y == 4'd5)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X0_Y9 == 5'd1)
-				 stat_X0_Y9 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X7_Y9 == 5'd1)
-				 stat_X7_Y9 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X8_Y8 == 5'd1)
-				 stat_X8_Y8 =0;
-			 if(stat_X8_Y9 == 5'd1)
-				 stat_X8_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y5= 5'd2;
-						end
-						else if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if( we )
+							stat_X4_Y5= 5'd3;
+						if( we )
+							stat_X5_Y5= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y5= 5'd2;
-						end
-						else if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y5= 5'd2;
-						end
-						else if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if( we )
+							stat_X4_Y5= 5'd3;
+						if( we )
+							stat_X5_Y5= 5'd3;
+						if( we )
+							stat_X6_Y5= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y5= 5'd2;
-						end
-						else if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y5= 5'd2;
-						end
-						else if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y5= 5'd2;
-						end
-						else if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y5 == 5'd0)
 							stat_X7_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if(old_we && stat_X7_Y5 == 5'd3)
+							stat_X7_Y5= 5'd4;
+						if( we )
+							stat_X4_Y5= 5'd3;
+						if( we )
+							stat_X5_Y5= 5'd3;
+						if( we )
+							stat_X6_Y5= 5'd3;
+						if( we )
+							stat_X7_Y5= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y5= 5'd2;
-						end
-						else if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y5= 5'd2;
-						end
-						else if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y5= 5'd2;
-						end
-						else if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y5 == 5'd0)
 							stat_X7_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y5= 5'd2;
-						end
-						else if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y5 == 5'd0)
 							stat_X8_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if(old_we && stat_X7_Y5 == 5'd3)
+							stat_X7_Y5= 5'd4;
+						if(old_we && stat_X8_Y5 == 5'd3)
+							stat_X8_Y5= 5'd4;
+						if( we )
+							stat_X4_Y5= 5'd3;
+						if( we )
+							stat_X5_Y5= 5'd3;
+						if( we )
+							stat_X6_Y5= 5'd3;
+						if( we )
+							stat_X7_Y5= 5'd3;
+						if( we )
+							stat_X8_Y5= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-						if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if( we )
+							stat_X4_Y5= 5'd3;
+						if( we )
+							stat_X4_Y6= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-						if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-						if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y7 == 5'd0)
 							stat_X4_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if(old_we && stat_X4_Y7 == 5'd3)
+							stat_X4_Y7= 5'd4;
+						if( we )
+							stat_X4_Y5= 5'd3;
+						if( we )
+							stat_X4_Y6= 5'd3;
+						if( we )
+							stat_X4_Y7= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-						if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-						if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y7 == 5'd0)
 							stat_X4_Y7= 5'd1;
-						end
-						if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y8 == 5'd0)
 							stat_X4_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if(old_we && stat_X4_Y7 == 5'd3)
+							stat_X4_Y7= 5'd4;
+						if(old_we && stat_X4_Y8 == 5'd3)
+							stat_X4_Y8= 5'd4;
+						if( we )
+							stat_X4_Y5= 5'd3;
+						if( we )
+							stat_X4_Y6= 5'd3;
+						if( we )
+							stat_X4_Y7= 5'd3;
+						if( we )
+							stat_X4_Y8= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X4_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y5 == 5'd0)
 							stat_X4_Y5= 5'd1;
-						end
-						if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-						if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y7 == 5'd0)
 							stat_X4_Y7= 5'd1;
-						end
-						if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y8 == 5'd0)
 							stat_X4_Y8= 5'd1;
-						end
-						if(stat_X4_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y9 == 5'd0)
 							stat_X4_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y5 == 5'd3)
+							stat_X4_Y5= 5'd4;
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if(old_we && stat_X4_Y7 == 5'd3)
+							stat_X4_Y7= 5'd4;
+						if(old_we && stat_X4_Y8 == 5'd3)
+							stat_X4_Y8= 5'd4;
+						if(old_we && stat_X4_Y9 == 5'd3)
+							stat_X4_Y9= 5'd4;
+						if( we )
+							stat_X4_Y5= 5'd3;
+						if( we )
+							stat_X4_Y6= 5'd3;
+						if( we )
+							stat_X4_Y7= 5'd3;
+						if( we )
+							stat_X4_Y8= 5'd3;
+						if( we )
+							stat_X4_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd4 && mouse_cell_y == 4'd6)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X0_Y9 == 5'd1)
-				 stat_X0_Y9 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X7_Y9 == 5'd1)
-				 stat_X7_Y9 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X8_Y8 == 5'd1)
-				 stat_X8_Y8 =0;
-			 if(stat_X8_Y9 == 5'd1)
-				 stat_X8_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y6= 5'd2;
-						end
-						else if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if( we )
+							stat_X4_Y6= 5'd3;
+						if( we )
+							stat_X5_Y6= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y6= 5'd2;
-						end
-						else if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y6= 5'd2;
-						end
-						else if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y6 == 5'd0)
 							stat_X6_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if(old_we && stat_X6_Y6 == 5'd3)
+							stat_X6_Y6= 5'd4;
+						if( we )
+							stat_X4_Y6= 5'd3;
+						if( we )
+							stat_X5_Y6= 5'd3;
+						if( we )
+							stat_X6_Y6= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y6= 5'd2;
-						end
-						else if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y6= 5'd2;
-						end
-						else if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y6 == 5'd0)
 							stat_X6_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y6= 5'd2;
-						end
-						else if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y6 == 5'd0)
 							stat_X7_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if(old_we && stat_X6_Y6 == 5'd3)
+							stat_X6_Y6= 5'd4;
+						if(old_we && stat_X7_Y6 == 5'd3)
+							stat_X7_Y6= 5'd4;
+						if( we )
+							stat_X4_Y6= 5'd3;
+						if( we )
+							stat_X5_Y6= 5'd3;
+						if( we )
+							stat_X6_Y6= 5'd3;
+						if( we )
+							stat_X7_Y6= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y6= 5'd2;
-						end
-						else if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y6= 5'd2;
-						end
-						else if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y6 == 5'd0)
 							stat_X6_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y6= 5'd2;
-						end
-						else if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y6 == 5'd0)
 							stat_X7_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y6= 5'd2;
-						end
-						else if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if(old_we && stat_X6_Y6 == 5'd3)
+							stat_X6_Y6= 5'd4;
+						if(old_we && stat_X7_Y6 == 5'd3)
+							stat_X7_Y6= 5'd4;
+						if( we )
+							stat_X4_Y6= 5'd3;
+						if( we )
+							stat_X5_Y6= 5'd3;
+						if( we )
+							stat_X6_Y6= 5'd3;
+						if( we )
+							stat_X7_Y6= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-						if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y7 == 5'd0)
 							stat_X4_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if(old_we && stat_X4_Y7 == 5'd3)
+							stat_X4_Y7= 5'd4;
+						if( we )
+							stat_X4_Y6= 5'd3;
+						if( we )
+							stat_X4_Y7= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-						if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y7 == 5'd0)
 							stat_X4_Y7= 5'd1;
-						end
-						if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y8 == 5'd0)
 							stat_X4_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if(old_we && stat_X4_Y7 == 5'd3)
+							stat_X4_Y7= 5'd4;
+						if(old_we && stat_X4_Y8 == 5'd3)
+							stat_X4_Y8= 5'd4;
+						if( we )
+							stat_X4_Y6= 5'd3;
+						if( we )
+							stat_X4_Y7= 5'd3;
+						if( we )
+							stat_X4_Y8= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-						if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y7 == 5'd0)
 							stat_X4_Y7= 5'd1;
-						end
-						if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y8 == 5'd0)
 							stat_X4_Y8= 5'd1;
-						end
-						if(stat_X4_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y9 == 5'd0)
 							stat_X4_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if(old_we && stat_X4_Y7 == 5'd3)
+							stat_X4_Y7= 5'd4;
+						if(old_we && stat_X4_Y8 == 5'd3)
+							stat_X4_Y8= 5'd4;
+						if(old_we && stat_X4_Y9 == 5'd3)
+							stat_X4_Y9= 5'd4;
+						if( we )
+							stat_X4_Y6= 5'd3;
+						if( we )
+							stat_X4_Y7= 5'd3;
+						if( we )
+							stat_X4_Y8= 5'd3;
+						if( we )
+							stat_X4_Y9= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X4_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y6 == 5'd0)
 							stat_X4_Y6= 5'd1;
-						end
-						if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y7 == 5'd0)
 							stat_X4_Y7= 5'd1;
-						end
-						if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y8 == 5'd0)
 							stat_X4_Y8= 5'd1;
-						end
-						if(stat_X4_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y9 == 5'd0)
 							stat_X4_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y6 == 5'd3)
+							stat_X4_Y6= 5'd4;
+						if(old_we && stat_X4_Y7 == 5'd3)
+							stat_X4_Y7= 5'd4;
+						if(old_we && stat_X4_Y8 == 5'd3)
+							stat_X4_Y8= 5'd4;
+						if(old_we && stat_X4_Y9 == 5'd3)
+							stat_X4_Y9= 5'd4;
+						if( we )
+							stat_X4_Y6= 5'd3;
+						if( we )
+							stat_X4_Y7= 5'd3;
+						if( we )
+							stat_X4_Y8= 5'd3;
+						if( we )
+							stat_X4_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd4 && mouse_cell_y == 4'd7)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X0_Y9 == 5'd1)
-				 stat_X0_Y9 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X7_Y9 == 5'd1)
-				 stat_X7_Y9 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X8_Y8 == 5'd1)
-				 stat_X8_Y8 =0;
-			 if(stat_X8_Y9 == 5'd1)
-				 stat_X8_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y7 == 5'd0)
 							stat_X4_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y7= 5'd2;
-						end
-						else if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y7 == 5'd0)
 							stat_X5_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y7 == 5'd3)
+							stat_X4_Y7= 5'd4;
+						if(old_we && stat_X5_Y7 == 5'd3)
+							stat_X5_Y7= 5'd4;
+						if( we )
+							stat_X4_Y7= 5'd3;
+						if( we )
+							stat_X5_Y7= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y7 == 5'd0)
 							stat_X4_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y7= 5'd2;
-						end
-						else if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y7 == 5'd0)
 							stat_X5_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y7= 5'd2;
-						end
-						else if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y7 == 5'd0)
 							stat_X6_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y7 == 5'd3)
+							stat_X4_Y7= 5'd4;
+						if(old_we && stat_X5_Y7 == 5'd3)
+							stat_X5_Y7= 5'd4;
+						if(old_we && stat_X6_Y7 == 5'd3)
+							stat_X6_Y7= 5'd4;
+						if( we )
+							stat_X4_Y7= 5'd3;
+						if( we )
+							stat_X5_Y7= 5'd3;
+						if( we )
+							stat_X6_Y7= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y7 == 5'd0)
 							stat_X4_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y7= 5'd2;
-						end
-						else if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y7 == 5'd0)
 							stat_X5_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y7= 5'd2;
-						end
-						else if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y7 == 5'd0)
 							stat_X6_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y7= 5'd2;
-						end
-						else if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y7 == 5'd3)
+							stat_X4_Y7= 5'd4;
+						if(old_we && stat_X5_Y7 == 5'd3)
+							stat_X5_Y7= 5'd4;
+						if(old_we && stat_X6_Y7 == 5'd3)
+							stat_X6_Y7= 5'd4;
+						if( we )
+							stat_X4_Y7= 5'd3;
+						if( we )
+							stat_X5_Y7= 5'd3;
+						if( we )
+							stat_X6_Y7= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y7 == 5'd0)
 							stat_X4_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y7= 5'd2;
-						end
-						else if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y7 == 5'd0)
 							stat_X5_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y7= 5'd2;
-						end
-						else if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y7 == 5'd0)
 							stat_X6_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y7= 5'd2;
-						end
-						else if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y7= 5'd2;
-						end
-						else if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y7 == 5'd3)
+							stat_X4_Y7= 5'd4;
+						if(old_we && stat_X5_Y7 == 5'd3)
+							stat_X5_Y7= 5'd4;
+						if(old_we && stat_X6_Y7 == 5'd3)
+							stat_X6_Y7= 5'd4;
+						if( we )
+							stat_X4_Y7= 5'd3;
+						if( we )
+							stat_X5_Y7= 5'd3;
+						if( we )
+							stat_X6_Y7= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y7 == 5'd0)
 							stat_X4_Y7= 5'd1;
-						end
-						if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y8 == 5'd0)
 							stat_X4_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y7 == 5'd3)
+							stat_X4_Y7= 5'd4;
+						if(old_we && stat_X4_Y8 == 5'd3)
+							stat_X4_Y8= 5'd4;
+						if( we )
+							stat_X4_Y7= 5'd3;
+						if( we )
+							stat_X4_Y8= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y7 == 5'd0)
 							stat_X4_Y7= 5'd1;
-						end
-						if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y8 == 5'd0)
 							stat_X4_Y8= 5'd1;
-						end
-						if(stat_X4_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y9 == 5'd0)
 							stat_X4_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y7 == 5'd3)
+							stat_X4_Y7= 5'd4;
+						if(old_we && stat_X4_Y8 == 5'd3)
+							stat_X4_Y8= 5'd4;
+						if(old_we && stat_X4_Y9 == 5'd3)
+							stat_X4_Y9= 5'd4;
+						if( we )
+							stat_X4_Y7= 5'd3;
+						if( we )
+							stat_X4_Y8= 5'd3;
+						if( we )
+							stat_X4_Y9= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y7 == 5'd0)
 							stat_X4_Y7= 5'd1;
-						end
-						if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y8 == 5'd0)
 							stat_X4_Y8= 5'd1;
-						end
-						if(stat_X4_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y9 == 5'd0)
 							stat_X4_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y7 == 5'd3)
+							stat_X4_Y7= 5'd4;
+						if(old_we && stat_X4_Y8 == 5'd3)
+							stat_X4_Y8= 5'd4;
+						if(old_we && stat_X4_Y9 == 5'd3)
+							stat_X4_Y9= 5'd4;
+						if( we )
+							stat_X4_Y7= 5'd3;
+						if( we )
+							stat_X4_Y8= 5'd3;
+						if( we )
+							stat_X4_Y9= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X4_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y7 == 5'd0)
 							stat_X4_Y7= 5'd1;
-						end
-						if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y8 == 5'd0)
 							stat_X4_Y8= 5'd1;
-						end
-						if(stat_X4_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y9 == 5'd0)
 							stat_X4_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y7 == 5'd3)
+							stat_X4_Y7= 5'd4;
+						if(old_we && stat_X4_Y8 == 5'd3)
+							stat_X4_Y8= 5'd4;
+						if(old_we && stat_X4_Y9 == 5'd3)
+							stat_X4_Y9= 5'd4;
+						if( we )
+							stat_X4_Y7= 5'd3;
+						if( we )
+							stat_X4_Y8= 5'd3;
+						if( we )
+							stat_X4_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd4 && mouse_cell_y == 4'd8)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X0_Y9 == 5'd1)
-				 stat_X0_Y9 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X7_Y9 == 5'd1)
-				 stat_X7_Y9 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X8_Y8 == 5'd1)
-				 stat_X8_Y8 =0;
-			 if(stat_X8_Y9 == 5'd1)
-				 stat_X8_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y8 == 5'd0)
 							stat_X4_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y8= 5'd2;
-						end
-						else if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y8 == 5'd0)
 							stat_X5_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y8 == 5'd3)
+							stat_X4_Y8= 5'd4;
+						if(old_we && stat_X5_Y8 == 5'd3)
+							stat_X5_Y8= 5'd4;
+						if( we )
+							stat_X4_Y8= 5'd3;
+						if( we )
+							stat_X5_Y8= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y8 == 5'd0)
 							stat_X4_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y8= 5'd2;
-						end
-						else if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y8 == 5'd0)
 							stat_X5_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y8= 5'd2;
-						end
-						else if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X6_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y8 == 5'd3)
+							stat_X4_Y8= 5'd4;
+						if(old_we && stat_X5_Y8 == 5'd3)
+							stat_X5_Y8= 5'd4;
+						if( we )
+							stat_X4_Y8= 5'd3;
+						if( we )
+							stat_X5_Y8= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y8 == 5'd0)
 							stat_X4_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y8= 5'd2;
-						end
-						else if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y8 == 5'd0)
 							stat_X5_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y8= 5'd2;
-						end
-						else if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X6_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y8= 5'd2;
-						end
-						else if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y8 == 5'd3)
+							stat_X4_Y8= 5'd4;
+						if(old_we && stat_X5_Y8 == 5'd3)
+							stat_X5_Y8= 5'd4;
+						if( we )
+							stat_X4_Y8= 5'd3;
+						if( we )
+							stat_X5_Y8= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y8 == 5'd0)
 							stat_X4_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X5_Y8= 5'd2;
-						end
-						else if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y8 == 5'd0)
 							stat_X5_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y8= 5'd2;
-						end
-						else if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X6_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y8= 5'd2;
-						end
-						else if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y8= 5'd2;
-						end
-						else if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y8 == 5'd3)
+							stat_X4_Y8= 5'd4;
+						if(old_we && stat_X5_Y8 == 5'd3)
+							stat_X5_Y8= 5'd4;
+						if( we )
+							stat_X4_Y8= 5'd3;
+						if( we )
+							stat_X5_Y8= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y8 == 5'd0)
 							stat_X4_Y8= 5'd1;
-						end
-						if(stat_X4_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y9 == 5'd0)
 							stat_X4_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y8 == 5'd3)
+							stat_X4_Y8= 5'd4;
+						if(old_we && stat_X4_Y9 == 5'd3)
+							stat_X4_Y9= 5'd4;
+						if( we )
+							stat_X4_Y8= 5'd3;
+						if( we )
+							stat_X4_Y9= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y8 == 5'd0)
 							stat_X4_Y8= 5'd1;
-						end
-						if(stat_X4_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y9 == 5'd0)
 							stat_X4_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y8 == 5'd3)
+							stat_X4_Y8= 5'd4;
+						if(old_we && stat_X4_Y9 == 5'd3)
+							stat_X4_Y9= 5'd4;
+						if( we )
+							stat_X4_Y8= 5'd3;
+						if( we )
+							stat_X4_Y9= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y8 == 5'd0)
 							stat_X4_Y8= 5'd1;
-						end
-						if(stat_X4_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y9 == 5'd0)
 							stat_X4_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y8 == 5'd3)
+							stat_X4_Y8= 5'd4;
+						if(old_we && stat_X4_Y9 == 5'd3)
+							stat_X4_Y9= 5'd4;
+						if( we )
+							stat_X4_Y8= 5'd3;
+						if( we )
+							stat_X4_Y9= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X4_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y8 == 5'd0)
 							stat_X4_Y8= 5'd1;
-						end
-						if(stat_X4_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X4_Y9 == 5'd0)
 							stat_X4_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X4_Y8 == 5'd3)
+							stat_X4_Y8= 5'd4;
+						if(old_we && stat_X4_Y9 == 5'd3)
+							stat_X4_Y9= 5'd4;
+						if( we )
+							stat_X4_Y8= 5'd3;
+						if( we )
+							stat_X4_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
+		//controllo la posizione: capisco in che cella sono
+		else if(mouse_cell_x == 4'd4 && mouse_cell_y == 4'd9)
+		begin//controllo la direzione
+			if(!direction)
+			begin//controllo la dimensione della nave
+				case (dimension)
+					4'd2:
+					begin
+						if( !we && stat_X4_Y9 == 5'd0)
+							stat_X4_Y9= 5'd1;
+						if(old_we && stat_X4_Y9 == 5'd3)
+							stat_X4_Y9= 5'd4;
+						if( we )
+							stat_X4_Y9= 5'd3;
+					end//interno case
+					4'd3:
+					begin
+						if( !we && stat_X4_Y9 == 5'd0)
+							stat_X4_Y9= 5'd1;
+						if(old_we && stat_X4_Y9 == 5'd3)
+							stat_X4_Y9= 5'd4;
+						if( we )
+							stat_X4_Y9= 5'd3;
+					end//interno case
+					4'd4:
+					begin
+						if( !we && stat_X4_Y9 == 5'd0)
+							stat_X4_Y9= 5'd1;
+						if(old_we && stat_X4_Y9 == 5'd3)
+							stat_X4_Y9= 5'd4;
+						if( we )
+							stat_X4_Y9= 5'd3;
+					end//interno case
+					4'd5:
+					begin
+						if( !we && stat_X4_Y9 == 5'd0)
+							stat_X4_Y9= 5'd1;
+						if(old_we && stat_X4_Y9 == 5'd3)
+							stat_X4_Y9= 5'd4;
+						if( we )
+							stat_X4_Y9= 5'd3;
+					end//interno case
+				endcase
+			end//direzione
+			else
+			begin//controllo la dimensione della nave
+				case (dimension)
+					4'd2:
+					begin
+						if( !we && stat_X4_Y9 == 5'd0)
+							stat_X4_Y9= 5'd1;
+						if(old_we && stat_X4_Y9 == 5'd3)
+							stat_X4_Y9= 5'd4;
+						if( we )
+							stat_X4_Y9= 5'd3;
+					end//interno case
+					4'd3:
+					begin
+						if( !we && stat_X4_Y9 == 5'd0)
+							stat_X4_Y9= 5'd1;
+						if(old_we && stat_X4_Y9 == 5'd3)
+							stat_X4_Y9= 5'd4;
+						if( we )
+							stat_X4_Y9= 5'd3;
+					end//interno case
+					4'd4:
+					begin
+						if( !we && stat_X4_Y9 == 5'd0)
+							stat_X4_Y9= 5'd1;
+						if(old_we && stat_X4_Y9 == 5'd3)
+							stat_X4_Y9= 5'd4;
+						if( we )
+							stat_X4_Y9= 5'd3;
+					end//interno case
+					4'd5:
+					begin
+						if( !we && stat_X4_Y9 == 5'd0)
+							stat_X4_Y9= 5'd1;
+						if(old_we && stat_X4_Y9 == 5'd3)
+							stat_X4_Y9= 5'd4;
+						if( we )
+							stat_X4_Y9= 5'd3;
+					end//interno case
+				endcase
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd5 && mouse_cell_y == 4'd0)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X9_Y0 == 5'd1)
-				 stat_X9_Y0 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X5_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y0 == 5'd0)
 							stat_X5_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y0= 5'd2;
-						end
-						else if(stat_X6_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y0 == 5'd0)
 							stat_X6_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y0 == 5'd3)
+							stat_X5_Y0= 5'd4;
+						if(old_we && stat_X6_Y0 == 5'd3)
+							stat_X6_Y0= 5'd4;
+						if( we )
+							stat_X5_Y0= 5'd3;
+						if( we )
+							stat_X6_Y0= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X5_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y0 == 5'd0)
 							stat_X5_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y0= 5'd2;
-						end
-						else if(stat_X6_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y0 == 5'd0)
 							stat_X6_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y0= 5'd2;
-						end
-						else if(stat_X7_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y0 == 5'd0)
 							stat_X7_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y0 == 5'd3)
+							stat_X5_Y0= 5'd4;
+						if(old_we && stat_X6_Y0 == 5'd3)
+							stat_X6_Y0= 5'd4;
+						if(old_we && stat_X7_Y0 == 5'd3)
+							stat_X7_Y0= 5'd4;
+						if( we )
+							stat_X5_Y0= 5'd3;
+						if( we )
+							stat_X6_Y0= 5'd3;
+						if( we )
+							stat_X7_Y0= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X5_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y0 == 5'd0)
 							stat_X5_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y0= 5'd2;
-						end
-						else if(stat_X6_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y0 == 5'd0)
 							stat_X6_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y0= 5'd2;
-						end
-						else if(stat_X7_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y0 == 5'd0)
 							stat_X7_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y0= 5'd2;
-						end
-						else if(stat_X8_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y0 == 5'd0)
 							stat_X8_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y0 == 5'd3)
+							stat_X5_Y0= 5'd4;
+						if(old_we && stat_X6_Y0 == 5'd3)
+							stat_X6_Y0= 5'd4;
+						if(old_we && stat_X7_Y0 == 5'd3)
+							stat_X7_Y0= 5'd4;
+						if(old_we && stat_X8_Y0 == 5'd3)
+							stat_X8_Y0= 5'd4;
+						if( we )
+							stat_X5_Y0= 5'd3;
+						if( we )
+							stat_X6_Y0= 5'd3;
+						if( we )
+							stat_X7_Y0= 5'd3;
+						if( we )
+							stat_X8_Y0= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X5_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y0 == 5'd0)
 							stat_X5_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y0= 5'd2;
-						end
-						else if(stat_X6_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y0 == 5'd0)
 							stat_X6_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y0= 5'd2;
-						end
-						else if(stat_X7_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y0 == 5'd0)
 							stat_X7_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y0= 5'd2;
-						end
-						else if(stat_X8_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y0 == 5'd0)
 							stat_X8_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y0= 5'd2;
-						end
-						else if(stat_X9_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y0 == 5'd0)
 							stat_X9_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y0 == 5'd3)
+							stat_X5_Y0= 5'd4;
+						if(old_we && stat_X6_Y0 == 5'd3)
+							stat_X6_Y0= 5'd4;
+						if(old_we && stat_X7_Y0 == 5'd3)
+							stat_X7_Y0= 5'd4;
+						if(old_we && stat_X8_Y0 == 5'd3)
+							stat_X8_Y0= 5'd4;
+						if(old_we && stat_X9_Y0 == 5'd3)
+							stat_X9_Y0= 5'd4;
+						if( we )
+							stat_X5_Y0= 5'd3;
+						if( we )
+							stat_X6_Y0= 5'd3;
+						if( we )
+							stat_X7_Y0= 5'd3;
+						if( we )
+							stat_X8_Y0= 5'd3;
+						if( we )
+							stat_X9_Y0= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X5_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y0 == 5'd0)
 							stat_X5_Y0= 5'd1;
-						end
-						if(stat_X5_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y1 == 5'd0)
 							stat_X5_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y0 == 5'd3)
+							stat_X5_Y0= 5'd4;
+						if(old_we && stat_X5_Y1 == 5'd3)
+							stat_X5_Y1= 5'd4;
+						if( we )
+							stat_X5_Y0= 5'd3;
+						if( we )
+							stat_X5_Y1= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X5_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y0 == 5'd0)
 							stat_X5_Y0= 5'd1;
-						end
-						if(stat_X5_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y1 == 5'd0)
 							stat_X5_Y1= 5'd1;
-						end
-						if(stat_X5_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y2 == 5'd0)
 							stat_X5_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y0 == 5'd3)
+							stat_X5_Y0= 5'd4;
+						if(old_we && stat_X5_Y1 == 5'd3)
+							stat_X5_Y1= 5'd4;
+						if(old_we && stat_X5_Y2 == 5'd3)
+							stat_X5_Y2= 5'd4;
+						if( we )
+							stat_X5_Y0= 5'd3;
+						if( we )
+							stat_X5_Y1= 5'd3;
+						if( we )
+							stat_X5_Y2= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X5_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y0 == 5'd0)
 							stat_X5_Y0= 5'd1;
-						end
-						if(stat_X5_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y1 == 5'd0)
 							stat_X5_Y1= 5'd1;
-						end
-						if(stat_X5_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y2 == 5'd0)
 							stat_X5_Y2= 5'd1;
-						end
-						if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y0 == 5'd3)
+							stat_X5_Y0= 5'd4;
+						if(old_we && stat_X5_Y1 == 5'd3)
+							stat_X5_Y1= 5'd4;
+						if(old_we && stat_X5_Y2 == 5'd3)
+							stat_X5_Y2= 5'd4;
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if( we )
+							stat_X5_Y0= 5'd3;
+						if( we )
+							stat_X5_Y1= 5'd3;
+						if( we )
+							stat_X5_Y2= 5'd3;
+						if( we )
+							stat_X5_Y3= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X5_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y0 == 5'd0)
 							stat_X5_Y0= 5'd1;
-						end
-						if(stat_X5_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y1 == 5'd0)
 							stat_X5_Y1= 5'd1;
-						end
-						if(stat_X5_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y2 == 5'd0)
 							stat_X5_Y2= 5'd1;
-						end
-						if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-						if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y0 == 5'd3)
+							stat_X5_Y0= 5'd4;
+						if(old_we && stat_X5_Y1 == 5'd3)
+							stat_X5_Y1= 5'd4;
+						if(old_we && stat_X5_Y2 == 5'd3)
+							stat_X5_Y2= 5'd4;
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if( we )
+							stat_X5_Y0= 5'd3;
+						if( we )
+							stat_X5_Y1= 5'd3;
+						if( we )
+							stat_X5_Y2= 5'd3;
+						if( we )
+							stat_X5_Y3= 5'd3;
+						if( we )
+							stat_X5_Y4= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd5 && mouse_cell_y == 4'd1)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X9_Y0 == 5'd1)
-				 stat_X9_Y0 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X5_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y1 == 5'd0)
 							stat_X5_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y1= 5'd2;
-						end
-						else if(stat_X6_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y1 == 5'd0)
 							stat_X6_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y1 == 5'd3)
+							stat_X5_Y1= 5'd4;
+						if(old_we && stat_X6_Y1 == 5'd3)
+							stat_X6_Y1= 5'd4;
+						if( we )
+							stat_X5_Y1= 5'd3;
+						if( we )
+							stat_X6_Y1= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X5_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y1 == 5'd0)
 							stat_X5_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y1= 5'd2;
-						end
-						else if(stat_X6_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y1 == 5'd0)
 							stat_X6_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y1= 5'd2;
-						end
-						else if(stat_X7_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y1 == 5'd0)
 							stat_X7_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y1 == 5'd3)
+							stat_X5_Y1= 5'd4;
+						if(old_we && stat_X6_Y1 == 5'd3)
+							stat_X6_Y1= 5'd4;
+						if(old_we && stat_X7_Y1 == 5'd3)
+							stat_X7_Y1= 5'd4;
+						if( we )
+							stat_X5_Y1= 5'd3;
+						if( we )
+							stat_X6_Y1= 5'd3;
+						if( we )
+							stat_X7_Y1= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X5_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y1 == 5'd0)
 							stat_X5_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y1= 5'd2;
-						end
-						else if(stat_X6_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y1 == 5'd0)
 							stat_X6_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y1= 5'd2;
-						end
-						else if(stat_X7_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y1 == 5'd0)
 							stat_X7_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y1= 5'd2;
-						end
-						else if(stat_X8_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y1 == 5'd0)
 							stat_X8_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y1 == 5'd3)
+							stat_X5_Y1= 5'd4;
+						if(old_we && stat_X6_Y1 == 5'd3)
+							stat_X6_Y1= 5'd4;
+						if(old_we && stat_X7_Y1 == 5'd3)
+							stat_X7_Y1= 5'd4;
+						if(old_we && stat_X8_Y1 == 5'd3)
+							stat_X8_Y1= 5'd4;
+						if( we )
+							stat_X5_Y1= 5'd3;
+						if( we )
+							stat_X6_Y1= 5'd3;
+						if( we )
+							stat_X7_Y1= 5'd3;
+						if( we )
+							stat_X8_Y1= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X5_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y1 == 5'd0)
 							stat_X5_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y1= 5'd2;
-						end
-						else if(stat_X6_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y1 == 5'd0)
 							stat_X6_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y1= 5'd2;
-						end
-						else if(stat_X7_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y1 == 5'd0)
 							stat_X7_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y1= 5'd2;
-						end
-						else if(stat_X8_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y1 == 5'd0)
 							stat_X8_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y1= 5'd2;
-						end
-						else if(stat_X9_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y1 == 5'd0)
 							stat_X9_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y1 == 5'd3)
+							stat_X5_Y1= 5'd4;
+						if(old_we && stat_X6_Y1 == 5'd3)
+							stat_X6_Y1= 5'd4;
+						if(old_we && stat_X7_Y1 == 5'd3)
+							stat_X7_Y1= 5'd4;
+						if(old_we && stat_X8_Y1 == 5'd3)
+							stat_X8_Y1= 5'd4;
+						if(old_we && stat_X9_Y1 == 5'd3)
+							stat_X9_Y1= 5'd4;
+						if( we )
+							stat_X5_Y1= 5'd3;
+						if( we )
+							stat_X6_Y1= 5'd3;
+						if( we )
+							stat_X7_Y1= 5'd3;
+						if( we )
+							stat_X8_Y1= 5'd3;
+						if( we )
+							stat_X9_Y1= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X5_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y1 == 5'd0)
 							stat_X5_Y1= 5'd1;
-						end
-						if(stat_X5_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y2 == 5'd0)
 							stat_X5_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y1 == 5'd3)
+							stat_X5_Y1= 5'd4;
+						if(old_we && stat_X5_Y2 == 5'd3)
+							stat_X5_Y2= 5'd4;
+						if( we )
+							stat_X5_Y1= 5'd3;
+						if( we )
+							stat_X5_Y2= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X5_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y1 == 5'd0)
 							stat_X5_Y1= 5'd1;
-						end
-						if(stat_X5_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y2 == 5'd0)
 							stat_X5_Y2= 5'd1;
-						end
-						if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y1 == 5'd3)
+							stat_X5_Y1= 5'd4;
+						if(old_we && stat_X5_Y2 == 5'd3)
+							stat_X5_Y2= 5'd4;
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if( we )
+							stat_X5_Y1= 5'd3;
+						if( we )
+							stat_X5_Y2= 5'd3;
+						if( we )
+							stat_X5_Y3= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X5_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y1 == 5'd0)
 							stat_X5_Y1= 5'd1;
-						end
-						if(stat_X5_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y2 == 5'd0)
 							stat_X5_Y2= 5'd1;
-						end
-						if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-						if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y1 == 5'd3)
+							stat_X5_Y1= 5'd4;
+						if(old_we && stat_X5_Y2 == 5'd3)
+							stat_X5_Y2= 5'd4;
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if( we )
+							stat_X5_Y1= 5'd3;
+						if( we )
+							stat_X5_Y2= 5'd3;
+						if( we )
+							stat_X5_Y3= 5'd3;
+						if( we )
+							stat_X5_Y4= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X5_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y1 == 5'd0)
 							stat_X5_Y1= 5'd1;
-						end
-						if(stat_X5_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y2 == 5'd0)
 							stat_X5_Y2= 5'd1;
-						end
-						if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-						if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-						if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y1 == 5'd3)
+							stat_X5_Y1= 5'd4;
+						if(old_we && stat_X5_Y2 == 5'd3)
+							stat_X5_Y2= 5'd4;
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if( we )
+							stat_X5_Y1= 5'd3;
+						if( we )
+							stat_X5_Y2= 5'd3;
+						if( we )
+							stat_X5_Y3= 5'd3;
+						if( we )
+							stat_X5_Y4= 5'd3;
+						if( we )
+							stat_X5_Y5= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd5 && mouse_cell_y == 4'd2)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X9_Y0 == 5'd1)
-				 stat_X9_Y0 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X5_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y2 == 5'd0)
 							stat_X5_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y2= 5'd2;
-						end
-						else if(stat_X6_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y2 == 5'd0)
 							stat_X6_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y2 == 5'd3)
+							stat_X5_Y2= 5'd4;
+						if(old_we && stat_X6_Y2 == 5'd3)
+							stat_X6_Y2= 5'd4;
+						if( we )
+							stat_X5_Y2= 5'd3;
+						if( we )
+							stat_X6_Y2= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X5_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y2 == 5'd0)
 							stat_X5_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y2= 5'd2;
-						end
-						else if(stat_X6_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y2 == 5'd0)
 							stat_X6_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y2= 5'd2;
-						end
-						else if(stat_X7_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y2 == 5'd0)
 							stat_X7_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y2 == 5'd3)
+							stat_X5_Y2= 5'd4;
+						if(old_we && stat_X6_Y2 == 5'd3)
+							stat_X6_Y2= 5'd4;
+						if(old_we && stat_X7_Y2 == 5'd3)
+							stat_X7_Y2= 5'd4;
+						if( we )
+							stat_X5_Y2= 5'd3;
+						if( we )
+							stat_X6_Y2= 5'd3;
+						if( we )
+							stat_X7_Y2= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X5_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y2 == 5'd0)
 							stat_X5_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y2= 5'd2;
-						end
-						else if(stat_X6_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y2 == 5'd0)
 							stat_X6_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y2= 5'd2;
-						end
-						else if(stat_X7_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y2 == 5'd0)
 							stat_X7_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y2= 5'd2;
-						end
-						else if(stat_X8_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y2 == 5'd0)
 							stat_X8_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y2 == 5'd3)
+							stat_X5_Y2= 5'd4;
+						if(old_we && stat_X6_Y2 == 5'd3)
+							stat_X6_Y2= 5'd4;
+						if(old_we && stat_X7_Y2 == 5'd3)
+							stat_X7_Y2= 5'd4;
+						if(old_we && stat_X8_Y2 == 5'd3)
+							stat_X8_Y2= 5'd4;
+						if( we )
+							stat_X5_Y2= 5'd3;
+						if( we )
+							stat_X6_Y2= 5'd3;
+						if( we )
+							stat_X7_Y2= 5'd3;
+						if( we )
+							stat_X8_Y2= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X5_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y2 == 5'd0)
 							stat_X5_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y2= 5'd2;
-						end
-						else if(stat_X6_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y2 == 5'd0)
 							stat_X6_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y2= 5'd2;
-						end
-						else if(stat_X7_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y2 == 5'd0)
 							stat_X7_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y2= 5'd2;
-						end
-						else if(stat_X8_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y2 == 5'd0)
 							stat_X8_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y2= 5'd2;
-						end
-						else if(stat_X9_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y2 == 5'd0)
 							stat_X9_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y2 == 5'd3)
+							stat_X5_Y2= 5'd4;
+						if(old_we && stat_X6_Y2 == 5'd3)
+							stat_X6_Y2= 5'd4;
+						if(old_we && stat_X7_Y2 == 5'd3)
+							stat_X7_Y2= 5'd4;
+						if(old_we && stat_X8_Y2 == 5'd3)
+							stat_X8_Y2= 5'd4;
+						if(old_we && stat_X9_Y2 == 5'd3)
+							stat_X9_Y2= 5'd4;
+						if( we )
+							stat_X5_Y2= 5'd3;
+						if( we )
+							stat_X6_Y2= 5'd3;
+						if( we )
+							stat_X7_Y2= 5'd3;
+						if( we )
+							stat_X8_Y2= 5'd3;
+						if( we )
+							stat_X9_Y2= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X5_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y2 == 5'd0)
 							stat_X5_Y2= 5'd1;
-						end
-						if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y2 == 5'd3)
+							stat_X5_Y2= 5'd4;
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if( we )
+							stat_X5_Y2= 5'd3;
+						if( we )
+							stat_X5_Y3= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X5_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y2 == 5'd0)
 							stat_X5_Y2= 5'd1;
-						end
-						if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-						if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y2 == 5'd3)
+							stat_X5_Y2= 5'd4;
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if( we )
+							stat_X5_Y2= 5'd3;
+						if( we )
+							stat_X5_Y3= 5'd3;
+						if( we )
+							stat_X5_Y4= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X5_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y2 == 5'd0)
 							stat_X5_Y2= 5'd1;
-						end
-						if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-						if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-						if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y2 == 5'd3)
+							stat_X5_Y2= 5'd4;
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if( we )
+							stat_X5_Y2= 5'd3;
+						if( we )
+							stat_X5_Y3= 5'd3;
+						if( we )
+							stat_X5_Y4= 5'd3;
+						if( we )
+							stat_X5_Y5= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X5_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y2 == 5'd0)
 							stat_X5_Y2= 5'd1;
-						end
-						if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-						if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-						if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-						if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y2 == 5'd3)
+							stat_X5_Y2= 5'd4;
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if( we )
+							stat_X5_Y2= 5'd3;
+						if( we )
+							stat_X5_Y3= 5'd3;
+						if( we )
+							stat_X5_Y4= 5'd3;
+						if( we )
+							stat_X5_Y5= 5'd3;
+						if( we )
+							stat_X5_Y6= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd5 && mouse_cell_y == 4'd3)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X9_Y0 == 5'd1)
-				 stat_X9_Y0 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			 if(stat_X9_Y7 == 5'd1)
-				 stat_X9_Y7 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y3= 5'd2;
-						end
-						else if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if( we )
+							stat_X5_Y3= 5'd3;
+						if( we )
+							stat_X6_Y3= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y3= 5'd2;
-						end
-						else if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y3= 5'd2;
-						end
-						else if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y3 == 5'd0)
 							stat_X7_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if(old_we && stat_X7_Y3 == 5'd3)
+							stat_X7_Y3= 5'd4;
+						if( we )
+							stat_X5_Y3= 5'd3;
+						if( we )
+							stat_X6_Y3= 5'd3;
+						if( we )
+							stat_X7_Y3= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y3= 5'd2;
-						end
-						else if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y3= 5'd2;
-						end
-						else if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y3 == 5'd0)
 							stat_X7_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y3= 5'd2;
-						end
-						else if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y3 == 5'd0)
 							stat_X8_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if(old_we && stat_X7_Y3 == 5'd3)
+							stat_X7_Y3= 5'd4;
+						if(old_we && stat_X8_Y3 == 5'd3)
+							stat_X8_Y3= 5'd4;
+						if( we )
+							stat_X5_Y3= 5'd3;
+						if( we )
+							stat_X6_Y3= 5'd3;
+						if( we )
+							stat_X7_Y3= 5'd3;
+						if( we )
+							stat_X8_Y3= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y3= 5'd2;
-						end
-						else if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y3= 5'd2;
-						end
-						else if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y3 == 5'd0)
 							stat_X7_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y3= 5'd2;
-						end
-						else if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y3 == 5'd0)
 							stat_X8_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y3= 5'd2;
-						end
-						else if(stat_X9_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y3 == 5'd0)
 							stat_X9_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if(old_we && stat_X7_Y3 == 5'd3)
+							stat_X7_Y3= 5'd4;
+						if(old_we && stat_X8_Y3 == 5'd3)
+							stat_X8_Y3= 5'd4;
+						if(old_we && stat_X9_Y3 == 5'd3)
+							stat_X9_Y3= 5'd4;
+						if( we )
+							stat_X5_Y3= 5'd3;
+						if( we )
+							stat_X6_Y3= 5'd3;
+						if( we )
+							stat_X7_Y3= 5'd3;
+						if( we )
+							stat_X8_Y3= 5'd3;
+						if( we )
+							stat_X9_Y3= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-						if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if( we )
+							stat_X5_Y3= 5'd3;
+						if( we )
+							stat_X5_Y4= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-						if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-						if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if( we )
+							stat_X5_Y3= 5'd3;
+						if( we )
+							stat_X5_Y4= 5'd3;
+						if( we )
+							stat_X5_Y5= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-						if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-						if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-						if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if( we )
+							stat_X5_Y3= 5'd3;
+						if( we )
+							stat_X5_Y4= 5'd3;
+						if( we )
+							stat_X5_Y5= 5'd3;
+						if( we )
+							stat_X5_Y6= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X5_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y3 == 5'd0)
 							stat_X5_Y3= 5'd1;
-						end
-						if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-						if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-						if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-						if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y7 == 5'd0)
 							stat_X5_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y3 == 5'd3)
+							stat_X5_Y3= 5'd4;
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if(old_we && stat_X5_Y7 == 5'd3)
+							stat_X5_Y7= 5'd4;
+						if( we )
+							stat_X5_Y3= 5'd3;
+						if( we )
+							stat_X5_Y4= 5'd3;
+						if( we )
+							stat_X5_Y5= 5'd3;
+						if( we )
+							stat_X5_Y6= 5'd3;
+						if( we )
+							stat_X5_Y7= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd5 && mouse_cell_y == 4'd4)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X8_Y8 == 5'd1)
-				 stat_X8_Y8 =0;
-			 if(stat_X9_Y0 == 5'd1)
-				 stat_X9_Y0 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			 if(stat_X9_Y7 == 5'd1)
-				 stat_X9_Y7 =0;
-			 if(stat_X9_Y8 == 5'd1)
-				 stat_X9_Y8 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y4= 5'd2;
-						end
-						else if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if( we )
+							stat_X5_Y4= 5'd3;
+						if( we )
+							stat_X6_Y4= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y4= 5'd2;
-						end
-						else if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y4= 5'd2;
-						end
-						else if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y4 == 5'd0)
 							stat_X7_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if(old_we && stat_X7_Y4 == 5'd3)
+							stat_X7_Y4= 5'd4;
+						if( we )
+							stat_X5_Y4= 5'd3;
+						if( we )
+							stat_X6_Y4= 5'd3;
+						if( we )
+							stat_X7_Y4= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y4= 5'd2;
-						end
-						else if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y4= 5'd2;
-						end
-						else if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y4 == 5'd0)
 							stat_X7_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y4= 5'd2;
-						end
-						else if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y4 == 5'd0)
 							stat_X8_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if(old_we && stat_X7_Y4 == 5'd3)
+							stat_X7_Y4= 5'd4;
+						if(old_we && stat_X8_Y4 == 5'd3)
+							stat_X8_Y4= 5'd4;
+						if( we )
+							stat_X5_Y4= 5'd3;
+						if( we )
+							stat_X6_Y4= 5'd3;
+						if( we )
+							stat_X7_Y4= 5'd3;
+						if( we )
+							stat_X8_Y4= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y4= 5'd2;
-						end
-						else if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y4= 5'd2;
-						end
-						else if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y4 == 5'd0)
 							stat_X7_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y4= 5'd2;
-						end
-						else if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y4 == 5'd0)
 							stat_X8_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y4= 5'd2;
-						end
-						else if(stat_X9_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y4 == 5'd0)
 							stat_X9_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if(old_we && stat_X7_Y4 == 5'd3)
+							stat_X7_Y4= 5'd4;
+						if(old_we && stat_X8_Y4 == 5'd3)
+							stat_X8_Y4= 5'd4;
+						if(old_we && stat_X9_Y4 == 5'd3)
+							stat_X9_Y4= 5'd4;
+						if( we )
+							stat_X5_Y4= 5'd3;
+						if( we )
+							stat_X6_Y4= 5'd3;
+						if( we )
+							stat_X7_Y4= 5'd3;
+						if( we )
+							stat_X8_Y4= 5'd3;
+						if( we )
+							stat_X9_Y4= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-						if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if( we )
+							stat_X5_Y4= 5'd3;
+						if( we )
+							stat_X5_Y5= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-						if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-						if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if( we )
+							stat_X5_Y4= 5'd3;
+						if( we )
+							stat_X5_Y5= 5'd3;
+						if( we )
+							stat_X5_Y6= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-						if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-						if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-						if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y7 == 5'd0)
 							stat_X5_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if(old_we && stat_X5_Y7 == 5'd3)
+							stat_X5_Y7= 5'd4;
+						if( we )
+							stat_X5_Y4= 5'd3;
+						if( we )
+							stat_X5_Y5= 5'd3;
+						if( we )
+							stat_X5_Y6= 5'd3;
+						if( we )
+							stat_X5_Y7= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X5_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y4 == 5'd0)
 							stat_X5_Y4= 5'd1;
-						end
-						if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-						if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-						if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y7 == 5'd0)
 							stat_X5_Y7= 5'd1;
-						end
-						if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y8 == 5'd0)
 							stat_X5_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y4 == 5'd3)
+							stat_X5_Y4= 5'd4;
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if(old_we && stat_X5_Y7 == 5'd3)
+							stat_X5_Y7= 5'd4;
+						if(old_we && stat_X5_Y8 == 5'd3)
+							stat_X5_Y8= 5'd4;
+						if( we )
+							stat_X5_Y4= 5'd3;
+						if( we )
+							stat_X5_Y5= 5'd3;
+						if( we )
+							stat_X5_Y6= 5'd3;
+						if( we )
+							stat_X5_Y7= 5'd3;
+						if( we )
+							stat_X5_Y8= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd5 && mouse_cell_y == 4'd5)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y0 == 5'd1)
-				 stat_X0_Y0 =0;
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X0_Y9 == 5'd1)
-				 stat_X0_Y9 =0;
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X7_Y9 == 5'd1)
-				 stat_X7_Y9 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X8_Y8 == 5'd1)
-				 stat_X8_Y8 =0;
-			 if(stat_X8_Y9 == 5'd1)
-				 stat_X8_Y9 =0;
-			 if(stat_X9_Y0 == 5'd1)
-				 stat_X9_Y0 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			 if(stat_X9_Y7 == 5'd1)
-				 stat_X9_Y7 =0;
-			 if(stat_X9_Y8 == 5'd1)
-				 stat_X9_Y8 =0;
-			 if(stat_X9_Y9 == 5'd1)
-				 stat_X9_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y5= 5'd2;
-						end
-						else if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if( we )
+							stat_X5_Y5= 5'd3;
+						if( we )
+							stat_X6_Y5= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y5= 5'd2;
-						end
-						else if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y5= 5'd2;
-						end
-						else if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y5 == 5'd0)
 							stat_X7_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if(old_we && stat_X7_Y5 == 5'd3)
+							stat_X7_Y5= 5'd4;
+						if( we )
+							stat_X5_Y5= 5'd3;
+						if( we )
+							stat_X6_Y5= 5'd3;
+						if( we )
+							stat_X7_Y5= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y5= 5'd2;
-						end
-						else if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y5= 5'd2;
-						end
-						else if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y5 == 5'd0)
 							stat_X7_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y5= 5'd2;
-						end
-						else if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y5 == 5'd0)
 							stat_X8_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if(old_we && stat_X7_Y5 == 5'd3)
+							stat_X7_Y5= 5'd4;
+						if(old_we && stat_X8_Y5 == 5'd3)
+							stat_X8_Y5= 5'd4;
+						if( we )
+							stat_X5_Y5= 5'd3;
+						if( we )
+							stat_X6_Y5= 5'd3;
+						if( we )
+							stat_X7_Y5= 5'd3;
+						if( we )
+							stat_X8_Y5= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y5= 5'd2;
-						end
-						else if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y5= 5'd2;
-						end
-						else if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y5 == 5'd0)
 							stat_X7_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y5= 5'd2;
-						end
-						else if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y5 == 5'd0)
 							stat_X8_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y5= 5'd2;
-						end
-						else if(stat_X9_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y5 == 5'd0)
 							stat_X9_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if(old_we && stat_X7_Y5 == 5'd3)
+							stat_X7_Y5= 5'd4;
+						if(old_we && stat_X8_Y5 == 5'd3)
+							stat_X8_Y5= 5'd4;
+						if(old_we && stat_X9_Y5 == 5'd3)
+							stat_X9_Y5= 5'd4;
+						if( we )
+							stat_X5_Y5= 5'd3;
+						if( we )
+							stat_X6_Y5= 5'd3;
+						if( we )
+							stat_X7_Y5= 5'd3;
+						if( we )
+							stat_X8_Y5= 5'd3;
+						if( we )
+							stat_X9_Y5= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-						if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if( we )
+							stat_X5_Y5= 5'd3;
+						if( we )
+							stat_X5_Y6= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-						if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-						if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y7 == 5'd0)
 							stat_X5_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if(old_we && stat_X5_Y7 == 5'd3)
+							stat_X5_Y7= 5'd4;
+						if( we )
+							stat_X5_Y5= 5'd3;
+						if( we )
+							stat_X5_Y6= 5'd3;
+						if( we )
+							stat_X5_Y7= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-						if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-						if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y7 == 5'd0)
 							stat_X5_Y7= 5'd1;
-						end
-						if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y8 == 5'd0)
 							stat_X5_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if(old_we && stat_X5_Y7 == 5'd3)
+							stat_X5_Y7= 5'd4;
+						if(old_we && stat_X5_Y8 == 5'd3)
+							stat_X5_Y8= 5'd4;
+						if( we )
+							stat_X5_Y5= 5'd3;
+						if( we )
+							stat_X5_Y6= 5'd3;
+						if( we )
+							stat_X5_Y7= 5'd3;
+						if( we )
+							stat_X5_Y8= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X5_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y5 == 5'd0)
 							stat_X5_Y5= 5'd1;
-						end
-						if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-						if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y7 == 5'd0)
 							stat_X5_Y7= 5'd1;
-						end
-						if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y8 == 5'd0)
 							stat_X5_Y8= 5'd1;
-						end
-						if(stat_X5_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y9 == 5'd0)
 							stat_X5_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y5 == 5'd3)
+							stat_X5_Y5= 5'd4;
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if(old_we && stat_X5_Y7 == 5'd3)
+							stat_X5_Y7= 5'd4;
+						if(old_we && stat_X5_Y8 == 5'd3)
+							stat_X5_Y8= 5'd4;
+						if(old_we && stat_X5_Y9 == 5'd3)
+							stat_X5_Y9= 5'd4;
+						if( we )
+							stat_X5_Y5= 5'd3;
+						if( we )
+							stat_X5_Y6= 5'd3;
+						if( we )
+							stat_X5_Y7= 5'd3;
+						if( we )
+							stat_X5_Y8= 5'd3;
+						if( we )
+							stat_X5_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd5 && mouse_cell_y == 4'd6)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y1 == 5'd1)
-				 stat_X0_Y1 =0;
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X0_Y9 == 5'd1)
-				 stat_X0_Y9 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X7_Y9 == 5'd1)
-				 stat_X7_Y9 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X8_Y8 == 5'd1)
-				 stat_X8_Y8 =0;
-			 if(stat_X8_Y9 == 5'd1)
-				 stat_X8_Y9 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			 if(stat_X9_Y7 == 5'd1)
-				 stat_X9_Y7 =0;
-			 if(stat_X9_Y8 == 5'd1)
-				 stat_X9_Y8 =0;
-			 if(stat_X9_Y9 == 5'd1)
-				 stat_X9_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y6= 5'd2;
-						end
-						else if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y6 == 5'd0)
 							stat_X6_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if(old_we && stat_X6_Y6 == 5'd3)
+							stat_X6_Y6= 5'd4;
+						if( we )
+							stat_X5_Y6= 5'd3;
+						if( we )
+							stat_X6_Y6= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y6= 5'd2;
-						end
-						else if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y6 == 5'd0)
 							stat_X6_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y6= 5'd2;
-						end
-						else if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y6 == 5'd0)
 							stat_X7_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if(old_we && stat_X6_Y6 == 5'd3)
+							stat_X6_Y6= 5'd4;
+						if(old_we && stat_X7_Y6 == 5'd3)
+							stat_X7_Y6= 5'd4;
+						if( we )
+							stat_X5_Y6= 5'd3;
+						if( we )
+							stat_X6_Y6= 5'd3;
+						if( we )
+							stat_X7_Y6= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y6= 5'd2;
-						end
-						else if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y6 == 5'd0)
 							stat_X6_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y6= 5'd2;
-						end
-						else if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y6 == 5'd0)
 							stat_X7_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y6= 5'd2;
-						end
-						else if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y6 == 5'd0)
 							stat_X8_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if(old_we && stat_X6_Y6 == 5'd3)
+							stat_X6_Y6= 5'd4;
+						if(old_we && stat_X7_Y6 == 5'd3)
+							stat_X7_Y6= 5'd4;
+						if(old_we && stat_X8_Y6 == 5'd3)
+							stat_X8_Y6= 5'd4;
+						if( we )
+							stat_X5_Y6= 5'd3;
+						if( we )
+							stat_X6_Y6= 5'd3;
+						if( we )
+							stat_X7_Y6= 5'd3;
+						if( we )
+							stat_X8_Y6= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y6= 5'd2;
-						end
-						else if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y6 == 5'd0)
 							stat_X6_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y6= 5'd2;
-						end
-						else if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y6 == 5'd0)
 							stat_X7_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y6= 5'd2;
-						end
-						else if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y6 == 5'd0)
 							stat_X8_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y6= 5'd2;
-						end
-						else if(stat_X9_Y6 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X9_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if(old_we && stat_X6_Y6 == 5'd3)
+							stat_X6_Y6= 5'd4;
+						if(old_we && stat_X7_Y6 == 5'd3)
+							stat_X7_Y6= 5'd4;
+						if(old_we && stat_X8_Y6 == 5'd3)
+							stat_X8_Y6= 5'd4;
+						if( we )
+							stat_X5_Y6= 5'd3;
+						if( we )
+							stat_X6_Y6= 5'd3;
+						if( we )
+							stat_X7_Y6= 5'd3;
+						if( we )
+							stat_X8_Y6= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-						if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y7 == 5'd0)
 							stat_X5_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if(old_we && stat_X5_Y7 == 5'd3)
+							stat_X5_Y7= 5'd4;
+						if( we )
+							stat_X5_Y6= 5'd3;
+						if( we )
+							stat_X5_Y7= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-						if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y7 == 5'd0)
 							stat_X5_Y7= 5'd1;
-						end
-						if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y8 == 5'd0)
 							stat_X5_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if(old_we && stat_X5_Y7 == 5'd3)
+							stat_X5_Y7= 5'd4;
+						if(old_we && stat_X5_Y8 == 5'd3)
+							stat_X5_Y8= 5'd4;
+						if( we )
+							stat_X5_Y6= 5'd3;
+						if( we )
+							stat_X5_Y7= 5'd3;
+						if( we )
+							stat_X5_Y8= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-						if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y7 == 5'd0)
 							stat_X5_Y7= 5'd1;
-						end
-						if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y8 == 5'd0)
 							stat_X5_Y8= 5'd1;
-						end
-						if(stat_X5_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y9 == 5'd0)
 							stat_X5_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if(old_we && stat_X5_Y7 == 5'd3)
+							stat_X5_Y7= 5'd4;
+						if(old_we && stat_X5_Y8 == 5'd3)
+							stat_X5_Y8= 5'd4;
+						if(old_we && stat_X5_Y9 == 5'd3)
+							stat_X5_Y9= 5'd4;
+						if( we )
+							stat_X5_Y6= 5'd3;
+						if( we )
+							stat_X5_Y7= 5'd3;
+						if( we )
+							stat_X5_Y8= 5'd3;
+						if( we )
+							stat_X5_Y9= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X5_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y6 == 5'd0)
 							stat_X5_Y6= 5'd1;
-						end
-						if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y7 == 5'd0)
 							stat_X5_Y7= 5'd1;
-						end
-						if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y8 == 5'd0)
 							stat_X5_Y8= 5'd1;
-						end
-						if(stat_X5_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y9 == 5'd0)
 							stat_X5_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y6 == 5'd3)
+							stat_X5_Y6= 5'd4;
+						if(old_we && stat_X5_Y7 == 5'd3)
+							stat_X5_Y7= 5'd4;
+						if(old_we && stat_X5_Y8 == 5'd3)
+							stat_X5_Y8= 5'd4;
+						if(old_we && stat_X5_Y9 == 5'd3)
+							stat_X5_Y9= 5'd4;
+						if( we )
+							stat_X5_Y6= 5'd3;
+						if( we )
+							stat_X5_Y7= 5'd3;
+						if( we )
+							stat_X5_Y8= 5'd3;
+						if( we )
+							stat_X5_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd5 && mouse_cell_y == 4'd7)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y2 == 5'd1)
-				 stat_X0_Y2 =0;
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X0_Y9 == 5'd1)
-				 stat_X0_Y9 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X7_Y9 == 5'd1)
-				 stat_X7_Y9 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X8_Y8 == 5'd1)
-				 stat_X8_Y8 =0;
-			 if(stat_X8_Y9 == 5'd1)
-				 stat_X8_Y9 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			 if(stat_X9_Y7 == 5'd1)
-				 stat_X9_Y7 =0;
-			 if(stat_X9_Y8 == 5'd1)
-				 stat_X9_Y8 =0;
-			 if(stat_X9_Y9 == 5'd1)
-				 stat_X9_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y7 == 5'd0)
 							stat_X5_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y7= 5'd2;
-						end
-						else if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y7 == 5'd0)
 							stat_X6_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y7 == 5'd3)
+							stat_X5_Y7= 5'd4;
+						if(old_we && stat_X6_Y7 == 5'd3)
+							stat_X6_Y7= 5'd4;
+						if( we )
+							stat_X5_Y7= 5'd3;
+						if( we )
+							stat_X6_Y7= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y7 == 5'd0)
 							stat_X5_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y7= 5'd2;
-						end
-						else if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y7 == 5'd0)
 							stat_X6_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y7= 5'd2;
-						end
-						else if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y7 == 5'd0)
 							stat_X7_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y7 == 5'd3)
+							stat_X5_Y7= 5'd4;
+						if(old_we && stat_X6_Y7 == 5'd3)
+							stat_X6_Y7= 5'd4;
+						if(old_we && stat_X7_Y7 == 5'd3)
+							stat_X7_Y7= 5'd4;
+						if( we )
+							stat_X5_Y7= 5'd3;
+						if( we )
+							stat_X6_Y7= 5'd3;
+						if( we )
+							stat_X7_Y7= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y7 == 5'd0)
 							stat_X5_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y7= 5'd2;
-						end
-						else if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y7 == 5'd0)
 							stat_X6_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y7= 5'd2;
-						end
-						else if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y7 == 5'd0)
 							stat_X7_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y7= 5'd2;
-						end
-						else if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y7 == 5'd3)
+							stat_X5_Y7= 5'd4;
+						if(old_we && stat_X6_Y7 == 5'd3)
+							stat_X6_Y7= 5'd4;
+						if(old_we && stat_X7_Y7 == 5'd3)
+							stat_X7_Y7= 5'd4;
+						if( we )
+							stat_X5_Y7= 5'd3;
+						if( we )
+							stat_X6_Y7= 5'd3;
+						if( we )
+							stat_X7_Y7= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y7 == 5'd0)
 							stat_X5_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y7= 5'd2;
-						end
-						else if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y7 == 5'd0)
 							stat_X6_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y7= 5'd2;
-						end
-						else if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y7 == 5'd0)
 							stat_X7_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y7= 5'd2;
-						end
-						else if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y7= 5'd2;
-						end
-						else if(stat_X9_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X9_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y7 == 5'd3)
+							stat_X5_Y7= 5'd4;
+						if(old_we && stat_X6_Y7 == 5'd3)
+							stat_X6_Y7= 5'd4;
+						if(old_we && stat_X7_Y7 == 5'd3)
+							stat_X7_Y7= 5'd4;
+						if( we )
+							stat_X5_Y7= 5'd3;
+						if( we )
+							stat_X6_Y7= 5'd3;
+						if( we )
+							stat_X7_Y7= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y7 == 5'd0)
 							stat_X5_Y7= 5'd1;
-						end
-						if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y8 == 5'd0)
 							stat_X5_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y7 == 5'd3)
+							stat_X5_Y7= 5'd4;
+						if(old_we && stat_X5_Y8 == 5'd3)
+							stat_X5_Y8= 5'd4;
+						if( we )
+							stat_X5_Y7= 5'd3;
+						if( we )
+							stat_X5_Y8= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y7 == 5'd0)
 							stat_X5_Y7= 5'd1;
-						end
-						if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y8 == 5'd0)
 							stat_X5_Y8= 5'd1;
-						end
-						if(stat_X5_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y9 == 5'd0)
 							stat_X5_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y7 == 5'd3)
+							stat_X5_Y7= 5'd4;
+						if(old_we && stat_X5_Y8 == 5'd3)
+							stat_X5_Y8= 5'd4;
+						if(old_we && stat_X5_Y9 == 5'd3)
+							stat_X5_Y9= 5'd4;
+						if( we )
+							stat_X5_Y7= 5'd3;
+						if( we )
+							stat_X5_Y8= 5'd3;
+						if( we )
+							stat_X5_Y9= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y7 == 5'd0)
 							stat_X5_Y7= 5'd1;
-						end
-						if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y8 == 5'd0)
 							stat_X5_Y8= 5'd1;
-						end
-						if(stat_X5_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y9 == 5'd0)
 							stat_X5_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y7 == 5'd3)
+							stat_X5_Y7= 5'd4;
+						if(old_we && stat_X5_Y8 == 5'd3)
+							stat_X5_Y8= 5'd4;
+						if(old_we && stat_X5_Y9 == 5'd3)
+							stat_X5_Y9= 5'd4;
+						if( we )
+							stat_X5_Y7= 5'd3;
+						if( we )
+							stat_X5_Y8= 5'd3;
+						if( we )
+							stat_X5_Y9= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X5_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y7 == 5'd0)
 							stat_X5_Y7= 5'd1;
-						end
-						if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y8 == 5'd0)
 							stat_X5_Y8= 5'd1;
-						end
-						if(stat_X5_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y9 == 5'd0)
 							stat_X5_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y7 == 5'd3)
+							stat_X5_Y7= 5'd4;
+						if(old_we && stat_X5_Y8 == 5'd3)
+							stat_X5_Y8= 5'd4;
+						if(old_we && stat_X5_Y9 == 5'd3)
+							stat_X5_Y9= 5'd4;
+						if( we )
+							stat_X5_Y7= 5'd3;
+						if( we )
+							stat_X5_Y8= 5'd3;
+						if( we )
+							stat_X5_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd5 && mouse_cell_y == 4'd8)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X0_Y3 == 5'd1)
-				 stat_X0_Y3 =0;
-			 if(stat_X0_Y4 == 5'd1)
-				 stat_X0_Y4 =0;
-			 if(stat_X0_Y5 == 5'd1)
-				 stat_X0_Y5 =0;
-			 if(stat_X0_Y6 == 5'd1)
-				 stat_X0_Y6 =0;
-			 if(stat_X0_Y7 == 5'd1)
-				 stat_X0_Y7 =0;
-			 if(stat_X0_Y8 == 5'd1)
-				 stat_X0_Y8 =0;
-			 if(stat_X0_Y9 == 5'd1)
-				 stat_X0_Y9 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X7_Y9 == 5'd1)
-				 stat_X7_Y9 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X8_Y8 == 5'd1)
-				 stat_X8_Y8 =0;
-			 if(stat_X8_Y9 == 5'd1)
-				 stat_X8_Y9 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			 if(stat_X9_Y7 == 5'd1)
-				 stat_X9_Y7 =0;
-			 if(stat_X9_Y8 == 5'd1)
-				 stat_X9_Y8 =0;
-			 if(stat_X9_Y9 == 5'd1)
-				 stat_X9_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y8 == 5'd0)
 							stat_X5_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y8= 5'd2;
-						end
-						else if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y8 == 5'd0)
 							stat_X6_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y8 == 5'd3)
+							stat_X5_Y8= 5'd4;
+						if(old_we && stat_X6_Y8 == 5'd3)
+							stat_X6_Y8= 5'd4;
+						if( we )
+							stat_X5_Y8= 5'd3;
+						if( we )
+							stat_X6_Y8= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y8 == 5'd0)
 							stat_X5_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y8= 5'd2;
-						end
-						else if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y8 == 5'd0)
 							stat_X6_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y8= 5'd2;
-						end
-						else if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y8 == 5'd3)
+							stat_X5_Y8= 5'd4;
+						if(old_we && stat_X6_Y8 == 5'd3)
+							stat_X6_Y8= 5'd4;
+						if( we )
+							stat_X5_Y8= 5'd3;
+						if( we )
+							stat_X6_Y8= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y8 == 5'd0)
 							stat_X5_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y8= 5'd2;
-						end
-						else if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y8 == 5'd0)
 							stat_X6_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y8= 5'd2;
-						end
-						else if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y8= 5'd2;
-						end
-						else if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y8 == 5'd3)
+							stat_X5_Y8= 5'd4;
+						if(old_we && stat_X6_Y8 == 5'd3)
+							stat_X6_Y8= 5'd4;
+						if( we )
+							stat_X5_Y8= 5'd3;
+						if( we )
+							stat_X6_Y8= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y8 == 5'd0)
 							stat_X5_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X6_Y8= 5'd2;
-						end
-						else if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y8 == 5'd0)
 							stat_X6_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y8= 5'd2;
-						end
-						else if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y8= 5'd2;
-						end
-						else if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y8= 5'd2;
-						end
-						else if(stat_X9_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X9_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y8 == 5'd3)
+							stat_X5_Y8= 5'd4;
+						if(old_we && stat_X6_Y8 == 5'd3)
+							stat_X6_Y8= 5'd4;
+						if( we )
+							stat_X5_Y8= 5'd3;
+						if( we )
+							stat_X6_Y8= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y8 == 5'd0)
 							stat_X5_Y8= 5'd1;
-						end
-						if(stat_X5_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y9 == 5'd0)
 							stat_X5_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y8 == 5'd3)
+							stat_X5_Y8= 5'd4;
+						if(old_we && stat_X5_Y9 == 5'd3)
+							stat_X5_Y9= 5'd4;
+						if( we )
+							stat_X5_Y8= 5'd3;
+						if( we )
+							stat_X5_Y9= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y8 == 5'd0)
 							stat_X5_Y8= 5'd1;
-						end
-						if(stat_X5_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y9 == 5'd0)
 							stat_X5_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y8 == 5'd3)
+							stat_X5_Y8= 5'd4;
+						if(old_we && stat_X5_Y9 == 5'd3)
+							stat_X5_Y9= 5'd4;
+						if( we )
+							stat_X5_Y8= 5'd3;
+						if( we )
+							stat_X5_Y9= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y8 == 5'd0)
 							stat_X5_Y8= 5'd1;
-						end
-						if(stat_X5_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y9 == 5'd0)
 							stat_X5_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y8 == 5'd3)
+							stat_X5_Y8= 5'd4;
+						if(old_we && stat_X5_Y9 == 5'd3)
+							stat_X5_Y9= 5'd4;
+						if( we )
+							stat_X5_Y8= 5'd3;
+						if( we )
+							stat_X5_Y9= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X5_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y8 == 5'd0)
 							stat_X5_Y8= 5'd1;
-						end
-						if(stat_X5_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X5_Y9 == 5'd0)
 							stat_X5_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X5_Y8 == 5'd3)
+							stat_X5_Y8= 5'd4;
+						if(old_we && stat_X5_Y9 == 5'd3)
+							stat_X5_Y9= 5'd4;
+						if( we )
+							stat_X5_Y8= 5'd3;
+						if( we )
+							stat_X5_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
+		//controllo la posizione: capisco in che cella sono
+		else if(mouse_cell_x == 4'd5 && mouse_cell_y == 4'd9)
+		begin//controllo la direzione
+			if(!direction)
+			begin//controllo la dimensione della nave
+				case (dimension)
+					4'd2:
+					begin
+						if( !we && stat_X5_Y9 == 5'd0)
+							stat_X5_Y9= 5'd1;
+						if(old_we && stat_X5_Y9 == 5'd3)
+							stat_X5_Y9= 5'd4;
+						if( we )
+							stat_X5_Y9= 5'd3;
+					end//interno case
+					4'd3:
+					begin
+						if( !we && stat_X5_Y9 == 5'd0)
+							stat_X5_Y9= 5'd1;
+						if(old_we && stat_X5_Y9 == 5'd3)
+							stat_X5_Y9= 5'd4;
+						if( we )
+							stat_X5_Y9= 5'd3;
+					end//interno case
+					4'd4:
+					begin
+						if( !we && stat_X5_Y9 == 5'd0)
+							stat_X5_Y9= 5'd1;
+						if(old_we && stat_X5_Y9 == 5'd3)
+							stat_X5_Y9= 5'd4;
+						if( we )
+							stat_X5_Y9= 5'd3;
+					end//interno case
+					4'd5:
+					begin
+						if( !we && stat_X5_Y9 == 5'd0)
+							stat_X5_Y9= 5'd1;
+						if(old_we && stat_X5_Y9 == 5'd3)
+							stat_X5_Y9= 5'd4;
+						if( we )
+							stat_X5_Y9= 5'd3;
+					end//interno case
+				endcase
+			end//direzione
+			else
+			begin//controllo la dimensione della nave
+				case (dimension)
+					4'd2:
+					begin
+						if( !we && stat_X5_Y9 == 5'd0)
+							stat_X5_Y9= 5'd1;
+						if(old_we && stat_X5_Y9 == 5'd3)
+							stat_X5_Y9= 5'd4;
+						if( we )
+							stat_X5_Y9= 5'd3;
+					end//interno case
+					4'd3:
+					begin
+						if( !we && stat_X5_Y9 == 5'd0)
+							stat_X5_Y9= 5'd1;
+						if(old_we && stat_X5_Y9 == 5'd3)
+							stat_X5_Y9= 5'd4;
+						if( we )
+							stat_X5_Y9= 5'd3;
+					end//interno case
+					4'd4:
+					begin
+						if( !we && stat_X5_Y9 == 5'd0)
+							stat_X5_Y9= 5'd1;
+						if(old_we && stat_X5_Y9 == 5'd3)
+							stat_X5_Y9= 5'd4;
+						if( we )
+							stat_X5_Y9= 5'd3;
+					end//interno case
+					4'd5:
+					begin
+						if( !we && stat_X5_Y9 == 5'd0)
+							stat_X5_Y9= 5'd1;
+						if(old_we && stat_X5_Y9 == 5'd3)
+							stat_X5_Y9= 5'd4;
+						if( we )
+							stat_X5_Y9= 5'd3;
+					end//interno case
+				endcase
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd6 && mouse_cell_y == 4'd0)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X9_Y0 == 5'd1)
-				 stat_X9_Y0 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X6_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y0 == 5'd0)
 							stat_X6_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y0= 5'd2;
-						end
-						else if(stat_X7_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y0 == 5'd0)
 							stat_X7_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y0 == 5'd3)
+							stat_X6_Y0= 5'd4;
+						if(old_we && stat_X7_Y0 == 5'd3)
+							stat_X7_Y0= 5'd4;
+						if( we )
+							stat_X6_Y0= 5'd3;
+						if( we )
+							stat_X7_Y0= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X6_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y0 == 5'd0)
 							stat_X6_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y0= 5'd2;
-						end
-						else if(stat_X7_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y0 == 5'd0)
 							stat_X7_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y0= 5'd2;
-						end
-						else if(stat_X8_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y0 == 5'd0)
 							stat_X8_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y0 == 5'd3)
+							stat_X6_Y0= 5'd4;
+						if(old_we && stat_X7_Y0 == 5'd3)
+							stat_X7_Y0= 5'd4;
+						if(old_we && stat_X8_Y0 == 5'd3)
+							stat_X8_Y0= 5'd4;
+						if( we )
+							stat_X6_Y0= 5'd3;
+						if( we )
+							stat_X7_Y0= 5'd3;
+						if( we )
+							stat_X8_Y0= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X6_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y0 == 5'd0)
 							stat_X6_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y0= 5'd2;
-						end
-						else if(stat_X7_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y0 == 5'd0)
 							stat_X7_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y0= 5'd2;
-						end
-						else if(stat_X8_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y0 == 5'd0)
 							stat_X8_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y0= 5'd2;
-						end
-						else if(stat_X9_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y0 == 5'd0)
 							stat_X9_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y0 == 5'd3)
+							stat_X6_Y0= 5'd4;
+						if(old_we && stat_X7_Y0 == 5'd3)
+							stat_X7_Y0= 5'd4;
+						if(old_we && stat_X8_Y0 == 5'd3)
+							stat_X8_Y0= 5'd4;
+						if(old_we && stat_X9_Y0 == 5'd3)
+							stat_X9_Y0= 5'd4;
+						if( we )
+							stat_X6_Y0= 5'd3;
+						if( we )
+							stat_X7_Y0= 5'd3;
+						if( we )
+							stat_X8_Y0= 5'd3;
+						if( we )
+							stat_X9_Y0= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X6_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y0 == 5'd0)
 							stat_X6_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y0= 5'd2;
-						end
-						else if(stat_X7_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y0 == 5'd0)
 							stat_X7_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y0= 5'd2;
-						end
-						else if(stat_X8_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y0 == 5'd0)
 							stat_X8_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y0= 5'd2;
-						end
-						else if(stat_X9_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y0 == 5'd0)
 							stat_X9_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y0 == 5'd3)
+							stat_X6_Y0= 5'd4;
+						if(old_we && stat_X7_Y0 == 5'd3)
+							stat_X7_Y0= 5'd4;
+						if(old_we && stat_X8_Y0 == 5'd3)
+							stat_X8_Y0= 5'd4;
+						if(old_we && stat_X9_Y0 == 5'd3)
+							stat_X9_Y0= 5'd4;
+						if( we )
+							stat_X6_Y0= 5'd3;
+						if( we )
+							stat_X7_Y0= 5'd3;
+						if( we )
+							stat_X8_Y0= 5'd3;
+						if( we )
+							stat_X9_Y0= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X6_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y0 == 5'd0)
 							stat_X6_Y0= 5'd1;
-						end
-						if(stat_X6_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y1 == 5'd0)
 							stat_X6_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y0 == 5'd3)
+							stat_X6_Y0= 5'd4;
+						if(old_we && stat_X6_Y1 == 5'd3)
+							stat_X6_Y1= 5'd4;
+						if( we )
+							stat_X6_Y0= 5'd3;
+						if( we )
+							stat_X6_Y1= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X6_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y0 == 5'd0)
 							stat_X6_Y0= 5'd1;
-						end
-						if(stat_X6_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y1 == 5'd0)
 							stat_X6_Y1= 5'd1;
-						end
-						if(stat_X6_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y2 == 5'd0)
 							stat_X6_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y0 == 5'd3)
+							stat_X6_Y0= 5'd4;
+						if(old_we && stat_X6_Y1 == 5'd3)
+							stat_X6_Y1= 5'd4;
+						if(old_we && stat_X6_Y2 == 5'd3)
+							stat_X6_Y2= 5'd4;
+						if( we )
+							stat_X6_Y0= 5'd3;
+						if( we )
+							stat_X6_Y1= 5'd3;
+						if( we )
+							stat_X6_Y2= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X6_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y0 == 5'd0)
 							stat_X6_Y0= 5'd1;
-						end
-						if(stat_X6_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y1 == 5'd0)
 							stat_X6_Y1= 5'd1;
-						end
-						if(stat_X6_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y2 == 5'd0)
 							stat_X6_Y2= 5'd1;
-						end
-						if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y0 == 5'd3)
+							stat_X6_Y0= 5'd4;
+						if(old_we && stat_X6_Y1 == 5'd3)
+							stat_X6_Y1= 5'd4;
+						if(old_we && stat_X6_Y2 == 5'd3)
+							stat_X6_Y2= 5'd4;
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if( we )
+							stat_X6_Y0= 5'd3;
+						if( we )
+							stat_X6_Y1= 5'd3;
+						if( we )
+							stat_X6_Y2= 5'd3;
+						if( we )
+							stat_X6_Y3= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X6_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y0 == 5'd0)
 							stat_X6_Y0= 5'd1;
-						end
-						if(stat_X6_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y1 == 5'd0)
 							stat_X6_Y1= 5'd1;
-						end
-						if(stat_X6_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y2 == 5'd0)
 							stat_X6_Y2= 5'd1;
-						end
-						if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-						if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X6_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y0 == 5'd3)
+							stat_X6_Y0= 5'd4;
+						if(old_we && stat_X6_Y1 == 5'd3)
+							stat_X6_Y1= 5'd4;
+						if(old_we && stat_X6_Y2 == 5'd3)
+							stat_X6_Y2= 5'd4;
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if( we )
+							stat_X6_Y0= 5'd3;
+						if( we )
+							stat_X6_Y1= 5'd3;
+						if( we )
+							stat_X6_Y2= 5'd3;
+						if( we )
+							stat_X6_Y3= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd6 && mouse_cell_y == 4'd1)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X9_Y0 == 5'd1)
-				 stat_X9_Y0 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X6_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y1 == 5'd0)
 							stat_X6_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y1= 5'd2;
-						end
-						else if(stat_X7_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y1 == 5'd0)
 							stat_X7_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y1 == 5'd3)
+							stat_X6_Y1= 5'd4;
+						if(old_we && stat_X7_Y1 == 5'd3)
+							stat_X7_Y1= 5'd4;
+						if( we )
+							stat_X6_Y1= 5'd3;
+						if( we )
+							stat_X7_Y1= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X6_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y1 == 5'd0)
 							stat_X6_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y1= 5'd2;
-						end
-						else if(stat_X7_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y1 == 5'd0)
 							stat_X7_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y1= 5'd2;
-						end
-						else if(stat_X8_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y1 == 5'd0)
 							stat_X8_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y1 == 5'd3)
+							stat_X6_Y1= 5'd4;
+						if(old_we && stat_X7_Y1 == 5'd3)
+							stat_X7_Y1= 5'd4;
+						if(old_we && stat_X8_Y1 == 5'd3)
+							stat_X8_Y1= 5'd4;
+						if( we )
+							stat_X6_Y1= 5'd3;
+						if( we )
+							stat_X7_Y1= 5'd3;
+						if( we )
+							stat_X8_Y1= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X6_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y1 == 5'd0)
 							stat_X6_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y1= 5'd2;
-						end
-						else if(stat_X7_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y1 == 5'd0)
 							stat_X7_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y1= 5'd2;
-						end
-						else if(stat_X8_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y1 == 5'd0)
 							stat_X8_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y1= 5'd2;
-						end
-						else if(stat_X9_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y1 == 5'd0)
 							stat_X9_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y1 == 5'd3)
+							stat_X6_Y1= 5'd4;
+						if(old_we && stat_X7_Y1 == 5'd3)
+							stat_X7_Y1= 5'd4;
+						if(old_we && stat_X8_Y1 == 5'd3)
+							stat_X8_Y1= 5'd4;
+						if(old_we && stat_X9_Y1 == 5'd3)
+							stat_X9_Y1= 5'd4;
+						if( we )
+							stat_X6_Y1= 5'd3;
+						if( we )
+							stat_X7_Y1= 5'd3;
+						if( we )
+							stat_X8_Y1= 5'd3;
+						if( we )
+							stat_X9_Y1= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X6_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y1 == 5'd0)
 							stat_X6_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y1= 5'd2;
-						end
-						else if(stat_X7_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y1 == 5'd0)
 							stat_X7_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y1= 5'd2;
-						end
-						else if(stat_X8_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y1 == 5'd0)
 							stat_X8_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y1= 5'd2;
-						end
-						else if(stat_X9_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y1 == 5'd0)
 							stat_X9_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y1 == 5'd3)
+							stat_X6_Y1= 5'd4;
+						if(old_we && stat_X7_Y1 == 5'd3)
+							stat_X7_Y1= 5'd4;
+						if(old_we && stat_X8_Y1 == 5'd3)
+							stat_X8_Y1= 5'd4;
+						if(old_we && stat_X9_Y1 == 5'd3)
+							stat_X9_Y1= 5'd4;
+						if( we )
+							stat_X6_Y1= 5'd3;
+						if( we )
+							stat_X7_Y1= 5'd3;
+						if( we )
+							stat_X8_Y1= 5'd3;
+						if( we )
+							stat_X9_Y1= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X6_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y1 == 5'd0)
 							stat_X6_Y1= 5'd1;
-						end
-						if(stat_X6_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y2 == 5'd0)
 							stat_X6_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y1 == 5'd3)
+							stat_X6_Y1= 5'd4;
+						if(old_we && stat_X6_Y2 == 5'd3)
+							stat_X6_Y2= 5'd4;
+						if( we )
+							stat_X6_Y1= 5'd3;
+						if( we )
+							stat_X6_Y2= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X6_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y1 == 5'd0)
 							stat_X6_Y1= 5'd1;
-						end
-						if(stat_X6_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y2 == 5'd0)
 							stat_X6_Y2= 5'd1;
-						end
-						if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y1 == 5'd3)
+							stat_X6_Y1= 5'd4;
+						if(old_we && stat_X6_Y2 == 5'd3)
+							stat_X6_Y2= 5'd4;
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if( we )
+							stat_X6_Y1= 5'd3;
+						if( we )
+							stat_X6_Y2= 5'd3;
+						if( we )
+							stat_X6_Y3= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X6_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y1 == 5'd0)
 							stat_X6_Y1= 5'd1;
-						end
-						if(stat_X6_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y2 == 5'd0)
 							stat_X6_Y2= 5'd1;
-						end
-						if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-						if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y1 == 5'd3)
+							stat_X6_Y1= 5'd4;
+						if(old_we && stat_X6_Y2 == 5'd3)
+							stat_X6_Y2= 5'd4;
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if( we )
+							stat_X6_Y1= 5'd3;
+						if( we )
+							stat_X6_Y2= 5'd3;
+						if( we )
+							stat_X6_Y3= 5'd3;
+						if( we )
+							stat_X6_Y4= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X6_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y1 == 5'd0)
 							stat_X6_Y1= 5'd1;
-						end
-						if(stat_X6_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y2 == 5'd0)
 							stat_X6_Y2= 5'd1;
-						end
-						if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-						if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-						if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X6_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y1 == 5'd3)
+							stat_X6_Y1= 5'd4;
+						if(old_we && stat_X6_Y2 == 5'd3)
+							stat_X6_Y2= 5'd4;
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if( we )
+							stat_X6_Y1= 5'd3;
+						if( we )
+							stat_X6_Y2= 5'd3;
+						if( we )
+							stat_X6_Y3= 5'd3;
+						if( we )
+							stat_X6_Y4= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd6 && mouse_cell_y == 4'd2)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X9_Y0 == 5'd1)
-				 stat_X9_Y0 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X6_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y2 == 5'd0)
 							stat_X6_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y2= 5'd2;
-						end
-						else if(stat_X7_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y2 == 5'd0)
 							stat_X7_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y2 == 5'd3)
+							stat_X6_Y2= 5'd4;
+						if(old_we && stat_X7_Y2 == 5'd3)
+							stat_X7_Y2= 5'd4;
+						if( we )
+							stat_X6_Y2= 5'd3;
+						if( we )
+							stat_X7_Y2= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X6_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y2 == 5'd0)
 							stat_X6_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y2= 5'd2;
-						end
-						else if(stat_X7_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y2 == 5'd0)
 							stat_X7_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y2= 5'd2;
-						end
-						else if(stat_X8_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y2 == 5'd0)
 							stat_X8_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y2 == 5'd3)
+							stat_X6_Y2= 5'd4;
+						if(old_we && stat_X7_Y2 == 5'd3)
+							stat_X7_Y2= 5'd4;
+						if(old_we && stat_X8_Y2 == 5'd3)
+							stat_X8_Y2= 5'd4;
+						if( we )
+							stat_X6_Y2= 5'd3;
+						if( we )
+							stat_X7_Y2= 5'd3;
+						if( we )
+							stat_X8_Y2= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X6_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y2 == 5'd0)
 							stat_X6_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y2= 5'd2;
-						end
-						else if(stat_X7_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y2 == 5'd0)
 							stat_X7_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y2= 5'd2;
-						end
-						else if(stat_X8_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y2 == 5'd0)
 							stat_X8_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y2= 5'd2;
-						end
-						else if(stat_X9_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y2 == 5'd0)
 							stat_X9_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y2 == 5'd3)
+							stat_X6_Y2= 5'd4;
+						if(old_we && stat_X7_Y2 == 5'd3)
+							stat_X7_Y2= 5'd4;
+						if(old_we && stat_X8_Y2 == 5'd3)
+							stat_X8_Y2= 5'd4;
+						if(old_we && stat_X9_Y2 == 5'd3)
+							stat_X9_Y2= 5'd4;
+						if( we )
+							stat_X6_Y2= 5'd3;
+						if( we )
+							stat_X7_Y2= 5'd3;
+						if( we )
+							stat_X8_Y2= 5'd3;
+						if( we )
+							stat_X9_Y2= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X6_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y2 == 5'd0)
 							stat_X6_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y2= 5'd2;
-						end
-						else if(stat_X7_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y2 == 5'd0)
 							stat_X7_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y2= 5'd2;
-						end
-						else if(stat_X8_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y2 == 5'd0)
 							stat_X8_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y2= 5'd2;
-						end
-						else if(stat_X9_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y2 == 5'd0)
 							stat_X9_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y2 == 5'd3)
+							stat_X6_Y2= 5'd4;
+						if(old_we && stat_X7_Y2 == 5'd3)
+							stat_X7_Y2= 5'd4;
+						if(old_we && stat_X8_Y2 == 5'd3)
+							stat_X8_Y2= 5'd4;
+						if(old_we && stat_X9_Y2 == 5'd3)
+							stat_X9_Y2= 5'd4;
+						if( we )
+							stat_X6_Y2= 5'd3;
+						if( we )
+							stat_X7_Y2= 5'd3;
+						if( we )
+							stat_X8_Y2= 5'd3;
+						if( we )
+							stat_X9_Y2= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X6_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y2 == 5'd0)
 							stat_X6_Y2= 5'd1;
-						end
-						if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y2 == 5'd3)
+							stat_X6_Y2= 5'd4;
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if( we )
+							stat_X6_Y2= 5'd3;
+						if( we )
+							stat_X6_Y3= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X6_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y2 == 5'd0)
 							stat_X6_Y2= 5'd1;
-						end
-						if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-						if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y2 == 5'd3)
+							stat_X6_Y2= 5'd4;
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if( we )
+							stat_X6_Y2= 5'd3;
+						if( we )
+							stat_X6_Y3= 5'd3;
+						if( we )
+							stat_X6_Y4= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X6_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y2 == 5'd0)
 							stat_X6_Y2= 5'd1;
-						end
-						if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-						if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-						if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y2 == 5'd3)
+							stat_X6_Y2= 5'd4;
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if( we )
+							stat_X6_Y2= 5'd3;
+						if( we )
+							stat_X6_Y3= 5'd3;
+						if( we )
+							stat_X6_Y4= 5'd3;
+						if( we )
+							stat_X6_Y5= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X6_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y2 == 5'd0)
 							stat_X6_Y2= 5'd1;
-						end
-						if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-						if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-						if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-						if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X6_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y2 == 5'd3)
+							stat_X6_Y2= 5'd4;
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if( we )
+							stat_X6_Y2= 5'd3;
+						if( we )
+							stat_X6_Y3= 5'd3;
+						if( we )
+							stat_X6_Y4= 5'd3;
+						if( we )
+							stat_X6_Y5= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd6 && mouse_cell_y == 4'd3)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X9_Y0 == 5'd1)
-				 stat_X9_Y0 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			 if(stat_X9_Y7 == 5'd1)
-				 stat_X9_Y7 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y3= 5'd2;
-						end
-						else if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y3 == 5'd0)
 							stat_X7_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if(old_we && stat_X7_Y3 == 5'd3)
+							stat_X7_Y3= 5'd4;
+						if( we )
+							stat_X6_Y3= 5'd3;
+						if( we )
+							stat_X7_Y3= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y3= 5'd2;
-						end
-						else if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y3 == 5'd0)
 							stat_X7_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y3= 5'd2;
-						end
-						else if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y3 == 5'd0)
 							stat_X8_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if(old_we && stat_X7_Y3 == 5'd3)
+							stat_X7_Y3= 5'd4;
+						if(old_we && stat_X8_Y3 == 5'd3)
+							stat_X8_Y3= 5'd4;
+						if( we )
+							stat_X6_Y3= 5'd3;
+						if( we )
+							stat_X7_Y3= 5'd3;
+						if( we )
+							stat_X8_Y3= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y3= 5'd2;
-						end
-						else if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y3 == 5'd0)
 							stat_X7_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y3= 5'd2;
-						end
-						else if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y3 == 5'd0)
 							stat_X8_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y3= 5'd2;
-						end
-						else if(stat_X9_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y3 == 5'd0)
 							stat_X9_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if(old_we && stat_X7_Y3 == 5'd3)
+							stat_X7_Y3= 5'd4;
+						if(old_we && stat_X8_Y3 == 5'd3)
+							stat_X8_Y3= 5'd4;
+						if(old_we && stat_X9_Y3 == 5'd3)
+							stat_X9_Y3= 5'd4;
+						if( we )
+							stat_X6_Y3= 5'd3;
+						if( we )
+							stat_X7_Y3= 5'd3;
+						if( we )
+							stat_X8_Y3= 5'd3;
+						if( we )
+							stat_X9_Y3= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y3= 5'd2;
-						end
-						else if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y3 == 5'd0)
 							stat_X7_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y3= 5'd2;
-						end
-						else if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y3 == 5'd0)
 							stat_X8_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y3= 5'd2;
-						end
-						else if(stat_X9_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y3 == 5'd0)
 							stat_X9_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if(old_we && stat_X7_Y3 == 5'd3)
+							stat_X7_Y3= 5'd4;
+						if(old_we && stat_X8_Y3 == 5'd3)
+							stat_X8_Y3= 5'd4;
+						if(old_we && stat_X9_Y3 == 5'd3)
+							stat_X9_Y3= 5'd4;
+						if( we )
+							stat_X6_Y3= 5'd3;
+						if( we )
+							stat_X7_Y3= 5'd3;
+						if( we )
+							stat_X8_Y3= 5'd3;
+						if( we )
+							stat_X9_Y3= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-						if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if( we )
+							stat_X6_Y3= 5'd3;
+						if( we )
+							stat_X6_Y4= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-						if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-						if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if( we )
+							stat_X6_Y3= 5'd3;
+						if( we )
+							stat_X6_Y4= 5'd3;
+						if( we )
+							stat_X6_Y5= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-						if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-						if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-						if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y6 == 5'd0)
 							stat_X6_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if(old_we && stat_X6_Y6 == 5'd3)
+							stat_X6_Y6= 5'd4;
+						if( we )
+							stat_X6_Y3= 5'd3;
+						if( we )
+							stat_X6_Y4= 5'd3;
+						if( we )
+							stat_X6_Y5= 5'd3;
+						if( we )
+							stat_X6_Y6= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X6_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y3 == 5'd0)
 							stat_X6_Y3= 5'd1;
-						end
-						if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-						if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-						if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y6 == 5'd0)
 							stat_X6_Y6= 5'd1;
-						end
-						if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X6_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y3 == 5'd3)
+							stat_X6_Y3= 5'd4;
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if(old_we && stat_X6_Y6 == 5'd3)
+							stat_X6_Y6= 5'd4;
+						if( we )
+							stat_X6_Y3= 5'd3;
+						if( we )
+							stat_X6_Y4= 5'd3;
+						if( we )
+							stat_X6_Y5= 5'd3;
+						if( we )
+							stat_X6_Y6= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd6 && mouse_cell_y == 4'd4)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X8_Y8 == 5'd1)
-				 stat_X8_Y8 =0;
-			 if(stat_X9_Y0 == 5'd1)
-				 stat_X9_Y0 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			 if(stat_X9_Y7 == 5'd1)
-				 stat_X9_Y7 =0;
-			 if(stat_X9_Y8 == 5'd1)
-				 stat_X9_Y8 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y4= 5'd2;
-						end
-						else if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y4 == 5'd0)
 							stat_X7_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if(old_we && stat_X7_Y4 == 5'd3)
+							stat_X7_Y4= 5'd4;
+						if( we )
+							stat_X6_Y4= 5'd3;
+						if( we )
+							stat_X7_Y4= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y4= 5'd2;
-						end
-						else if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y4 == 5'd0)
 							stat_X7_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y4= 5'd2;
-						end
-						else if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y4 == 5'd0)
 							stat_X8_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if(old_we && stat_X7_Y4 == 5'd3)
+							stat_X7_Y4= 5'd4;
+						if(old_we && stat_X8_Y4 == 5'd3)
+							stat_X8_Y4= 5'd4;
+						if( we )
+							stat_X6_Y4= 5'd3;
+						if( we )
+							stat_X7_Y4= 5'd3;
+						if( we )
+							stat_X8_Y4= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y4= 5'd2;
-						end
-						else if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y4 == 5'd0)
 							stat_X7_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y4= 5'd2;
-						end
-						else if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y4 == 5'd0)
 							stat_X8_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y4= 5'd2;
-						end
-						else if(stat_X9_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y4 == 5'd0)
 							stat_X9_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if(old_we && stat_X7_Y4 == 5'd3)
+							stat_X7_Y4= 5'd4;
+						if(old_we && stat_X8_Y4 == 5'd3)
+							stat_X8_Y4= 5'd4;
+						if(old_we && stat_X9_Y4 == 5'd3)
+							stat_X9_Y4= 5'd4;
+						if( we )
+							stat_X6_Y4= 5'd3;
+						if( we )
+							stat_X7_Y4= 5'd3;
+						if( we )
+							stat_X8_Y4= 5'd3;
+						if( we )
+							stat_X9_Y4= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y4= 5'd2;
-						end
-						else if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y4 == 5'd0)
 							stat_X7_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y4= 5'd2;
-						end
-						else if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y4 == 5'd0)
 							stat_X8_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y4= 5'd2;
-						end
-						else if(stat_X9_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y4 == 5'd0)
 							stat_X9_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if(old_we && stat_X7_Y4 == 5'd3)
+							stat_X7_Y4= 5'd4;
+						if(old_we && stat_X8_Y4 == 5'd3)
+							stat_X8_Y4= 5'd4;
+						if(old_we && stat_X9_Y4 == 5'd3)
+							stat_X9_Y4= 5'd4;
+						if( we )
+							stat_X6_Y4= 5'd3;
+						if( we )
+							stat_X7_Y4= 5'd3;
+						if( we )
+							stat_X8_Y4= 5'd3;
+						if( we )
+							stat_X9_Y4= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-						if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if( we )
+							stat_X6_Y4= 5'd3;
+						if( we )
+							stat_X6_Y5= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-						if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-						if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y6 == 5'd0)
 							stat_X6_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if(old_we && stat_X6_Y6 == 5'd3)
+							stat_X6_Y6= 5'd4;
+						if( we )
+							stat_X6_Y4= 5'd3;
+						if( we )
+							stat_X6_Y5= 5'd3;
+						if( we )
+							stat_X6_Y6= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-						if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-						if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y6 == 5'd0)
 							stat_X6_Y6= 5'd1;
-						end
-						if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y7 == 5'd0)
 							stat_X6_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if(old_we && stat_X6_Y6 == 5'd3)
+							stat_X6_Y6= 5'd4;
+						if(old_we && stat_X6_Y7 == 5'd3)
+							stat_X6_Y7= 5'd4;
+						if( we )
+							stat_X6_Y4= 5'd3;
+						if( we )
+							stat_X6_Y5= 5'd3;
+						if( we )
+							stat_X6_Y6= 5'd3;
+						if( we )
+							stat_X6_Y7= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X6_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y4 == 5'd0)
 							stat_X6_Y4= 5'd1;
-						end
-						if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-						if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y6 == 5'd0)
 							stat_X6_Y6= 5'd1;
-						end
-						if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y7 == 5'd0)
 							stat_X6_Y7= 5'd1;
-						end
-						if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X6_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y4 == 5'd3)
+							stat_X6_Y4= 5'd4;
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if(old_we && stat_X6_Y6 == 5'd3)
+							stat_X6_Y6= 5'd4;
+						if(old_we && stat_X6_Y7 == 5'd3)
+							stat_X6_Y7= 5'd4;
+						if( we )
+							stat_X6_Y4= 5'd3;
+						if( we )
+							stat_X6_Y5= 5'd3;
+						if( we )
+							stat_X6_Y6= 5'd3;
+						if( we )
+							stat_X6_Y7= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd6 && mouse_cell_y == 4'd5)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X1_Y0 == 5'd1)
-				 stat_X1_Y0 =0;
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X7_Y9 == 5'd1)
-				 stat_X7_Y9 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X8_Y8 == 5'd1)
-				 stat_X8_Y8 =0;
-			 if(stat_X8_Y9 == 5'd1)
-				 stat_X8_Y9 =0;
-			 if(stat_X9_Y0 == 5'd1)
-				 stat_X9_Y0 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			 if(stat_X9_Y7 == 5'd1)
-				 stat_X9_Y7 =0;
-			 if(stat_X9_Y8 == 5'd1)
-				 stat_X9_Y8 =0;
-			 if(stat_X9_Y9 == 5'd1)
-				 stat_X9_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y5= 5'd2;
-						end
-						else if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y5 == 5'd0)
 							stat_X7_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if(old_we && stat_X7_Y5 == 5'd3)
+							stat_X7_Y5= 5'd4;
+						if( we )
+							stat_X6_Y5= 5'd3;
+						if( we )
+							stat_X7_Y5= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y5= 5'd2;
-						end
-						else if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y5 == 5'd0)
 							stat_X7_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y5= 5'd2;
-						end
-						else if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y5 == 5'd0)
 							stat_X8_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if(old_we && stat_X7_Y5 == 5'd3)
+							stat_X7_Y5= 5'd4;
+						if(old_we && stat_X8_Y5 == 5'd3)
+							stat_X8_Y5= 5'd4;
+						if( we )
+							stat_X6_Y5= 5'd3;
+						if( we )
+							stat_X7_Y5= 5'd3;
+						if( we )
+							stat_X8_Y5= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y5= 5'd2;
-						end
-						else if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y5 == 5'd0)
 							stat_X7_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y5= 5'd2;
-						end
-						else if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y5 == 5'd0)
 							stat_X8_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y5= 5'd2;
-						end
-						else if(stat_X9_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y5 == 5'd0)
 							stat_X9_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if(old_we && stat_X7_Y5 == 5'd3)
+							stat_X7_Y5= 5'd4;
+						if(old_we && stat_X8_Y5 == 5'd3)
+							stat_X8_Y5= 5'd4;
+						if(old_we && stat_X9_Y5 == 5'd3)
+							stat_X9_Y5= 5'd4;
+						if( we )
+							stat_X6_Y5= 5'd3;
+						if( we )
+							stat_X7_Y5= 5'd3;
+						if( we )
+							stat_X8_Y5= 5'd3;
+						if( we )
+							stat_X9_Y5= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y5= 5'd2;
-						end
-						else if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y5 == 5'd0)
 							stat_X7_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y5= 5'd2;
-						end
-						else if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y5 == 5'd0)
 							stat_X8_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y5= 5'd2;
-						end
-						else if(stat_X9_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y5 == 5'd0)
 							stat_X9_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if(old_we && stat_X7_Y5 == 5'd3)
+							stat_X7_Y5= 5'd4;
+						if(old_we && stat_X8_Y5 == 5'd3)
+							stat_X8_Y5= 5'd4;
+						if(old_we && stat_X9_Y5 == 5'd3)
+							stat_X9_Y5= 5'd4;
+						if( we )
+							stat_X6_Y5= 5'd3;
+						if( we )
+							stat_X7_Y5= 5'd3;
+						if( we )
+							stat_X8_Y5= 5'd3;
+						if( we )
+							stat_X9_Y5= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-						if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y6 == 5'd0)
 							stat_X6_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if(old_we && stat_X6_Y6 == 5'd3)
+							stat_X6_Y6= 5'd4;
+						if( we )
+							stat_X6_Y5= 5'd3;
+						if( we )
+							stat_X6_Y6= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-						if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y6 == 5'd0)
 							stat_X6_Y6= 5'd1;
-						end
-						if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y7 == 5'd0)
 							stat_X6_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if(old_we && stat_X6_Y6 == 5'd3)
+							stat_X6_Y6= 5'd4;
+						if(old_we && stat_X6_Y7 == 5'd3)
+							stat_X6_Y7= 5'd4;
+						if( we )
+							stat_X6_Y5= 5'd3;
+						if( we )
+							stat_X6_Y6= 5'd3;
+						if( we )
+							stat_X6_Y7= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-						if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y6 == 5'd0)
 							stat_X6_Y6= 5'd1;
-						end
-						if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y7 == 5'd0)
 							stat_X6_Y7= 5'd1;
-						end
-						if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y8 == 5'd0)
 							stat_X6_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if(old_we && stat_X6_Y6 == 5'd3)
+							stat_X6_Y6= 5'd4;
+						if(old_we && stat_X6_Y7 == 5'd3)
+							stat_X6_Y7= 5'd4;
+						if(old_we && stat_X6_Y8 == 5'd3)
+							stat_X6_Y8= 5'd4;
+						if( we )
+							stat_X6_Y5= 5'd3;
+						if( we )
+							stat_X6_Y6= 5'd3;
+						if( we )
+							stat_X6_Y7= 5'd3;
+						if( we )
+							stat_X6_Y8= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X6_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y5 == 5'd0)
 							stat_X6_Y5= 5'd1;
-						end
-						if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y6 == 5'd0)
 							stat_X6_Y6= 5'd1;
-						end
-						if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y7 == 5'd0)
 							stat_X6_Y7= 5'd1;
-						end
-						if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y8 == 5'd0)
 							stat_X6_Y8= 5'd1;
-						end
-						if(stat_X6_Y9 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X6_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y5 == 5'd3)
+							stat_X6_Y5= 5'd4;
+						if(old_we && stat_X6_Y6 == 5'd3)
+							stat_X6_Y6= 5'd4;
+						if(old_we && stat_X6_Y7 == 5'd3)
+							stat_X6_Y7= 5'd4;
+						if(old_we && stat_X6_Y8 == 5'd3)
+							stat_X6_Y8= 5'd4;
+						if( we )
+							stat_X6_Y5= 5'd3;
+						if( we )
+							stat_X6_Y6= 5'd3;
+						if( we )
+							stat_X6_Y7= 5'd3;
+						if( we )
+							stat_X6_Y8= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd6 && mouse_cell_y == 4'd6)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X1_Y1 == 5'd1)
-				 stat_X1_Y1 =0;
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X7_Y9 == 5'd1)
-				 stat_X7_Y9 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X8_Y8 == 5'd1)
-				 stat_X8_Y8 =0;
-			 if(stat_X8_Y9 == 5'd1)
-				 stat_X8_Y9 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			 if(stat_X9_Y7 == 5'd1)
-				 stat_X9_Y7 =0;
-			 if(stat_X9_Y8 == 5'd1)
-				 stat_X9_Y8 =0;
-			 if(stat_X9_Y9 == 5'd1)
-				 stat_X9_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y6 == 5'd0)
 							stat_X6_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y6= 5'd2;
-						end
-						else if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y6 == 5'd0)
 							stat_X7_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y6 == 5'd3)
+							stat_X6_Y6= 5'd4;
+						if(old_we && stat_X7_Y6 == 5'd3)
+							stat_X7_Y6= 5'd4;
+						if( we )
+							stat_X6_Y6= 5'd3;
+						if( we )
+							stat_X7_Y6= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y6 == 5'd0)
 							stat_X6_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y6= 5'd2;
-						end
-						else if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y6 == 5'd0)
 							stat_X7_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y6= 5'd2;
-						end
-						else if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y6 == 5'd0)
 							stat_X8_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y6 == 5'd3)
+							stat_X6_Y6= 5'd4;
+						if(old_we && stat_X7_Y6 == 5'd3)
+							stat_X7_Y6= 5'd4;
+						if(old_we && stat_X8_Y6 == 5'd3)
+							stat_X8_Y6= 5'd4;
+						if( we )
+							stat_X6_Y6= 5'd3;
+						if( we )
+							stat_X7_Y6= 5'd3;
+						if( we )
+							stat_X8_Y6= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y6 == 5'd0)
 							stat_X6_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y6= 5'd2;
-						end
-						else if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y6 == 5'd0)
 							stat_X7_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y6= 5'd2;
-						end
-						else if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y6 == 5'd0)
 							stat_X8_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y6= 5'd2;
-						end
-						else if(stat_X9_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y6 == 5'd0)
 							stat_X9_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y6 == 5'd3)
+							stat_X6_Y6= 5'd4;
+						if(old_we && stat_X7_Y6 == 5'd3)
+							stat_X7_Y6= 5'd4;
+						if(old_we && stat_X8_Y6 == 5'd3)
+							stat_X8_Y6= 5'd4;
+						if(old_we && stat_X9_Y6 == 5'd3)
+							stat_X9_Y6= 5'd4;
+						if( we )
+							stat_X6_Y6= 5'd3;
+						if( we )
+							stat_X7_Y6= 5'd3;
+						if( we )
+							stat_X8_Y6= 5'd3;
+						if( we )
+							stat_X9_Y6= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y6 == 5'd0)
 							stat_X6_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y6= 5'd2;
-						end
-						else if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y6 == 5'd0)
 							stat_X7_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y6= 5'd2;
-						end
-						else if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y6 == 5'd0)
 							stat_X8_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y6= 5'd2;
-						end
-						else if(stat_X9_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y6 == 5'd0)
 							stat_X9_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y6 == 5'd3)
+							stat_X6_Y6= 5'd4;
+						if(old_we && stat_X7_Y6 == 5'd3)
+							stat_X7_Y6= 5'd4;
+						if(old_we && stat_X8_Y6 == 5'd3)
+							stat_X8_Y6= 5'd4;
+						if(old_we && stat_X9_Y6 == 5'd3)
+							stat_X9_Y6= 5'd4;
+						if( we )
+							stat_X6_Y6= 5'd3;
+						if( we )
+							stat_X7_Y6= 5'd3;
+						if( we )
+							stat_X8_Y6= 5'd3;
+						if( we )
+							stat_X9_Y6= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y6 == 5'd0)
 							stat_X6_Y6= 5'd1;
-						end
-						if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y7 == 5'd0)
 							stat_X6_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y6 == 5'd3)
+							stat_X6_Y6= 5'd4;
+						if(old_we && stat_X6_Y7 == 5'd3)
+							stat_X6_Y7= 5'd4;
+						if( we )
+							stat_X6_Y6= 5'd3;
+						if( we )
+							stat_X6_Y7= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y6 == 5'd0)
 							stat_X6_Y6= 5'd1;
-						end
-						if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y7 == 5'd0)
 							stat_X6_Y7= 5'd1;
-						end
-						if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y8 == 5'd0)
 							stat_X6_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y6 == 5'd3)
+							stat_X6_Y6= 5'd4;
+						if(old_we && stat_X6_Y7 == 5'd3)
+							stat_X6_Y7= 5'd4;
+						if(old_we && stat_X6_Y8 == 5'd3)
+							stat_X6_Y8= 5'd4;
+						if( we )
+							stat_X6_Y6= 5'd3;
+						if( we )
+							stat_X6_Y7= 5'd3;
+						if( we )
+							stat_X6_Y8= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y6 == 5'd0)
 							stat_X6_Y6= 5'd1;
-						end
-						if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y7 == 5'd0)
 							stat_X6_Y7= 5'd1;
-						end
-						if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y8 == 5'd0)
 							stat_X6_Y8= 5'd1;
-						end
-						if(stat_X6_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y9 == 5'd0)
 							stat_X6_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y6 == 5'd3)
+							stat_X6_Y6= 5'd4;
+						if(old_we && stat_X6_Y7 == 5'd3)
+							stat_X6_Y7= 5'd4;
+						if(old_we && stat_X6_Y8 == 5'd3)
+							stat_X6_Y8= 5'd4;
+						if(old_we && stat_X6_Y9 == 5'd3)
+							stat_X6_Y9= 5'd4;
+						if( we )
+							stat_X6_Y6= 5'd3;
+						if( we )
+							stat_X6_Y7= 5'd3;
+						if( we )
+							stat_X6_Y8= 5'd3;
+						if( we )
+							stat_X6_Y9= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X6_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y6 == 5'd0)
 							stat_X6_Y6= 5'd1;
-						end
-						if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y7 == 5'd0)
 							stat_X6_Y7= 5'd1;
-						end
-						if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y8 == 5'd0)
 							stat_X6_Y8= 5'd1;
-						end
-						if(stat_X6_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y9 == 5'd0)
 							stat_X6_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y6 == 5'd3)
+							stat_X6_Y6= 5'd4;
+						if(old_we && stat_X6_Y7 == 5'd3)
+							stat_X6_Y7= 5'd4;
+						if(old_we && stat_X6_Y8 == 5'd3)
+							stat_X6_Y8= 5'd4;
+						if(old_we && stat_X6_Y9 == 5'd3)
+							stat_X6_Y9= 5'd4;
+						if( we )
+							stat_X6_Y6= 5'd3;
+						if( we )
+							stat_X6_Y7= 5'd3;
+						if( we )
+							stat_X6_Y8= 5'd3;
+						if( we )
+							stat_X6_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd6 && mouse_cell_y == 4'd7)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X1_Y2 == 5'd1)
-				 stat_X1_Y2 =0;
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X7_Y9 == 5'd1)
-				 stat_X7_Y9 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X8_Y8 == 5'd1)
-				 stat_X8_Y8 =0;
-			 if(stat_X8_Y9 == 5'd1)
-				 stat_X8_Y9 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			 if(stat_X9_Y7 == 5'd1)
-				 stat_X9_Y7 =0;
-			 if(stat_X9_Y8 == 5'd1)
-				 stat_X9_Y8 =0;
-			 if(stat_X9_Y9 == 5'd1)
-				 stat_X9_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y7 == 5'd0)
 							stat_X6_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y7= 5'd2;
-						end
-						else if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y7 == 5'd0)
 							stat_X7_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y7 == 5'd3)
+							stat_X6_Y7= 5'd4;
+						if(old_we && stat_X7_Y7 == 5'd3)
+							stat_X7_Y7= 5'd4;
+						if( we )
+							stat_X6_Y7= 5'd3;
+						if( we )
+							stat_X7_Y7= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y7 == 5'd0)
 							stat_X6_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y7= 5'd2;
-						end
-						else if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y7 == 5'd0)
 							stat_X7_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y7= 5'd2;
-						end
-						else if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y7 == 5'd0)
 							stat_X8_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y7 == 5'd3)
+							stat_X6_Y7= 5'd4;
+						if(old_we && stat_X7_Y7 == 5'd3)
+							stat_X7_Y7= 5'd4;
+						if(old_we && stat_X8_Y7 == 5'd3)
+							stat_X8_Y7= 5'd4;
+						if( we )
+							stat_X6_Y7= 5'd3;
+						if( we )
+							stat_X7_Y7= 5'd3;
+						if( we )
+							stat_X8_Y7= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y7 == 5'd0)
 							stat_X6_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y7= 5'd2;
-						end
-						else if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y7 == 5'd0)
 							stat_X7_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y7= 5'd2;
-						end
-						else if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y7 == 5'd0)
 							stat_X8_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y7= 5'd2;
-						end
-						else if(stat_X9_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X9_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y7 == 5'd3)
+							stat_X6_Y7= 5'd4;
+						if(old_we && stat_X7_Y7 == 5'd3)
+							stat_X7_Y7= 5'd4;
+						if(old_we && stat_X8_Y7 == 5'd3)
+							stat_X8_Y7= 5'd4;
+						if( we )
+							stat_X6_Y7= 5'd3;
+						if( we )
+							stat_X7_Y7= 5'd3;
+						if( we )
+							stat_X8_Y7= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y7 == 5'd0)
 							stat_X6_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y7= 5'd2;
-						end
-						else if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y7 == 5'd0)
 							stat_X7_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y7= 5'd2;
-						end
-						else if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y7 == 5'd0)
 							stat_X8_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y7= 5'd2;
-						end
-						else if(stat_X9_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X9_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y7 == 5'd3)
+							stat_X6_Y7= 5'd4;
+						if(old_we && stat_X7_Y7 == 5'd3)
+							stat_X7_Y7= 5'd4;
+						if(old_we && stat_X8_Y7 == 5'd3)
+							stat_X8_Y7= 5'd4;
+						if( we )
+							stat_X6_Y7= 5'd3;
+						if( we )
+							stat_X7_Y7= 5'd3;
+						if( we )
+							stat_X8_Y7= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y7 == 5'd0)
 							stat_X6_Y7= 5'd1;
-						end
-						if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y8 == 5'd0)
 							stat_X6_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y7 == 5'd3)
+							stat_X6_Y7= 5'd4;
+						if(old_we && stat_X6_Y8 == 5'd3)
+							stat_X6_Y8= 5'd4;
+						if( we )
+							stat_X6_Y7= 5'd3;
+						if( we )
+							stat_X6_Y8= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y7 == 5'd0)
 							stat_X6_Y7= 5'd1;
-						end
-						if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y8 == 5'd0)
 							stat_X6_Y8= 5'd1;
-						end
-						if(stat_X6_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y9 == 5'd0)
 							stat_X6_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y7 == 5'd3)
+							stat_X6_Y7= 5'd4;
+						if(old_we && stat_X6_Y8 == 5'd3)
+							stat_X6_Y8= 5'd4;
+						if(old_we && stat_X6_Y9 == 5'd3)
+							stat_X6_Y9= 5'd4;
+						if( we )
+							stat_X6_Y7= 5'd3;
+						if( we )
+							stat_X6_Y8= 5'd3;
+						if( we )
+							stat_X6_Y9= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y7 == 5'd0)
 							stat_X6_Y7= 5'd1;
-						end
-						if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y8 == 5'd0)
 							stat_X6_Y8= 5'd1;
-						end
-						if(stat_X6_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y9 == 5'd0)
 							stat_X6_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y7 == 5'd3)
+							stat_X6_Y7= 5'd4;
+						if(old_we && stat_X6_Y8 == 5'd3)
+							stat_X6_Y8= 5'd4;
+						if(old_we && stat_X6_Y9 == 5'd3)
+							stat_X6_Y9= 5'd4;
+						if( we )
+							stat_X6_Y7= 5'd3;
+						if( we )
+							stat_X6_Y8= 5'd3;
+						if( we )
+							stat_X6_Y9= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X6_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y7 == 5'd0)
 							stat_X6_Y7= 5'd1;
-						end
-						if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y8 == 5'd0)
 							stat_X6_Y8= 5'd1;
-						end
-						if(stat_X6_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y9 == 5'd0)
 							stat_X6_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y7 == 5'd3)
+							stat_X6_Y7= 5'd4;
+						if(old_we && stat_X6_Y8 == 5'd3)
+							stat_X6_Y8= 5'd4;
+						if(old_we && stat_X6_Y9 == 5'd3)
+							stat_X6_Y9= 5'd4;
+						if( we )
+							stat_X6_Y7= 5'd3;
+						if( we )
+							stat_X6_Y8= 5'd3;
+						if( we )
+							stat_X6_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd6 && mouse_cell_y == 4'd8)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X1_Y3 == 5'd1)
-				 stat_X1_Y3 =0;
-			 if(stat_X1_Y4 == 5'd1)
-				 stat_X1_Y4 =0;
-			 if(stat_X1_Y5 == 5'd1)
-				 stat_X1_Y5 =0;
-			 if(stat_X1_Y6 == 5'd1)
-				 stat_X1_Y6 =0;
-			 if(stat_X1_Y7 == 5'd1)
-				 stat_X1_Y7 =0;
-			 if(stat_X1_Y8 == 5'd1)
-				 stat_X1_Y8 =0;
-			 if(stat_X1_Y9 == 5'd1)
-				 stat_X1_Y9 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X7_Y9 == 5'd1)
-				 stat_X7_Y9 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X8_Y8 == 5'd1)
-				 stat_X8_Y8 =0;
-			 if(stat_X8_Y9 == 5'd1)
-				 stat_X8_Y9 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			 if(stat_X9_Y7 == 5'd1)
-				 stat_X9_Y7 =0;
-			 if(stat_X9_Y8 == 5'd1)
-				 stat_X9_Y8 =0;
-			 if(stat_X9_Y9 == 5'd1)
-				 stat_X9_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y8 == 5'd0)
 							stat_X6_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y8= 5'd2;
-						end
-						else if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y8 == 5'd0)
 							stat_X7_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y8 == 5'd3)
+							stat_X6_Y8= 5'd4;
+						if(old_we && stat_X7_Y8 == 5'd3)
+							stat_X7_Y8= 5'd4;
+						if( we )
+							stat_X6_Y8= 5'd3;
+						if( we )
+							stat_X7_Y8= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y8 == 5'd0)
 							stat_X6_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y8= 5'd2;
-						end
-						else if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y8 == 5'd0)
 							stat_X7_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y8= 5'd2;
-						end
-						else if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y8 == 5'd3)
+							stat_X6_Y8= 5'd4;
+						if(old_we && stat_X7_Y8 == 5'd3)
+							stat_X7_Y8= 5'd4;
+						if( we )
+							stat_X6_Y8= 5'd3;
+						if( we )
+							stat_X7_Y8= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y8 == 5'd0)
 							stat_X6_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y8= 5'd2;
-						end
-						else if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y8 == 5'd0)
 							stat_X7_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y8= 5'd2;
-						end
-						else if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y8= 5'd2;
-						end
-						else if(stat_X9_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X9_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y8 == 5'd3)
+							stat_X6_Y8= 5'd4;
+						if(old_we && stat_X7_Y8 == 5'd3)
+							stat_X7_Y8= 5'd4;
+						if( we )
+							stat_X6_Y8= 5'd3;
+						if( we )
+							stat_X7_Y8= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y8 == 5'd0)
 							stat_X6_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X7_Y8= 5'd2;
-						end
-						else if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y8 == 5'd0)
 							stat_X7_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y8= 5'd2;
-						end
-						else if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y8= 5'd2;
-						end
-						else if(stat_X9_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X9_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y8 == 5'd3)
+							stat_X6_Y8= 5'd4;
+						if(old_we && stat_X7_Y8 == 5'd3)
+							stat_X7_Y8= 5'd4;
+						if( we )
+							stat_X6_Y8= 5'd3;
+						if( we )
+							stat_X7_Y8= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y8 == 5'd0)
 							stat_X6_Y8= 5'd1;
-						end
-						if(stat_X6_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y9 == 5'd0)
 							stat_X6_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y8 == 5'd3)
+							stat_X6_Y8= 5'd4;
+						if(old_we && stat_X6_Y9 == 5'd3)
+							stat_X6_Y9= 5'd4;
+						if( we )
+							stat_X6_Y8= 5'd3;
+						if( we )
+							stat_X6_Y9= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y8 == 5'd0)
 							stat_X6_Y8= 5'd1;
-						end
-						if(stat_X6_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y9 == 5'd0)
 							stat_X6_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y8 == 5'd3)
+							stat_X6_Y8= 5'd4;
+						if(old_we && stat_X6_Y9 == 5'd3)
+							stat_X6_Y9= 5'd4;
+						if( we )
+							stat_X6_Y8= 5'd3;
+						if( we )
+							stat_X6_Y9= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y8 == 5'd0)
 							stat_X6_Y8= 5'd1;
-						end
-						if(stat_X6_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y9 == 5'd0)
 							stat_X6_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y8 == 5'd3)
+							stat_X6_Y8= 5'd4;
+						if(old_we && stat_X6_Y9 == 5'd3)
+							stat_X6_Y9= 5'd4;
+						if( we )
+							stat_X6_Y8= 5'd3;
+						if( we )
+							stat_X6_Y9= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X6_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y8 == 5'd0)
 							stat_X6_Y8= 5'd1;
-						end
-						if(stat_X6_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X6_Y9 == 5'd0)
 							stat_X6_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X6_Y8 == 5'd3)
+							stat_X6_Y8= 5'd4;
+						if(old_we && stat_X6_Y9 == 5'd3)
+							stat_X6_Y9= 5'd4;
+						if( we )
+							stat_X6_Y8= 5'd3;
+						if( we )
+							stat_X6_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
+		//controllo la posizione: capisco in che cella sono
+		else if(mouse_cell_x == 4'd6 && mouse_cell_y == 4'd9)
+		begin//controllo la direzione
+			if(!direction)
+			begin//controllo la dimensione della nave
+				case (dimension)
+					4'd2:
+					begin
+						if( !we && stat_X6_Y9 == 5'd0)
+							stat_X6_Y9= 5'd1;
+						if(old_we && stat_X6_Y9 == 5'd3)
+							stat_X6_Y9= 5'd4;
+						if( we )
+							stat_X6_Y9= 5'd3;
+					end//interno case
+					4'd3:
+					begin
+						if( !we && stat_X6_Y9 == 5'd0)
+							stat_X6_Y9= 5'd1;
+						if(old_we && stat_X6_Y9 == 5'd3)
+							stat_X6_Y9= 5'd4;
+						if( we )
+							stat_X6_Y9= 5'd3;
+					end//interno case
+					4'd4:
+					begin
+						if( !we && stat_X6_Y9 == 5'd0)
+							stat_X6_Y9= 5'd1;
+						if(old_we && stat_X6_Y9 == 5'd3)
+							stat_X6_Y9= 5'd4;
+						if( we )
+							stat_X6_Y9= 5'd3;
+					end//interno case
+					4'd5:
+					begin
+						if( !we && stat_X6_Y9 == 5'd0)
+							stat_X6_Y9= 5'd1;
+						if(old_we && stat_X6_Y9 == 5'd3)
+							stat_X6_Y9= 5'd4;
+						if( we )
+							stat_X6_Y9= 5'd3;
+					end//interno case
+				endcase
+			end//direzione
+			else
+			begin//controllo la dimensione della nave
+				case (dimension)
+					4'd2:
+					begin
+						if( !we && stat_X6_Y9 == 5'd0)
+							stat_X6_Y9= 5'd1;
+						if(old_we && stat_X6_Y9 == 5'd3)
+							stat_X6_Y9= 5'd4;
+						if( we )
+							stat_X6_Y9= 5'd3;
+					end//interno case
+					4'd3:
+					begin
+						if( !we && stat_X6_Y9 == 5'd0)
+							stat_X6_Y9= 5'd1;
+						if(old_we && stat_X6_Y9 == 5'd3)
+							stat_X6_Y9= 5'd4;
+						if( we )
+							stat_X6_Y9= 5'd3;
+					end//interno case
+					4'd4:
+					begin
+						if( !we && stat_X6_Y9 == 5'd0)
+							stat_X6_Y9= 5'd1;
+						if(old_we && stat_X6_Y9 == 5'd3)
+							stat_X6_Y9= 5'd4;
+						if( we )
+							stat_X6_Y9= 5'd3;
+					end//interno case
+					4'd5:
+					begin
+						if( !we && stat_X6_Y9 == 5'd0)
+							stat_X6_Y9= 5'd1;
+						if(old_we && stat_X6_Y9 == 5'd3)
+							stat_X6_Y9= 5'd4;
+						if( we )
+							stat_X6_Y9= 5'd3;
+					end//interno case
+				endcase
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd7 && mouse_cell_y == 4'd0)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X9_Y0 == 5'd1)
-				 stat_X9_Y0 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X7_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y0 == 5'd0)
 							stat_X7_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y0= 5'd2;
-						end
-						else if(stat_X8_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y0 == 5'd0)
 							stat_X8_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y0 == 5'd3)
+							stat_X7_Y0= 5'd4;
+						if(old_we && stat_X8_Y0 == 5'd3)
+							stat_X8_Y0= 5'd4;
+						if( we )
+							stat_X7_Y0= 5'd3;
+						if( we )
+							stat_X8_Y0= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X7_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y0 == 5'd0)
 							stat_X7_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y0= 5'd2;
-						end
-						else if(stat_X8_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y0 == 5'd0)
 							stat_X8_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y0= 5'd2;
-						end
-						else if(stat_X9_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y0 == 5'd0)
 							stat_X9_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y0 == 5'd3)
+							stat_X7_Y0= 5'd4;
+						if(old_we && stat_X8_Y0 == 5'd3)
+							stat_X8_Y0= 5'd4;
+						if(old_we && stat_X9_Y0 == 5'd3)
+							stat_X9_Y0= 5'd4;
+						if( we )
+							stat_X7_Y0= 5'd3;
+						if( we )
+							stat_X8_Y0= 5'd3;
+						if( we )
+							stat_X9_Y0= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X7_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y0 == 5'd0)
 							stat_X7_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y0= 5'd2;
-						end
-						else if(stat_X8_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y0 == 5'd0)
 							stat_X8_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y0= 5'd2;
-						end
-						else if(stat_X9_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y0 == 5'd0)
 							stat_X9_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y0 == 5'd3)
+							stat_X7_Y0= 5'd4;
+						if(old_we && stat_X8_Y0 == 5'd3)
+							stat_X8_Y0= 5'd4;
+						if(old_we && stat_X9_Y0 == 5'd3)
+							stat_X9_Y0= 5'd4;
+						if( we )
+							stat_X7_Y0= 5'd3;
+						if( we )
+							stat_X8_Y0= 5'd3;
+						if( we )
+							stat_X9_Y0= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X7_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y0 == 5'd0)
 							stat_X7_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y0= 5'd2;
-						end
-						else if(stat_X8_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y0 == 5'd0)
 							stat_X8_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y0= 5'd2;
-						end
-						else if(stat_X9_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y0 == 5'd0)
 							stat_X9_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y0 == 5'd3)
+							stat_X7_Y0= 5'd4;
+						if(old_we && stat_X8_Y0 == 5'd3)
+							stat_X8_Y0= 5'd4;
+						if(old_we && stat_X9_Y0 == 5'd3)
+							stat_X9_Y0= 5'd4;
+						if( we )
+							stat_X7_Y0= 5'd3;
+						if( we )
+							stat_X8_Y0= 5'd3;
+						if( we )
+							stat_X9_Y0= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X7_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y0 == 5'd0)
 							stat_X7_Y0= 5'd1;
-						end
-						if(stat_X7_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y1 == 5'd0)
 							stat_X7_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y0 == 5'd3)
+							stat_X7_Y0= 5'd4;
+						if(old_we && stat_X7_Y1 == 5'd3)
+							stat_X7_Y1= 5'd4;
+						if( we )
+							stat_X7_Y0= 5'd3;
+						if( we )
+							stat_X7_Y1= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X7_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y0 == 5'd0)
 							stat_X7_Y0= 5'd1;
-						end
-						if(stat_X7_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y1 == 5'd0)
 							stat_X7_Y1= 5'd1;
-						end
-						if(stat_X7_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y2 == 5'd0)
 							stat_X7_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y0 == 5'd3)
+							stat_X7_Y0= 5'd4;
+						if(old_we && stat_X7_Y1 == 5'd3)
+							stat_X7_Y1= 5'd4;
+						if(old_we && stat_X7_Y2 == 5'd3)
+							stat_X7_Y2= 5'd4;
+						if( we )
+							stat_X7_Y0= 5'd3;
+						if( we )
+							stat_X7_Y1= 5'd3;
+						if( we )
+							stat_X7_Y2= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X7_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y0 == 5'd0)
 							stat_X7_Y0= 5'd1;
-						end
-						if(stat_X7_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y1 == 5'd0)
 							stat_X7_Y1= 5'd1;
-						end
-						if(stat_X7_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y2 == 5'd0)
 							stat_X7_Y2= 5'd1;
-						end
-						if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y0 == 5'd3)
+							stat_X7_Y0= 5'd4;
+						if(old_we && stat_X7_Y1 == 5'd3)
+							stat_X7_Y1= 5'd4;
+						if(old_we && stat_X7_Y2 == 5'd3)
+							stat_X7_Y2= 5'd4;
+						if( we )
+							stat_X7_Y0= 5'd3;
+						if( we )
+							stat_X7_Y1= 5'd3;
+						if( we )
+							stat_X7_Y2= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X7_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y0 == 5'd0)
 							stat_X7_Y0= 5'd1;
-						end
-						if(stat_X7_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y1 == 5'd0)
 							stat_X7_Y1= 5'd1;
-						end
-						if(stat_X7_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y2 == 5'd0)
 							stat_X7_Y2= 5'd1;
-						end
-						if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y3= 5'd1;
-						end
-						if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y0 == 5'd3)
+							stat_X7_Y0= 5'd4;
+						if(old_we && stat_X7_Y1 == 5'd3)
+							stat_X7_Y1= 5'd4;
+						if(old_we && stat_X7_Y2 == 5'd3)
+							stat_X7_Y2= 5'd4;
+						if( we )
+							stat_X7_Y0= 5'd3;
+						if( we )
+							stat_X7_Y1= 5'd3;
+						if( we )
+							stat_X7_Y2= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd7 && mouse_cell_y == 4'd1)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X9_Y0 == 5'd1)
-				 stat_X9_Y0 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X7_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y1 == 5'd0)
 							stat_X7_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y1= 5'd2;
-						end
-						else if(stat_X8_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y1 == 5'd0)
 							stat_X8_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y1 == 5'd3)
+							stat_X7_Y1= 5'd4;
+						if(old_we && stat_X8_Y1 == 5'd3)
+							stat_X8_Y1= 5'd4;
+						if( we )
+							stat_X7_Y1= 5'd3;
+						if( we )
+							stat_X8_Y1= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X7_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y1 == 5'd0)
 							stat_X7_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y1= 5'd2;
-						end
-						else if(stat_X8_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y1 == 5'd0)
 							stat_X8_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y1= 5'd2;
-						end
-						else if(stat_X9_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y1 == 5'd0)
 							stat_X9_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y1 == 5'd3)
+							stat_X7_Y1= 5'd4;
+						if(old_we && stat_X8_Y1 == 5'd3)
+							stat_X8_Y1= 5'd4;
+						if(old_we && stat_X9_Y1 == 5'd3)
+							stat_X9_Y1= 5'd4;
+						if( we )
+							stat_X7_Y1= 5'd3;
+						if( we )
+							stat_X8_Y1= 5'd3;
+						if( we )
+							stat_X9_Y1= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X7_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y1 == 5'd0)
 							stat_X7_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y1= 5'd2;
-						end
-						else if(stat_X8_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y1 == 5'd0)
 							stat_X8_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y1= 5'd2;
-						end
-						else if(stat_X9_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y1 == 5'd0)
 							stat_X9_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y1 == 5'd3)
+							stat_X7_Y1= 5'd4;
+						if(old_we && stat_X8_Y1 == 5'd3)
+							stat_X8_Y1= 5'd4;
+						if(old_we && stat_X9_Y1 == 5'd3)
+							stat_X9_Y1= 5'd4;
+						if( we )
+							stat_X7_Y1= 5'd3;
+						if( we )
+							stat_X8_Y1= 5'd3;
+						if( we )
+							stat_X9_Y1= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X7_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y1 == 5'd0)
 							stat_X7_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y1= 5'd2;
-						end
-						else if(stat_X8_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y1 == 5'd0)
 							stat_X8_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y1= 5'd2;
-						end
-						else if(stat_X9_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y1 == 5'd0)
 							stat_X9_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y1 == 5'd3)
+							stat_X7_Y1= 5'd4;
+						if(old_we && stat_X8_Y1 == 5'd3)
+							stat_X8_Y1= 5'd4;
+						if(old_we && stat_X9_Y1 == 5'd3)
+							stat_X9_Y1= 5'd4;
+						if( we )
+							stat_X7_Y1= 5'd3;
+						if( we )
+							stat_X8_Y1= 5'd3;
+						if( we )
+							stat_X9_Y1= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X7_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y1 == 5'd0)
 							stat_X7_Y1= 5'd1;
-						end
-						if(stat_X7_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y2 == 5'd0)
 							stat_X7_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y1 == 5'd3)
+							stat_X7_Y1= 5'd4;
+						if(old_we && stat_X7_Y2 == 5'd3)
+							stat_X7_Y2= 5'd4;
+						if( we )
+							stat_X7_Y1= 5'd3;
+						if( we )
+							stat_X7_Y2= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X7_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y1 == 5'd0)
 							stat_X7_Y1= 5'd1;
-						end
-						if(stat_X7_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y2 == 5'd0)
 							stat_X7_Y2= 5'd1;
-						end
-						if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y3 == 5'd0)
 							stat_X7_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y1 == 5'd3)
+							stat_X7_Y1= 5'd4;
+						if(old_we && stat_X7_Y2 == 5'd3)
+							stat_X7_Y2= 5'd4;
+						if(old_we && stat_X7_Y3 == 5'd3)
+							stat_X7_Y3= 5'd4;
+						if( we )
+							stat_X7_Y1= 5'd3;
+						if( we )
+							stat_X7_Y2= 5'd3;
+						if( we )
+							stat_X7_Y3= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X7_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y1 == 5'd0)
 							stat_X7_Y1= 5'd1;
-						end
-						if(stat_X7_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y2 == 5'd0)
 							stat_X7_Y2= 5'd1;
-						end
-						if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y3 == 5'd0)
 							stat_X7_Y3= 5'd1;
-						end
-						if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y1 == 5'd3)
+							stat_X7_Y1= 5'd4;
+						if(old_we && stat_X7_Y2 == 5'd3)
+							stat_X7_Y2= 5'd4;
+						if(old_we && stat_X7_Y3 == 5'd3)
+							stat_X7_Y3= 5'd4;
+						if( we )
+							stat_X7_Y1= 5'd3;
+						if( we )
+							stat_X7_Y2= 5'd3;
+						if( we )
+							stat_X7_Y3= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X7_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y1 == 5'd0)
 							stat_X7_Y1= 5'd1;
-						end
-						if(stat_X7_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y2 == 5'd0)
 							stat_X7_Y2= 5'd1;
-						end
-						if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y3 == 5'd0)
 							stat_X7_Y3= 5'd1;
-						end
-						if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y4= 5'd1;
-						end
-						if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y1 == 5'd3)
+							stat_X7_Y1= 5'd4;
+						if(old_we && stat_X7_Y2 == 5'd3)
+							stat_X7_Y2= 5'd4;
+						if(old_we && stat_X7_Y3 == 5'd3)
+							stat_X7_Y3= 5'd4;
+						if( we )
+							stat_X7_Y1= 5'd3;
+						if( we )
+							stat_X7_Y2= 5'd3;
+						if( we )
+							stat_X7_Y3= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd7 && mouse_cell_y == 4'd2)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X9_Y0 == 5'd1)
-				 stat_X9_Y0 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X7_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y2 == 5'd0)
 							stat_X7_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y2= 5'd2;
-						end
-						else if(stat_X8_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y2 == 5'd0)
 							stat_X8_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y2 == 5'd3)
+							stat_X7_Y2= 5'd4;
+						if(old_we && stat_X8_Y2 == 5'd3)
+							stat_X8_Y2= 5'd4;
+						if( we )
+							stat_X7_Y2= 5'd3;
+						if( we )
+							stat_X8_Y2= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X7_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y2 == 5'd0)
 							stat_X7_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y2= 5'd2;
-						end
-						else if(stat_X8_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y2 == 5'd0)
 							stat_X8_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y2= 5'd2;
-						end
-						else if(stat_X9_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y2 == 5'd0)
 							stat_X9_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y2 == 5'd3)
+							stat_X7_Y2= 5'd4;
+						if(old_we && stat_X8_Y2 == 5'd3)
+							stat_X8_Y2= 5'd4;
+						if(old_we && stat_X9_Y2 == 5'd3)
+							stat_X9_Y2= 5'd4;
+						if( we )
+							stat_X7_Y2= 5'd3;
+						if( we )
+							stat_X8_Y2= 5'd3;
+						if( we )
+							stat_X9_Y2= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X7_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y2 == 5'd0)
 							stat_X7_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y2= 5'd2;
-						end
-						else if(stat_X8_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y2 == 5'd0)
 							stat_X8_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y2= 5'd2;
-						end
-						else if(stat_X9_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y2 == 5'd0)
 							stat_X9_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y2 == 5'd3)
+							stat_X7_Y2= 5'd4;
+						if(old_we && stat_X8_Y2 == 5'd3)
+							stat_X8_Y2= 5'd4;
+						if(old_we && stat_X9_Y2 == 5'd3)
+							stat_X9_Y2= 5'd4;
+						if( we )
+							stat_X7_Y2= 5'd3;
+						if( we )
+							stat_X8_Y2= 5'd3;
+						if( we )
+							stat_X9_Y2= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X7_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y2 == 5'd0)
 							stat_X7_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y2= 5'd2;
-						end
-						else if(stat_X8_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y2 == 5'd0)
 							stat_X8_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y2= 5'd2;
-						end
-						else if(stat_X9_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y2 == 5'd0)
 							stat_X9_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y2 == 5'd3)
+							stat_X7_Y2= 5'd4;
+						if(old_we && stat_X8_Y2 == 5'd3)
+							stat_X8_Y2= 5'd4;
+						if(old_we && stat_X9_Y2 == 5'd3)
+							stat_X9_Y2= 5'd4;
+						if( we )
+							stat_X7_Y2= 5'd3;
+						if( we )
+							stat_X8_Y2= 5'd3;
+						if( we )
+							stat_X9_Y2= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X7_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y2 == 5'd0)
 							stat_X7_Y2= 5'd1;
-						end
-						if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y3 == 5'd0)
 							stat_X7_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y2 == 5'd3)
+							stat_X7_Y2= 5'd4;
+						if(old_we && stat_X7_Y3 == 5'd3)
+							stat_X7_Y3= 5'd4;
+						if( we )
+							stat_X7_Y2= 5'd3;
+						if( we )
+							stat_X7_Y3= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X7_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y2 == 5'd0)
 							stat_X7_Y2= 5'd1;
-						end
-						if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y3 == 5'd0)
 							stat_X7_Y3= 5'd1;
-						end
-						if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y4 == 5'd0)
 							stat_X7_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y2 == 5'd3)
+							stat_X7_Y2= 5'd4;
+						if(old_we && stat_X7_Y3 == 5'd3)
+							stat_X7_Y3= 5'd4;
+						if(old_we && stat_X7_Y4 == 5'd3)
+							stat_X7_Y4= 5'd4;
+						if( we )
+							stat_X7_Y2= 5'd3;
+						if( we )
+							stat_X7_Y3= 5'd3;
+						if( we )
+							stat_X7_Y4= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X7_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y2 == 5'd0)
 							stat_X7_Y2= 5'd1;
-						end
-						if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y3 == 5'd0)
 							stat_X7_Y3= 5'd1;
-						end
-						if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y4 == 5'd0)
 							stat_X7_Y4= 5'd1;
-						end
-						if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y2 == 5'd3)
+							stat_X7_Y2= 5'd4;
+						if(old_we && stat_X7_Y3 == 5'd3)
+							stat_X7_Y3= 5'd4;
+						if(old_we && stat_X7_Y4 == 5'd3)
+							stat_X7_Y4= 5'd4;
+						if( we )
+							stat_X7_Y2= 5'd3;
+						if( we )
+							stat_X7_Y3= 5'd3;
+						if( we )
+							stat_X7_Y4= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X7_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y2 == 5'd0)
 							stat_X7_Y2= 5'd1;
-						end
-						if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y3 == 5'd0)
 							stat_X7_Y3= 5'd1;
-						end
-						if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y4 == 5'd0)
 							stat_X7_Y4= 5'd1;
-						end
-						if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y5= 5'd1;
-						end
-						if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y2 == 5'd3)
+							stat_X7_Y2= 5'd4;
+						if(old_we && stat_X7_Y3 == 5'd3)
+							stat_X7_Y3= 5'd4;
+						if(old_we && stat_X7_Y4 == 5'd3)
+							stat_X7_Y4= 5'd4;
+						if( we )
+							stat_X7_Y2= 5'd3;
+						if( we )
+							stat_X7_Y3= 5'd3;
+						if( we )
+							stat_X7_Y4= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd7 && mouse_cell_y == 4'd3)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X9_Y0 == 5'd1)
-				 stat_X9_Y0 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			 if(stat_X9_Y7 == 5'd1)
-				 stat_X9_Y7 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y3 == 5'd0)
 							stat_X7_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y3= 5'd2;
-						end
-						else if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y3 == 5'd0)
 							stat_X8_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y3 == 5'd3)
+							stat_X7_Y3= 5'd4;
+						if(old_we && stat_X8_Y3 == 5'd3)
+							stat_X8_Y3= 5'd4;
+						if( we )
+							stat_X7_Y3= 5'd3;
+						if( we )
+							stat_X8_Y3= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y3 == 5'd0)
 							stat_X7_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y3= 5'd2;
-						end
-						else if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y3 == 5'd0)
 							stat_X8_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y3= 5'd2;
-						end
-						else if(stat_X9_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y3 == 5'd0)
 							stat_X9_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y3 == 5'd3)
+							stat_X7_Y3= 5'd4;
+						if(old_we && stat_X8_Y3 == 5'd3)
+							stat_X8_Y3= 5'd4;
+						if(old_we && stat_X9_Y3 == 5'd3)
+							stat_X9_Y3= 5'd4;
+						if( we )
+							stat_X7_Y3= 5'd3;
+						if( we )
+							stat_X8_Y3= 5'd3;
+						if( we )
+							stat_X9_Y3= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y3 == 5'd0)
 							stat_X7_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y3= 5'd2;
-						end
-						else if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y3 == 5'd0)
 							stat_X8_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y3= 5'd2;
-						end
-						else if(stat_X9_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y3 == 5'd0)
 							stat_X9_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y3 == 5'd3)
+							stat_X7_Y3= 5'd4;
+						if(old_we && stat_X8_Y3 == 5'd3)
+							stat_X8_Y3= 5'd4;
+						if(old_we && stat_X9_Y3 == 5'd3)
+							stat_X9_Y3= 5'd4;
+						if( we )
+							stat_X7_Y3= 5'd3;
+						if( we )
+							stat_X8_Y3= 5'd3;
+						if( we )
+							stat_X9_Y3= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y3 == 5'd0)
 							stat_X7_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y3= 5'd2;
-						end
-						else if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y3 == 5'd0)
 							stat_X8_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y3= 5'd2;
-						end
-						else if(stat_X9_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y3 == 5'd0)
 							stat_X9_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y3 == 5'd3)
+							stat_X7_Y3= 5'd4;
+						if(old_we && stat_X8_Y3 == 5'd3)
+							stat_X8_Y3= 5'd4;
+						if(old_we && stat_X9_Y3 == 5'd3)
+							stat_X9_Y3= 5'd4;
+						if( we )
+							stat_X7_Y3= 5'd3;
+						if( we )
+							stat_X8_Y3= 5'd3;
+						if( we )
+							stat_X9_Y3= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y3 == 5'd0)
 							stat_X7_Y3= 5'd1;
-						end
-						if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y4 == 5'd0)
 							stat_X7_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y3 == 5'd3)
+							stat_X7_Y3= 5'd4;
+						if(old_we && stat_X7_Y4 == 5'd3)
+							stat_X7_Y4= 5'd4;
+						if( we )
+							stat_X7_Y3= 5'd3;
+						if( we )
+							stat_X7_Y4= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y3 == 5'd0)
 							stat_X7_Y3= 5'd1;
-						end
-						if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y4 == 5'd0)
 							stat_X7_Y4= 5'd1;
-						end
-						if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y5 == 5'd0)
 							stat_X7_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y3 == 5'd3)
+							stat_X7_Y3= 5'd4;
+						if(old_we && stat_X7_Y4 == 5'd3)
+							stat_X7_Y4= 5'd4;
+						if(old_we && stat_X7_Y5 == 5'd3)
+							stat_X7_Y5= 5'd4;
+						if( we )
+							stat_X7_Y3= 5'd3;
+						if( we )
+							stat_X7_Y4= 5'd3;
+						if( we )
+							stat_X7_Y5= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y3 == 5'd0)
 							stat_X7_Y3= 5'd1;
-						end
-						if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y4 == 5'd0)
 							stat_X7_Y4= 5'd1;
-						end
-						if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y5 == 5'd0)
 							stat_X7_Y5= 5'd1;
-						end
-						if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y3 == 5'd3)
+							stat_X7_Y3= 5'd4;
+						if(old_we && stat_X7_Y4 == 5'd3)
+							stat_X7_Y4= 5'd4;
+						if(old_we && stat_X7_Y5 == 5'd3)
+							stat_X7_Y5= 5'd4;
+						if( we )
+							stat_X7_Y3= 5'd3;
+						if( we )
+							stat_X7_Y4= 5'd3;
+						if( we )
+							stat_X7_Y5= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X7_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y3 == 5'd0)
 							stat_X7_Y3= 5'd1;
-						end
-						if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y4 == 5'd0)
 							stat_X7_Y4= 5'd1;
-						end
-						if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y5 == 5'd0)
 							stat_X7_Y5= 5'd1;
-						end
-						if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y6= 5'd1;
-						end
-						if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y3 == 5'd3)
+							stat_X7_Y3= 5'd4;
+						if(old_we && stat_X7_Y4 == 5'd3)
+							stat_X7_Y4= 5'd4;
+						if(old_we && stat_X7_Y5 == 5'd3)
+							stat_X7_Y5= 5'd4;
+						if( we )
+							stat_X7_Y3= 5'd3;
+						if( we )
+							stat_X7_Y4= 5'd3;
+						if( we )
+							stat_X7_Y5= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd7 && mouse_cell_y == 4'd4)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X8_Y8 == 5'd1)
-				 stat_X8_Y8 =0;
-			 if(stat_X9_Y0 == 5'd1)
-				 stat_X9_Y0 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			 if(stat_X9_Y7 == 5'd1)
-				 stat_X9_Y7 =0;
-			 if(stat_X9_Y8 == 5'd1)
-				 stat_X9_Y8 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y4 == 5'd0)
 							stat_X7_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y4= 5'd2;
-						end
-						else if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y4 == 5'd0)
 							stat_X8_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y4 == 5'd3)
+							stat_X7_Y4= 5'd4;
+						if(old_we && stat_X8_Y4 == 5'd3)
+							stat_X8_Y4= 5'd4;
+						if( we )
+							stat_X7_Y4= 5'd3;
+						if( we )
+							stat_X8_Y4= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y4 == 5'd0)
 							stat_X7_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y4= 5'd2;
-						end
-						else if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y4 == 5'd0)
 							stat_X8_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y4= 5'd2;
-						end
-						else if(stat_X9_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y4 == 5'd0)
 							stat_X9_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y4 == 5'd3)
+							stat_X7_Y4= 5'd4;
+						if(old_we && stat_X8_Y4 == 5'd3)
+							stat_X8_Y4= 5'd4;
+						if(old_we && stat_X9_Y4 == 5'd3)
+							stat_X9_Y4= 5'd4;
+						if( we )
+							stat_X7_Y4= 5'd3;
+						if( we )
+							stat_X8_Y4= 5'd3;
+						if( we )
+							stat_X9_Y4= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y4 == 5'd0)
 							stat_X7_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y4= 5'd2;
-						end
-						else if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y4 == 5'd0)
 							stat_X8_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y4= 5'd2;
-						end
-						else if(stat_X9_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y4 == 5'd0)
 							stat_X9_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y4 == 5'd3)
+							stat_X7_Y4= 5'd4;
+						if(old_we && stat_X8_Y4 == 5'd3)
+							stat_X8_Y4= 5'd4;
+						if(old_we && stat_X9_Y4 == 5'd3)
+							stat_X9_Y4= 5'd4;
+						if( we )
+							stat_X7_Y4= 5'd3;
+						if( we )
+							stat_X8_Y4= 5'd3;
+						if( we )
+							stat_X9_Y4= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y4 == 5'd0)
 							stat_X7_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y4= 5'd2;
-						end
-						else if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y4 == 5'd0)
 							stat_X8_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y4= 5'd2;
-						end
-						else if(stat_X9_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y4 == 5'd0)
 							stat_X9_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y4 == 5'd3)
+							stat_X7_Y4= 5'd4;
+						if(old_we && stat_X8_Y4 == 5'd3)
+							stat_X8_Y4= 5'd4;
+						if(old_we && stat_X9_Y4 == 5'd3)
+							stat_X9_Y4= 5'd4;
+						if( we )
+							stat_X7_Y4= 5'd3;
+						if( we )
+							stat_X8_Y4= 5'd3;
+						if( we )
+							stat_X9_Y4= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y4 == 5'd0)
 							stat_X7_Y4= 5'd1;
-						end
-						if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y5 == 5'd0)
 							stat_X7_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y4 == 5'd3)
+							stat_X7_Y4= 5'd4;
+						if(old_we && stat_X7_Y5 == 5'd3)
+							stat_X7_Y5= 5'd4;
+						if( we )
+							stat_X7_Y4= 5'd3;
+						if( we )
+							stat_X7_Y5= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y4 == 5'd0)
 							stat_X7_Y4= 5'd1;
-						end
-						if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y5 == 5'd0)
 							stat_X7_Y5= 5'd1;
-						end
-						if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y6 == 5'd0)
 							stat_X7_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y4 == 5'd3)
+							stat_X7_Y4= 5'd4;
+						if(old_we && stat_X7_Y5 == 5'd3)
+							stat_X7_Y5= 5'd4;
+						if(old_we && stat_X7_Y6 == 5'd3)
+							stat_X7_Y6= 5'd4;
+						if( we )
+							stat_X7_Y4= 5'd3;
+						if( we )
+							stat_X7_Y5= 5'd3;
+						if( we )
+							stat_X7_Y6= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y4 == 5'd0)
 							stat_X7_Y4= 5'd1;
-						end
-						if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y5 == 5'd0)
 							stat_X7_Y5= 5'd1;
-						end
-						if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y6 == 5'd0)
 							stat_X7_Y6= 5'd1;
-						end
-						if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y4 == 5'd3)
+							stat_X7_Y4= 5'd4;
+						if(old_we && stat_X7_Y5 == 5'd3)
+							stat_X7_Y5= 5'd4;
+						if(old_we && stat_X7_Y6 == 5'd3)
+							stat_X7_Y6= 5'd4;
+						if( we )
+							stat_X7_Y4= 5'd3;
+						if( we )
+							stat_X7_Y5= 5'd3;
+						if( we )
+							stat_X7_Y6= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X7_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y4 == 5'd0)
 							stat_X7_Y4= 5'd1;
-						end
-						if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y5 == 5'd0)
 							stat_X7_Y5= 5'd1;
-						end
-						if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y6 == 5'd0)
 							stat_X7_Y6= 5'd1;
-						end
-						if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y7= 5'd1;
-						end
-						if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y4 == 5'd3)
+							stat_X7_Y4= 5'd4;
+						if(old_we && stat_X7_Y5 == 5'd3)
+							stat_X7_Y5= 5'd4;
+						if(old_we && stat_X7_Y6 == 5'd3)
+							stat_X7_Y6= 5'd4;
+						if( we )
+							stat_X7_Y4= 5'd3;
+						if( we )
+							stat_X7_Y5= 5'd3;
+						if( we )
+							stat_X7_Y6= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd7 && mouse_cell_y == 4'd5)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X2_Y0 == 5'd1)
-				 stat_X2_Y0 =0;
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X7_Y9 == 5'd1)
-				 stat_X7_Y9 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X8_Y8 == 5'd1)
-				 stat_X8_Y8 =0;
-			 if(stat_X8_Y9 == 5'd1)
-				 stat_X8_Y9 =0;
-			 if(stat_X9_Y0 == 5'd1)
-				 stat_X9_Y0 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			 if(stat_X9_Y7 == 5'd1)
-				 stat_X9_Y7 =0;
-			 if(stat_X9_Y8 == 5'd1)
-				 stat_X9_Y8 =0;
-			 if(stat_X9_Y9 == 5'd1)
-				 stat_X9_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y5 == 5'd0)
 							stat_X7_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y5= 5'd2;
-						end
-						else if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y5 == 5'd0)
 							stat_X8_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y5 == 5'd3)
+							stat_X7_Y5= 5'd4;
+						if(old_we && stat_X8_Y5 == 5'd3)
+							stat_X8_Y5= 5'd4;
+						if( we )
+							stat_X7_Y5= 5'd3;
+						if( we )
+							stat_X8_Y5= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y5 == 5'd0)
 							stat_X7_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y5= 5'd2;
-						end
-						else if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y5 == 5'd0)
 							stat_X8_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y5= 5'd2;
-						end
-						else if(stat_X9_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y5 == 5'd0)
 							stat_X9_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y5 == 5'd3)
+							stat_X7_Y5= 5'd4;
+						if(old_we && stat_X8_Y5 == 5'd3)
+							stat_X8_Y5= 5'd4;
+						if(old_we && stat_X9_Y5 == 5'd3)
+							stat_X9_Y5= 5'd4;
+						if( we )
+							stat_X7_Y5= 5'd3;
+						if( we )
+							stat_X8_Y5= 5'd3;
+						if( we )
+							stat_X9_Y5= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y5 == 5'd0)
 							stat_X7_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y5= 5'd2;
-						end
-						else if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y5 == 5'd0)
 							stat_X8_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y5= 5'd2;
-						end
-						else if(stat_X9_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y5 == 5'd0)
 							stat_X9_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y5 == 5'd3)
+							stat_X7_Y5= 5'd4;
+						if(old_we && stat_X8_Y5 == 5'd3)
+							stat_X8_Y5= 5'd4;
+						if(old_we && stat_X9_Y5 == 5'd3)
+							stat_X9_Y5= 5'd4;
+						if( we )
+							stat_X7_Y5= 5'd3;
+						if( we )
+							stat_X8_Y5= 5'd3;
+						if( we )
+							stat_X9_Y5= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y5 == 5'd0)
 							stat_X7_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y5= 5'd2;
-						end
-						else if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y5 == 5'd0)
 							stat_X8_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y5= 5'd2;
-						end
-						else if(stat_X9_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y5 == 5'd0)
 							stat_X9_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y5 == 5'd3)
+							stat_X7_Y5= 5'd4;
+						if(old_we && stat_X8_Y5 == 5'd3)
+							stat_X8_Y5= 5'd4;
+						if(old_we && stat_X9_Y5 == 5'd3)
+							stat_X9_Y5= 5'd4;
+						if( we )
+							stat_X7_Y5= 5'd3;
+						if( we )
+							stat_X8_Y5= 5'd3;
+						if( we )
+							stat_X9_Y5= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y5 == 5'd0)
 							stat_X7_Y5= 5'd1;
-						end
-						if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y6 == 5'd0)
 							stat_X7_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y5 == 5'd3)
+							stat_X7_Y5= 5'd4;
+						if(old_we && stat_X7_Y6 == 5'd3)
+							stat_X7_Y6= 5'd4;
+						if( we )
+							stat_X7_Y5= 5'd3;
+						if( we )
+							stat_X7_Y6= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y5 == 5'd0)
 							stat_X7_Y5= 5'd1;
-						end
-						if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y6 == 5'd0)
 							stat_X7_Y6= 5'd1;
-						end
-						if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y7 == 5'd0)
 							stat_X7_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y5 == 5'd3)
+							stat_X7_Y5= 5'd4;
+						if(old_we && stat_X7_Y6 == 5'd3)
+							stat_X7_Y6= 5'd4;
+						if(old_we && stat_X7_Y7 == 5'd3)
+							stat_X7_Y7= 5'd4;
+						if( we )
+							stat_X7_Y5= 5'd3;
+						if( we )
+							stat_X7_Y6= 5'd3;
+						if( we )
+							stat_X7_Y7= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y5 == 5'd0)
 							stat_X7_Y5= 5'd1;
-						end
-						if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y6 == 5'd0)
 							stat_X7_Y6= 5'd1;
-						end
-						if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y7 == 5'd0)
 							stat_X7_Y7= 5'd1;
-						end
-						if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y5 == 5'd3)
+							stat_X7_Y5= 5'd4;
+						if(old_we && stat_X7_Y6 == 5'd3)
+							stat_X7_Y6= 5'd4;
+						if(old_we && stat_X7_Y7 == 5'd3)
+							stat_X7_Y7= 5'd4;
+						if( we )
+							stat_X7_Y5= 5'd3;
+						if( we )
+							stat_X7_Y6= 5'd3;
+						if( we )
+							stat_X7_Y7= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X7_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y5 == 5'd0)
 							stat_X7_Y5= 5'd1;
-						end
-						if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y6 == 5'd0)
 							stat_X7_Y6= 5'd1;
-						end
-						if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y7 == 5'd0)
 							stat_X7_Y7= 5'd1;
-						end
-						if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y8= 5'd1;
-						end
-						if(stat_X7_Y9 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y5 == 5'd3)
+							stat_X7_Y5= 5'd4;
+						if(old_we && stat_X7_Y6 == 5'd3)
+							stat_X7_Y6= 5'd4;
+						if(old_we && stat_X7_Y7 == 5'd3)
+							stat_X7_Y7= 5'd4;
+						if( we )
+							stat_X7_Y5= 5'd3;
+						if( we )
+							stat_X7_Y6= 5'd3;
+						if( we )
+							stat_X7_Y7= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd7 && mouse_cell_y == 4'd6)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X2_Y1 == 5'd1)
-				 stat_X2_Y1 =0;
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X7_Y9 == 5'd1)
-				 stat_X7_Y9 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X8_Y8 == 5'd1)
-				 stat_X8_Y8 =0;
-			 if(stat_X8_Y9 == 5'd1)
-				 stat_X8_Y9 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			 if(stat_X9_Y7 == 5'd1)
-				 stat_X9_Y7 =0;
-			 if(stat_X9_Y8 == 5'd1)
-				 stat_X9_Y8 =0;
-			 if(stat_X9_Y9 == 5'd1)
-				 stat_X9_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y6 == 5'd0)
 							stat_X7_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y6= 5'd2;
-						end
-						else if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y6 == 5'd0)
 							stat_X8_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y6 == 5'd3)
+							stat_X7_Y6= 5'd4;
+						if(old_we && stat_X8_Y6 == 5'd3)
+							stat_X8_Y6= 5'd4;
+						if( we )
+							stat_X7_Y6= 5'd3;
+						if( we )
+							stat_X8_Y6= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y6 == 5'd0)
 							stat_X7_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y6= 5'd2;
-						end
-						else if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y6 == 5'd0)
 							stat_X8_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y6= 5'd2;
-						end
-						else if(stat_X9_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y6 == 5'd0)
 							stat_X9_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y6 == 5'd3)
+							stat_X7_Y6= 5'd4;
+						if(old_we && stat_X8_Y6 == 5'd3)
+							stat_X8_Y6= 5'd4;
+						if(old_we && stat_X9_Y6 == 5'd3)
+							stat_X9_Y6= 5'd4;
+						if( we )
+							stat_X7_Y6= 5'd3;
+						if( we )
+							stat_X8_Y6= 5'd3;
+						if( we )
+							stat_X9_Y6= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y6 == 5'd0)
 							stat_X7_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y6= 5'd2;
-						end
-						else if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y6 == 5'd0)
 							stat_X8_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y6= 5'd2;
-						end
-						else if(stat_X9_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y6 == 5'd0)
 							stat_X9_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y6 == 5'd3)
+							stat_X7_Y6= 5'd4;
+						if(old_we && stat_X8_Y6 == 5'd3)
+							stat_X8_Y6= 5'd4;
+						if(old_we && stat_X9_Y6 == 5'd3)
+							stat_X9_Y6= 5'd4;
+						if( we )
+							stat_X7_Y6= 5'd3;
+						if( we )
+							stat_X8_Y6= 5'd3;
+						if( we )
+							stat_X9_Y6= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y6 == 5'd0)
 							stat_X7_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y6= 5'd2;
-						end
-						else if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y6 == 5'd0)
 							stat_X8_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y6= 5'd2;
-						end
-						else if(stat_X9_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y6 == 5'd0)
 							stat_X9_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y6 == 5'd3)
+							stat_X7_Y6= 5'd4;
+						if(old_we && stat_X8_Y6 == 5'd3)
+							stat_X8_Y6= 5'd4;
+						if(old_we && stat_X9_Y6 == 5'd3)
+							stat_X9_Y6= 5'd4;
+						if( we )
+							stat_X7_Y6= 5'd3;
+						if( we )
+							stat_X8_Y6= 5'd3;
+						if( we )
+							stat_X9_Y6= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y6 == 5'd0)
 							stat_X7_Y6= 5'd1;
-						end
-						if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y7 == 5'd0)
 							stat_X7_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y6 == 5'd3)
+							stat_X7_Y6= 5'd4;
+						if(old_we && stat_X7_Y7 == 5'd3)
+							stat_X7_Y7= 5'd4;
+						if( we )
+							stat_X7_Y6= 5'd3;
+						if( we )
+							stat_X7_Y7= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y6 == 5'd0)
 							stat_X7_Y6= 5'd1;
-						end
-						if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y7 == 5'd0)
 							stat_X7_Y7= 5'd1;
-						end
-						if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y8 == 5'd0)
 							stat_X7_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y6 == 5'd3)
+							stat_X7_Y6= 5'd4;
+						if(old_we && stat_X7_Y7 == 5'd3)
+							stat_X7_Y7= 5'd4;
+						if(old_we && stat_X7_Y8 == 5'd3)
+							stat_X7_Y8= 5'd4;
+						if( we )
+							stat_X7_Y6= 5'd3;
+						if( we )
+							stat_X7_Y7= 5'd3;
+						if( we )
+							stat_X7_Y8= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y6 == 5'd0)
 							stat_X7_Y6= 5'd1;
-						end
-						if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y7 == 5'd0)
 							stat_X7_Y7= 5'd1;
-						end
-						if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y8 == 5'd0)
 							stat_X7_Y8= 5'd1;
-						end
-						if(stat_X7_Y9 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y6 == 5'd3)
+							stat_X7_Y6= 5'd4;
+						if(old_we && stat_X7_Y7 == 5'd3)
+							stat_X7_Y7= 5'd4;
+						if(old_we && stat_X7_Y8 == 5'd3)
+							stat_X7_Y8= 5'd4;
+						if( we )
+							stat_X7_Y6= 5'd3;
+						if( we )
+							stat_X7_Y7= 5'd3;
+						if( we )
+							stat_X7_Y8= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X7_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y6 == 5'd0)
 							stat_X7_Y6= 5'd1;
-						end
-						if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y7 == 5'd0)
 							stat_X7_Y7= 5'd1;
-						end
-						if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y8 == 5'd0)
 							stat_X7_Y8= 5'd1;
-						end
-						if(stat_X7_Y9 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X7_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y6 == 5'd3)
+							stat_X7_Y6= 5'd4;
+						if(old_we && stat_X7_Y7 == 5'd3)
+							stat_X7_Y7= 5'd4;
+						if(old_we && stat_X7_Y8 == 5'd3)
+							stat_X7_Y8= 5'd4;
+						if( we )
+							stat_X7_Y6= 5'd3;
+						if( we )
+							stat_X7_Y7= 5'd3;
+						if( we )
+							stat_X7_Y8= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd7 && mouse_cell_y == 4'd7)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X2_Y2 == 5'd1)
-				 stat_X2_Y2 =0;
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X7_Y9 == 5'd1)
-				 stat_X7_Y9 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X8_Y8 == 5'd1)
-				 stat_X8_Y8 =0;
-			 if(stat_X8_Y9 == 5'd1)
-				 stat_X8_Y9 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			 if(stat_X9_Y7 == 5'd1)
-				 stat_X9_Y7 =0;
-			 if(stat_X9_Y8 == 5'd1)
-				 stat_X9_Y8 =0;
-			 if(stat_X9_Y9 == 5'd1)
-				 stat_X9_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y7 == 5'd0)
 							stat_X7_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y7= 5'd2;
-						end
-						else if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y7 == 5'd0)
 							stat_X8_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y7 == 5'd3)
+							stat_X7_Y7= 5'd4;
+						if(old_we && stat_X8_Y7 == 5'd3)
+							stat_X8_Y7= 5'd4;
+						if( we )
+							stat_X7_Y7= 5'd3;
+						if( we )
+							stat_X8_Y7= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y7 == 5'd0)
 							stat_X7_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y7= 5'd2;
-						end
-						else if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y7 == 5'd0)
 							stat_X8_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y7= 5'd2;
-						end
-						else if(stat_X9_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y7 == 5'd0)
 							stat_X9_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y7 == 5'd3)
+							stat_X7_Y7= 5'd4;
+						if(old_we && stat_X8_Y7 == 5'd3)
+							stat_X8_Y7= 5'd4;
+						if(old_we && stat_X9_Y7 == 5'd3)
+							stat_X9_Y7= 5'd4;
+						if( we )
+							stat_X7_Y7= 5'd3;
+						if( we )
+							stat_X8_Y7= 5'd3;
+						if( we )
+							stat_X9_Y7= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y7 == 5'd0)
 							stat_X7_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y7= 5'd2;
-						end
-						else if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y7 == 5'd0)
 							stat_X8_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y7= 5'd2;
-						end
-						else if(stat_X9_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y7 == 5'd0)
 							stat_X9_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y7 == 5'd3)
+							stat_X7_Y7= 5'd4;
+						if(old_we && stat_X8_Y7 == 5'd3)
+							stat_X8_Y7= 5'd4;
+						if(old_we && stat_X9_Y7 == 5'd3)
+							stat_X9_Y7= 5'd4;
+						if( we )
+							stat_X7_Y7= 5'd3;
+						if( we )
+							stat_X8_Y7= 5'd3;
+						if( we )
+							stat_X9_Y7= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y7 == 5'd0)
 							stat_X7_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y7= 5'd2;
-						end
-						else if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y7 == 5'd0)
 							stat_X8_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y7= 5'd2;
-						end
-						else if(stat_X9_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y7 == 5'd0)
 							stat_X9_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y7 == 5'd3)
+							stat_X7_Y7= 5'd4;
+						if(old_we && stat_X8_Y7 == 5'd3)
+							stat_X8_Y7= 5'd4;
+						if(old_we && stat_X9_Y7 == 5'd3)
+							stat_X9_Y7= 5'd4;
+						if( we )
+							stat_X7_Y7= 5'd3;
+						if( we )
+							stat_X8_Y7= 5'd3;
+						if( we )
+							stat_X9_Y7= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y7 == 5'd0)
 							stat_X7_Y7= 5'd1;
-						end
-						if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y8 == 5'd0)
 							stat_X7_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y7 == 5'd3)
+							stat_X7_Y7= 5'd4;
+						if(old_we && stat_X7_Y8 == 5'd3)
+							stat_X7_Y8= 5'd4;
+						if( we )
+							stat_X7_Y7= 5'd3;
+						if( we )
+							stat_X7_Y8= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y7 == 5'd0)
 							stat_X7_Y7= 5'd1;
-						end
-						if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y8 == 5'd0)
 							stat_X7_Y8= 5'd1;
-						end
-						if(stat_X7_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y9 == 5'd0)
 							stat_X7_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y7 == 5'd3)
+							stat_X7_Y7= 5'd4;
+						if(old_we && stat_X7_Y8 == 5'd3)
+							stat_X7_Y8= 5'd4;
+						if(old_we && stat_X7_Y9 == 5'd3)
+							stat_X7_Y9= 5'd4;
+						if( we )
+							stat_X7_Y7= 5'd3;
+						if( we )
+							stat_X7_Y8= 5'd3;
+						if( we )
+							stat_X7_Y9= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y7 == 5'd0)
 							stat_X7_Y7= 5'd1;
-						end
-						if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y8 == 5'd0)
 							stat_X7_Y8= 5'd1;
-						end
-						if(stat_X7_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y9 == 5'd0)
 							stat_X7_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y7 == 5'd3)
+							stat_X7_Y7= 5'd4;
+						if(old_we && stat_X7_Y8 == 5'd3)
+							stat_X7_Y8= 5'd4;
+						if(old_we && stat_X7_Y9 == 5'd3)
+							stat_X7_Y9= 5'd4;
+						if( we )
+							stat_X7_Y7= 5'd3;
+						if( we )
+							stat_X7_Y8= 5'd3;
+						if( we )
+							stat_X7_Y9= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X7_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y7 == 5'd0)
 							stat_X7_Y7= 5'd1;
-						end
-						if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y8 == 5'd0)
 							stat_X7_Y8= 5'd1;
-						end
-						if(stat_X7_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y9 == 5'd0)
 							stat_X7_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y7 == 5'd3)
+							stat_X7_Y7= 5'd4;
+						if(old_we && stat_X7_Y8 == 5'd3)
+							stat_X7_Y8= 5'd4;
+						if(old_we && stat_X7_Y9 == 5'd3)
+							stat_X7_Y9= 5'd4;
+						if( we )
+							stat_X7_Y7= 5'd3;
+						if( we )
+							stat_X7_Y8= 5'd3;
+						if( we )
+							stat_X7_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd7 && mouse_cell_y == 4'd8)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X2_Y3 == 5'd1)
-				 stat_X2_Y3 =0;
-			 if(stat_X2_Y4 == 5'd1)
-				 stat_X2_Y4 =0;
-			 if(stat_X2_Y5 == 5'd1)
-				 stat_X2_Y5 =0;
-			 if(stat_X2_Y6 == 5'd1)
-				 stat_X2_Y6 =0;
-			 if(stat_X2_Y7 == 5'd1)
-				 stat_X2_Y7 =0;
-			 if(stat_X2_Y8 == 5'd1)
-				 stat_X2_Y8 =0;
-			 if(stat_X2_Y9 == 5'd1)
-				 stat_X2_Y9 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X7_Y9 == 5'd1)
-				 stat_X7_Y9 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X8_Y8 == 5'd1)
-				 stat_X8_Y8 =0;
-			 if(stat_X8_Y9 == 5'd1)
-				 stat_X8_Y9 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			 if(stat_X9_Y7 == 5'd1)
-				 stat_X9_Y7 =0;
-			 if(stat_X9_Y8 == 5'd1)
-				 stat_X9_Y8 =0;
-			 if(stat_X9_Y9 == 5'd1)
-				 stat_X9_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y8 == 5'd0)
 							stat_X7_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y8= 5'd2;
-						end
-						else if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y8 == 5'd0)
 							stat_X8_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y8 == 5'd3)
+							stat_X7_Y8= 5'd4;
+						if(old_we && stat_X8_Y8 == 5'd3)
+							stat_X8_Y8= 5'd4;
+						if( we )
+							stat_X7_Y8= 5'd3;
+						if( we )
+							stat_X8_Y8= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y8 == 5'd0)
 							stat_X7_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y8= 5'd2;
-						end
-						else if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y8 == 5'd0)
 							stat_X8_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y8= 5'd2;
-						end
-						else if(stat_X9_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X9_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y8 == 5'd3)
+							stat_X7_Y8= 5'd4;
+						if(old_we && stat_X8_Y8 == 5'd3)
+							stat_X8_Y8= 5'd4;
+						if( we )
+							stat_X7_Y8= 5'd3;
+						if( we )
+							stat_X8_Y8= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y8 == 5'd0)
 							stat_X7_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y8= 5'd2;
-						end
-						else if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y8 == 5'd0)
 							stat_X8_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y8= 5'd2;
-						end
-						else if(stat_X9_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X9_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y8 == 5'd3)
+							stat_X7_Y8= 5'd4;
+						if(old_we && stat_X8_Y8 == 5'd3)
+							stat_X8_Y8= 5'd4;
+						if( we )
+							stat_X7_Y8= 5'd3;
+						if( we )
+							stat_X8_Y8= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y8 == 5'd0)
 							stat_X7_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X8_Y8= 5'd2;
-						end
-						else if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y8 == 5'd0)
 							stat_X8_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y8= 5'd2;
-						end
-						else if(stat_X9_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X9_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y8 == 5'd3)
+							stat_X7_Y8= 5'd4;
+						if(old_we && stat_X8_Y8 == 5'd3)
+							stat_X8_Y8= 5'd4;
+						if( we )
+							stat_X7_Y8= 5'd3;
+						if( we )
+							stat_X8_Y8= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y8 == 5'd0)
 							stat_X7_Y8= 5'd1;
-						end
-						if(stat_X7_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y9 == 5'd0)
 							stat_X7_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y8 == 5'd3)
+							stat_X7_Y8= 5'd4;
+						if(old_we && stat_X7_Y9 == 5'd3)
+							stat_X7_Y9= 5'd4;
+						if( we )
+							stat_X7_Y8= 5'd3;
+						if( we )
+							stat_X7_Y9= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y8 == 5'd0)
 							stat_X7_Y8= 5'd1;
-						end
-						if(stat_X7_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y9 == 5'd0)
 							stat_X7_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y8 == 5'd3)
+							stat_X7_Y8= 5'd4;
+						if(old_we && stat_X7_Y9 == 5'd3)
+							stat_X7_Y9= 5'd4;
+						if( we )
+							stat_X7_Y8= 5'd3;
+						if( we )
+							stat_X7_Y9= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y8 == 5'd0)
 							stat_X7_Y8= 5'd1;
-						end
-						if(stat_X7_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y9 == 5'd0)
 							stat_X7_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y8 == 5'd3)
+							stat_X7_Y8= 5'd4;
+						if(old_we && stat_X7_Y9 == 5'd3)
+							stat_X7_Y9= 5'd4;
+						if( we )
+							stat_X7_Y8= 5'd3;
+						if( we )
+							stat_X7_Y9= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X7_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y8 == 5'd0)
 							stat_X7_Y8= 5'd1;
-						end
-						if(stat_X7_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X7_Y9 == 5'd0)
 							stat_X7_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X7_Y8 == 5'd3)
+							stat_X7_Y8= 5'd4;
+						if(old_we && stat_X7_Y9 == 5'd3)
+							stat_X7_Y9= 5'd4;
+						if( we )
+							stat_X7_Y8= 5'd3;
+						if( we )
+							stat_X7_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
+		//controllo la posizione: capisco in che cella sono
+		else if(mouse_cell_x == 4'd7 && mouse_cell_y == 4'd9)
+		begin//controllo la direzione
+			if(!direction)
+			begin//controllo la dimensione della nave
+				case (dimension)
+					4'd2:
+					begin
+						if( !we && stat_X7_Y9 == 5'd0)
+							stat_X7_Y9= 5'd1;
+						if(old_we && stat_X7_Y9 == 5'd3)
+							stat_X7_Y9= 5'd4;
+						if( we )
+							stat_X7_Y9= 5'd3;
+					end//interno case
+					4'd3:
+					begin
+						if( !we && stat_X7_Y9 == 5'd0)
+							stat_X7_Y9= 5'd1;
+						if(old_we && stat_X7_Y9 == 5'd3)
+							stat_X7_Y9= 5'd4;
+						if( we )
+							stat_X7_Y9= 5'd3;
+					end//interno case
+					4'd4:
+					begin
+						if( !we && stat_X7_Y9 == 5'd0)
+							stat_X7_Y9= 5'd1;
+						if(old_we && stat_X7_Y9 == 5'd3)
+							stat_X7_Y9= 5'd4;
+						if( we )
+							stat_X7_Y9= 5'd3;
+					end//interno case
+					4'd5:
+					begin
+						if( !we && stat_X7_Y9 == 5'd0)
+							stat_X7_Y9= 5'd1;
+						if(old_we && stat_X7_Y9 == 5'd3)
+							stat_X7_Y9= 5'd4;
+						if( we )
+							stat_X7_Y9= 5'd3;
+					end//interno case
+				endcase
+			end//direzione
+			else
+			begin//controllo la dimensione della nave
+				case (dimension)
+					4'd2:
+					begin
+						if( !we && stat_X7_Y9 == 5'd0)
+							stat_X7_Y9= 5'd1;
+						if(old_we && stat_X7_Y9 == 5'd3)
+							stat_X7_Y9= 5'd4;
+						if( we )
+							stat_X7_Y9= 5'd3;
+					end//interno case
+					4'd3:
+					begin
+						if( !we && stat_X7_Y9 == 5'd0)
+							stat_X7_Y9= 5'd1;
+						if(old_we && stat_X7_Y9 == 5'd3)
+							stat_X7_Y9= 5'd4;
+						if( we )
+							stat_X7_Y9= 5'd3;
+					end//interno case
+					4'd4:
+					begin
+						if( !we && stat_X7_Y9 == 5'd0)
+							stat_X7_Y9= 5'd1;
+						if(old_we && stat_X7_Y9 == 5'd3)
+							stat_X7_Y9= 5'd4;
+						if( we )
+							stat_X7_Y9= 5'd3;
+					end//interno case
+					4'd5:
+					begin
+						if( !we && stat_X7_Y9 == 5'd0)
+							stat_X7_Y9= 5'd1;
+						if(old_we && stat_X7_Y9 == 5'd3)
+							stat_X7_Y9= 5'd4;
+						if( we )
+							stat_X7_Y9= 5'd3;
+					end//interno case
+				endcase
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd8 && mouse_cell_y == 4'd0)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X9_Y0 == 5'd1)
-				 stat_X9_Y0 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X8_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y0 == 5'd0)
 							stat_X8_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y0= 5'd2;
-						end
-						else if(stat_X9_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y0 == 5'd0)
 							stat_X9_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y0 == 5'd3)
+							stat_X8_Y0= 5'd4;
+						if(old_we && stat_X9_Y0 == 5'd3)
+							stat_X9_Y0= 5'd4;
+						if( we )
+							stat_X8_Y0= 5'd3;
+						if( we )
+							stat_X9_Y0= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X8_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y0 == 5'd0)
 							stat_X8_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y0= 5'd2;
-						end
-						else if(stat_X9_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y0 == 5'd0)
 							stat_X9_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y0 == 5'd3)
+							stat_X8_Y0= 5'd4;
+						if(old_we && stat_X9_Y0 == 5'd3)
+							stat_X9_Y0= 5'd4;
+						if( we )
+							stat_X8_Y0= 5'd3;
+						if( we )
+							stat_X9_Y0= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X8_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y0 == 5'd0)
 							stat_X8_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y0= 5'd2;
-						end
-						else if(stat_X9_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y0 == 5'd0)
 							stat_X9_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y0 == 5'd3)
+							stat_X8_Y0= 5'd4;
+						if(old_we && stat_X9_Y0 == 5'd3)
+							stat_X9_Y0= 5'd4;
+						if( we )
+							stat_X8_Y0= 5'd3;
+						if( we )
+							stat_X9_Y0= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X8_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y0 == 5'd0)
 							stat_X8_Y0= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y0= 5'd2;
-						end
-						else if(stat_X9_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y0 == 5'd0)
 							stat_X9_Y0= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y0 == 5'd3)
+							stat_X8_Y0= 5'd4;
+						if(old_we && stat_X9_Y0 == 5'd3)
+							stat_X9_Y0= 5'd4;
+						if( we )
+							stat_X8_Y0= 5'd3;
+						if( we )
+							stat_X9_Y0= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X8_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y0 == 5'd0)
 							stat_X8_Y0= 5'd1;
-						end
-						if(stat_X8_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y1 == 5'd0)
 							stat_X8_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y0 == 5'd3)
+							stat_X8_Y0= 5'd4;
+						if(old_we && stat_X8_Y1 == 5'd3)
+							stat_X8_Y1= 5'd4;
+						if( we )
+							stat_X8_Y0= 5'd3;
+						if( we )
+							stat_X8_Y1= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X8_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y0 == 5'd0)
 							stat_X8_Y0= 5'd1;
-						end
-						if(stat_X8_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y1 == 5'd0)
 							stat_X8_Y1= 5'd1;
-						end
-						if(stat_X8_Y2 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y0 == 5'd3)
+							stat_X8_Y0= 5'd4;
+						if(old_we && stat_X8_Y1 == 5'd3)
+							stat_X8_Y1= 5'd4;
+						if( we )
+							stat_X8_Y0= 5'd3;
+						if( we )
+							stat_X8_Y1= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X8_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y0 == 5'd0)
 							stat_X8_Y0= 5'd1;
-						end
-						if(stat_X8_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y1 == 5'd0)
 							stat_X8_Y1= 5'd1;
-						end
-						if(stat_X8_Y2 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y2= 5'd1;
-						end
-						if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y0 == 5'd3)
+							stat_X8_Y0= 5'd4;
+						if(old_we && stat_X8_Y1 == 5'd3)
+							stat_X8_Y1= 5'd4;
+						if( we )
+							stat_X8_Y0= 5'd3;
+						if( we )
+							stat_X8_Y1= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X8_Y0 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y0 == 5'd0)
 							stat_X8_Y0= 5'd1;
-						end
-						if(stat_X8_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y1 == 5'd0)
 							stat_X8_Y1= 5'd1;
-						end
-						if(stat_X8_Y2 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y2= 5'd1;
-						end
-						if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y3= 5'd1;
-						end
-						if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y0 == 5'd3)
+							stat_X8_Y0= 5'd4;
+						if(old_we && stat_X8_Y1 == 5'd3)
+							stat_X8_Y1= 5'd4;
+						if( we )
+							stat_X8_Y0= 5'd3;
+						if( we )
+							stat_X8_Y1= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd8 && mouse_cell_y == 4'd1)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X9_Y0 == 5'd1)
-				 stat_X9_Y0 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X8_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y1 == 5'd0)
 							stat_X8_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y1= 5'd2;
-						end
-						else if(stat_X9_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y1 == 5'd0)
 							stat_X9_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y1 == 5'd3)
+							stat_X8_Y1= 5'd4;
+						if(old_we && stat_X9_Y1 == 5'd3)
+							stat_X9_Y1= 5'd4;
+						if( we )
+							stat_X8_Y1= 5'd3;
+						if( we )
+							stat_X9_Y1= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X8_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y1 == 5'd0)
 							stat_X8_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y1= 5'd2;
-						end
-						else if(stat_X9_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y1 == 5'd0)
 							stat_X9_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y1 == 5'd3)
+							stat_X8_Y1= 5'd4;
+						if(old_we && stat_X9_Y1 == 5'd3)
+							stat_X9_Y1= 5'd4;
+						if( we )
+							stat_X8_Y1= 5'd3;
+						if( we )
+							stat_X9_Y1= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X8_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y1 == 5'd0)
 							stat_X8_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y1= 5'd2;
-						end
-						else if(stat_X9_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y1 == 5'd0)
 							stat_X9_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y1 == 5'd3)
+							stat_X8_Y1= 5'd4;
+						if(old_we && stat_X9_Y1 == 5'd3)
+							stat_X9_Y1= 5'd4;
+						if( we )
+							stat_X8_Y1= 5'd3;
+						if( we )
+							stat_X9_Y1= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X8_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y1 == 5'd0)
 							stat_X8_Y1= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y1= 5'd2;
-						end
-						else if(stat_X9_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y1 == 5'd0)
 							stat_X9_Y1= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y1 == 5'd3)
+							stat_X8_Y1= 5'd4;
+						if(old_we && stat_X9_Y1 == 5'd3)
+							stat_X9_Y1= 5'd4;
+						if( we )
+							stat_X8_Y1= 5'd3;
+						if( we )
+							stat_X9_Y1= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X8_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y1 == 5'd0)
 							stat_X8_Y1= 5'd1;
-						end
-						if(stat_X8_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y2 == 5'd0)
 							stat_X8_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y1 == 5'd3)
+							stat_X8_Y1= 5'd4;
+						if(old_we && stat_X8_Y2 == 5'd3)
+							stat_X8_Y2= 5'd4;
+						if( we )
+							stat_X8_Y1= 5'd3;
+						if( we )
+							stat_X8_Y2= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X8_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y1 == 5'd0)
 							stat_X8_Y1= 5'd1;
-						end
-						if(stat_X8_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y2 == 5'd0)
 							stat_X8_Y2= 5'd1;
-						end
-						if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y1 == 5'd3)
+							stat_X8_Y1= 5'd4;
+						if(old_we && stat_X8_Y2 == 5'd3)
+							stat_X8_Y2= 5'd4;
+						if( we )
+							stat_X8_Y1= 5'd3;
+						if( we )
+							stat_X8_Y2= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X8_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y1 == 5'd0)
 							stat_X8_Y1= 5'd1;
-						end
-						if(stat_X8_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y2 == 5'd0)
 							stat_X8_Y2= 5'd1;
-						end
-						if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y3= 5'd1;
-						end
-						if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y1 == 5'd3)
+							stat_X8_Y1= 5'd4;
+						if(old_we && stat_X8_Y2 == 5'd3)
+							stat_X8_Y2= 5'd4;
+						if( we )
+							stat_X8_Y1= 5'd3;
+						if( we )
+							stat_X8_Y2= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X8_Y1 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y1 == 5'd0)
 							stat_X8_Y1= 5'd1;
-						end
-						if(stat_X8_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y2 == 5'd0)
 							stat_X8_Y2= 5'd1;
-						end
-						if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y3= 5'd1;
-						end
-						if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y4= 5'd1;
-						end
-						if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y1 == 5'd3)
+							stat_X8_Y1= 5'd4;
+						if(old_we && stat_X8_Y2 == 5'd3)
+							stat_X8_Y2= 5'd4;
+						if( we )
+							stat_X8_Y1= 5'd3;
+						if( we )
+							stat_X8_Y2= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd8 && mouse_cell_y == 4'd2)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X9_Y0 == 5'd1)
-				 stat_X9_Y0 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X8_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y2 == 5'd0)
 							stat_X8_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y2= 5'd2;
-						end
-						else if(stat_X9_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y2 == 5'd0)
 							stat_X9_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y2 == 5'd3)
+							stat_X8_Y2= 5'd4;
+						if(old_we && stat_X9_Y2 == 5'd3)
+							stat_X9_Y2= 5'd4;
+						if( we )
+							stat_X8_Y2= 5'd3;
+						if( we )
+							stat_X9_Y2= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X8_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y2 == 5'd0)
 							stat_X8_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y2= 5'd2;
-						end
-						else if(stat_X9_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y2 == 5'd0)
 							stat_X9_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y2 == 5'd3)
+							stat_X8_Y2= 5'd4;
+						if(old_we && stat_X9_Y2 == 5'd3)
+							stat_X9_Y2= 5'd4;
+						if( we )
+							stat_X8_Y2= 5'd3;
+						if( we )
+							stat_X9_Y2= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X8_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y2 == 5'd0)
 							stat_X8_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y2= 5'd2;
-						end
-						else if(stat_X9_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y2 == 5'd0)
 							stat_X9_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y2 == 5'd3)
+							stat_X8_Y2= 5'd4;
+						if(old_we && stat_X9_Y2 == 5'd3)
+							stat_X9_Y2= 5'd4;
+						if( we )
+							stat_X8_Y2= 5'd3;
+						if( we )
+							stat_X9_Y2= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X8_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y2 == 5'd0)
 							stat_X8_Y2= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y2= 5'd2;
-						end
-						else if(stat_X9_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y2 == 5'd0)
 							stat_X9_Y2= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y2 == 5'd3)
+							stat_X8_Y2= 5'd4;
+						if(old_we && stat_X9_Y2 == 5'd3)
+							stat_X9_Y2= 5'd4;
+						if( we )
+							stat_X8_Y2= 5'd3;
+						if( we )
+							stat_X9_Y2= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X8_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y2 == 5'd0)
 							stat_X8_Y2= 5'd1;
-						end
-						if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y3 == 5'd0)
 							stat_X8_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y2 == 5'd3)
+							stat_X8_Y2= 5'd4;
+						if(old_we && stat_X8_Y3 == 5'd3)
+							stat_X8_Y3= 5'd4;
+						if( we )
+							stat_X8_Y2= 5'd3;
+						if( we )
+							stat_X8_Y3= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X8_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y2 == 5'd0)
 							stat_X8_Y2= 5'd1;
-						end
-						if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y3 == 5'd0)
 							stat_X8_Y3= 5'd1;
-						end
-						if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y2 == 5'd3)
+							stat_X8_Y2= 5'd4;
+						if(old_we && stat_X8_Y3 == 5'd3)
+							stat_X8_Y3= 5'd4;
+						if( we )
+							stat_X8_Y2= 5'd3;
+						if( we )
+							stat_X8_Y3= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X8_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y2 == 5'd0)
 							stat_X8_Y2= 5'd1;
-						end
-						if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y3 == 5'd0)
 							stat_X8_Y3= 5'd1;
-						end
-						if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y4= 5'd1;
-						end
-						if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y2 == 5'd3)
+							stat_X8_Y2= 5'd4;
+						if(old_we && stat_X8_Y3 == 5'd3)
+							stat_X8_Y3= 5'd4;
+						if( we )
+							stat_X8_Y2= 5'd3;
+						if( we )
+							stat_X8_Y3= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X8_Y2 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y2 == 5'd0)
 							stat_X8_Y2= 5'd1;
-						end
-						if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y3 == 5'd0)
 							stat_X8_Y3= 5'd1;
-						end
-						if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y4= 5'd1;
-						end
-						if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y5= 5'd1;
-						end
-						if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y2 == 5'd3)
+							stat_X8_Y2= 5'd4;
+						if(old_we && stat_X8_Y3 == 5'd3)
+							stat_X8_Y3= 5'd4;
+						if( we )
+							stat_X8_Y2= 5'd3;
+						if( we )
+							stat_X8_Y3= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd8 && mouse_cell_y == 4'd3)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X9_Y0 == 5'd1)
-				 stat_X9_Y0 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			 if(stat_X9_Y7 == 5'd1)
-				 stat_X9_Y7 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y3 == 5'd0)
 							stat_X8_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y3= 5'd2;
-						end
-						else if(stat_X9_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y3 == 5'd0)
 							stat_X9_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y3 == 5'd3)
+							stat_X8_Y3= 5'd4;
+						if(old_we && stat_X9_Y3 == 5'd3)
+							stat_X9_Y3= 5'd4;
+						if( we )
+							stat_X8_Y3= 5'd3;
+						if( we )
+							stat_X9_Y3= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y3 == 5'd0)
 							stat_X8_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y3= 5'd2;
-						end
-						else if(stat_X9_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y3 == 5'd0)
 							stat_X9_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y3 == 5'd3)
+							stat_X8_Y3= 5'd4;
+						if(old_we && stat_X9_Y3 == 5'd3)
+							stat_X9_Y3= 5'd4;
+						if( we )
+							stat_X8_Y3= 5'd3;
+						if( we )
+							stat_X9_Y3= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y3 == 5'd0)
 							stat_X8_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y3= 5'd2;
-						end
-						else if(stat_X9_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y3 == 5'd0)
 							stat_X9_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y3 == 5'd3)
+							stat_X8_Y3= 5'd4;
+						if(old_we && stat_X9_Y3 == 5'd3)
+							stat_X9_Y3= 5'd4;
+						if( we )
+							stat_X8_Y3= 5'd3;
+						if( we )
+							stat_X9_Y3= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y3 == 5'd0)
 							stat_X8_Y3= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y3= 5'd2;
-						end
-						else if(stat_X9_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y3 == 5'd0)
 							stat_X9_Y3= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y3 == 5'd3)
+							stat_X8_Y3= 5'd4;
+						if(old_we && stat_X9_Y3 == 5'd3)
+							stat_X9_Y3= 5'd4;
+						if( we )
+							stat_X8_Y3= 5'd3;
+						if( we )
+							stat_X9_Y3= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y3 == 5'd0)
 							stat_X8_Y3= 5'd1;
-						end
-						if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y4 == 5'd0)
 							stat_X8_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y3 == 5'd3)
+							stat_X8_Y3= 5'd4;
+						if(old_we && stat_X8_Y4 == 5'd3)
+							stat_X8_Y4= 5'd4;
+						if( we )
+							stat_X8_Y3= 5'd3;
+						if( we )
+							stat_X8_Y4= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y3 == 5'd0)
 							stat_X8_Y3= 5'd1;
-						end
-						if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y4 == 5'd0)
 							stat_X8_Y4= 5'd1;
-						end
-						if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y3 == 5'd3)
+							stat_X8_Y3= 5'd4;
+						if(old_we && stat_X8_Y4 == 5'd3)
+							stat_X8_Y4= 5'd4;
+						if( we )
+							stat_X8_Y3= 5'd3;
+						if( we )
+							stat_X8_Y4= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y3 == 5'd0)
 							stat_X8_Y3= 5'd1;
-						end
-						if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y4 == 5'd0)
 							stat_X8_Y4= 5'd1;
-						end
-						if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y5= 5'd1;
-						end
-						if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y3 == 5'd3)
+							stat_X8_Y3= 5'd4;
+						if(old_we && stat_X8_Y4 == 5'd3)
+							stat_X8_Y4= 5'd4;
+						if( we )
+							stat_X8_Y3= 5'd3;
+						if( we )
+							stat_X8_Y4= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X8_Y3 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y3 == 5'd0)
 							stat_X8_Y3= 5'd1;
-						end
-						if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y4 == 5'd0)
 							stat_X8_Y4= 5'd1;
-						end
-						if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y5= 5'd1;
-						end
-						if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y6= 5'd1;
-						end
-						if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y3 == 5'd3)
+							stat_X8_Y3= 5'd4;
+						if(old_we && stat_X8_Y4 == 5'd3)
+							stat_X8_Y4= 5'd4;
+						if( we )
+							stat_X8_Y3= 5'd3;
+						if( we )
+							stat_X8_Y4= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd8 && mouse_cell_y == 4'd4)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X8_Y8 == 5'd1)
-				 stat_X8_Y8 =0;
-			 if(stat_X9_Y0 == 5'd1)
-				 stat_X9_Y0 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			 if(stat_X9_Y7 == 5'd1)
-				 stat_X9_Y7 =0;
-			 if(stat_X9_Y8 == 5'd1)
-				 stat_X9_Y8 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y4 == 5'd0)
 							stat_X8_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y4= 5'd2;
-						end
-						else if(stat_X9_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y4 == 5'd0)
 							stat_X9_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y4 == 5'd3)
+							stat_X8_Y4= 5'd4;
+						if(old_we && stat_X9_Y4 == 5'd3)
+							stat_X9_Y4= 5'd4;
+						if( we )
+							stat_X8_Y4= 5'd3;
+						if( we )
+							stat_X9_Y4= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y4 == 5'd0)
 							stat_X8_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y4= 5'd2;
-						end
-						else if(stat_X9_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y4 == 5'd0)
 							stat_X9_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y4 == 5'd3)
+							stat_X8_Y4= 5'd4;
+						if(old_we && stat_X9_Y4 == 5'd3)
+							stat_X9_Y4= 5'd4;
+						if( we )
+							stat_X8_Y4= 5'd3;
+						if( we )
+							stat_X9_Y4= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y4 == 5'd0)
 							stat_X8_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y4= 5'd2;
-						end
-						else if(stat_X9_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y4 == 5'd0)
 							stat_X9_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y4 == 5'd3)
+							stat_X8_Y4= 5'd4;
+						if(old_we && stat_X9_Y4 == 5'd3)
+							stat_X9_Y4= 5'd4;
+						if( we )
+							stat_X8_Y4= 5'd3;
+						if( we )
+							stat_X9_Y4= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y4 == 5'd0)
 							stat_X8_Y4= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y4= 5'd2;
-						end
-						else if(stat_X9_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y4 == 5'd0)
 							stat_X9_Y4= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y4 == 5'd3)
+							stat_X8_Y4= 5'd4;
+						if(old_we && stat_X9_Y4 == 5'd3)
+							stat_X9_Y4= 5'd4;
+						if( we )
+							stat_X8_Y4= 5'd3;
+						if( we )
+							stat_X9_Y4= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y4 == 5'd0)
 							stat_X8_Y4= 5'd1;
-						end
-						if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y5 == 5'd0)
 							stat_X8_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y4 == 5'd3)
+							stat_X8_Y4= 5'd4;
+						if(old_we && stat_X8_Y5 == 5'd3)
+							stat_X8_Y5= 5'd4;
+						if( we )
+							stat_X8_Y4= 5'd3;
+						if( we )
+							stat_X8_Y5= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y4 == 5'd0)
 							stat_X8_Y4= 5'd1;
-						end
-						if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y5 == 5'd0)
 							stat_X8_Y5= 5'd1;
-						end
-						if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y4 == 5'd3)
+							stat_X8_Y4= 5'd4;
+						if(old_we && stat_X8_Y5 == 5'd3)
+							stat_X8_Y5= 5'd4;
+						if( we )
+							stat_X8_Y4= 5'd3;
+						if( we )
+							stat_X8_Y5= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y4 == 5'd0)
 							stat_X8_Y4= 5'd1;
-						end
-						if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y5 == 5'd0)
 							stat_X8_Y5= 5'd1;
-						end
-						if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y6= 5'd1;
-						end
-						if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y4 == 5'd3)
+							stat_X8_Y4= 5'd4;
+						if(old_we && stat_X8_Y5 == 5'd3)
+							stat_X8_Y5= 5'd4;
+						if( we )
+							stat_X8_Y4= 5'd3;
+						if( we )
+							stat_X8_Y5= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X8_Y4 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y4 == 5'd0)
 							stat_X8_Y4= 5'd1;
-						end
-						if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y5 == 5'd0)
 							stat_X8_Y5= 5'd1;
-						end
-						if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y6= 5'd1;
-						end
-						if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y7= 5'd1;
-						end
-						if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y4 == 5'd3)
+							stat_X8_Y4= 5'd4;
+						if(old_we && stat_X8_Y5 == 5'd3)
+							stat_X8_Y5= 5'd4;
+						if( we )
+							stat_X8_Y4= 5'd3;
+						if( we )
+							stat_X8_Y5= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd8 && mouse_cell_y == 4'd5)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X3_Y0 == 5'd1)
-				 stat_X3_Y0 =0;
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y0 == 5'd1)
-				 stat_X4_Y0 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y0 == 5'd1)
-				 stat_X5_Y0 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y0 == 5'd1)
-				 stat_X6_Y0 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			 if(stat_X7_Y0 == 5'd1)
-				 stat_X7_Y0 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X7_Y9 == 5'd1)
-				 stat_X7_Y9 =0;
-			 if(stat_X8_Y0 == 5'd1)
-				 stat_X8_Y0 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X8_Y8 == 5'd1)
-				 stat_X8_Y8 =0;
-			 if(stat_X8_Y9 == 5'd1)
-				 stat_X8_Y9 =0;
-			 if(stat_X9_Y0 == 5'd1)
-				 stat_X9_Y0 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			 if(stat_X9_Y7 == 5'd1)
-				 stat_X9_Y7 =0;
-			 if(stat_X9_Y8 == 5'd1)
-				 stat_X9_Y8 =0;
-			 if(stat_X9_Y9 == 5'd1)
-				 stat_X9_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y5 == 5'd0)
 							stat_X8_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y5= 5'd2;
-						end
-						else if(stat_X9_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y5 == 5'd0)
 							stat_X9_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y5 == 5'd3)
+							stat_X8_Y5= 5'd4;
+						if(old_we && stat_X9_Y5 == 5'd3)
+							stat_X9_Y5= 5'd4;
+						if( we )
+							stat_X8_Y5= 5'd3;
+						if( we )
+							stat_X9_Y5= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y5 == 5'd0)
 							stat_X8_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y5= 5'd2;
-						end
-						else if(stat_X9_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y5 == 5'd0)
 							stat_X9_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y5 == 5'd3)
+							stat_X8_Y5= 5'd4;
+						if(old_we && stat_X9_Y5 == 5'd3)
+							stat_X9_Y5= 5'd4;
+						if( we )
+							stat_X8_Y5= 5'd3;
+						if( we )
+							stat_X9_Y5= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y5 == 5'd0)
 							stat_X8_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y5= 5'd2;
-						end
-						else if(stat_X9_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y5 == 5'd0)
 							stat_X9_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y5 == 5'd3)
+							stat_X8_Y5= 5'd4;
+						if(old_we && stat_X9_Y5 == 5'd3)
+							stat_X9_Y5= 5'd4;
+						if( we )
+							stat_X8_Y5= 5'd3;
+						if( we )
+							stat_X9_Y5= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y5 == 5'd0)
 							stat_X8_Y5= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y5= 5'd2;
-						end
-						else if(stat_X9_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y5 == 5'd0)
 							stat_X9_Y5= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y5 == 5'd3)
+							stat_X8_Y5= 5'd4;
+						if(old_we && stat_X9_Y5 == 5'd3)
+							stat_X9_Y5= 5'd4;
+						if( we )
+							stat_X8_Y5= 5'd3;
+						if( we )
+							stat_X9_Y5= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y5 == 5'd0)
 							stat_X8_Y5= 5'd1;
-						end
-						if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y6 == 5'd0)
 							stat_X8_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y5 == 5'd3)
+							stat_X8_Y5= 5'd4;
+						if(old_we && stat_X8_Y6 == 5'd3)
+							stat_X8_Y6= 5'd4;
+						if( we )
+							stat_X8_Y5= 5'd3;
+						if( we )
+							stat_X8_Y6= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y5 == 5'd0)
 							stat_X8_Y5= 5'd1;
-						end
-						if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y6 == 5'd0)
 							stat_X8_Y6= 5'd1;
-						end
-						if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y5 == 5'd3)
+							stat_X8_Y5= 5'd4;
+						if(old_we && stat_X8_Y6 == 5'd3)
+							stat_X8_Y6= 5'd4;
+						if( we )
+							stat_X8_Y5= 5'd3;
+						if( we )
+							stat_X8_Y6= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y5 == 5'd0)
 							stat_X8_Y5= 5'd1;
-						end
-						if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y6 == 5'd0)
 							stat_X8_Y6= 5'd1;
-						end
-						if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y7= 5'd1;
-						end
-						if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y5 == 5'd3)
+							stat_X8_Y5= 5'd4;
+						if(old_we && stat_X8_Y6 == 5'd3)
+							stat_X8_Y6= 5'd4;
+						if( we )
+							stat_X8_Y5= 5'd3;
+						if( we )
+							stat_X8_Y6= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X8_Y5 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y5 == 5'd0)
 							stat_X8_Y5= 5'd1;
-						end
-						if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y6 == 5'd0)
 							stat_X8_Y6= 5'd1;
-						end
-						if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y7= 5'd1;
-						end
-						if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y8= 5'd1;
-						end
-						if(stat_X8_Y9 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y5 == 5'd3)
+							stat_X8_Y5= 5'd4;
+						if(old_we && stat_X8_Y6 == 5'd3)
+							stat_X8_Y6= 5'd4;
+						if( we )
+							stat_X8_Y5= 5'd3;
+						if( we )
+							stat_X8_Y6= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd8 && mouse_cell_y == 4'd6)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X3_Y1 == 5'd1)
-				 stat_X3_Y1 =0;
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y1 == 5'd1)
-				 stat_X4_Y1 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y1 == 5'd1)
-				 stat_X5_Y1 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y1 == 5'd1)
-				 stat_X6_Y1 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			 if(stat_X7_Y1 == 5'd1)
-				 stat_X7_Y1 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X7_Y9 == 5'd1)
-				 stat_X7_Y9 =0;
-			 if(stat_X8_Y1 == 5'd1)
-				 stat_X8_Y1 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X8_Y8 == 5'd1)
-				 stat_X8_Y8 =0;
-			 if(stat_X8_Y9 == 5'd1)
-				 stat_X8_Y9 =0;
-			 if(stat_X9_Y1 == 5'd1)
-				 stat_X9_Y1 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			 if(stat_X9_Y7 == 5'd1)
-				 stat_X9_Y7 =0;
-			 if(stat_X9_Y8 == 5'd1)
-				 stat_X9_Y8 =0;
-			 if(stat_X9_Y9 == 5'd1)
-				 stat_X9_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y6 == 5'd0)
 							stat_X8_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y6= 5'd2;
-						end
-						else if(stat_X9_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y6 == 5'd0)
 							stat_X9_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y6 == 5'd3)
+							stat_X8_Y6= 5'd4;
+						if(old_we && stat_X9_Y6 == 5'd3)
+							stat_X9_Y6= 5'd4;
+						if( we )
+							stat_X8_Y6= 5'd3;
+						if( we )
+							stat_X9_Y6= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y6 == 5'd0)
 							stat_X8_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y6= 5'd2;
-						end
-						else if(stat_X9_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y6 == 5'd0)
 							stat_X9_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y6 == 5'd3)
+							stat_X8_Y6= 5'd4;
+						if(old_we && stat_X9_Y6 == 5'd3)
+							stat_X9_Y6= 5'd4;
+						if( we )
+							stat_X8_Y6= 5'd3;
+						if( we )
+							stat_X9_Y6= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y6 == 5'd0)
 							stat_X8_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y6= 5'd2;
-						end
-						else if(stat_X9_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y6 == 5'd0)
 							stat_X9_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y6 == 5'd3)
+							stat_X8_Y6= 5'd4;
+						if(old_we && stat_X9_Y6 == 5'd3)
+							stat_X9_Y6= 5'd4;
+						if( we )
+							stat_X8_Y6= 5'd3;
+						if( we )
+							stat_X9_Y6= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y6 == 5'd0)
 							stat_X8_Y6= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y6= 5'd2;
-						end
-						else if(stat_X9_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y6 == 5'd0)
 							stat_X9_Y6= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y6 == 5'd3)
+							stat_X8_Y6= 5'd4;
+						if(old_we && stat_X9_Y6 == 5'd3)
+							stat_X9_Y6= 5'd4;
+						if( we )
+							stat_X8_Y6= 5'd3;
+						if( we )
+							stat_X9_Y6= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y6 == 5'd0)
 							stat_X8_Y6= 5'd1;
-						end
-						if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y7 == 5'd0)
 							stat_X8_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y6 == 5'd3)
+							stat_X8_Y6= 5'd4;
+						if(old_we && stat_X8_Y7 == 5'd3)
+							stat_X8_Y7= 5'd4;
+						if( we )
+							stat_X8_Y6= 5'd3;
+						if( we )
+							stat_X8_Y7= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y6 == 5'd0)
 							stat_X8_Y6= 5'd1;
-						end
-						if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y7 == 5'd0)
 							stat_X8_Y7= 5'd1;
-						end
-						if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y6 == 5'd3)
+							stat_X8_Y6= 5'd4;
+						if(old_we && stat_X8_Y7 == 5'd3)
+							stat_X8_Y7= 5'd4;
+						if( we )
+							stat_X8_Y6= 5'd3;
+						if( we )
+							stat_X8_Y7= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y6 == 5'd0)
 							stat_X8_Y6= 5'd1;
-						end
-						if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y7 == 5'd0)
 							stat_X8_Y7= 5'd1;
-						end
-						if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y8= 5'd1;
-						end
-						if(stat_X8_Y9 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y6 == 5'd3)
+							stat_X8_Y6= 5'd4;
+						if(old_we && stat_X8_Y7 == 5'd3)
+							stat_X8_Y7= 5'd4;
+						if( we )
+							stat_X8_Y6= 5'd3;
+						if( we )
+							stat_X8_Y7= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X8_Y6 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y6 == 5'd0)
 							stat_X8_Y6= 5'd1;
-						end
-						if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y7 == 5'd0)
 							stat_X8_Y7= 5'd1;
-						end
-						if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y8= 5'd1;
-						end
-						if(stat_X8_Y9 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y6 == 5'd3)
+							stat_X8_Y6= 5'd4;
+						if(old_we && stat_X8_Y7 == 5'd3)
+							stat_X8_Y7= 5'd4;
+						if( we )
+							stat_X8_Y6= 5'd3;
+						if( we )
+							stat_X8_Y7= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd8 && mouse_cell_y == 4'd7)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X3_Y2 == 5'd1)
-				 stat_X3_Y2 =0;
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y2 == 5'd1)
-				 stat_X4_Y2 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y2 == 5'd1)
-				 stat_X5_Y2 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y2 == 5'd1)
-				 stat_X6_Y2 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			 if(stat_X7_Y2 == 5'd1)
-				 stat_X7_Y2 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X7_Y9 == 5'd1)
-				 stat_X7_Y9 =0;
-			 if(stat_X8_Y2 == 5'd1)
-				 stat_X8_Y2 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X8_Y8 == 5'd1)
-				 stat_X8_Y8 =0;
-			 if(stat_X8_Y9 == 5'd1)
-				 stat_X8_Y9 =0;
-			 if(stat_X9_Y2 == 5'd1)
-				 stat_X9_Y2 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			 if(stat_X9_Y7 == 5'd1)
-				 stat_X9_Y7 =0;
-			 if(stat_X9_Y8 == 5'd1)
-				 stat_X9_Y8 =0;
-			 if(stat_X9_Y9 == 5'd1)
-				 stat_X9_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y7 == 5'd0)
 							stat_X8_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y7= 5'd2;
-						end
-						else if(stat_X9_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y7 == 5'd0)
 							stat_X9_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y7 == 5'd3)
+							stat_X8_Y7= 5'd4;
+						if(old_we && stat_X9_Y7 == 5'd3)
+							stat_X9_Y7= 5'd4;
+						if( we )
+							stat_X8_Y7= 5'd3;
+						if( we )
+							stat_X9_Y7= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y7 == 5'd0)
 							stat_X8_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y7= 5'd2;
-						end
-						else if(stat_X9_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y7 == 5'd0)
 							stat_X9_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y7 == 5'd3)
+							stat_X8_Y7= 5'd4;
+						if(old_we && stat_X9_Y7 == 5'd3)
+							stat_X9_Y7= 5'd4;
+						if( we )
+							stat_X8_Y7= 5'd3;
+						if( we )
+							stat_X9_Y7= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y7 == 5'd0)
 							stat_X8_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y7= 5'd2;
-						end
-						else if(stat_X9_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y7 == 5'd0)
 							stat_X9_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y7 == 5'd3)
+							stat_X8_Y7= 5'd4;
+						if(old_we && stat_X9_Y7 == 5'd3)
+							stat_X9_Y7= 5'd4;
+						if( we )
+							stat_X8_Y7= 5'd3;
+						if( we )
+							stat_X9_Y7= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y7 == 5'd0)
 							stat_X8_Y7= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y7= 5'd2;
-						end
-						else if(stat_X9_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y7 == 5'd0)
 							stat_X9_Y7= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y7 == 5'd3)
+							stat_X8_Y7= 5'd4;
+						if(old_we && stat_X9_Y7 == 5'd3)
+							stat_X9_Y7= 5'd4;
+						if( we )
+							stat_X8_Y7= 5'd3;
+						if( we )
+							stat_X9_Y7= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y7 == 5'd0)
 							stat_X8_Y7= 5'd1;
-						end
-						if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y8 == 5'd0)
 							stat_X8_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y7 == 5'd3)
+							stat_X8_Y7= 5'd4;
+						if(old_we && stat_X8_Y8 == 5'd3)
+							stat_X8_Y8= 5'd4;
+						if( we )
+							stat_X8_Y7= 5'd3;
+						if( we )
+							stat_X8_Y8= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y7 == 5'd0)
 							stat_X8_Y7= 5'd1;
-						end
-						if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y8 == 5'd0)
 							stat_X8_Y8= 5'd1;
-						end
-						if(stat_X8_Y9 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y7 == 5'd3)
+							stat_X8_Y7= 5'd4;
+						if(old_we && stat_X8_Y8 == 5'd3)
+							stat_X8_Y8= 5'd4;
+						if( we )
+							stat_X8_Y7= 5'd3;
+						if( we )
+							stat_X8_Y8= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y7 == 5'd0)
 							stat_X8_Y7= 5'd1;
-						end
-						if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y8 == 5'd0)
 							stat_X8_Y8= 5'd1;
-						end
-						if(stat_X8_Y9 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y7 == 5'd3)
+							stat_X8_Y7= 5'd4;
+						if(old_we && stat_X8_Y8 == 5'd3)
+							stat_X8_Y8= 5'd4;
+						if( we )
+							stat_X8_Y7= 5'd3;
+						if( we )
+							stat_X8_Y8= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X8_Y7 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y7 == 5'd0)
 							stat_X8_Y7= 5'd1;
-						end
-						if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y8 == 5'd0)
 							stat_X8_Y8= 5'd1;
-						end
-						if(stat_X8_Y9 == 5'd0)
-						begin
-							//pre-occupo
-							stat_X8_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y7 == 5'd3)
+							stat_X8_Y7= 5'd4;
+						if(old_we && stat_X8_Y8 == 5'd3)
+							stat_X8_Y8= 5'd4;
+						if( we )
+							stat_X8_Y7= 5'd3;
+						if( we )
+							stat_X8_Y8= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
+			end//direzione
+		end//posizione
 		//controllo la posizione: capisco in che cella sono
 		else if(mouse_cell_x == 4'd8 && mouse_cell_y == 4'd8)
-		begin
-			//sbianco tutto attorno
-			 if(stat_X3_Y3 == 5'd1)
-				 stat_X3_Y3 =0;
-			 if(stat_X3_Y4 == 5'd1)
-				 stat_X3_Y4 =0;
-			 if(stat_X3_Y5 == 5'd1)
-				 stat_X3_Y5 =0;
-			 if(stat_X3_Y6 == 5'd1)
-				 stat_X3_Y6 =0;
-			 if(stat_X3_Y7 == 5'd1)
-				 stat_X3_Y7 =0;
-			 if(stat_X3_Y8 == 5'd1)
-				 stat_X3_Y8 =0;
-			 if(stat_X3_Y9 == 5'd1)
-				 stat_X3_Y9 =0;
-			 if(stat_X4_Y3 == 5'd1)
-				 stat_X4_Y3 =0;
-			 if(stat_X4_Y4 == 5'd1)
-				 stat_X4_Y4 =0;
-			 if(stat_X4_Y5 == 5'd1)
-				 stat_X4_Y5 =0;
-			 if(stat_X4_Y6 == 5'd1)
-				 stat_X4_Y6 =0;
-			 if(stat_X4_Y7 == 5'd1)
-				 stat_X4_Y7 =0;
-			 if(stat_X4_Y8 == 5'd1)
-				 stat_X4_Y8 =0;
-			 if(stat_X4_Y9 == 5'd1)
-				 stat_X4_Y9 =0;
-			 if(stat_X5_Y3 == 5'd1)
-				 stat_X5_Y3 =0;
-			 if(stat_X5_Y4 == 5'd1)
-				 stat_X5_Y4 =0;
-			 if(stat_X5_Y5 == 5'd1)
-				 stat_X5_Y5 =0;
-			 if(stat_X5_Y6 == 5'd1)
-				 stat_X5_Y6 =0;
-			 if(stat_X5_Y7 == 5'd1)
-				 stat_X5_Y7 =0;
-			 if(stat_X5_Y8 == 5'd1)
-				 stat_X5_Y8 =0;
-			 if(stat_X5_Y9 == 5'd1)
-				 stat_X5_Y9 =0;
-			 if(stat_X6_Y3 == 5'd1)
-				 stat_X6_Y3 =0;
-			 if(stat_X6_Y4 == 5'd1)
-				 stat_X6_Y4 =0;
-			 if(stat_X6_Y5 == 5'd1)
-				 stat_X6_Y5 =0;
-			 if(stat_X6_Y6 == 5'd1)
-				 stat_X6_Y6 =0;
-			 if(stat_X6_Y7 == 5'd1)
-				 stat_X6_Y7 =0;
-			 if(stat_X6_Y8 == 5'd1)
-				 stat_X6_Y8 =0;
-			 if(stat_X6_Y9 == 5'd1)
-				 stat_X6_Y9 =0;
-			 if(stat_X7_Y3 == 5'd1)
-				 stat_X7_Y3 =0;
-			 if(stat_X7_Y4 == 5'd1)
-				 stat_X7_Y4 =0;
-			 if(stat_X7_Y5 == 5'd1)
-				 stat_X7_Y5 =0;
-			 if(stat_X7_Y6 == 5'd1)
-				 stat_X7_Y6 =0;
-			 if(stat_X7_Y7 == 5'd1)
-				 stat_X7_Y7 =0;
-			 if(stat_X7_Y8 == 5'd1)
-				 stat_X7_Y8 =0;
-			 if(stat_X7_Y9 == 5'd1)
-				 stat_X7_Y9 =0;
-			 if(stat_X8_Y3 == 5'd1)
-				 stat_X8_Y3 =0;
-			 if(stat_X8_Y4 == 5'd1)
-				 stat_X8_Y4 =0;
-			 if(stat_X8_Y5 == 5'd1)
-				 stat_X8_Y5 =0;
-			 if(stat_X8_Y6 == 5'd1)
-				 stat_X8_Y6 =0;
-			 if(stat_X8_Y7 == 5'd1)
-				 stat_X8_Y7 =0;
-			 if(stat_X8_Y8 == 5'd1)
-				 stat_X8_Y8 =0;
-			 if(stat_X8_Y9 == 5'd1)
-				 stat_X8_Y9 =0;
-			 if(stat_X9_Y3 == 5'd1)
-				 stat_X9_Y3 =0;
-			 if(stat_X9_Y4 == 5'd1)
-				 stat_X9_Y4 =0;
-			 if(stat_X9_Y5 == 5'd1)
-				 stat_X9_Y5 =0;
-			 if(stat_X9_Y6 == 5'd1)
-				 stat_X9_Y6 =0;
-			 if(stat_X9_Y7 == 5'd1)
-				 stat_X9_Y7 =0;
-			 if(stat_X9_Y8 == 5'd1)
-				 stat_X9_Y8 =0;
-			 if(stat_X9_Y9 == 5'd1)
-				 stat_X9_Y9 =0;
-			//controllo la direzione
+		begin//controllo la direzione
 			if(!direction)
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y8 == 5'd0)
 							stat_X8_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y8= 5'd2;
-						end
-						else if(stat_X9_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y8 == 5'd0)
 							stat_X9_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y8 == 5'd3)
+							stat_X8_Y8= 5'd4;
+						if(old_we && stat_X9_Y8 == 5'd3)
+							stat_X9_Y8= 5'd4;
+						if( we )
+							stat_X8_Y8= 5'd3;
+						if( we )
+							stat_X9_Y8= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y8 == 5'd0)
 							stat_X8_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y8= 5'd2;
-						end
-						else if(stat_X9_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y8 == 5'd0)
 							stat_X9_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y8 == 5'd3)
+							stat_X8_Y8= 5'd4;
+						if(old_we && stat_X9_Y8 == 5'd3)
+							stat_X9_Y8= 5'd4;
+						if( we )
+							stat_X8_Y8= 5'd3;
+						if( we )
+							stat_X9_Y8= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y8 == 5'd0)
 							stat_X8_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y8= 5'd2;
-						end
-						else if(stat_X9_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y8 == 5'd0)
 							stat_X9_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y8 == 5'd3)
+							stat_X8_Y8= 5'd4;
+						if(old_we && stat_X9_Y8 == 5'd3)
+							stat_X9_Y8= 5'd4;
+						if( we )
+							stat_X8_Y8= 5'd3;
+						if( we )
+							stat_X9_Y8= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y8 == 5'd0)
 							stat_X8_Y8= 5'd1;
-						end
-						if(we)
-						begin
-							stat_X9_Y8= 5'd2;
-						end
-						else if(stat_X9_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X9_Y8 == 5'd0)
 							stat_X9_Y8= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y8 == 5'd3)
+							stat_X8_Y8= 5'd4;
+						if(old_we && stat_X9_Y8 == 5'd3)
+							stat_X9_Y8= 5'd4;
+						if( we )
+							stat_X8_Y8= 5'd3;
+						if( we )
+							stat_X9_Y8= 5'd3;
+					end//interno case
 				endcase
-			end
+			end//direzione
 			else
-			begin
-				//controllo la dimensione della nave
+			begin//controllo la dimensione della nave
 				case (dimension)
 					4'd2:
 					begin
-						//se e' libera
-						if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y8 == 5'd0)
 							stat_X8_Y8= 5'd1;
-						end
-						if(stat_X8_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y9 == 5'd0)
 							stat_X8_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y8 == 5'd3)
+							stat_X8_Y8= 5'd4;
+						if(old_we && stat_X8_Y9 == 5'd3)
+							stat_X8_Y9= 5'd4;
+						if( we )
+							stat_X8_Y8= 5'd3;
+						if( we )
+							stat_X8_Y9= 5'd3;
+					end//interno case
 					4'd3:
 					begin
-						//se e' libera
-						if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y8 == 5'd0)
 							stat_X8_Y8= 5'd1;
-						end
-						if(stat_X8_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y9 == 5'd0)
 							stat_X8_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y8 == 5'd3)
+							stat_X8_Y8= 5'd4;
+						if(old_we && stat_X8_Y9 == 5'd3)
+							stat_X8_Y9= 5'd4;
+						if( we )
+							stat_X8_Y8= 5'd3;
+						if( we )
+							stat_X8_Y9= 5'd3;
+					end//interno case
 					4'd4:
 					begin
-						//se e' libera
-						if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y8 == 5'd0)
 							stat_X8_Y8= 5'd1;
-						end
-						if(stat_X8_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y9 == 5'd0)
 							stat_X8_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y8 == 5'd3)
+							stat_X8_Y8= 5'd4;
+						if(old_we && stat_X8_Y9 == 5'd3)
+							stat_X8_Y9= 5'd4;
+						if( we )
+							stat_X8_Y8= 5'd3;
+						if( we )
+							stat_X8_Y9= 5'd3;
+					end//interno case
 					4'd5:
 					begin
-						//se e' libera
-						if(stat_X8_Y8 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y8 == 5'd0)
 							stat_X8_Y8= 5'd1;
-						end
-						if(stat_X8_Y9 == 5'd0)
-						begin
-							//pre-occupo
+						if( !we && stat_X8_Y9 == 5'd0)
 							stat_X8_Y9= 5'd1;
-						end
-					end
+						if(old_we && stat_X8_Y8 == 5'd3)
+							stat_X8_Y8= 5'd4;
+						if(old_we && stat_X8_Y9 == 5'd3)
+							stat_X8_Y9= 5'd4;
+						if( we )
+							stat_X8_Y8= 5'd3;
+						if( we )
+							stat_X8_Y9= 5'd3;
+					end//interno case
 				endcase
-			end
-		end
-	end
+			end//direzione
+		end//posizione
+		//controllo la posizione: capisco in che cella sono
+		else if(mouse_cell_x == 4'd8 && mouse_cell_y == 4'd9)
+		begin//controllo la direzione
+			if(!direction)
+			begin//controllo la dimensione della nave
+				case (dimension)
+					4'd2:
+					begin
+						if( !we && stat_X8_Y9 == 5'd0)
+							stat_X8_Y9= 5'd1;
+						if(old_we && stat_X8_Y9 == 5'd3)
+							stat_X8_Y9= 5'd4;
+						if( we )
+							stat_X8_Y9= 5'd3;
+					end//interno case
+					4'd3:
+					begin
+						if( !we && stat_X8_Y9 == 5'd0)
+							stat_X8_Y9= 5'd1;
+						if(old_we && stat_X8_Y9 == 5'd3)
+							stat_X8_Y9= 5'd4;
+						if( we )
+							stat_X8_Y9= 5'd3;
+					end//interno case
+					4'd4:
+					begin
+						if( !we && stat_X8_Y9 == 5'd0)
+							stat_X8_Y9= 5'd1;
+						if(old_we && stat_X8_Y9 == 5'd3)
+							stat_X8_Y9= 5'd4;
+						if( we )
+							stat_X8_Y9= 5'd3;
+					end//interno case
+					4'd5:
+					begin
+						if( !we && stat_X8_Y9 == 5'd0)
+							stat_X8_Y9= 5'd1;
+						if(old_we && stat_X8_Y9 == 5'd3)
+							stat_X8_Y9= 5'd4;
+						if( we )
+							stat_X8_Y9= 5'd3;
+					end//interno case
+				endcase
+			end//direzione
+			else
+			begin//controllo la dimensione della nave
+				case (dimension)
+					4'd2:
+					begin
+						if( !we && stat_X8_Y9 == 5'd0)
+							stat_X8_Y9= 5'd1;
+						if(old_we && stat_X8_Y9 == 5'd3)
+							stat_X8_Y9= 5'd4;
+						if( we )
+							stat_X8_Y9= 5'd3;
+					end//interno case
+					4'd3:
+					begin
+						if( !we && stat_X8_Y9 == 5'd0)
+							stat_X8_Y9= 5'd1;
+						if(old_we && stat_X8_Y9 == 5'd3)
+							stat_X8_Y9= 5'd4;
+						if( we )
+							stat_X8_Y9= 5'd3;
+					end//interno case
+					4'd4:
+					begin
+						if( !we && stat_X8_Y9 == 5'd0)
+							stat_X8_Y9= 5'd1;
+						if(old_we && stat_X8_Y9 == 5'd3)
+							stat_X8_Y9= 5'd4;
+						if( we )
+							stat_X8_Y9= 5'd3;
+					end//interno case
+					4'd5:
+					begin
+						if( !we && stat_X8_Y9 == 5'd0)
+							stat_X8_Y9= 5'd1;
+						if(old_we && stat_X8_Y9 == 5'd3)
+							stat_X8_Y9= 5'd4;
+						if( we )
+							stat_X8_Y9= 5'd3;
+					end//interno case
+				endcase
+			end//direzione
+		end//posizione
+	end//posizione
+	 old_we = we;
 end
 // operazioni di read, fatte per plottare a schermo
 always @ (posedge clk_in)
