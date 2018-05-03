@@ -138,6 +138,8 @@ Module_FrequencyDivider	my_clk(
 
 		.clk_out(w_my_clk)
 		);
+
+
 		
 Module_Counter_8_bit_oneRun principal(
 					.qzt_clk(clk20ns),
