@@ -61,9 +61,9 @@ begin
 		if (y_pos >= 10'd480)
 			y_pos = 10'd479;
 		if (x_pos <= 10'd1)
-			x_pos = 10'd0;
+			x_pos = 10'd2;
 		if (y_pos <= 10'd1)
-			y_pos = 10'd0;
+			y_pos = 10'd2;
 		
 		
 

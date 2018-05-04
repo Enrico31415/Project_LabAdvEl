@@ -213,21 +213,31 @@ begin
 			end
 			4'd1: // posiziona la seconda nave
 			begin
-				//ship_size_pointer = ship_size_pointer+1;
+				if (ship_placed)
+				begin
+					ship_size_pointer = ship_size_pointer+1;
+				end
 			end
 			4'd2: // posiziona la terza nave
 			begin
-				//ship_size_pointer = ship_size_pointer+1;
+				if (ship_placed)
+				begin
+					ship_size_pointer = ship_size_pointer+1;
+				end
 			end
 			4'd3: // posiziona la quarta nave
 			begin
-				//ship_size_pointer = ship_size_pointer+1;
+				if (ship_placed)
+				begin
+					ship_size_pointer = ship_size_pointer+1;
+				end
 			end
 			4'd4: // posiziona la quinta nave
 			begin
-				// finito il posizionamento, passo allo step successivo
-				//ship_size_pointer = ship_size_pointer+1;
-				//turn_status = turn_status+1;
+				if (ship_placed)
+				begin
+					ship_size_pointer = ship_size_pointer+1;
+				end
 			end
 			default:
 			begin
