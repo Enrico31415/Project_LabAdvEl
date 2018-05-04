@@ -35,7 +35,7 @@ wire w_buttonS;
 
 wire w_ps2Creg;
 wire w_ps2Dreg;
-wire [7:0] w_altro; ////////////////////////////////////
+wire [15:0] w_altro; ////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -43,8 +43,8 @@ wire [7:0] w_altro; ////////////////////////////////////
 assign J20_IO[3:0]={w_altro[3],w_altro[2],w_altro[1],w_altro[0]};
 assign J18_IO[3:0]={w_buttonN,1'b0,1'b1,1'b0};
 
-assign LED = {4{w_clk_second, ~w_clk_second}};
-
+//assign LED = {4{w_clk_second, ~w_clk_second}};
+assign LED = SW[0] ? w_altro[7:0] : {{5{w_clk_second}}, w_altro[10:8]};
 ///////////////////////////////////////////////////////////////////////////////
 
 PS2_comm communication(

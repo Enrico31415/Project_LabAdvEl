@@ -37,7 +37,7 @@ input trigger;
 inout PS2C;
 inout PS2D;
 
-output [7:0] altro;
+output [15:0] altro;
 /* ************************** REG & WIRES ********************************** */
 // module COMMUNICATION (THIS) ////////
 reg trigger_old=0;
@@ -48,13 +48,13 @@ wire w_clk_centoMilli;
 wire w_clk_unMilli;
 wire w_clk_100micro;
 	// timer
-reg run_timer;
+reg run_timer=0;
 wire w_timer;
-reg [7:0] limit_timer;
+reg [7:0] limit_timer=0;
 
 // module SEND ////////////////////////
 `define NPACKETS_SEND 8'd3
-reg w_done_send_old;
+reg w_done_send_old=0;
 wire [10:0] w_data_send;
 wire w_done_send;
 wire w_send;
@@ -69,7 +69,7 @@ wire w_done_read;
 reg done_read_old=0;
 wire w_err_read;
 wire w_reading;
-reg [10:0]data_read_last;
+reg [10:0]data_read_last=0;
 
 /* **************** array of data to send ********************************** */
 initial begin
@@ -81,7 +81,7 @@ end
 assign w_data_send = data_send_array[pck_sent];
 
 /* ******************************* Other *********************************** */
-assign altro={5'b00000,trigger,w_send,send,w_done_send};
+assign altro=data_read_last;
 
 /* ******************************* states ********************************** */
 `define ST_IDLE 8'd0
@@ -105,7 +105,7 @@ always @(posedge qzt_clk) begin
 		`ST_SEND_SEND: begin
 			send<=~send;
 			status<=`ST_SEND_WAIT;
-			limit_timer<=8'd100;
+			limit_timer<=8'd1; // STUDY_MOUSE_TIMES
 		end
 		`ST_SEND_WAIT: begin
 			if (!w_done_send_old & w_done_send) begin
@@ -134,13 +134,19 @@ always @(posedge qzt_clk) begin
 			end
 		end
 		`ST_LIFE_DECISIONS: begin
-			if (pck_sent >= `NPACKETS_SEND-1) status<=`ST_IDLE;
-			else status<=`ST_SEND_SEND;
+			if (w_timer) begin
+				run_timer<=0;
+				if (pck_sent >= `NPACKETS_SEND-1) status<=`ST_IDLE;
+				else status<=`ST_SEND_SEND;
+			end
 		end
 		`ST_HAS_READ: begin
 			if (!done_read_old & w_done_read) begin
 				data_read_last=w_data_read;
 				status<=`ST_LIFE_DECISIONS;
+				enable_read<=0;
+				run_timer<=1;
+				limit_timer<=20;
 			end
 		end
 	endcase	

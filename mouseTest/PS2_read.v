@@ -37,20 +37,21 @@ input enable;
 input PS2C;
 input PS2D;
 
-output reg reading;
-output reg [10:0] data;
+output reg reading=0;
+output reg [10:0] data=0;
 output done;
-output reg err;
+output reg err=0;
 
 reg [7:0] status=0;
 reg done_reg=0;
 integer nbits=0;
 reg PS2C_old=1;
 wire w_clk_50KHz;
-reg run_timer;
+reg run_timer=0;
 wire w_timer;
+reg enable_old=0;
 
-reg run_timeout;
+reg run_timeout=0;
 wire w_timeout;
 wire w_clk_100micro;
 wire w_clk_1micro;
@@ -61,19 +62,23 @@ wire w_clk_1micro;
 `define ST_START	8'd3
 
 always @ (posedge clk_main_loop) begin
-	if (w_timeout) begin
-		err<=1;
-		status<=`ST_END;
-		run_timeout<=0;
-	end
 	reading = status ? 1'b1 : 1'b0;
-	if (enable) begin
+	if (!enable_old & enable) begin
+		status<=`ST_IDLE;
+	end
+	if (enable_old) begin
+		if (w_timeout) begin
+			err<=1;
+			status<=`ST_END;
+			run_timeout<=0;
+		end
 		case(status)
 			`ST_IDLE: begin
 				nbits<=0;
 				run_timeout<=0;
 				if (PS2C_old & !PS2C) begin
 					status<=`ST_START;
+					data<=0;
 				end
 			end
 			`ST_START: begin
@@ -87,7 +92,7 @@ always @ (posedge clk_main_loop) begin
 					data<={data, PS2D};
 					nbits<=nbits+1;
 				end
-				if (nbits>=10) begin
+				if (nbits>=11) begin
 					status<=`ST_END;
 					run_timer<=1;
 				end
@@ -106,6 +111,8 @@ always @ (posedge clk_main_loop) begin
 			end
 		endcase
 	end
+	PS2C_old<=PS2C;
+	enable_old<=enable;
 end
 
 pulse_on_change ok_pulse(

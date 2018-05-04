@@ -1,1 +1,4 @@
 - with the current frequency (50KHz) in the send module, i've a resolution of 20us. I should try to bring it to 200 KHz (-> 5us) or 1MHz (-> 1us). with that I can measure the intervals in the protocol. But for now maybe, better don't worry about.
+- understand why i'm sensitive only to the first button press, and not the others.
+- i pacchetti del mouse sono staccati di 200us minimo, ma il valore è la intorno. Durano poco meno di 1ms. ianche la distanza tra i miei e i suoi è in quell'ordine
+- bisogna fare il super-case per il modulo comunication. Adesso è in grado di leggere e scrivere nella fase inizializzazione. deve seguire una fase in cui solo legge le comunicazioni, composte di tre pacchetti. il tempo totale per i tre pacchetti è poco meno di 3.5ms. magari mettere tasto per rifare l'inizializzazione. Provare a farla automaticamente.
