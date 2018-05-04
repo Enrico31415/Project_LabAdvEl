@@ -36,9 +36,9 @@ input enable;
 input PS2C;
 input PS2D;
 
-output [10:0] data;
+output reg [10:0] data;
 output done;
-output err;
+output reg err;
 
 reg [7:0] status=0;
 reg done_reg=0;
@@ -53,10 +53,10 @@ wire w_timeout;
 wire w_clk_100micro;
 wire w_clk_1micro;
 
-`define ST_IDLE	8'd0;
-`define ST_READ 	8'd1;
-`define ST_END	 	8'd2;
-`define ST_START	8'd3;
+`define ST_IDLE	8'd0
+`define ST_READ 	8'd1
+`define ST_END	 	8'd2
+`define ST_START	8'd3
 
 always @ (posedge clk_main_loop) begin
 	if (w_timeout) begin
@@ -79,7 +79,7 @@ always @ (posedge clk_main_loop) begin
 				nbits<=1;
 				run_timeout<=1;
 			end
-			`ST_READ:begin
+			`ST_READ: begin
 				if (PS2C_old & !PS2C) begin
 					data<={data, PS2D};
 					nbits<=nbits+1;
@@ -88,7 +88,8 @@ always @ (posedge clk_main_loop) begin
 					status<=`ST_END;
 					run_timer<=1;
 				end
-			`ST_END:begin
+			end
+			`ST_END: begin
 				if (!(PS2C & PS2D)) begin
 					run_timer<=0;
 				end else begin

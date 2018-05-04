@@ -30,7 +30,7 @@ module PS2_comm(
 		
 		altro
     );
-// IN, OUT, INOUT /////////////////////////////////////////////////////////////
+/* *********************** IN, OUT, INOUT ********************************** */
 input qzt_clk;
 input trigger;
 
@@ -38,45 +38,51 @@ inout PS2C;
 inout PS2D;
 
 output [7:0] altro;
-
-// reg & wire /////////////////////////////////////////////////////////////////
+/* ************************** REG & WIRES ********************************** */
+// module COMMUNICATION (THIS) ////////
 reg trigger_old=0;
-reg send=0;
-wire [10:0] w_data;
-wire w_ok;
-wire w_send;
+reg [7:0] status=0;
+	// clocks and timers
 wire w_clk_50KHz;
 wire w_clk_centoMilli;
 wire w_clk_unMilli;
 reg run_timer;
 wire w_timer;
-reg [7:0] status=0;
-//reg [7:0] pck_sent=0;
-reg w_ok_old;
 
+// module SEND ////////////////////////
 `define NPACKETS_SEND 8'd3
-reg [0:10] data_array [`NPACKETS_SEND-1:0];
-initial begin
-	//data_array[0]=11'b01111111111;	// reset
-	data_array[0]=11'b00100111101;	// give me the ID
-	data_array[1]=11'b00101011101;	// stream
-	data_array[2]=11'b00010111101;	// enable_data_reporting
-end
-
+reg w_done_send_old;
+wire [10:0] w_data_send;
+wire w_done_send;
+wire w_send;
+reg send=0;
+reg [0:10] data_send_array [`NPACKETS_SEND-1:0];
 integer pck_sent=0;
-assign w_data = data_array[pck_sent];
-// assign /////////////////////////////////////////////////////////////////////
 
-//assign w_data=data;
-assign altro={5'b00000,trigger,w_send,send,w_ok};
+// module READ ////////////////////////
+reg enable_read;
+wire w_data_read;
+wire w_done_read;
+wire w_err_read;
 
-// always /////////////////////////////////////////////////////////////////////
+/* **************** array of data to send ********************************** */
+initial begin
+	//data_send_array[0]=11'b01111111111;	// reset
+	data_send_array[0]=11'b00100111101;	// give me the ID
+	data_send_array[1]=11'b00101011101;	// stream
+	data_send_array[2]=11'b00010111101;	// enable_data_reporting
+end
+assign w_data_send = data_send_array[pck_sent];
 
+/* ******************************* Other *********************************** */
+assign altro={5'b00000,trigger,w_send,send,w_done_send};
 
+/* ******************************* states ********************************** */
 `define ST_IDLE 8'd0
 `define ST_SEND_SEND 8'd1
 `define ST_SEND_WAIT 8'd2
 
+/* ******************************* always ********************************** */
 always @(posedge qzt_clk) begin
 	case(status)
 		`ST_IDLE: begin
@@ -90,7 +96,7 @@ always @(posedge qzt_clk) begin
 			status<=`ST_SEND_WAIT;
 		end
 		`ST_SEND_WAIT: begin
-			if (!w_ok_old & w_ok) begin
+			if (!w_done_send_old & w_done_send) begin
 				run_timer<=1;
 			end
 			if (w_timer) begin
@@ -102,20 +108,20 @@ always @(posedge qzt_clk) begin
 		end
 	endcase	
 	trigger_old<=trigger;
-	w_ok_old<=w_ok;
+	w_done_send_old<=w_done_send;
 	//data=11'b01100110011;
 end
 
-PS2_send module_send(
+PS2_send send_module(
 		.qzt_clk(qzt_clk),
 		.clk_main_loop(w_clk_50KHz),
-		.data(w_data),
+		.data(w_data_send),
 		.send(w_send),
 		//btnS,
 		
 		.PS2C(PS2C),
 		.PS2D(PS2D),
-		.ok(w_ok)
+		.ok(w_done_send)
 		//err,
 		//status,
 		
@@ -123,6 +129,18 @@ PS2_send module_send(
 		//PS2Dreg,
 		//altro,
 		//ortla
+	  );
+
+PS2_read read_module(
+		.qzt_clk(qzt_clk),
+		.clk_main_loop(w_clk_50KHz),
+		.enable(enable_read),
+		.PS2C(PS2C),
+		.PS2D(PS2D),
+		
+		.data(w_data_read),
+		.done(w_done_read),
+		.err(w_err_read)
 	  );
 
 Module_FrequencyDivider	cinquantaKHz(
