@@ -46,18 +46,18 @@ print (");");
 
 print("input clk_in;");
 print("input "+var_in_1+";");
-print("input [4:0] "+var_in_2+";");
+print("input [3:0] "+var_in_2+";");
 print("input [2:0] "+var_in_play_status+";");
 
 print("input "+var_in_direction+";");
-print ("input [3:0] "+var_in_x+";")
-print ("input [3:0] "+var_in_y+";")
-print ("input [3:0] "+var_in_x_p+";")
-print ("input [3:0] "+var_in_y_p+";")
+print ("input [4:0] "+var_in_x+";")
+print ("input [4:0] "+var_in_y+";")
+print ("input [4:0] "+var_in_x_p+";")
+print ("input [4:0] "+var_in_y_p+";")
 print ("input [3:0] "+var_in_ship_dimension+";")
 
-print ("output reg [4:0] "+var_out_1+";")
-print ("output reg [4:0] "+var_out_2+";")
+print ("output reg [3:0] "+var_out_1+";")
+print ("output reg [3:0] "+var_out_2+";")
 print ("output reg "+var_out_3+" = 0;")
 
 
@@ -67,7 +67,7 @@ print ("output reg "+var_out_3+" = 0;")
 print ("// registri del tipo stat_X(posizione x)_Y(posizione y)")
 for j in range (0,10):
     for i in range (0,10):
-      print ("reg [4:0] stat_X"+str(i)+"_Y"+str(j)+" = 5'b00000;")
+      print ("reg [3:0] stat_X"+str(i)+"_Y"+str(j)+" = 4'b0000;")
 
 print("// operazioni di scrittura/lettura dal mouse")
 print ("always @ (negedge clk_in)")
@@ -81,7 +81,7 @@ for j in range (0,10):
                 print ("\t\tif", end='')
         else:
                 print("\t\telse if", end='')
-        print ("("+var_in_x+" == 4'd"+str(i)+" && "+var_in_y+" == 4'd"+str(j)+")")
+        print ("("+var_in_x+" == 5'd"+str(i)+" && "+var_in_y+" == 5'd"+str(j)+")")
         print ("\t\tbegin")
         print ("\t\t\tif("+var_in_1+")")
         print ("\t\t\tbegin")
@@ -100,10 +100,10 @@ print("\t\t"+var_out_3+" = 0;")
 print("\t\t//se sono stati temporanei, li piallo")
 for q in range(0,10):
     for r in range(0,10):
-        print("\t\t if(stat_X"+str(q)+"_Y"+str(r)+" == 5'd1)")
-        print("\t\t\t stat_X"+str(q)+"_Y"+str(r)+" =0;")
-        print("\t\t else if(stat_X"+str(q)+"_Y"+str(r)+" == 5'd3)")
-        print("\t\t\t stat_X"+str(q)+"_Y"+str(r)+" =2;")
+        print("\t\t if(stat_X"+str(q)+"_Y"+str(r)+" == 4'd1)")
+        print("\t\t\t stat_X"+str(q)+"_Y"+str(r)+" =4'd0;")
+        print("\t\t else if(stat_X"+str(q)+"_Y"+str(r)+" == 4'd3)")
+        print("\t\t\t stat_X"+str(q)+"_Y"+str(r)+" =4'd2;")
 for i in range(0,9):
     for j in range(0,10):
         print("\t\t//controllo la posizione: capisco in che cella sono")
@@ -111,7 +111,7 @@ for i in range(0,9):
             print ("\t\tif", end='')
         else:
             print("\t\telse if", end='')
-        print ("("+var_in_x+" == 4'd"+str(i)+" && "+var_in_y+" == 4'd"+str(j)+")")
+        print ("("+var_in_x+" == 5'd"+str(i)+" && "+var_in_y+" == 5'd"+str(j)+")")
         print("\t\tbegin", end='')
         print("//controllo la direzione")
         for n in range (0,2):# per le direzioni
@@ -133,9 +133,9 @@ for i in range(0,9):
                 while m < k:
                     if (i+m)<=9 and (j+m)<=9:
                         if n == 0:
-                            print("&&(stat_X"+str(i+m)+"_Y"+str(j)+" == 5'd0) \n\t\t\t\t\t\t\t\t\t", end ='');
+                            print("&&(stat_X"+str(i+m)+"_Y"+str(j)+" == 4'd0) \n\t\t\t\t\t\t\t\t\t", end ='');
                         else:
-                            print("&&(stat_X"+str(i)+"_Y"+str(j+m)+" == 5'd0) \n\t\t\t\t\t\t\t\t\t", end ='');
+                            print("&&(stat_X"+str(i)+"_Y"+str(j+m)+" == 4'd0) \n\t\t\t\t\t\t\t\t\t", end ='');
                     else:
                         # vado fuori volutamente dal while
                         m = m + 10
@@ -146,9 +146,9 @@ for i in range(0,9):
                 while m < k:
                     if (i+m)<=9 and (j+m)<=9:
                         if n == 0:
-                            print("\t\t\t\t\t\t\tstat_X"+str(i+m)+"_Y"+str(j)+"= 5'd1;")
+                            print("\t\t\t\t\t\t\tstat_X"+str(i+m)+"_Y"+str(j)+"= 4'd1;")
                         else:
-                            print("\t\t\t\t\t\t\tstat_X"+str(i)+"_Y"+str(j+m)+"= 5'd1;")
+                            print("\t\t\t\t\t\t\tstat_X"+str(i)+"_Y"+str(j+m)+"= 4'd1;")
                     else:
                         # vado fuori volutamente dal while
                         m = m + 10
@@ -163,11 +163,12 @@ for i in range(0,9):
                 while m < k:
                     if (i+m)<=9 and (j+m)<=9:
                         if n == 0:
-                            print("\t\t\t\t\t\tif(stat_X"+str(i+m)+"_Y"+str(j)+" == 5'd2)");
-                            print("\t\t\t\t\t\t\tstat_X"+str(i+m)+"_Y"+str(j)+"= 5'd3;")
+                            print("\t\t\t\t\t\tif(stat_X"+str(i+m)+"_Y"+str(j)+" == 4'd2)")
+                            print("\t\t\t\t\t\t\tstat_X"+str(i+m)+"_Y"+str(j)+"= 4'd3;")
+
                         else:
-                            print("\t\t\t\t\t\tif(stat_X"+str(i)+"_Y"+str(j+m)+" == 5'd2)");
-                            print("\t\t\t\t\t\t\tstat_X"+str(i)+"_Y"+str(j+m)+"= 5'd3;")
+                            print("\t\t\t\t\t\tif(stat_X"+str(i)+"_Y"+str(j+m)+" == 4'd2)")
+                            print("\t\t\t\t\t\t\tstat_X"+str(i)+"_Y"+str(j+m)+"= 4'd3;")
                     else:
                         # vado fuori volutamente dal while
                         m = m + 10
@@ -183,9 +184,9 @@ for i in range(0,9):
                 while m < k:
                     if (i+m)<=9 and (j+m)<=9:
                         if n == 0:
-                            print("&&(stat_X"+str(i+m)+"_Y"+str(j)+" == 5'd1) \n\t\t\t\t\t\t\t\t\t", end ='');
+                            print("&&(stat_X"+str(i+m)+"_Y"+str(j)+" == 4'd0) \n\t\t\t\t\t\t\t\t\t", end ='');
                         else:
-                            print("&&(stat_X"+str(i)+"_Y"+str(j+m)+" == 5'd1) \n\t\t\t\t\t\t\t\t\t", end ='');
+                            print("&&(stat_X"+str(i)+"_Y"+str(j+m)+" == 4'd0) \n\t\t\t\t\t\t\t\t\t", end ='');
                     else:
                         # vado fuori volutamente dal while
                         m = m + 10
@@ -196,9 +197,9 @@ for i in range(0,9):
                 while m < k:
                     if (i+m)<=9 and (j+m)<=9:
                         if n == 0:
-                            print("\t\t\t\t\t\t\tstat_X"+str(i+m)+"_Y"+str(j)+"= 5'd2;")
+                            print("\t\t\t\t\t\t\tstat_X"+str(i+m)+"_Y"+str(j)+"= 4'd2;")
                         else:
-                            print("\t\t\t\t\t\t\tstat_X"+str(i)+"_Y"+str(j+m)+"= 5'd2;")
+                            print("\t\t\t\t\t\t\tstat_X"+str(i)+"_Y"+str(j+m)+"= 4'd2;")
                     else:
                         # vado fuori volutamente dal while
                         m = m + 10
@@ -223,7 +224,7 @@ for j in range (0,10):
             print ("\tif", end='')
         else:
             print("\telse if", end='')
-        print ("("+var_in_x_p+" == 4'd"+str(i)+" && "+var_in_y_p+" == 4'd"+str(j)+")")
+        print ("("+var_in_x_p+" == 5'd"+str(i)+" && "+var_in_y_p+" == 5'd"+str(j)+")")
         print ("\t\t"+var_out_2+"=stat_X"+str(i)+"_Y"+str(j)+";")
 print ("end")
 print ("endmodule")

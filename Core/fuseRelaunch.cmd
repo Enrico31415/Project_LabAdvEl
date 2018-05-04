@@ -1,1 +1,1 @@
--intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "Z:/Core/Sim_GridEngine_isim_beh.exe" -prj "Z:/Core/Sim_GridEngine_beh.prj" "work.Sim_GridEngine" "work.glbl" 
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "/media/Scratch/Project_LabAdvEl/Core/cell_io_isim_beh.exe" -prj "/media/Scratch/Project_LabAdvEl/Core/cell_io_beh.prj" "work.cell_io" "work.glbl" 

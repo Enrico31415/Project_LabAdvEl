@@ -237,6 +237,7 @@ begin
 				if (ship_placed)
 				begin
 					ship_size_pointer = ship_size_pointer+1;
+					turn_status = turn_status +1;
 				end
 			end
 			default:

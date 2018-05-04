@@ -123,7 +123,7 @@ begin
 					pointer_to_mask_1 =  ( current_row- (cell_x*10'd64));
 					pointer_to_mask_2 =  (current_line- (cell_y*10'd48));
 					pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*10'd64;
-					if (circle[pointer_to_mask])
+					if (cross[pointer_to_mask])
 					begin
 						color_out = `color_player_and_ia_hit;
 					end
@@ -138,7 +138,7 @@ begin
 					pointer_to_mask_1 =  ( current_row- (cell_x*10'd64));
 					pointer_to_mask_2 =  (current_line- (cell_y*10'd48));
 					pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*10'd64;
-					if (cross[pointer_to_mask])
+					if (circle[pointer_to_mask])
 					begin
 						color_out = `color_player_and_ia_hit;
 					end
