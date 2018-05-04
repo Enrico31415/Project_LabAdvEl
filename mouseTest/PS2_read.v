@@ -25,6 +25,7 @@ module PS2_read(
 		PS2C,
 		PS2D,
 		
+		reading,
 		data,
 		done,
 		err
@@ -36,6 +37,7 @@ input enable;
 input PS2C;
 input PS2D;
 
+output reg reading;
 output reg [10:0] data;
 output done;
 output reg err;
@@ -64,6 +66,7 @@ always @ (posedge clk_main_loop) begin
 		status<=`ST_END;
 		run_timeout<=0;
 	end
+	reading = status ? 1'b1 : 1'b0;
 	if (enable) begin
 		case(status)
 			`ST_IDLE: begin

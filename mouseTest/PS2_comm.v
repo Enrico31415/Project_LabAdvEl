@@ -42,12 +42,15 @@ output [7:0] altro;
 // module COMMUNICATION (THIS) ////////
 reg trigger_old=0;
 reg [7:0] status=0;
-	// clocks and timers
+	// clocks
 wire w_clk_50KHz;
 wire w_clk_centoMilli;
 wire w_clk_unMilli;
+wire w_clk_100micro;
+	// timer
 reg run_timer;
 wire w_timer;
+reg [7:0] limit_timer;
 
 // module SEND ////////////////////////
 `define NPACKETS_SEND 8'd3
@@ -60,10 +63,13 @@ reg [0:10] data_send_array [`NPACKETS_SEND-1:0];
 integer pck_sent=0;
 
 // module READ ////////////////////////
-reg enable_read;
-wire w_data_read;
+reg enable_read=0;
+wire [10:0]w_data_read;
 wire w_done_read;
+reg done_read_old=0;
 wire w_err_read;
+wire w_reading;
+reg [10:0]data_read_last;
 
 /* **************** array of data to send ********************************** */
 initial begin
@@ -82,6 +88,11 @@ assign altro={5'b00000,trigger,w_send,send,w_done_send};
 `define ST_SEND_SEND 8'd1
 `define ST_SEND_WAIT 8'd2
 
+`define ST_WAIT_ACK 8'd3
+`define ST_TRY_TO_READ 8'd4
+`define ST_LIFE_DECISIONS 8'd5
+`define ST_HAS_READ 8'd6
+
 /* ******************************* always ********************************** */
 always @(posedge qzt_clk) begin
 	case(status)
@@ -94,6 +105,7 @@ always @(posedge qzt_clk) begin
 		`ST_SEND_SEND: begin
 			send<=~send;
 			status<=`ST_SEND_WAIT;
+			limit_timer<=8'd100;
 		end
 		`ST_SEND_WAIT: begin
 			if (!w_done_send_old & w_done_send) begin
@@ -102,14 +114,39 @@ always @(posedge qzt_clk) begin
 			if (w_timer) begin
 				run_timer<=0;
 				pck_sent<=pck_sent+1;
-				if (pck_sent >= `NPACKETS_SEND-1) status<=`ST_IDLE;
-				else status<=`ST_SEND_SEND;
+				status<=`ST_WAIT_ACK;
+			end
+		end
+		`ST_WAIT_ACK: begin
+			enable_read<=1;
+			limit_timer<=8'd70;
+			run_timer<=1;
+			status<=`ST_TRY_TO_READ;
+		end
+		`ST_TRY_TO_READ: begin
+			if (w_timer) begin
+				run_timer<=0;
+				status<=`ST_LIFE_DECISIONS;
+			end
+			if (w_reading) begin
+				run_timer<=0;
+				status<=`ST_HAS_READ;
+			end
+		end
+		`ST_LIFE_DECISIONS: begin
+			if (pck_sent >= `NPACKETS_SEND-1) status<=`ST_IDLE;
+			else status<=`ST_SEND_SEND;
+		end
+		`ST_HAS_READ: begin
+			if (!done_read_old & w_done_read) begin
+				data_read_last=w_data_read;
+				status<=`ST_LIFE_DECISIONS;
 			end
 		end
 	endcase	
 	trigger_old<=trigger;
 	w_done_send_old<=w_done_send;
-	//data=11'b01100110011;
+	done_read_old<=w_done_read;
 end
 
 PS2_send send_module(
@@ -138,6 +175,7 @@ PS2_read read_module(
 		.PS2C(PS2C),
 		.PS2D(PS2D),
 		
+		.reading(w_reading),
 		.data(w_data_read),
 		.done(w_done_read),
 		.err(w_err_read)
@@ -156,6 +194,13 @@ Module_FrequencyDivider	centoMilli(
 
 		.clk_out(w_clk_centoMilli)
 		);
+		
+Module_FrequencyDivider	centoMicro(
+		.clk_in(qzt_clk),
+		.period(30'd2500),
+
+		.clk_out(w_clk_100micro)
+		);
 
 Module_FrequencyDivider	unMilli(
 		.clk_in(qzt_clk),
@@ -166,8 +211,8 @@ Module_FrequencyDivider	unMilli(
 
 Module_Counter_8_bit_oneRun timer(
 		.qzt_clk(qzt_clk),
-		.clk_in(w_clk_unMilli),
-		.limit(8'd10),
+		.clk_in(w_clk_100micro),
+		.limit(limit_timer),
 		.run(run_timer),
 
 		//out,
