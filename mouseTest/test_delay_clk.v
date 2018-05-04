@@ -29,7 +29,7 @@ delay_clk delay_clk(
 		.qzt_clk(clk20ns),
 		.clk_in(clk),
 		.clk_counter(w_clk_1micro),
-		.limit(8'd10),
+		.limit(8'd70),
 		
 		.clk_out(clk_delayed)
     );

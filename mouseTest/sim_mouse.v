@@ -28,9 +28,9 @@ reg [7:0] status=0;
 reg clk20ns=0;
 wire w_clk_1micro;
 wire w_clk_100micro;
-wire w_my_clk;
 integer nbits=0;
-reg [10:0] data=0;
+reg [10:0] data_received=0;
+reg [0:10] data_to_send=0;
 reg reg_azzera=0;
 reg PS2C_old=0;
 
@@ -40,6 +40,13 @@ wire w_principal;
 reg run_host_acq=0;
 reg clk_enable=0;
 wire w_host_acq;
+wire w_my_clk_sync_data;
+reg respond=0;
+reg flag_finish_send=0;
+
+reg my_clk_sync_data_old=0;
+wire w_my_clk;
+reg my_clk_old=0;
 
 initial begin
 	clk20ns=1'b0;
@@ -54,6 +61,14 @@ end
 `define ST_PRE_END_COMM 8'd5
 `define ST_END_COMM 8'd6
 
+`define ST_SEND_BEGIN 8'd7
+`define ST_SEND_PRE_START 8'd8
+`define ST_SEND_START 8'd9
+`define ST_SEND_SEND 8'd10
+
+`define PCK_ACK 11'b00101111111
+
+
 always @(posedge clk20ns) begin		
 	case (status)
 		`ST_IDLE: begin
@@ -63,20 +78,24 @@ always @(posedge clk20ns) begin
 				status<=`ST_HOST_ACQ;
 				run_host_acq<=1;
 			end
+			if (respond) begin
+				status<=`ST_SEND_BEGIN;
+				data_to_send<=`PCK_ACK;
+			end
 		end
 		`ST_HOST_ACQ: begin
-			data<=0;
+			data_received<=0;
 			if (w_host_acq) begin
 				run_host_acq<=0;
 				status<=`ST_HOST_COMM;
-				data<=0;
+				data_received<=0;
 			end
 		end
 		`ST_HOST_COMM: begin
 			clk_enable<=1;
 			if (!PS2C_old & PS2C) begin
 				nbits<=nbits+1;
-				data<={data,PS2D};
+				data_received<={data_received,PS2D};
 			end
 			if (nbits>=11) begin
 				status<=`ST_SEND_ACK;
@@ -98,13 +117,15 @@ always @(posedge clk20ns) begin
 				PS2D_reg<=1'b1;
 				status<=`ST_PRE_END_COMM;
 			end
+			respond<=1;
 		end
 		`ST_PRE_END_COMM: begin
+			//PS2D_reg<=1;
 			run_principal<=0;
 			limit_principal<=8'd100;
 			status<=`ST_END_COMM;
 			clk_enable<=0;
-			end
+		end
 		`ST_END_COMM: begin
 			run_principal<=~w_azzera;
 			if (!(PS2C & PS2D)) begin
@@ -114,8 +135,48 @@ always @(posedge clk20ns) begin
 				status<=`ST_IDLE;
 			end
 		end
+		// send part
+		`ST_SEND_BEGIN: begin
+			respond<=0;
+			run_principal<=1;
+			limit_principal<=8'd200;
+			status<=`ST_SEND_PRE_START;
+		end
+		`ST_SEND_PRE_START: begin
+			if (w_principal) begin
+				run_principal<=0;
+				status<=`ST_SEND_START;
+			end
+		end
+		`ST_SEND_START: begin
+			if (my_clk_sync_data_old & !w_my_clk_sync_data) begin
+				clk_enable<=1;
+				status<=`ST_SEND_SEND;
+				PS2D_reg<=data_to_send[0];
+				nbits<=0;
+			end
+		end
+		`ST_SEND_SEND: begin
+			if (my_clk_old & !w_my_clk) begin
+				data_to_send<=data_to_send<<1;
+				nbits<=nbits+1;
+				if (nbits>=32'd10) begin
+					flag_finish_send<=1;
+				end
+			end
+			if (my_clk_sync_data_old & !w_my_clk_sync_data) begin
+				if (flag_finish_send) begin
+					flag_finish_send<=0;
+					status<=`ST_PRE_END_COMM;
+				end else begin
+					PS2D_reg<=data_to_send[0];
+				end
+			end
+		end
 	endcase
 	PS2C_old<=PS2C;
+	my_clk_old<=w_my_clk;
+	my_clk_sync_data_old<=w_my_clk_sync_data;
 end
 
 Module_FrequencyDivider	mezzoMicro(
@@ -166,6 +227,15 @@ pulse_on_change azz_pulse(
 		.trigger(reg_azzera),
 		
 		.pulse(w_azzera)
+    );
+	 
+delay_clk delay_my_clk_for_sync_data(
+		.qzt_clk(clk20ns),
+		.clk_in(w_my_clk),
+		.clk_counter(w_clk_1micro),
+		.limit(8'd70),
+		
+		.clk_out(w_my_clk_sync_data)
     );
 
 pullup (PS2C);

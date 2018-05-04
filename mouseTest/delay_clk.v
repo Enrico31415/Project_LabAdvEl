@@ -25,7 +25,7 @@ always @ (qzt_clk) begin
 end
 
 Module_Counter_8_bit_oneRun counter(
-		.qzt_clk(qzt_clk),
+		.qzt_clk(~qzt_clk),
 		.clk_in(clk_counter),
 		.limit(limit),
 		.run(run_counter),
