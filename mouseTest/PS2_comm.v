@@ -136,7 +136,7 @@ always @(posedge qzt_clk) begin
 		`ST_LIFE_DECISIONS: begin
 			if (w_timer) begin
 				run_timer<=0;
-				if (pck_sent >= `NPACKETS_SEND-1) status<=`ST_IDLE;
+				if (pck_sent >= `NPACKETS_SEND) status<=`ST_IDLE;
 				else status<=`ST_SEND_SEND;
 			end
 		end
