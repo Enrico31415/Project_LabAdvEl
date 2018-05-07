@@ -1,12 +1,10 @@
 `timescale 1ns / 1ps
-`define start_const_1 31'b	1000100110101011010111110101011
+`define start_const_1 31'b	0010110110100011000111111101010
 
 // Module Name:    zero_to_nine_r_gen 
 // da bits random genera una distribuzione uniforme tra 0 e 9
 
-module zero_to_nine_r_gen( qzt_clk,
-									set_reg,
-									seed,
+module zero_to_nine_r_gen ( qzt_clk,
 
 									r_zero_to_nine,
 									r_zero_to_eight,									
@@ -18,11 +16,7 @@ module zero_to_nine_r_gen( qzt_clk,
 // il valore delle uscite non è indipendente. sono pensate per essere usate in maniera esclusiva. 
 //	le uscite del modulo corrispondono allo stesso valore riscalato.									
 									
-input 	qzt_clk;
-input		set_reg;
-input 	[30:0] seed;
-
-
+input qzt_clk;
 output reg [3:0] r_zero_to_nine;
 output reg [3:0] r_zero_to_eight;									
 output reg [2:0] r_zero_to_seven;									
@@ -32,11 +26,11 @@ output reg r_one_bit_2;
 
 wire [30:0]random_gen_out;
 wire [9:0]rand_num;
-//reg set_reg = 1'b1 ;
+//reg set_reg=0;
 
 random_gen generatore_1 ( 	.qzt_clk(qzt_clk),
-									.seed(seed),
-									.set_in(set_reg),
+									.seed(`start_const_1),
+//									.set_r(set_reg),
 
 									.out_w(random_gen_out)
 								);
