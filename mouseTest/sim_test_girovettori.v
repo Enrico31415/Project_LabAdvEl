@@ -19,10 +19,24 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module sim_test_girovettori(
-		input [10:0] in,
-		output reg [0:10] out
+		in,
+		out
     );
 
-assign out = 11'd6;
+input [10:0] in;
+output reg[10:0] out;
+
+reg clk20ns;
+initial begin
+	clk20ns=1'b0;
+	forever #10 clk20ns = ~clk20ns;
+end
+
+integer n=0;
+always @ (posedge clk20ns) begin
+	for ( n=0 ; n <= 10 ; n=n+1 ) begin
+		out[n] = in[10-n]; // Reverse video data buss bit order
+	end
+end
 
 endmodule

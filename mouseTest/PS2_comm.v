@@ -97,7 +97,9 @@ initial begin
 	data_send_array[1]=11'b00101011101;	// stream
 	data_send_array[2]=11'b00010111101;	// enable_data_reporting
 end
-assign w_data_send = data_send_array[pck_sent];
+
+`define PCK_RESEND 11'b00111111101
+assign w_data_send = phase ? `PCK_RESEND : data_send_array[pck_sent];
 
 initial begin
 	data_received[0]=11'd0;
@@ -106,7 +108,7 @@ initial begin
 end
 
 /* ******************************* Other *********************************** */
-assign altro=data_read_last;
+assign altro=status;
 
 /* ******************************* states ********************************** */
 // phases
@@ -128,6 +130,7 @@ assign altro=data_read_last;
 `define ST_TREAT_DATA 8'd21
 `define ST_ASSIGN1 8'd22
 `define ST_ASSIGN2 8'd23
+`define ST_LISTEN_RESEND 8'd24
 
 /* ***************************** function ********************************** */
 function [1:0] checkPck;
@@ -202,11 +205,22 @@ always @(posedge qzt_clk) begin
 			endcase
 		end
 		`PH_LISTEN: begin
+			//timer
+			/*
+			if (w_timer) begin
+				run_timer<=0;
+				status<=`ST_IDLE;
+			end
+			*/
 			case(status)
 				`ST_IDLE: begin
 					pck_received<=0;
 					i_pck<=0;
-					if (w_reading) status<=`ST_READ3PCK;
+					//timer //limit_timer<=8'd100;
+					if (w_reading) begin
+						//timer //run_timer<=1;
+						status<=`ST_READ3PCK;
+					end
 				end
 				`ST_READ3PCK: begin
 					if (!done_read_old & w_done_read) begin
@@ -220,8 +234,10 @@ always @(posedge qzt_clk) begin
 				`ST_TREAT_DATA: begin
 					if (checkPck(data_received[0])==0 && checkPck(data_received[1])==0 && checkPck(data_received[2])==0) begin
 						status<=`ST_ASSIGN1;
-					end 
-					//else treat the error
+					end else begin
+						status<=`ST_LISTEN_RESEND;
+						send<=~send;
+					end
 				end
 				`ST_ASSIGN1: begin
 					data_received_el<=data_received[i_pck];
@@ -239,6 +255,11 @@ always @(posedge qzt_clk) begin
 						status<=`ST_IDLE;
 					end else begin
 						status<=`ST_ASSIGN1;
+					end
+				end
+				`ST_LISTEN_RESEND: begin
+					if (!w_done_send_old & w_done_send) begin
+						status<=`ST_IDLE;
 					end
 				end
 			endcase

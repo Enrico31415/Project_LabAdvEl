@@ -37,20 +37,30 @@ wire w_ps2Creg;
 wire w_ps2Dreg;
 wire [15:0] w_altro; ////////////////////////////////////
 
-///////////////////////////////////////////////////////////////////////////////
-
-
-assign J20_IO[3:0]={w_altro[3],w_altro[2],w_altro[1],w_altro[0]};
-assign J18_IO[3:0]={w_buttonN,1'b0,1'b1,1'b0};
-
-//assign LED = {4{w_clk_second, ~w_clk_second}};
-assign LED = SW[0] ? w_altro[7:0] : {{5{w_clk_second}}, w_altro[10:8]};
-///////////////////////////////////////////////////////////////////////////////
-
 wire w_data_tx;
 wire [7:0] w_status_pck_1;
 wire [7:0] w_xm_pck_2;
 wire [7:0] w_ym_pck_3;
+///////////////////////////////////////////////////////////////////////////////
+
+//assign J20_IO[3:0]={w_altro[3],w_altro[2],w_altro[1],w_altro[0]};
+assign J20_IO[3:0]={4{w_data_tx}};
+assign J18_IO[3:0]={w_buttonN,1'b0,1'b1,1'b0};
+
+reg [7:0] r_LED=0;
+assign LED = r_LED;
+always @ (posedge CLK_50M) begin
+	case(SW)
+		4'd0: r_LED=w_status_pck_1;
+		4'd1: r_LED=w_xm_pck_2;
+		4'd2: r_LED=w_ym_pck_3;
+		4'd3: r_LED=w_altro[7:0];
+		default: r_LED={8{w_clk_second}};
+	endcase
+end
+
+//assign LED = SW[0] ? w_altro[7:0] : {{5{w_clk_second}}, w_altro[10:8]};
+///////////////////////////////////////////////////////////////////////////////
 
 PS2_comm communication(
 		.qzt_clk(CLK_50M),
@@ -98,5 +108,10 @@ Module_FrequencyDivider	second(
 
 		.clk_out(w_clk_second)
 		);
+/*
+for ( n=0 ; n <= 10 ; n=n+1 ) begin
+		out[n] = in[10-n]; // Reverse video data buss bit order
+	end
+*/
 
 endmodule
