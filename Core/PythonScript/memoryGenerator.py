@@ -67,7 +67,7 @@ print ("output reg "+var_out_3+" = 0;")
 print ("// registri del tipo stat_X(posizione x)_Y(posizione y)")
 for j in range (0,10):
     for i in range (0,10):
-      print ("reg [4:0] stat_X"+str(i)+"_Y"+str(j)+" = 5'b00000;")
+      print ("reg [2:0] stat_X"+str(i)+"_Y"+str(j)+" = 5'b00000;")
 
 print("// operazioni di scrittura/lettura dal mouse")
 print ("always @ (negedge clk_in)")
@@ -103,8 +103,8 @@ for q in range(0,10):
         print("\t\t if(stat_X"+str(q)+"_Y"+str(r)+" == 5'd1)")
         print("\t\t\t stat_X"+str(q)+"_Y"+str(r)+" =0;")
         print("\t\t else if(stat_X"+str(q)+"_Y"+str(r)+" == 5'd3)")
-        print("\t\t\t stat_X"+str(q)+"_Y"+str(r)+" =2;")
-for i in range(0,9):
+        print("\t\t\t stat_X"+str(q)+"_Y"+str(r)+" =5'd2;")
+for i in range(0,10):
     for j in range(0,10):
         print("\t\t//controllo la posizione: capisco in che cella sono")
         if j == 0 and i == 0:
@@ -183,9 +183,9 @@ for i in range(0,9):
                 while m < k:
                     if (i+m)<=9 and (j+m)<=9:
                         if n == 0:
-                            print("&&(stat_X"+str(i+m)+"_Y"+str(j)+" == 5'd1) \n\t\t\t\t\t\t\t\t\t", end ='');
+                            print("&&(stat_X"+str(i+m)+"_Y"+str(j)+" == 5'd0) \n\t\t\t\t\t\t\t\t\t", end ='');
                         else:
-                            print("&&(stat_X"+str(i)+"_Y"+str(j+m)+" == 5'd1) \n\t\t\t\t\t\t\t\t\t", end ='');
+                            print("&&(stat_X"+str(i)+"_Y"+str(j+m)+" == 5'd0) \n\t\t\t\t\t\t\t\t\t", end ='');
                     else:
                         # vado fuori volutamente dal while
                         m = m + 10

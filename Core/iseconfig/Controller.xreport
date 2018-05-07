@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2018-05-04T11:26:16</DateModified>
+  <DateModified>2018-05-07T17:36:30</DateModified>
   <ModuleName>Controller</ModuleName>
-  <SummaryTimeStamp>Unknown</SummaryTimeStamp>
+  <SummaryTimeStamp>2018-05-07T17:26:02</SummaryTimeStamp>
   <ImplementationReportsDirectory>/media/Scratch/Project_LabAdvEl/Core/</ImplementationReportsDirectory>
   <DateInitialized>2018-05-03T17:59:36</DateInitialized>
   <SavedFilePath>/media/Scratch/Project_LabAdvEl/Core/iseconfig/Controller.xreport</SavedFilePath>
@@ -11,7 +11,7 @@
  </header>
  <body>
   <viewgroup label="Design Overview" >
-   <view inputState="Unknown" program="implementation" ShowPartitionData="false" type="FPGASummary" file="Controller_summary.html" label="Summary" >
+   <view inputState="Unknown" program="implementation" ExpandErrors="false" ShowPartitionData="false" ExpandConstraints="false" type="FPGASummary" file="Controller_summary.html" label="Summary" ExpandClockNets="false" ExpandWarnings="false" >
     <toc-item title="Design Overview" target="Design Overview" />
     <toc-item title="Design Utilization Summary" target="Design Utilization Summary" />
     <toc-item title="Performance Summary" target="Performance Summary" />
@@ -19,7 +19,7 @@
     <toc-item title="Detailed Reports" target="Detailed Reports" />
    </view>
    <view inputState="Unknown" program="implementation" contextTags="FPGA_ONLY" hidden="true" type="HTML" file="Controller_envsettings.html" label="System Settings" />
-   <view inputState="Translated" program="map" locator="MAP_IOB_TABLE" contextTags="FPGA_ONLY" type="IOBProperties" file="Controller_map.xrpt" label="IOB Properties" />
+   <view inputState="Translated" program="map" locator="MAP_IOB_TABLE" contextTags="FPGA_ONLY" type="IOBProperties" file="Controller_map.xrpt" showConstraints="0" label="IOB Properties" />
    <view inputState="Translated" program="map" contextTags="FPGA_ONLY" hidden="true" type="Control_Sets" file="Controller_map.xrpt" label="Control Set Information" />
    <view inputState="Translated" program="map" locator="MAP_MODULE_HIERARCHY" contextTags="FPGA_ONLY" type="Module_Utilization" file="Controller_map.xrpt" label="Module Level Utilization" />
    <view inputState="Mapped" program="par" locator="CONSTRAINT_TABLE" contextTags="FPGA_ONLY" type="ConstraintsData" file="Controller.ptwx" label="Timing Constraints" translator="ptwxToTableXML.xslt" />
@@ -42,9 +42,9 @@
   </viewgroup>
   <viewgroup label="Errors and Warnings" >
    <view program="pn" WrapMessages="true" contextTags="EDK_OFF" type="MessageList" hideColumns="Filtered, New" file="_xmsgs/pn_parser.xmsgs" label="Parser Messages" />
-   <view program="xst" WrapMessages="true" contextTags="XST_ONLY,EDK_OFF" hidden="false" type="MessageList" hideColumns="Filtered" file="_xmsgs/xst.xmsgs" label="Synthesis Messages" />
+   <view program="xst" WrapMessages="true" contextTags="XST_ONLY,EDK_OFF" hidden="false" type="MessageList" hideColumns="" collate="2" file="_xmsgs/xst.xmsgs" label="Synthesis Messages" />
    <view inputState="Synthesized" program="ngdbuild" WrapMessages="true" type="MessageList" hideColumns="Filtered" file="_xmsgs/ngdbuild.xmsgs" label="Translation Messages" />
-   <view inputState="Translated" program="map" WrapMessages="true" contextTags="FPGA_ONLY" type="MessageList" hideColumns="Filtered" file="_xmsgs/map.xmsgs" label="Map Messages" />
+   <view inputState="Translated" program="map" WrapMessages="true" contextTags="FPGA_ONLY" type="MessageList" hideColumns="" file="_xmsgs/map.xmsgs" label="Map Messages" />
    <view inputState="Mapped" program="par" WrapMessages="true" contextTags="FPGA_ONLY" type="MessageList" hideColumns="Filtered" file="_xmsgs/par.xmsgs" label="Place and Route Messages" />
    <view inputState="Routed" program="trce" WrapMessages="true" contextTags="FPGA_ONLY" type="MessageList" hideColumns="Filtered" file="_xmsgs/trce.xmsgs" label="Timing Messages" />
    <view inputState="Routed" program="xpwr" WrapMessages="true" contextTags="EDK_OFF" hidden="true" type="MessageList" hideColumns="Filtered" file="_xmsgs/xpwr.xmsgs" label="Power Messages" />
