@@ -47,12 +47,22 @@ assign J18_IO[3:0]={w_buttonN,1'b0,1'b1,1'b0};
 assign LED = SW[0] ? w_altro[7:0] : {{5{w_clk_second}}, w_altro[10:8]};
 ///////////////////////////////////////////////////////////////////////////////
 
+wire w_data_tx;
+wire [7:0] w_status_pck_1;
+wire [7:0] w_xm_pck_2;
+wire [7:0] w_ym_pck_3;
+
 PS2_comm communication(
 		.qzt_clk(CLK_50M),
 		.trigger(w_buttonN),
 		
 		.PS2C(PS2_CLK1),
 		.PS2D(PS2_DATA1),
+		
+		.data_tx(w_data_tx),
+		.status_pck_1(w_status_pck_1),
+		.xm_pck_2(w_xm_pck_2),
+		.ym_pck_3(w_ym_pck_3),
 		
 		.altro(w_altro)
     );

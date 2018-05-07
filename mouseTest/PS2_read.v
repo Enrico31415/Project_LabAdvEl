@@ -34,6 +34,8 @@ module PS2_read(
 input qzt_clk;
 input clk_main_loop;
 input enable;
+//input PS2C;
+//input PS2D;
 input PS2C;
 input PS2D;
 

@@ -28,6 +28,11 @@ module PS2_comm(
 		PS2C,
 		PS2D,
 		
+		data_tx,
+		status_pck_1,
+		xm_pck_2,
+		ym_pck_3,
+		
 		altro
     );
 /* *********************** IN, OUT, INOUT ********************************** */
@@ -38,10 +43,19 @@ inout PS2C;
 inout PS2D;
 
 output [15:0] altro;
+
+// mouse data
+output data_tx;
+output reg [7:0] status_pck_1=0;
+output reg [7:0] xm_pck_2=0;
+output reg [7:0] ym_pck_3=0;
+
 /* ************************** REG & WIRES ********************************** */
 // module COMMUNICATION (THIS) ////////
 reg trigger_old=0;
 reg [7:0] status=0;
+reg [7:0] phase=0;
+reg data_tx_pulse_var=0;
 	// clocks
 wire w_clk_50KHz;
 wire w_clk_centoMilli;
@@ -51,6 +65,11 @@ wire w_clk_100micro;
 reg run_timer=0;
 wire w_timer;
 reg [7:0] limit_timer=0;
+	// phase listen
+reg [1:0] pck_received=0;
+reg [10:0] data_received [2:0];
+reg [10:0] data_received_el=0;
+reg [1:0] i_pck=0;
 
 // module SEND ////////////////////////
 `define NPACKETS_SEND 8'd3
@@ -71,7 +90,7 @@ wire w_err_read;
 wire w_reading;
 reg [10:0]data_read_last=0;
 
-/* **************** array of data to send ********************************** */
+/* **************** array of data ****************************************** */
 initial begin
 	//data_send_array[0]=11'b01111111111;	// reset
 	data_send_array[0]=11'b00100111101;	// give me the ID
@@ -80,10 +99,21 @@ initial begin
 end
 assign w_data_send = data_send_array[pck_sent];
 
+initial begin
+	data_received[0]=11'd0;
+	data_received[1]=11'd0;
+	data_received[2]=11'd0;
+end
+
 /* ******************************* Other *********************************** */
 assign altro=data_read_last;
 
 /* ******************************* states ********************************** */
+// phases
+`define PH_INIT 8'd0
+`define PH_LISTEN 8'd1
+
+// states INIT
 `define ST_IDLE 8'd0
 `define ST_SEND_SEND 8'd1
 `define ST_SEND_WAIT 8'd2
@@ -93,63 +123,127 @@ assign altro=data_read_last;
 `define ST_LIFE_DECISIONS 8'd5
 `define ST_HAS_READ 8'd6
 
+// states LISTEN
+`define ST_READ3PCK 8'd20
+`define ST_TREAT_DATA 8'd21
+`define ST_ASSIGN1 8'd22
+`define ST_ASSIGN2 8'd23
+
+/* ***************************** function ********************************** */
+function [1:0] checkPck;
+	input [10:0] pck;
+	if (pck[10] | !pck[0]) checkPck=1;
+	else if (! (^pck[9:1])) checkPck=2;
+	else checkPck=0;
+endfunction
+
 /* ******************************* always ********************************** */
 always @(posedge qzt_clk) begin
-	case(status)
-		`ST_IDLE: begin
-			if (!trigger_old & trigger) begin
-				status<=`ST_SEND_SEND;
-				pck_sent<=0;
-			end
+	case (phase)
+		`PH_INIT: begin
+			case(status)
+				`ST_IDLE: begin
+					if (!trigger_old & trigger) begin
+						status<=`ST_SEND_SEND;
+						pck_sent<=0;
+					end
+				end
+				`ST_SEND_SEND: begin
+					send<=~send;
+					status<=`ST_SEND_WAIT;
+					limit_timer<=8'd1; // STUDY_MOUSE_TIMES
+				end
+				`ST_SEND_WAIT: begin
+					if (!w_done_send_old & w_done_send) begin
+						run_timer<=1;
+					end
+					if (w_timer) begin
+						run_timer<=0;
+						pck_sent<=pck_sent+1;
+						status<=`ST_WAIT_ACK;
+					end
+				end
+				`ST_WAIT_ACK: begin
+					enable_read<=1;
+					limit_timer<=8'd70; // time over for receiving data, after proceed with send
+					run_timer<=1;
+					status<=`ST_TRY_TO_READ;
+				end
+				`ST_TRY_TO_READ: begin
+					if (w_timer) begin
+						run_timer<=0;
+						status<=`ST_LIFE_DECISIONS;
+					end
+					if (w_reading) begin
+						run_timer<=0;
+						status<=`ST_HAS_READ;
+					end
+				end
+				`ST_LIFE_DECISIONS: begin
+					if (w_timer) begin
+						run_timer<=0;
+						if (pck_sent >= `NPACKETS_SEND) begin
+							status<=`ST_IDLE;
+							phase<=`PH_LISTEN;
+							enable_read<=1;
+						end
+						else status<=`ST_SEND_SEND;
+					end
+				end
+				`ST_HAS_READ: begin
+					if (!done_read_old & w_done_read) begin
+						data_read_last<=w_data_read;
+						status<=`ST_LIFE_DECISIONS;
+						enable_read<=0;
+						run_timer<=1;
+						limit_timer<=20;
+					end
+				end
+			endcase
 		end
-		`ST_SEND_SEND: begin
-			send<=~send;
-			status<=`ST_SEND_WAIT;
-			limit_timer<=8'd1; // STUDY_MOUSE_TIMES
+		`PH_LISTEN: begin
+			case(status)
+				`ST_IDLE: begin
+					pck_received<=0;
+					i_pck<=0;
+					if (w_reading) status<=`ST_READ3PCK;
+				end
+				`ST_READ3PCK: begin
+					if (!done_read_old & w_done_read) begin
+						pck_received<=pck_received+1;
+						data_received[pck_received]<=w_data_read;
+						if (pck_received>=2) begin
+							status<=`ST_TREAT_DATA;
+						end
+					end
+				end
+				`ST_TREAT_DATA: begin
+					if (checkPck(data_received[0])==0 && checkPck(data_received[1])==0 && checkPck(data_received[2])==0) begin
+						status<=`ST_ASSIGN1;
+					end 
+					//else treat the error
+				end
+				`ST_ASSIGN1: begin
+					data_received_el<=data_received[i_pck];
+					status<=`ST_ASSIGN2;
+				end
+				`ST_ASSIGN2: begin
+					case(i_pck)
+						2'd0: status_pck_1<=data_received_el[9:2];
+						2'd1: xm_pck_2<=data_received_el[9:2];
+						2'd2: ym_pck_3<=data_received_el[9:2];
+					endcase
+					i_pck<=i_pck+1;
+					if(i_pck>=2'd2) begin
+						data_tx_pulse_var=~data_tx_pulse_var;
+						status<=`ST_IDLE;
+					end else begin
+						status<=`ST_ASSIGN1;
+					end
+				end
+			endcase
 		end
-		`ST_SEND_WAIT: begin
-			if (!w_done_send_old & w_done_send) begin
-				run_timer<=1;
-			end
-			if (w_timer) begin
-				run_timer<=0;
-				pck_sent<=pck_sent+1;
-				status<=`ST_WAIT_ACK;
-			end
-		end
-		`ST_WAIT_ACK: begin
-			enable_read<=1;
-			limit_timer<=8'd70;
-			run_timer<=1;
-			status<=`ST_TRY_TO_READ;
-		end
-		`ST_TRY_TO_READ: begin
-			if (w_timer) begin
-				run_timer<=0;
-				status<=`ST_LIFE_DECISIONS;
-			end
-			if (w_reading) begin
-				run_timer<=0;
-				status<=`ST_HAS_READ;
-			end
-		end
-		`ST_LIFE_DECISIONS: begin
-			if (w_timer) begin
-				run_timer<=0;
-				if (pck_sent >= `NPACKETS_SEND) status<=`ST_IDLE;
-				else status<=`ST_SEND_SEND;
-			end
-		end
-		`ST_HAS_READ: begin
-			if (!done_read_old & w_done_read) begin
-				data_read_last=w_data_read;
-				status<=`ST_LIFE_DECISIONS;
-				enable_read<=0;
-				run_timer<=1;
-				limit_timer<=20;
-			end
-		end
-	endcase	
+	endcase // phase case
 	trigger_old<=trigger;
 	w_done_send_old<=w_done_send;
 	done_read_old<=w_done_read;
@@ -230,6 +324,13 @@ pulse_on_change send_pulse(
 		.trigger(send),
 		
 		.pulse(w_send)
+    );
+
+pulse_on_change tx_output_pulse(
+		.qzt_clk(w_clk_50KHz),
+		.trigger(data_tx_pulse_var),
+		
+		.pulse(data_tx)
     );
 
 endmodule
