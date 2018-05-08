@@ -1,0 +1,17 @@
+
+
+
+// Instantiate the module
+PS2_comm instance_name (
+    .qzt_clk(qzt_clk), 
+    .trigger(trigger), 
+    .PS2C(PS2C), 
+    .PS2D(PS2D), 
+    .data_tx(data_tx), 
+    .status_pck_1(status_pck_1), 
+    .xm_pck_2(xm_pck_2), 
+    .ym_pck_3(ym_pck_3), 
+    .altro(altro)
+    );
+
+

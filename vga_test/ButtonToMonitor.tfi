@@ -1,0 +1,15 @@
+
+
+
+// Instantiate the module
+ButtonToMonitor instance_name (
+    .clk_in(clk_in), 
+    .current_row(current_row), 
+    .current_line(current_line), 
+    .enable(enable), 
+    .x_pos(x_pos), 
+    .y_pos(y_pos), 
+    .color_out(color_out)
+    );
+
+

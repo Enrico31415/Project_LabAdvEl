@@ -28,8 +28,7 @@ module PS2_read(
 		reading,
 		data,
 		done,
-		err,
-		errcode
+		err
 	  );
 
 input qzt_clk;
@@ -44,7 +43,6 @@ output reg reading=0;
 output reg [10:0] data=0;
 output done;
 output reg err=0;
-output reg [7:0] errcode=0;
 
 reg [7:0] status=0;
 reg done_reg=0;
@@ -65,8 +63,6 @@ wire w_clk_1micro;
 `define ST_END	 	8'd2
 `define ST_START	8'd3
 
-`define ERR_TIMEOUT 8'd1
-
 always @ (posedge clk_main_loop) begin
 	reading = status ? 1'b1 : 1'b0;
 	if (!enable_old & enable) begin
@@ -75,7 +71,6 @@ always @ (posedge clk_main_loop) begin
 	if (enable_old) begin
 		if (w_timeout) begin
 			err<=1;
-			errcode<=`ERR_TIMEOUT;
 			status<=`ST_END;
 			run_timeout<=0;
 		end
@@ -86,8 +81,6 @@ always @ (posedge clk_main_loop) begin
 				if (PS2C_old & !PS2C) begin
 					status<=`ST_START;
 					data<=0;
-					err<=0;
-					errcode<=8'd0;
 				end
 			end
 			`ST_START: begin

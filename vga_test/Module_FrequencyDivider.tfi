@@ -1,0 +1,11 @@
+
+
+
+// Instantiate the module
+Module_FrequencyDivider instance_name (
+    .clk_in(clk_in), 
+    .period(period), 
+    .clk_out(clk_out)
+    );
+
+

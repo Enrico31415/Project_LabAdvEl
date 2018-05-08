@@ -13,7 +13,7 @@ INPUTS:
 
 OUTPUTS:
 	- PS2C & PS2D: the ports
-	- done: signal to the top module the end of the sending
+	- ok: signal to the top module the end of the sending
 	- err: signal errors
 	- status: status is used internally to keep the status but is also sended
 			out for inspection
@@ -66,15 +66,14 @@ module PS2_send(
 		
 		PS2C,
 		PS2D,
-		done,
+		ok,
 		err,
 		status,
 		
 		PS2Creg,
 		PS2Dreg,
 		altro,
-		ortla,
-		errcode
+		ortla
 	  );
 //	  ,errCode
 //
@@ -91,9 +90,8 @@ inout PS2D;
 //reg	[8:0] data;
 output reg	[7:0] status=8'd0;
 output reg			err=1'b0;
-output reg 	[7:0]	errcode=8'd0;
-output 				done;
-reg					reg_done=1'b0;
+output 				ok;
+reg					reg_ok=1'b0;
 
 reg  send_old=1'b0;
 reg  PS2C_old=1'b1;
@@ -119,10 +117,6 @@ assign PS2D=PS2Dreg?1'bz:1'b0;
 reg [0:10] dataReg=11'd0;
 integer nbits=0;
 
-`define ERR_TIMEOUT 8'd1
-`define ERR_MOUSE_ACK 8'd2
-`define ERR_STATE_MACHINE 8'd3
-
 //////////////////////////////////////////////
 output [3:0] altro;
 output [3:0] ortla;
@@ -146,9 +140,8 @@ assign ortla[0]=0;
 always @(posedge clk_main_loop) begin
 	if (w_timeout) begin
 		status=`ST_IDLE;
-		reg_done=~reg_done;
+		reg_ok=~reg_ok;
 		err=1'b1;
-		errcode=`ERR_TIMEOUT;
 	end
 	/*if (btnS) begin
 		status=`ST_IDLE;
@@ -177,7 +170,6 @@ always @(posedge clk_main_loop) begin
 			dataReg=data; // make a copy of data
 			nbits=0;
 			err=0;
-			errcode=8'd0;
 		end
 		// In here waits for the 100uS
 		`ST_WAITAQ: begin
@@ -231,8 +223,7 @@ always @(posedge clk_main_loop) begin
 		// read the ack and signal error if is not 0
 		`ST_WAITACK: begin
 			if (PS2C_old & !PS2C) begin
-				err=PS2D?(1'b1):(1'b0);
-				errcode=`ERR_MOUSE_ACK;
+				err=PS2D?(1):(0);
 				
 				limit_principal=8'd60;
 				run_principal=1;
@@ -260,18 +251,18 @@ always @(posedge clk_main_loop) begin
 			if (w_principal & PS2C & PS2D) begin
 				run_principal=0;
 				status=`ST_IDLE;
-				reg_done=~reg_done;
+				reg_ok=~reg_ok;
+				err=1'b0;
 			end /*else begin
 				run_principal=0;
 				status=`ST_IDLE;
-				done=1;
+				ok=1;
 			end*/
 		end
 		default: begin
 			status=`ST_IDLE;
-			reg_done=~reg_done;
+			reg_ok=~reg_ok;
 			err=1'b1;
-			errcode=`ERR_STATE_MACHINE;
 		end
 		endcase
 		 
@@ -324,11 +315,11 @@ Module_Counter_8_bit_oneRun timeout(
 					.carry(w_timeout)
 					);
 
-pulse_on_change done_pulse(
+pulse_on_change ok_pulse(
 		.qzt_clk(clk_main_loop),
-		.trigger(reg_done),
+		.trigger(reg_ok),
 		
-		.pulse(done)
+		.pulse(ok)
     );
 
 /*
@@ -393,7 +384,7 @@ end
 	// send request: make both counters start and take clock low.
 	if (counter>=9) begin
 		status=3;
-		done=1;
+		ok=1;
 	end
 	if (!send_old & send & status==0) begin
 		reset=1;

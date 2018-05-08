@@ -1,0 +1,13 @@
+Release 14.7 ngcbuild P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Command Line: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/ngcbuild
+PS2_comm.v PS2_comm
+
+ERROR:NgdBuild:1364 - Top-level input design file "PS2_comm.v" cannot be found
+   or created. Please make sure the source file exists and is of a recognized
+   netlist format (e.g., ngo, ngc, edif, edn, or edf).
+Total REAL time to NGCBUILD completion:  0 sec
+Total CPU time to NGCBUILD completion:   0 sec
+
+Writing NGCBUILD log file "PS2_comm.blc"...

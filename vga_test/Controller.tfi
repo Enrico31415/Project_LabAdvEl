@@ -1,0 +1,20 @@
+
+
+
+// Instantiate the module
+Controller instance_name (
+    .CLK_50M(CLK_50M), 
+    .BTN_EAST(BTN_EAST), 
+    .BTN_WEST(BTN_WEST), 
+    .BTN_NORTH(BTN_NORTH), 
+    .BTN_SOUTH(BTN_SOUTH), 
+    .PS2_CLK1(PS2_CLK1), 
+    .PS2_DATA1(PS2_DATA1), 
+    .VGA_R(VGA_R), 
+    .VGA_G(VGA_G), 
+    .VGA_B(VGA_B), 
+    .VGA_HSYNC(VGA_HSYNC), 
+    .VGA_VSYNC(VGA_VSYNC)
+    );
+
+

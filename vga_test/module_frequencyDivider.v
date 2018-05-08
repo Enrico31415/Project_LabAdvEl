@@ -1,16 +1,18 @@
-module	Module_FrequencyDivider	(	clk_in,
-					period,
+module	Module_FrequencyDivider	(
+		clk_in,
+		period,
 
-					clk_out);
+		clk_out
+		);
 
 input		clk_in;
 input	[29:0]	period;
 
 output		clk_out;
 
-reg		clk_out;
+reg		clk_out=1'b0;
 
-reg	[29:0]	counter;
+reg	[29:0]	counter=30'd0;
 
 always @(posedge clk_in) begin
 	if (counter >= (period - 1)) begin
