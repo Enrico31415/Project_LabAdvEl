@@ -1,14 +1,302 @@
 ISim log file
-Running: /media/Scratch/Project_LabAdvEl/Core/cell_io_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb /media/Scratch/Project_LabAdvEl/Core/cell_io_isim_beh.wdb 
+Running: /media/Scratch/Project_LabAdvEl/Core/GridEngine_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb /media/Scratch/Project_LabAdvEl/Core/GridEngine_isim_beh.wdb 
 ISim P.20131013 (signature 0xfbc00daa)
 WARNING: A WEBPACK license was found.
 WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
 WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
 This is a Lite version of ISim.
+WARNING: File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 93.  For instance GridEngine/memory/, width 3 of formal port play_status is not equal to width 2 of actual variable turn_status. 
 Time resolution is 1 ps
 # onerror resume
 # wave add /
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
+# isim force add /GridEngine/clk_in 1 -radix bin -value 0 -radix bin -time 20 ns -repeat 40 ns
+# isim force add /GridEngine/clk_in 1 -radix bin -value 0 -radix bin -time 20 ns -repeat 40 ns
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run all
+Stopped at time : 2562900 ns : File "/media/Scratch/Project_LabAdvEl/Core/cellMemory.v" Line 56
+# isim force add /GridEngine/mouse_pos_x 1 -radix bin
+/GridEngine/mouse_pos_x: Array length and the input lengths are different
+
+# isim force add /GridEngine/mouse_pos_y 1 -radix bin
+/GridEngine/mouse_pos_y: Array length and the input lengths are different
+
+# isim force add /GridEngine/mouse_pos_y 1 -radix bin
+/GridEngine/mouse_pos_y: Array length and the input lengths are different
+
+# isim force add /GridEngine/pointer_cell_read_status 0 -radix unsigned
+# isim force add /GridEngine/pointer_cell_read_status 0 -radix unsigned
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# isim force add /GridEngine/mouse_pos_x 0 -radix bin
+/GridEngine/mouse_pos_x: Array length and the input lengths are different
+
+# isim force add /GridEngine/mouse_pos_x 0 -radix bin
+/GridEngine/mouse_pos_x: Array length and the input lengths are different
+
+# isim force add /GridEngine/mouse_pos_y 0 -radix bin
+/GridEngine/mouse_pos_y: Array length and the input lengths are different
+
+# isim force add /GridEngine/mouse_pos_y 0 -radix bin
+/GridEngine/mouse_pos_y: Array length and the input lengths are different
+
+# isim force add /GridEngine/pos_x 0 -radix bin
+/GridEngine/pos_x: Array length and the input lengths are different
+
+# isim force add /GridEngine/pos_x 0 -radix bin
+/GridEngine/pos_x: Array length and the input lengths are different
+
+# isim force add /GridEngine/pos_y 0 -radix bin
+/GridEngine/pos_y: Array length and the input lengths are different
+
+# isim force add /GridEngine/pos_y 0 -radix bin
+/GridEngine/pos_y: Array length and the input lengths are different
+
+# isim force add /GridEngine/turn_player_placing 00 -radix bin
+# isim force add /GridEngine/turn_player_placing 00 -radix bin
+# isim force add /GridEngine/ship_size0 10 -radix bin
+/GridEngine/ship_size0: Array length and the input lengths are different
+
+# isim force add /GridEngine/ship_size0 10 -radix bin
+/GridEngine/ship_size0: Array length and the input lengths are different
+
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run all
+Stopped at time : 3874760 ns : File "/media/Scratch/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 73
+# isim force add /GridEngine/mouse_pos_x 0 -radix bin
+/GridEngine/mouse_pos_x: Array length and the input lengths are different
+
+# isim force add /GridEngine/mouse_pos_x 0 -radix bin
+/GridEngine/mouse_pos_x: Array length and the input lengths are different
+
+# isim force add /GridEngine/mouse_pos_y 0 -radix bin
+/GridEngine/mouse_pos_y: Array length and the input lengths are different
+
+# isim force add /GridEngine/mouse_pos_y 0 -radix bin
+/GridEngine/mouse_pos_y: Array length and the input lengths are different
+
+# isim force add /GridEngine/pos_x 0 -radix bin
+/GridEngine/pos_x: Array length and the input lengths are different
+
+# isim force add /GridEngine/pos_x 0 -radix bin
+/GridEngine/pos_x: Array length and the input lengths are different
+
+# isim force add /GridEngine/pos_y 0 -radix bin
+/GridEngine/pos_y: Array length and the input lengths are different
+
+# isim force add /GridEngine/pos_y 0 -radix bin
+/GridEngine/pos_y: Array length and the input lengths are different
+
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# isim force add /GridEngine/mouse_pos_x 0 -radix bin
+/GridEngine/mouse_pos_x: Array length and the input lengths are different
+
+# isim force add /GridEngine/mouse_pos_x 0 -radix bin
+/GridEngine/mouse_pos_x: Array length and the input lengths are different
+
+# isim force add /GridEngine/mouse_pos_x 0 -radix unsigned
+# isim force add /GridEngine/mouse_pos_x 0 -radix unsigned
+# isim force add /GridEngine/mouse_pos_y 0 -radix unsigned
+# isim force add /GridEngine/mouse_pos_y 0 -radix unsigned
+# isim force add /GridEngine/pos_x 0 -radix unsigned
+# isim force add /GridEngine/pos_x 0 -radix unsigned
+# isim force add /GridEngine/pos_y 0 -radix unsigned
+# isim force add /GridEngine/pos_y 0 -radix unsigned
+# run 1.00us
+# isim force add /GridEngine/ship_size0 010 -radix bin
+/GridEngine/ship_size0: Array length and the input lengths are different
+
+# isim force add /GridEngine/ship_size0 010 -radix bin
+/GridEngine/ship_size0: Array length and the input lengths are different
+
+# run 1.00us
+# isim force add /GridEngine/ship_size0 0010 -radix bin
+# isim force add /GridEngine/ship_size0 0010 -radix bin
+# run 1.00us
+# run all
+Stopped at time : 3881800 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 200
+# step
+Stopped at time : 3881800 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 202
+# step
+Stopped at time : 3881800 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 204
+# step
+Stopped at time : 3881800 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 245
+# step
+Stopped at time : 3881800 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 247
+# step
+Stopped at time : 3881800 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 251
+# step
+Stopped at time : 3881800 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 256
+# step
+Stopped at time : 3881800 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 187
+# isim force add /GridEngine/mouse_click 01 -radix bin
+# isim force add /GridEngine/mouse_click 01 -radix bin
+# run 1.00us
+Stopped at time : 3881840 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 200
+# isim force add /GridEngine/mouse_right_enable 0 -radix bin
+# isim force add /GridEngine/mouse_right_enable 0 -radix bin
+# isim force add /GridEngine/mouse_left_enable 0 -radix bin
+# isim force add /GridEngine/mouse_left_enable 0 -radix bin
+# isim force add /GridEngine/write_enable 0 -radix bin
+# isim force add /GridEngine/write_enable 0 -radix bin
+# run 1.00us
+Stopped at time : 3881880 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 200
+# step
+Stopped at time : 3881880 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 202
+# step
+Stopped at time : 3881880 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 204
+# step
+Stopped at time : 3881880 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 245
+# step
+Stopped at time : 3881880 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 247
+# step
+Stopped at time : 3881880 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 251
+# step
+Stopped at time : 3881880 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 256
+# run all
+Stopped at time : 3881920 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 200
+# isim force remove /GridEngine/mouse_right_enable
+# isim force remove /GridEngine/mouse_left_enable
+# isim force remove /GridEngine/write_enable
+# run all
+Stopped at time : 3881960 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 200
+# run all
+Stopped at time : 3882 us : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 200
+# step
+Stopped at time : 3882 us : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 202
+# step
+Stopped at time : 3882 us : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 204
+# step
+Stopped at time : 3882 us : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 245
+# step
+Stopped at time : 3882 us : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 247
+# step
+Stopped at time : 3882 us : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 251
+# step
+Stopped at time : 3882 us : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 256
+# step
+Stopped at time : 3882 us : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 187
+# step
+Stopped at time : 3882 us : File "/media/Scratch/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 17
+# step
+Stopped at time : 3882 us : File "/media/Scratch/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 18
+# step
+Stopped at time : 3882 us : File "/media/Scratch/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 19
+# step
+Stopped at time : 3882 us : File "/media/Scratch/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 20
+# run all
+Stopped at time : 3882040 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 200
+# isim force add /GridEngine/mouse_click 10 -radix bin
+# isim force add /GridEngine/mouse_click 10 -radix bin
+# run all
+Stopped at time : 3882080 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 200
+# step
+Stopped at time : 3882080 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 202
+# step
+Stopped at time : 3882080 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 204
+# step
+Stopped at time : 3882080 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 245
+# step
+Stopped at time : 3882080 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 247
+# step
+Stopped at time : 3882080 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 248
+# step
+Stopped at time : 3882080 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 249
+# step
+Stopped at time : 3882080 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 251
+# step
+Stopped at time : 3882080 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 256
+# step
+Stopped at time : 3882080 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 187
+# step
+Stopped at time : 3882080 ns : File "/media/Scratch/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 17
+# step
+Stopped at time : 3882080 ns : File "/media/Scratch/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 18
+# run all
+Stopped at time : 3882120 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 200
+# step
+Stopped at time : 3882120 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 202
+# step
+Stopped at time : 3882120 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 204
+# step
+Stopped at time : 3882120 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 245
+# step
+Stopped at time : 3882120 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 247
+# step
+Stopped at time : 3882120 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 251
+# step
+Stopped at time : 3882120 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 256
+# step
+Stopped at time : 3882120 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 187
+# step
+Stopped at time : 3882120 ns : File "/media/Scratch/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 17
+# step
+Stopped at time : 3882120 ns : File "/media/Scratch/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 18
+# run all
+Stopped at time : 3882160 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 200
+# isim force add /GridEngine/mouse_click 01 -radix bin
+# isim force add /GridEngine/mouse_click 01 -radix bin
+# run all
+Stopped at time : 3882200 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 200
+# step
+Stopped at time : 3882200 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 202
+# step
+Stopped at time : 3882200 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 204
+# step
+Stopped at time : 3882200 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 245
+# step
+Stopped at time : 3882200 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 247
+# run 1.00us
+Stopped at time : 3882240 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 200
+# run all
+Stopped at time : 3882280 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 200
+# isim force add /GridEngine/mouse_click 00 -radix bin
+# isim force add /GridEngine/mouse_click 00 -radix bin
+# run all
+Stopped at time : 6360340 ns : File "/media/Scratch/Project_LabAdvEl/Core/cellMemory.v" Line 58
+# isim force add /GridEngine/mouse_click 01 -radix bin
+# isim force add /GridEngine/mouse_click 01 -radix bin
+# run all
+Stopped at time : 9130060 ns : File "/media/Scratch/Project_LabAdvEl/Core/cellMemory.v" Line 60
+# isim force add /GridEngine/mouse_click 10 -radix bin
+# isim force add /GridEngine/mouse_click 10 -radix bin
+# run all
+Stopped at time : 11881060 ns : File "/media/Scratch/Project_LabAdvEl/Core/cellMemory.v" Line 60
+# run all
+Stopped at time : 14095480 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 188
+# isim force add /GridEngine/mouse_click 01 -radix bin
+# isim force add /GridEngine/mouse_click 01 -radix bin
+# run all
+Stopped at time : 17139180 ns : File "/media/Scratch/Project_LabAdvEl/Core/cellMemory.v" Line 60
+# run all
+Stopped at time : 21778900 ns : File "/media/Scratch/Project_LabAdvEl/Core/cellMemory.v" Line 60
+# run all
+Stopped at time : 24241100 ns : File "/media/Scratch/Project_LabAdvEl/Core/cellMemory.v" Line 60
+# isim force add /GridEngine/direction 1 -radix bin
+# isim force add /GridEngine/direction 1 -radix bin
+# run all
+Stopped at time : 26108140 ns : File "/media/Scratch/Project_LabAdvEl/Core/cellMemory.v" Line 62
+# isim force add /GridEngine/memory/play_status 000 -radix bin
+# isim force add /GridEngine/memory/play_status 000 -radix bin
+# run all
+Stopped at time : 29581300 ns : File "/media/Scratch/Project_LabAdvEl/Core/cellMemory.v" Line 60
 # exit 0

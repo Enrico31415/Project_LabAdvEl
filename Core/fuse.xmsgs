@@ -5,5 +5,8 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
+<msg type="warning" file="HDLCompiler" num="189" delta="unknown" >"/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 168: Size mismatch in connection of port &lt;<arg fmt="%s" index="3">play_status</arg>&gt;. Formal port size is <arg fmt="%d" index="2">3</arg>-bit while actual signal size is <arg fmt="%d" index="1">2</arg>-bit.
+</msg>
+
 </messages>
 

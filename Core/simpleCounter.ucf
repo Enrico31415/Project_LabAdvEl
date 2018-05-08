@@ -25,6 +25,15 @@ NET "VGA_R<3>"      LOC = "C8"   | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FA
 NET "VGA_HSYNC"     LOC = "C11"  | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST ;
 NET "VGA_VSYNC"     LOC = "B11"  | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = FAST ;
 
+
+
+##############################################################################
+# Switchs
+##############################################################################
+
+NET "SW<0>"         LOC = "T9"   | IOSTANDARD = LVCMOS33 ;
+NET "SW<1>"         LOC = "U8"   | IOSTANDARD = LVCMOS33 ;
+
 ##############################################################################
 # LEDs 
 ##############################################################################
@@ -48,10 +57,5 @@ NET "BTN_NORTH"     LOC = "T14"  | IOSTANDARD = LVCMOS33 | PULLDOWN ;
 NET "BTN_SOUTH"     LOC = "T15"  | IOSTANDARD = LVCMOS33 | PULLDOWN ;
 NET "BTN_WEST"      LOC = "U15"  | IOSTANDARD = LVCMOS33 | PULLDOWN ;
 
-##############################################################################
-# Switchs
-##############################################################################
 
-NET "SW<0>"         LOC = "T9"   | IOSTANDARD = LVCMOS33 ;
-NET "SW<1>"         LOC = "U8"   | IOSTANDARD = LVCMOS33 ;
 

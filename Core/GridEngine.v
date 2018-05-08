@@ -187,26 +187,18 @@ cell_io memory( //gestisce la memoria
 always @ (posedge clk_in)
 begin
 	//piazza l'ia
-	turn_status = turn_player_shoot;
-	/*
+	//turn_status = turn_player_placing;
 	if (turn_status == turn_ia_placing)
 	begin
-	
-	
-	
-	
 		turn_status = turn_status + 1;
 	end
 
 
-
 	else if (turn_status == turn_player_placing)//se devo inizializzare 
 	begin
-		// ATTENZIONE' DA RIMUOVERE O SI ROMPE TUTTO. SOLO DA DEBUG
-		turn_status = turn_status +1;
 		write_enable = mouse_click[0] & mouse_right_enable;
 		case (ship_size_pointer)
-			turn_player_placing: // posiziona la prima nave
+			4'd0: // posiziona la prima nave
 			begin
 				//cosa sbagliata: la funzione ritorna 1 se va a buon fine, pertanto  come fare +1 (non uccidetermi)
 				if (ship_placed)
@@ -259,7 +251,6 @@ begin
 		mouse_left_enable = !mouse_click[1];
 	end
 	
-	*/
 	
 	
 	if (turn_status == turn_player_shoot)//se tocca al giocatore

@@ -19,10 +19,10 @@
 `define cell_status_ia_hitted 5'd3
 `define cell_status_player_and_ia_hitted 5'd4
 
-`define turn_ia_placing 2'd0
-`define turn_player_placing 2'd1
+`define turn_ia_placing 2'd3
+`define turn_player_placing 2'd0
 `define turn_ia_shoot 2'd2
-`define turn_player_shoot 2'd3
+`define turn_player_shoot 2'd1
 
 
 
@@ -184,7 +184,10 @@ GridEngine GE(.clk_in(w_25Mhz_clock),
 	.ship_size3(`size_3),
 	.ship_size4(`size_4),
 	
-	
+	.turn_ia_placing(`turn_ia_placing), 
+	.turn_player_placing(`turn_player_placing), 
+	.turn_ia_shoot(`turn_ia_shoot), 
+	.turn_player_shoot(`turn_player_shoot),
 	
 	//TODO: cancellare, si utilizza solo per i led attualmente
 	.pointer_cell_read_status(w_cell_status) //stato della cella in uso

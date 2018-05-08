@@ -24,7 +24,7 @@ module cell_io(
 input clk_in;
 input we;
 input [4:0] new_value;
-input [2:0] play_status;
+input [1:0] play_status;
 input direction;
 input [3:0] mouse_cell_x;
 input [3:0] mouse_cell_y;
@@ -54,6 +54,15 @@ end
 // operazioni di scrittura/lettura dal mouse
 always @ (negedge clk_in)
 begin
+	ship_placed = 0;
+	for (i = 0; i <= 9; i = i + 1)
+	begin
+		for (j = 0; j <= 9; j = j + 1)
+		begin
+			if (memory[i][j] == 5'd1 || memory[i][j] == 5'd3 )
+			 memory[i][j] = 5'b0;
+		end
+	end
 //se e' il turno del giocatore
 	if (play_status== turn_player_shoot)
 	begin
@@ -63,17 +72,248 @@ begin
 			end
 			status=new_value;
 		end
-	if (play_status== turn_player_shoot)
+	else if (play_status== turn_player_placing)
 	begin
 		//controllo la direzione
-		if(direction)
+		if(!direction)
 		begin
 			//case sulla dimensione della nave
-		 //test0
+			case(dimension)
+			4'd2:
+			begin
+				if (mouse_cell_x+4'd2 <= 4'd10)//se sono dentro il range
+				begin
+					//pre piazzo
+					if (!we)
+					begin
+						if(memory[mouse_cell_x+4'd0][mouse_cell_y] == 5'd0)
+						begin
+							memory[mouse_cell_x+4'd0][mouse_cell_y] = 5'd1;
+						end
+						else if(memory[mouse_cell_x+4'd0][mouse_cell_y] == 5'd2)
+						begin
+							memory[mouse_cell_x+4'd0][mouse_cell_y] = 5'd3;
+						end
+						if(memory[mouse_cell_x+4'd1][mouse_cell_y] == 5'd0)
+						begin
+							memory[mouse_cell_x+4'd1][mouse_cell_y] = 5'd1;
+						end
+						else if(memory[mouse_cell_x+4'd1][mouse_cell_y] == 5'd2)
+						begin
+							memory[mouse_cell_x+4'd1][mouse_cell_y] = 5'd3;
+						end
+					end//write enable
+					else
+					begin
+						if(memory[mouse_cell_x+4'd0][mouse_cell_y] == 5'd1								&&memory[mouse_cell_x+4'd0][mouse_cell_y] == 5'd1
+							)
+						begin
+							memory[mouse_cell_x+4'd0][mouse_cell_y] = 5'd2;
+							ship_placed = 1;
+						end
+					end
+				end
+				else
+				begin
+					//metto che non si puo' scrivere
+					memory[mouse_cell_x+4'd0][mouse_cell_y] = 5'd3;
+					memory[mouse_cell_x+4'd1][mouse_cell_y] = 5'd3;
+				end
+			end
+			4'd3:
+			begin
+				if (mouse_cell_x+4'd3 <= 4'd10)//se sono dentro il range
+				begin
+					//pre piazzo
+					if (!we)
+					begin
+						if(memory[mouse_cell_x+4'd0][mouse_cell_y] == 5'd0)
+						begin
+							memory[mouse_cell_x+4'd0][mouse_cell_y] = 5'd1;
+						end
+						else if(memory[mouse_cell_x+4'd0][mouse_cell_y] == 5'd2)
+						begin
+							memory[mouse_cell_x+4'd0][mouse_cell_y] = 5'd3;
+						end
+						if(memory[mouse_cell_x+4'd1][mouse_cell_y] == 5'd0)
+						begin
+							memory[mouse_cell_x+4'd1][mouse_cell_y] = 5'd1;
+						end
+						else if(memory[mouse_cell_x+4'd1][mouse_cell_y] == 5'd2)
+						begin
+							memory[mouse_cell_x+4'd1][mouse_cell_y] = 5'd3;
+						end
+						if(memory[mouse_cell_x+4'd2][mouse_cell_y] == 5'd0)
+						begin
+							memory[mouse_cell_x+4'd2][mouse_cell_y] = 5'd1;
+						end
+						else if(memory[mouse_cell_x+4'd2][mouse_cell_y] == 5'd2)
+						begin
+							memory[mouse_cell_x+4'd2][mouse_cell_y] = 5'd3;
+						end
+					end//write enable
+					else
+					begin
+						if(memory[mouse_cell_x+4'd0][mouse_cell_y] == 5'd1								&&memory[mouse_cell_x+4'd0][mouse_cell_y] == 5'd1
+								&&memory[mouse_cell_x+4'd1][mouse_cell_y] == 5'd1
+							)
+						begin
+							memory[mouse_cell_x+4'd0][mouse_cell_y] = 5'd2;
+							memory[mouse_cell_x+4'd1][mouse_cell_y] = 5'd2;
+							ship_placed = 1;
+						end
+					end
+				end
+				else
+				begin
+					//metto che non si puo' scrivere
+					memory[mouse_cell_x+4'd0][mouse_cell_y] = 5'd3;
+					memory[mouse_cell_x+4'd1][mouse_cell_y] = 5'd3;
+					memory[mouse_cell_x+4'd2][mouse_cell_y] = 5'd3;
+				end
+			end
+			4'd4:
+			begin
+				if (mouse_cell_x+4'd4 <= 4'd10)//se sono dentro il range
+				begin
+					//pre piazzo
+					if (!we)
+					begin
+						if(memory[mouse_cell_x+4'd0][mouse_cell_y] == 5'd0)
+						begin
+							memory[mouse_cell_x+4'd0][mouse_cell_y] = 5'd1;
+						end
+						else if(memory[mouse_cell_x+4'd0][mouse_cell_y] == 5'd2)
+						begin
+							memory[mouse_cell_x+4'd0][mouse_cell_y] = 5'd3;
+						end
+						if(memory[mouse_cell_x+4'd1][mouse_cell_y] == 5'd0)
+						begin
+							memory[mouse_cell_x+4'd1][mouse_cell_y] = 5'd1;
+						end
+						else if(memory[mouse_cell_x+4'd1][mouse_cell_y] == 5'd2)
+						begin
+							memory[mouse_cell_x+4'd1][mouse_cell_y] = 5'd3;
+						end
+						if(memory[mouse_cell_x+4'd2][mouse_cell_y] == 5'd0)
+						begin
+							memory[mouse_cell_x+4'd2][mouse_cell_y] = 5'd1;
+						end
+						else if(memory[mouse_cell_x+4'd2][mouse_cell_y] == 5'd2)
+						begin
+							memory[mouse_cell_x+4'd2][mouse_cell_y] = 5'd3;
+						end
+						if(memory[mouse_cell_x+4'd3][mouse_cell_y] == 5'd0)
+						begin
+							memory[mouse_cell_x+4'd3][mouse_cell_y] = 5'd1;
+						end
+						else if(memory[mouse_cell_x+4'd3][mouse_cell_y] == 5'd2)
+						begin
+							memory[mouse_cell_x+4'd3][mouse_cell_y] = 5'd3;
+						end
+					end//write enable
+					else
+					begin
+						if(memory[mouse_cell_x+4'd0][mouse_cell_y] == 5'd1								&&memory[mouse_cell_x+4'd0][mouse_cell_y] == 5'd1
+								&&memory[mouse_cell_x+4'd1][mouse_cell_y] == 5'd1
+								&&memory[mouse_cell_x+4'd2][mouse_cell_y] == 5'd1
+							)
+						begin
+							memory[mouse_cell_x+4'd0][mouse_cell_y] = 5'd2;
+							memory[mouse_cell_x+4'd1][mouse_cell_y] = 5'd2;
+							memory[mouse_cell_x+4'd2][mouse_cell_y] = 5'd2;
+							ship_placed = 1;
+						end
+					end
+				end
+				else
+				begin
+					//metto che non si puo' scrivere
+					memory[mouse_cell_x+4'd0][mouse_cell_y] = 5'd3;
+					memory[mouse_cell_x+4'd1][mouse_cell_y] = 5'd3;
+					memory[mouse_cell_x+4'd2][mouse_cell_y] = 5'd3;
+					memory[mouse_cell_x+4'd3][mouse_cell_y] = 5'd3;
+				end
+			end
+			4'd5:
+			begin
+				if (mouse_cell_x+4'd5 <= 4'd10)//se sono dentro il range
+				begin
+					//pre piazzo
+					if (!we)
+					begin
+						if(memory[mouse_cell_x+4'd0][mouse_cell_y] == 5'd0)
+						begin
+							memory[mouse_cell_x+4'd0][mouse_cell_y] = 5'd1;
+						end
+						else if(memory[mouse_cell_x+4'd0][mouse_cell_y] == 5'd2)
+						begin
+							memory[mouse_cell_x+4'd0][mouse_cell_y] = 5'd3;
+						end
+						if(memory[mouse_cell_x+4'd1][mouse_cell_y] == 5'd0)
+						begin
+							memory[mouse_cell_x+4'd1][mouse_cell_y] = 5'd1;
+						end
+						else if(memory[mouse_cell_x+4'd1][mouse_cell_y] == 5'd2)
+						begin
+							memory[mouse_cell_x+4'd1][mouse_cell_y] = 5'd3;
+						end
+						if(memory[mouse_cell_x+4'd2][mouse_cell_y] == 5'd0)
+						begin
+							memory[mouse_cell_x+4'd2][mouse_cell_y] = 5'd1;
+						end
+						else if(memory[mouse_cell_x+4'd2][mouse_cell_y] == 5'd2)
+						begin
+							memory[mouse_cell_x+4'd2][mouse_cell_y] = 5'd3;
+						end
+						if(memory[mouse_cell_x+4'd3][mouse_cell_y] == 5'd0)
+						begin
+							memory[mouse_cell_x+4'd3][mouse_cell_y] = 5'd1;
+						end
+						else if(memory[mouse_cell_x+4'd3][mouse_cell_y] == 5'd2)
+						begin
+							memory[mouse_cell_x+4'd3][mouse_cell_y] = 5'd3;
+						end
+						if(memory[mouse_cell_x+4'd4][mouse_cell_y] == 5'd0)
+						begin
+							memory[mouse_cell_x+4'd4][mouse_cell_y] = 5'd1;
+						end
+						else if(memory[mouse_cell_x+4'd4][mouse_cell_y] == 5'd2)
+						begin
+							memory[mouse_cell_x+4'd4][mouse_cell_y] = 5'd3;
+						end
+					end//write enable
+					else
+					begin
+						if(memory[mouse_cell_x+4'd0][mouse_cell_y] == 5'd1								&&memory[mouse_cell_x+4'd0][mouse_cell_y] == 5'd1
+								&&memory[mouse_cell_x+4'd1][mouse_cell_y] == 5'd1
+								&&memory[mouse_cell_x+4'd2][mouse_cell_y] == 5'd1
+								&&memory[mouse_cell_x+4'd3][mouse_cell_y] == 5'd1
+							)
+						begin
+							memory[mouse_cell_x+4'd0][mouse_cell_y] = 5'd2;
+							memory[mouse_cell_x+4'd1][mouse_cell_y] = 5'd2;
+							memory[mouse_cell_x+4'd2][mouse_cell_y] = 5'd2;
+							memory[mouse_cell_x+4'd3][mouse_cell_y] = 5'd2;
+							ship_placed = 1;
+						end
+					end
+				end
+				else
+				begin
+					//metto che non si puo' scrivere
+					memory[mouse_cell_x+4'd0][mouse_cell_y] = 5'd3;
+					memory[mouse_cell_x+4'd1][mouse_cell_y] = 5'd3;
+					memory[mouse_cell_x+4'd2][mouse_cell_y] = 5'd3;
+					memory[mouse_cell_x+4'd3][mouse_cell_y] = 5'd3;
+					memory[mouse_cell_x+4'd4][mouse_cell_y] = 5'd3;
+				end
+			end
+			endcase
 		end
 		else
 		begin
-		 //test1
+			 //test1
 		end
 	end
 end //always
