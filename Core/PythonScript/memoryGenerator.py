@@ -93,6 +93,127 @@ print ("\tend")
 
 
 
+print ("\t//se e' il turnio dello schieramento")
+print("\tif ("+var_in_play_status+"== 2'b00)")
+print("\tbegin")
+print("\t\t"+var_out_3+" = 0;")
+print("\t\t//se sono stati temporanei, li piallo")
+for q in range(0,10):
+    for r in range(0,10):
+        print("\t\t if(stat_X"+str(q)+"_Y"+str(r)+" == 5'd1)")
+        print("\t\t\t stat_X"+str(q)+"_Y"+str(r)+" =0;")
+        print("\t\t else if(stat_X"+str(q)+"_Y"+str(r)+" == 5'd3)")
+        print("\t\t\t stat_X"+str(q)+"_Y"+str(r)+" =5'd2;")
+for i in range(0,10):
+    for j in range(0,10):
+        print("\t\t//controllo la posizione: capisco in che cella sono")
+        if j == 0 and i == 0:
+            print ("\t\tif", end='')
+        else:
+            print("\t\telse if", end='')
+        print ("("+var_in_x+" == 4'd"+str(i)+" && "+var_in_y+" == 4'd"+str(j)+")")
+        print("\t\tbegin", end='')
+        print("//controllo la direzione")
+        for n in range (0,2):# per le direzioni
+            if n == 0:
+                print("\t\t\tif(!"+var_in_direction+")")
+            else:
+                print("\t\t\telse")
+            print("\t\t\tbegin", end='')
+            print("//controllo la dimensione della nave")
+            print("\t\t\t\tcase ("+var_in_ship_dimension+")")
+            # stampo il case delle dimensioni
+            for k in  ([2,3,4,5]):
+                print("\t\t\t\t\t4'd"+str(k)+":")
+                print("\t\t\t\t\tbegin")
+                # genero le condizioni in funzione di k (dim nave)
+                # genero la condizione di higlihting
+                m = 0
+                print("\t\t\t\t\t\tif((!"+var_in_1+")", end = '')
+                while m < k:
+                    if (i+m)<=9 and (j+m)<=9:
+                        if n == 0:
+                            print("&&(stat_X"+str(i+m)+"_Y"+str(j)+" == 5'd0) \n\t\t\t\t\t\t\t\t\t", end ='');
+                        else:
+                            print("&&(stat_X"+str(i)+"_Y"+str(j+m)+" == 5'd0) \n\t\t\t\t\t\t\t\t\t", end ='');
+                    else:
+                        # vado fuori volutamente dal while
+                        m = m + 10
+                    m = m + 1
+                print(")//se posso piazzare la nave")
+                m = 0
+                print("\t\t\t\t\t\tbegin")
+                while m < k:
+                    if (i+m)<=9 and (j+m)<=9:
+                        if n == 0:
+                            print("\t\t\t\t\t\t\tstat_X"+str(i+m)+"_Y"+str(j)+"= 5'd1;")
+                        else:
+                            print("\t\t\t\t\t\t\tstat_X"+str(i)+"_Y"+str(j+m)+"= 5'd1;")
+                    else:
+                        # vado fuori volutamente dal while
+                        m = m + 10
+                    m = m + 1
+                print("\t\t\t\t\t\tend")#condizioni delle celle
+
+
+
+
+                # se non posso piazzarla
+                m = 0
+                while m < k:
+                    if (i+m)<=9 and (j+m)<=9:
+                        if n == 0:
+                            print("\t\t\t\t\t\tif(stat_X"+str(i+m)+"_Y"+str(j)+" == 5'd2)");
+                            print("\t\t\t\t\t\t\tstat_X"+str(i+m)+"_Y"+str(j)+"= 5'd3;")
+                        else:
+                            print("\t\t\t\t\t\tif(stat_X"+str(i)+"_Y"+str(j+m)+" == 5'd2)");
+                            print("\t\t\t\t\t\t\tstat_X"+str(i)+"_Y"+str(j+m)+"= 5'd3;")
+                    else:
+                        # vado fuori volutamente dal while
+                        m = m + 10
+                    m = m + 1
+                m = 0
+
+
+
+
+                # genero la condizione di posizionamento
+                m = 0
+                print("\t\t\t\t\t\tif(("+var_in_1+")", end = '')
+                while m < k:
+                    if (i+m)<=9 and (j+m)<=9:
+                        if n == 0:
+                            print("&&(stat_X"+str(i+m)+"_Y"+str(j)+" == 5'd0) \n\t\t\t\t\t\t\t\t\t", end ='');
+                        else:
+                            print("&&(stat_X"+str(i)+"_Y"+str(j+m)+" == 5'd0) \n\t\t\t\t\t\t\t\t\t", end ='');
+                    else:
+                        # vado fuori volutamente dal while
+                        m = m + 10
+                    m = m + 1
+                print(")//se posso piazzare la nave, e devo piazzarla")
+                m = 0
+                print("\t\t\t\t\t\tbegin")
+                while m < k:
+                    if (i+m)<=9 and (j+m)<=9:
+                        if n == 0:
+                            print("\t\t\t\t\t\t\tstat_X"+str(i+m)+"_Y"+str(j)+"= 5'd2;")
+                        else:
+                            print("\t\t\t\t\t\t\tstat_X"+str(i)+"_Y"+str(j+m)+"= 5'd2;")
+                    else:
+                        # vado fuori volutamente dal while
+                        m = m + 10
+                    m = m + 1
+                print("\t\t\t\t\t\t\t"+var_out_3+"=1;")
+                print("\t\t\t\t\t\tend")#condizioni delle celle
+
+                print("\t\t\t\t\tend//interno case")#(interno al case)
+            print("\t\t\t\tendcase")
+            print("\t\t\tend//direzione")
+        print("\t\tend//posizione")#(posizione)
+print("\tend//posizione")
+print("end")
+
+
 print("// operazioni di read, fatte per plottare a schermo")
 print ("always @ (posedge clk_in)")
 print ("begin")

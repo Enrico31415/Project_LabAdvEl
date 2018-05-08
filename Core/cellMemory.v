@@ -1,5 +1,5 @@
 // modulo autogenerato, non modificare. Qualsiasi modifica sarà cancellata all successiva esecuzione
-// generato da memoryGenerator.py
+// generato da memoryGeneratorV2.py
 module cell_io(
  	 clk_in,
 	 mouse_cell_x, //cella del mouse x 
@@ -11,11 +11,11 @@ module cell_io(
 	 play_status, //stato attuale del gioco (schieramento, shooting, etc)
 	 direction, //direzione della nave 
 	 dimension, //dimensione della nave 
-	 //stati del gioco da confrontare
-	 turn_ia_placing,
-	 turn_player_placing,
-	 turn_ia_shoot,	
-	 turn_player_shoot,
+
+	 turn_ia_placing, //stati di gioco 
+	 turn_player_placing, //stati di gioco 
+	 turn_ia_shoot, //stati di gioco 
+	 turn_player_shoot, //stati di gioco 
 
 	 status, //stato ritornato dal mouse
 	 status_pointed_cell, //stato ritornato dal puntantore
@@ -31,57 +31,55 @@ input [3:0] mouse_cell_y;
 input [3:0] pointer_cell_x;
 input [3:0] pointer_cell_y;
 input [3:0] dimension;
+input [1:0] turn_ia_placing;
+input [1:0] turn_player_placing;
+input [1:0] turn_ia_shoot;
+input [1:0] turn_player_shoot;
 output reg [4:0] status;
 output reg [4:0] status_pointed_cell;
 output reg ship_placed = 0;
-
-// stati del gioco
-input [1:0] turn_ia_placing, turn_player_placing, turn_ia_shoot, turn_player_shoot;
-
-reg [4:0] memory [9:0][9:0];
-
-// lettura da memoria fatta dal putantore dello schermo. Stram di dati
-always @ (posedge clk_in)
-begin
-	status_pointed_cell = memory[pointer_cell_x][pointer_cell_y];
-	
-	
-	case (play_status)
-		turn_ia_placing:
+// genero la memoria
+reg [5:0] memory [0:9][0:9];
+//la inizializzo a zero
+integer i, j;
+initial begin
+	for (i = 0; i <= 9; i = i + 1)
+	begin
+		for (j = 0; j <= 9; j = j + 1)
 		begin
-		// todo
+			 memory[i][j] = 5'b0;
 		end
-		turn_player_placing:
-		begin
-		// todo
-		end
-		turn_ia_shoot:
-		begin
-		// todo
-		end
-		turn_player_shoot:
-		begin
-		// todo
-		end
-	endcase
+	end
 end
-
-
-// scrittura/lettura nella memoria del mouse
+// operazioni di scrittura/lettura dal mouse
 always @ (negedge clk_in)
 begin
-	if(we) //se devo scrivere
+//se e' il turno del giocatore
+	if (play_status== turn_player_shoot)
 	begin
-		memory[mouse_cell_x][mouse_cell_y] = new_value;
+			if(we)
+			begin
+				memory[mouse_cell_x][mouse_cell_y] =new_value;
+			end
+			status=new_value;
+		end
+	if (play_status== turn_player_shoot)
+	begin
+		//controllo la direzione
+		if(direction)
+		begin
+			//case sulla dimensione della nave
+		 //test0
+		end
+		else
+		begin
+		 //test1
+		end
 	end
-	status = new_value;
+end //always
+// operazioni di read, fatte per plottare a schermo
+always @ (posedge clk_in)
+begin
+	status_pointed_cell= memory[pointer_cell_x][pointer_cell_y];
 end
-
-
-
-
-
-
-
-
 endmodule
