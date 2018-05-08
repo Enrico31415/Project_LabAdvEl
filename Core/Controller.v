@@ -19,6 +19,10 @@
 `define cell_status_ia_hitted 5'd3
 `define cell_status_player_and_ia_hitted 5'd4
 
+`define turn_ia_placing 2'd0
+`define turn_player_placing 2'd1
+`define turn_ia_shoot 2'd2
+`define turn_player_shoot 2'd3
 
 
 

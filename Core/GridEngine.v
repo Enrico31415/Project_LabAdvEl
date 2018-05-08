@@ -1,27 +1,3 @@
-`timescale 1ns / 1ps
-`define turn_inizialize 2'b00
-`define frequency_div 	30'd1
-`define turn_player 2'b01
-`define turn_IA 2'b10
-
-
-
-
-
-
-// CODIFICA DELLA CELLA DI MEMORIA: 5 bit
-// 	_ 1 bit libero (?)	_ _ 2 bit per i colpi sparati 	_ _ 2 bit per la disposizione
-//  
-// bit per la disposizione: 
-//		00 acqua 			/ 01 nave mia			/ 10 nave sua 			/ 11 entrambe
-//
-// bit per i colpi sparati: 
-// 	00 non sparato 	/ 01 sparato da me 	/ 10 sparato da lui 	/ 11 sparato da entrambi
-//
-//
-
-
-
 `define row_dimension	10'd2
 `define line_dimension	10'd2
 
@@ -71,7 +47,11 @@ module GridEngine(clk_in,
 	ship_size0, ship_size1, ship_size2, ship_size3, ship_size4,
 	
 	
-	
+	// stati del gioco
+	turn_ia_placing,
+	turn_player_placing,
+	turn_ia_shoot,	
+	turn_player_shoot,
 	
 	
 	
@@ -90,10 +70,13 @@ input [4:0] cell_status_player_hitted;
 input [4:0] cell_status_ia_hitted;
 input [4:0] cell_status_player_and_ia_hitted;
 
-
+// sono 5 navi, con profondit 3 bit (massimo 7 la lunghezza)
 input [3:0] ship_size0, ship_size1, ship_size2, ship_size3, ship_size4;
 
-// sono 5 navi, con profondit 3 bit (massimo 7 la lunghezza)
+
+
+// stati del gioco
+input [1:0] turn_ia_placing, turn_player_placing, turn_ia_shoot, turn_player_shoot;
 
 
 input clk_in;
@@ -186,6 +169,13 @@ cell_io memory( //gestisce la memoria
 	.direction(direction), //direzione della nave 
 	.dimension(ship_size[ship_size_pointer]), //dimensione della nave 
 	
+	//statia del gioco
+	.turn_ia_placing(turn_ia_placing), 
+	.turn_player_placing(turn_player_placing), 
+	.turn_ia_shoot(turn_ia_shoot), 
+	.turn_player_shoot(turn_player_shoot),
+	
+	
 	
 	.status(mouse_cell_read_status),
 	.ship_placed(ship_placed),
@@ -196,13 +186,27 @@ cell_io memory( //gestisce la memoria
 
 always @ (posedge clk_in)
 begin
-	if (turn_status == `turn_inizialize)//se devo inizializzare 
+	//piazza l'ia
+	turn_status = turn_player_shoot;
+	/*
+	if (turn_status == turn_ia_placing)
 	begin
-		//TODO: generazione random, controllo posizionamento
-		//TODO: provo ad implementare il posizionamento delle navi.
+	
+	
+	
+	
+		turn_status = turn_status + 1;
+	end
+
+
+
+	else if (turn_status == turn_player_placing)//se devo inizializzare 
+	begin
+		// ATTENZIONE' DA RIMUOVERE O SI ROMPE TUTTO. SOLO DA DEBUG
+		turn_status = turn_status +1;
 		write_enable = mouse_click[0] & mouse_right_enable;
 		case (ship_size_pointer)
-			4'd0: // posiziona la prima nave
+			turn_player_placing: // posiziona la prima nave
 			begin
 				//cosa sbagliata: la funzione ritorna 1 se va a buon fine, pertanto  come fare +1 (non uccidetermi)
 				if (ship_placed)
@@ -255,10 +259,10 @@ begin
 		mouse_left_enable = !mouse_click[1];
 	end
 	
+	*/
 	
 	
-	
-	else if (turn_status == `turn_player)//se tocca al giocatore
+	if (turn_status == turn_player_shoot)//se tocca al giocatore
 	begin
 		//TODO: 
 		//aspetto qui finch non ha cliccato?
@@ -297,11 +301,22 @@ begin
 		end
 		mouse_right_enable = !mouse_click[0];
 	end
-	else if (turn_status == `turn_IA)//se tocca all'ia
+	
+	
+	
+	
+	/*
+	
+	else if (turn_status == turn_player_shoot)//se tocca all'ia
 	begin
 		//TODO
 		//genero random una posizione e verifico se  buona.
+		
+		
+		
+		turn_status = 0;
 	end
+	*/
 end
 
 
