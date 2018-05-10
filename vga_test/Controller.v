@@ -29,8 +29,8 @@ wire [9:0] position_to_controller_y;
 
 wire clock_umano;
 
-wire [9:0] mouse_sym_counter_x;
-wire [9:0] mouse_sym_counter_y;
+wire [9:0] mouse_sym_counter_x;//=10'd300;
+wire [9:0] mouse_sym_counter_y;//=10'd300;
 	 
 output	[3:0]	VGA_R;
 output	[3:0]	VGA_G;
@@ -112,7 +112,7 @@ Module_FrequencyDivider	second(
 		.clk_out(w_clk_second)
 		);
 
-		
+	
 mouse_data_management mdm(
 		.qzt_clk(CLK_50M),
 		.status(w_status_pck_1),
@@ -124,12 +124,19 @@ mouse_data_management mdm(
 		.posY(mouse_sym_counter_y)
     );
 
+
 always @ (posedge CLK_50M) begin
 	case(SW)
 	4'd0: LED<=w_status_pck_1;
 	4'd1: LED<=w_xm_pck_2;
 	4'd2: LED<=w_ym_pck_3;
 	4'd3: LED<=w_altro;
+	
+	4'd5: LED<=mouse_sym_counter_x[9:2];
+	4'd4: LED<=mouse_sym_counter_x[7:0];
+	
+	4'd7: LED<=mouse_sym_counter_y[9:2];
+	4'd6: LED<=mouse_sym_counter_y[7:0];
 	default: LED<={8{w_clk_second}};
 	endcase
 end

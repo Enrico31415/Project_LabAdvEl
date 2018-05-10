@@ -303,7 +303,7 @@ PS2_send send_module(
 		
 		.PS2C(PS2C),
 		.PS2D(PS2D),
-		.ok(w_done_send),
+		.done(w_done_send),
 		.err(w_err_send)
 //		.errcode(w_errcode_send)
 		//status,
