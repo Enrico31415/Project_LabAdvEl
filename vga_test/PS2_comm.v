@@ -29,9 +29,9 @@ module PS2_comm(
 		PS2D,
 		
 		data_tx,
-		status_pck_1_r,
-		xm_pck_2_r,
-		ym_pck_3_r,
+		status_pck_1,
+		xm_pck_2,
+		ym_pck_3,
 		
 		altro
     );
@@ -46,13 +46,13 @@ output [15:0] altro;
 
 // mouse data
 output data_tx;
-output reg [7:0] status_pck_1_r=0;
-output reg [7:0] xm_pck_2_r=0;
-output reg [7:0] ym_pck_3_r=0;
+output reg [7:0] status_pck_1=0;
+output reg [7:0] xm_pck_2=0;
+output reg [7:0] ym_pck_3=0;
 
-reg [7:0] status_pck_1=0;
-reg [7:0] xm_pck_2=0;
-reg [7:0] ym_pck_3=0;
+reg [7:0] status_pck_1_r=0;
+reg [7:0] xm_pck_2_r=0;
+reg [7:0] ym_pck_3_r=0;
 
 /* ************************** REG & WIRES ********************************** */
 // module COMMUNICATION (THIS) ////////
@@ -84,15 +84,20 @@ wire w_send;
 reg send=0;
 reg [0:10] data_send_array [`NPACKETS_SEND-1:0];
 integer pck_sent=0;
+// err
+wire w_err_send;
+wire [7:0] w_errcode_send;
 
 // module READ ////////////////////////
 reg enable_read=0;
 wire [10:0]w_data_read;
 wire w_done_read;
 reg done_read_old=0;
-wire w_err_read;
 wire w_reading;
 reg [10:0]data_read_last=0;
+// err
+wire w_err_read;
+wire [7:0] w_errcode_read;
 
 /* **************** array of data ****************************************** */
 initial begin
@@ -136,6 +141,11 @@ assign altro=status;
 `define ST_ASSIGN2 8'd23
 `define ST_LISTEN_RESEND 8'd24
 
+/* ***************************** other constants *************************** */
+`define ERR_TIMEOUT 8'd1 			// for both modules
+`define ERR_MOUSE_ACK 8'd2			// for send only
+`define ERR_STATE_MACHINE 8'd3	// for send only
+
 /* ***************************** function ********************************** */
 function [1:0] checkPck;
 	input [10:0] pck;
@@ -143,14 +153,14 @@ function [1:0] checkPck;
 	else if (! (^pck[9:1])) checkPck=2;
 	else checkPck=0;
 endfunction
-/* ************************************************************************* */
 
-integer i=0;
-initial begin
-	for (i=0; i<8; i=i+1) begin
-		status_pck_1_r[7-i] = status_pck_1[i];
-		xm_pck_2_r[7-i] = xm_pck_2[i];
-		ym_pck_3_r[7-i] = ym_pck_3[i];
+/* ************************** reverse vectors ****************************** */
+integer i;
+always @(posedge qzt_clk) begin
+	for (i=0;i<=7;i=i+1) begin
+		status_pck_1[i]<=status_pck_1_r[7-i];
+		xm_pck_2[i]<=xm_pck_2_r[7-i];
+		ym_pck_3[i]<=ym_pck_3_r[7-i];
 	end
 end
 
@@ -220,19 +230,19 @@ always @(posedge qzt_clk) begin
 		end
 		`PH_LISTEN: begin
 			//timer
-			/*
 			if (w_timer) begin
 				run_timer<=0;
 				status<=`ST_IDLE;
+				//err<=1;
+				//errcode<=`ERR_TIMER;
 			end
-			*/
 			case(status)
 				`ST_IDLE: begin
 					pck_received<=0;
 					i_pck<=0;
-					//timer //limit_timer<=8'd100;
+					limit_timer<=8'd100; //timer
 					if (w_reading) begin
-						//timer //run_timer<=1;
+						run_timer<=1; //timer
 						status<=`ST_READ3PCK;
 					end
 				end
@@ -259,9 +269,9 @@ always @(posedge qzt_clk) begin
 				end
 				`ST_ASSIGN2: begin
 					case(i_pck)
-						2'd0: status_pck_1<=data_received_el[9:2];
-						2'd1: xm_pck_2<=data_received_el[9:2];
-						2'd2: ym_pck_3<=data_received_el[9:2];
+						2'd0: status_pck_1_r<=data_received_el[9:2];
+						2'd1: xm_pck_2_r<=data_received_el[9:2];
+						2'd2: ym_pck_3_r<=data_received_el[9:2];
 					endcase
 					i_pck<=i_pck+1;
 					if(i_pck>=2'd2) begin
@@ -293,8 +303,9 @@ PS2_send send_module(
 		
 		.PS2C(PS2C),
 		.PS2D(PS2D),
-		.ok(w_done_send)
-		//err,
+		.ok(w_done_send),
+		.err(w_err_send)
+//		.errcode(w_errcode_send)
 		//status,
 		
 		//PS2Creg,
@@ -314,6 +325,7 @@ PS2_read read_module(
 		.data(w_data_read),
 		.done(w_done_read),
 		.err(w_err_read)
+//		.errcode(w_errcode_read)
 	  );
 
 Module_FrequencyDivider	cinquantaKHz(

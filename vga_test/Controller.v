@@ -15,7 +15,7 @@ module Controller(
     );
 	 
 input CLK_50M;
-input [4:0] SW;
+input [3:0] SW;
 
 input BTN_EAST, BTN_WEST, BTN_NORTH, BTN_SOUTH;
 inout PS2_CLK1, PS2_DATA1;
@@ -36,7 +36,7 @@ output	[3:0]	VGA_R;
 output	[3:0]	VGA_G;
 output	[3:0]	VGA_B;
 output VGA_HSYNC, VGA_VSYNC;
-output [7:0] LED;
+output reg [7:0] LED;
 
 Module_FrequencyDivider Mhz25ClockGenerator(
 					.clk_in(CLK_50M),
@@ -72,7 +72,6 @@ wire [7:0] w_ym_pck_3;
 wire w_clk_milli;
 wire w_buttonN;
 wire w_clk_second;
-reg [7:0] LED_r=0;
 wire [7:0] w_altro;
 
 PS2_comm PS2_comm(
@@ -83,9 +82,9 @@ PS2_comm PS2_comm(
 		.PS2D(PS2_DATA1),
 		
 		.data_tx(w_data_mouse),
-		.status_pck_1_r(w_status_pck_1),
-		.xm_pck_2_r(w_xm_pck_2),
-		.ym_pck_3_r(w_ym_pck_3)
+		.status_pck_1(w_status_pck_1),
+		.xm_pck_2(w_xm_pck_2),
+		.ym_pck_3(w_ym_pck_3),
 		
 		.altro(w_altro)
     );
@@ -127,15 +126,13 @@ mouse_data_management mdm(
 
 always @ (posedge CLK_50M) begin
 	case(SW)
-	4'd0: LED_r<=w_status_pck_1;
-	4'd1: LED_r<=w_xm_pck_2;
-	4'd2: LED_r<=w_ym_pck_3;
-	4'd3: LED_r<=w_altro;
-	default: LED_r<={8{w_clk_second}};
+	4'd0: LED<=w_status_pck_1;
+	4'd1: LED<=w_xm_pck_2;
+	4'd2: LED<=w_ym_pck_3;
+	4'd3: LED<=w_altro;
+	default: LED<={8{w_clk_second}};
 	endcase
 end
-
-assign LED = LED_r;
 
 /****************************************************/
 
