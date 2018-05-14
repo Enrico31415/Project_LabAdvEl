@@ -14,10 +14,12 @@
 //
 
 `define cell_status_free 5'd0
-`define cell_status_occ 5'd1
-`define cell_status_player_hitted 5'd2
-`define cell_status_ia_hitted 5'd3
-`define cell_status_player_and_ia_hitted 5'd4
+`define cell_status_player_occ 5'd1
+`define cell_status_ia_occ 5'd2
+`define cell_status_player_hitted 5'd3
+`define cell_status_ia_hitted 5'd4
+`define cell_status_player_and_ia_hitted 5'd5
+`define cell_status_pre_occupied 5'd6
 
 `define turn_ia_placing 2'd3
 `define turn_player_placing 2'd0
@@ -119,18 +121,15 @@ Module_VGADriver driver (
 	
 	// stati delle celle, sono in comune alla memoria, quindi per evitare mismatch meglio che li tengra il controller
 	.cell_status_free(`cell_status_free),
-	.cell_status_occ(`cell_status_occ),
+	.cell_status_player_occ(`cell_status_player_occ),
 	.cell_status_player_hitted(`cell_status_player_hitted),
 	.cell_status_ia_hitted(`cell_status_ia_hitted),
 	.cell_status_player_and_ia_hitted(`cell_status_player_and_ia_hitted),
-	
-	
-	
-	
-	
-	
+	.cell_status_pre_occupied(`cell_status_pre_occupied),
 	
 	.cell_status(w_cell_status),
+	
+	
 	
 	
 	.color_out(w_color_out) //colore prescelto
@@ -172,10 +171,25 @@ GridEngine GE(.clk_in(w_25Mhz_clock),
 	
 	// stati delle celle, sono in comune alla memoria, quindi per evitare mismatch meglio che li tengra il controller
 	.cell_status_free(`cell_status_free),
-	.cell_status_occ(`cell_status_occ),
+	.cell_status_player_occ(`cell_status_player_occ),
+	.cell_status_ia_occ(`cell_status_ia_occ),
 	.cell_status_player_hitted(`cell_status_player_hitted),
 	.cell_status_ia_hitted(`cell_status_ia_hitted),
 	.cell_status_player_and_ia_hitted(`cell_status_player_and_ia_hitted),
+	.cell_status_pre_occupied(`cell_status_pre_occupied),
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	//dimensione delle navi
 	.ship_size0(`size_0),

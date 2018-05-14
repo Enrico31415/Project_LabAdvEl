@@ -1,1 +1,1 @@
--intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "/media/Scratch/Project_LabAdvEl/Core/GridEngine_isim_beh.exe" -prj "/media/Scratch/Project_LabAdvEl/Core/GridEngine_beh.prj" "work.GridEngine" "work.glbl" 
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "Z:/Core/Project_LabAdvEl/Core/ge_test_isim_beh.exe" -prj "Z:/Core/Project_LabAdvEl/Core/ge_test_beh.prj" "work.ge_test" "work.glbl" 

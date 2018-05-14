@@ -37,10 +37,12 @@ module GridEngine(clk_in,
 	
 	//stati delle celle, siccome sono in comune con la memoria, per evitare mismatch  meglio che le definizione sia contenute nel modulo padre
 	cell_status_free,
-	cell_status_occ,
+	cell_status_player_occ,
+	cell_status_ia_occ,
 	cell_status_player_hitted,
 	cell_status_ia_hitted,
 	cell_status_player_and_ia_hitted,
+	cell_status_pre_occupied,
 	
 	
 	// dimensione delle navi
@@ -65,10 +67,12 @@ module GridEngine(clk_in,
 `include "gridFunctions.v"
 
 input [4:0] cell_status_free;
-input [4:0] cell_status_occ;
+input [4:0] cell_status_ia_occ;
+input [4:0] cell_status_player_occ;
 input [4:0] cell_status_player_hitted;
 input [4:0] cell_status_ia_hitted;
 input [4:0] cell_status_player_and_ia_hitted;
+input [4:0] cell_status_pre_occupied;
 
 // sono 5 navi, con profondit 3 bit (massimo 7 la lunghezza)
 input [3:0] ship_size0, ship_size1, ship_size2, ship_size3, ship_size4;
@@ -113,7 +117,6 @@ wire[3:0] pointer_cell_y;
 // di profondit 2^4-1 (3:0)
 wire[3:0] ship_size [4:0];
 
-wire ship_placed;
 
 assign ship_size[0] = ship_size0;
 assign ship_size[1] = ship_size1;
@@ -121,8 +124,8 @@ assign ship_size[2] = ship_size2;
 assign ship_size[3] = ship_size3;
 assign ship_size[4] = ship_size4;
 
-
-
+// flag per capire se è piazzata o meno la nave
+wire ship_placed;
 
 
 
@@ -151,10 +154,6 @@ pos_to_quadrant pointer_to_cell(
 
 
 
-
-//data la posizione in x, ed y, ritorna lo stato della cella. 
-// si pu fare furbo? senza flag, ma controllando se lo stato  diverso?
-// punta alla posizione del mouse.
 cell_io memory( //gestisce la memoria
 	.clk_in(clk_in),
 	.mouse_cell_x(mouse_cell_x),
@@ -164,22 +163,26 @@ cell_io memory( //gestisce la memoria
 	.pointer_cell_x(pointer_cell_x),
 	.pointer_cell_y(pointer_cell_y),
 	
+	.game_status(turn_status), // stato del gioco
+	.player_placing(turn_player_placing), // statico: turno del giocatore: posiziona
+	.player_shoot(turn_player_shoot), 
 	
-	.play_status(turn_status), //stato attuale del gioco (schieramento, shooting, etc)
-	.direction(direction), //direzione della nave 
-	.dimension(ship_size[ship_size_pointer]), //dimensione della nave 
-	
-	//statia del gioco
-	.turn_ia_placing(turn_ia_placing), 
-	.turn_player_placing(turn_player_placing), 
-	.turn_ia_shoot(turn_ia_shoot), 
-	.turn_player_shoot(turn_player_shoot),
+	.ship_length(ship_size[ship_size_pointer]), // dimensione della nave
+   .direction(direction), // direzione 
 	
 	
+	.cell_status_free(cell_status_free),
+	.cell_status_player_occ(cell_status_player_occ),
+	.cell_status_ia_occ(cell_status_ia_occ),
+	.cell_status_player_hitted(cell_status_player_hitted),
+	.cell_status_ia_hitted(cell_status_ia_hitted),
+	.cell_status_player_and_ia_hitted(cell_status_player_and_ia_hitted),
+	.cell_status_pre_occupied(cell_status_pre_occupied),
 	
+	//roba letta dal mouse
 	.status(mouse_cell_read_status),
-	.ship_placed(ship_placed),
-	.status_pointed_cell(pointer_cell_read_status)
+	.status_pointed_cell(pointer_cell_read_status),
+	.ship_placed(ship_placed)
 );
 
 
@@ -194,47 +197,31 @@ begin
 	end
 
 
-	else if (turn_status == turn_player_placing)//se devo inizializzare 
+	else if (turn_status == turn_player_placing)//se il giocatore deve posizionare le navi 
 	begin
 		write_enable = mouse_click[0] & mouse_right_enable;
 		case (ship_size_pointer)
 			4'd0: // posiziona la prima nave
 			begin
 				//cosa sbagliata: la funzione ritorna 1 se va a buon fine, pertanto  come fare +1 (non uccidetermi)
-				if (ship_placed)
-				begin
-					ship_size_pointer = ship_size_pointer+1;
-				end
-				
+				ship_size_pointer = ship_size_pointer + ship_placed;
 			end
 			4'd1: // posiziona la seconda nave
 			begin
-				if (ship_placed)
-				begin
-					ship_size_pointer = ship_size_pointer+1;
-				end
+				ship_size_pointer = ship_size_pointer + ship_placed;
 			end
 			4'd2: // posiziona la terza nave
 			begin
-				if (ship_placed)
-				begin
-					ship_size_pointer = ship_size_pointer+1;
-				end
+				ship_size_pointer = ship_size_pointer + ship_placed;
 			end
 			4'd3: // posiziona la quarta nave
 			begin
-				if (ship_placed)
-				begin
-					ship_size_pointer = ship_size_pointer+1;
-				end
+				ship_size_pointer = ship_size_pointer + ship_placed;
 			end
 			4'd4: // posiziona la quinta nave
 			begin
-				if (ship_placed)
-				begin
-					ship_size_pointer = ship_size_pointer+1;
-					turn_status = turn_status +1;
-				end
+				ship_size_pointer = ship_size_pointer + ship_placed;
+				turn_status = turn_status+1;
 			end
 			default:
 			begin
@@ -263,9 +250,9 @@ begin
 
 			if (mouse_cell_read_status == cell_status_free)
 			begin
-				cell_new_status = cell_status_occ;  // _____________ 0->1 
+				cell_new_status = cell_status_player_occ;  // _____________ 0->1 
 			end
-			else if (mouse_cell_read_status == cell_status_occ) 
+			else if (mouse_cell_read_status == cell_status_player_occ) 
 			begin
 				cell_new_status = cell_status_player_hitted;   // _____________ 1->2 
 			end

@@ -22,3 +22,26 @@ begin
 			isShipInside = 1;
 end
 endfunction
+
+
+function placeShip;
+input [3:0] cell_x; //cella (x,y), partendo da in alto a dx
+input [3:0] cell_y; //vedi sopra
+input direction; // direzione della nave: se  0 - (orrizontale) se  1 | (verticale);
+input [3:0] ship_length; // dimensione delle nave.
+begin
+	//conto fintanto per coprire la dimensione della nave, data la direzione
+	if (isShipInside(cell_x, cell_y, direction, ship_length))
+	begin
+		placeShip = 1;
+	end
+	else
+	begin
+	placeShip = 1;
+	end
+end
+
+endfunction
+
+
+

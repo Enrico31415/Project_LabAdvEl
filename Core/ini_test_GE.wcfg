@@ -3,71 +3,125 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine_isim_beh.wdb" id="1" type="auto">
+      <db_ref path="Z:/Core/Project_LabAdvEl/Core/ge_test_isim_beh.wdb" id="1" type="auto">
          <top_modules>
-            <top_module name="GridEngine" />
+            <top_module name="ge_test" />
             <top_module name="glbl" />
          </top_modules>
       </db_ref>
    </db_ref_list>
-   <WVObjectSize size="13" />
-   <wvobject fp_name="/GridEngine/mouse_click" type="logic" db_ref_id="1">
-      <obj_property name="ElementShortName">mouse_click</obj_property>
-      <obj_property name="ObjectShortName">mouse_click</obj_property>
+   <WVObjectSize size="23" />
+   <wvobject fp_name="/ge_test/pointer_cell_read_status" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">pointer_cell_read_status[4:0]</obj_property>
+      <obj_property name="ObjectShortName">pointer_cell_read_status[4:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/GridEngine/clk_in" type="logic" db_ref_id="1">
+   <wvobject fp_name="/ge_test/clk_in" type="logic" db_ref_id="1">
       <obj_property name="ElementShortName">clk_in</obj_property>
       <obj_property name="ObjectShortName">clk_in</obj_property>
    </wvobject>
-   <wvobject fp_name="/GridEngine/mouse_pos_x" type="array" db_ref_id="1">
+   <wvobject fp_name="/ge_test/mouse_pos_x" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">mouse_pos_x[9:0]</obj_property>
       <obj_property name="ObjectShortName">mouse_pos_x[9:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/GridEngine/mouse_pos_y" type="array" db_ref_id="1">
+   <wvobject fp_name="/ge_test/mouse_pos_y" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">mouse_pos_y[9:0]</obj_property>
       <obj_property name="ObjectShortName">mouse_pos_y[9:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/GridEngine/pos_x" type="array" db_ref_id="1">
+   <wvobject fp_name="/ge_test/pos_x" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">pos_x[9:0]</obj_property>
       <obj_property name="ObjectShortName">pos_x[9:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/GridEngine/pos_y" type="array" db_ref_id="1">
+   <wvobject fp_name="/ge_test/pos_y" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">pos_y[9:0]</obj_property>
       <obj_property name="ObjectShortName">pos_y[9:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/GridEngine/cell_read_status" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">cell_read_status[1:0]</obj_property>
-      <obj_property name="ObjectShortName">cell_read_status[1:0]</obj_property>
+   <wvobject fp_name="/ge_test/mouse_click" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">mouse_click[1:0]</obj_property>
+      <obj_property name="ObjectShortName">mouse_click[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ge_test/cell_status_free" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cell_status_free[4:0]</obj_property>
+      <obj_property name="ObjectShortName">cell_status_free[4:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/GridEngine/mouse_cell_x" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">mouse_cell_x[3:0]</obj_property>
-      <obj_property name="ObjectShortName">mouse_cell_x[3:0]</obj_property>
+   <wvobject fp_name="/ge_test/cell_status_player_occ" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cell_status_player_occ[4:0]</obj_property>
+      <obj_property name="ObjectShortName">cell_status_player_occ[4:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/GridEngine/mouse_cell_y" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">mouse_cell_y[3:0]</obj_property>
-      <obj_property name="ObjectShortName">mouse_cell_y[3:0]</obj_property>
+   <wvobject fp_name="/ge_test/cell_status_ia_occ" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cell_status_ia_occ[4:0]</obj_property>
+      <obj_property name="ObjectShortName">cell_status_ia_occ[4:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/GridEngine/turn_status" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">turn_status[1:0]</obj_property>
-      <obj_property name="ObjectShortName">turn_status[1:0]</obj_property>
+   <wvobject fp_name="/ge_test/cell_status_player_hitted" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cell_status_player_hitted[4:0]</obj_property>
+      <obj_property name="ObjectShortName">cell_status_player_hitted[4:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/GridEngine/cell_new_status" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">cell_new_status[1:0]</obj_property>
-      <obj_property name="ObjectShortName">cell_new_status[1:0]</obj_property>
+   <wvobject fp_name="/ge_test/cell_status_ia_hitted" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cell_status_ia_hitted[4:0]</obj_property>
+      <obj_property name="ObjectShortName">cell_status_ia_hitted[4:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/GridEngine/mouse_enable" type="logic" db_ref_id="1">
-      <obj_property name="ElementShortName">mouse_enable</obj_property>
-      <obj_property name="ObjectShortName">mouse_enable</obj_property>
+   <wvobject fp_name="/ge_test/cell_status_player_and_ia_hitted" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cell_status_player_and_ia_hitted[4:0]</obj_property>
+      <obj_property name="ObjectShortName">cell_status_player_and_ia_hitted[4:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/GridEngine/memory/stat_X0_Y0" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">stat_X0_Y0[1:0]</obj_property>
-      <obj_property name="ObjectShortName">stat_X0_Y0[1:0]</obj_property>
+   <wvobject fp_name="/ge_test/cell_status_pre_occupied" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cell_status_pre_occupied[4:0]</obj_property>
+      <obj_property name="ObjectShortName">cell_status_pre_occupied[4:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ge_test/ship_size0" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">ship_size0[3:0]</obj_property>
+      <obj_property name="ObjectShortName">ship_size0[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ge_test/ship_size1" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">ship_size1[3:0]</obj_property>
+      <obj_property name="ObjectShortName">ship_size1[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ge_test/ship_size2" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">ship_size2[3:0]</obj_property>
+      <obj_property name="ObjectShortName">ship_size2[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ge_test/ship_size3" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">ship_size3[3:0]</obj_property>
+      <obj_property name="ObjectShortName">ship_size3[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ge_test/ship_size4" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">ship_size4[3:0]</obj_property>
+      <obj_property name="ObjectShortName">ship_size4[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ge_test/turn_ia_placing" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">turn_ia_placing[1:0]</obj_property>
+      <obj_property name="ObjectShortName">turn_ia_placing[1:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ge_test/turn_player_placing" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">turn_player_placing[1:0]</obj_property>
+      <obj_property name="ObjectShortName">turn_player_placing[1:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ge_test/turn_ia_shoot" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">turn_ia_shoot[1:0]</obj_property>
+      <obj_property name="ObjectShortName">turn_ia_shoot[1:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ge_test/turn_player_shoot" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">turn_player_shoot[1:0]</obj_property>
+      <obj_property name="ObjectShortName">turn_player_shoot[1:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
 </wave_config>

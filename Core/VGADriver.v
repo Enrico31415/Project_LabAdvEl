@@ -32,11 +32,11 @@ module Module_VGADriver(
 	mouse_pos_y,
 	cell_status,
 	cell_status_free,
-	cell_status_occ,
+	cell_status_player_occ,
 	cell_status_player_hitted,
 	cell_status_ia_hitted,
 	cell_status_player_and_ia_hitted,
-	
+	cell_status_pre_occupied,
 	
 	
 	color_out
@@ -50,10 +50,11 @@ input[9:0] current_line;
 
 
 input [4:0] cell_status_free;
-input [4:0] cell_status_occ;
+input [4:0] cell_status_player_occ;
 input [4:0] cell_status_player_hitted;
 input [4:0] cell_status_ia_hitted;
 input [4:0] cell_status_player_and_ia_hitted;
+input [4:0] cell_status_pre_occupied;
 
 
 input [4:0]	cell_status;
@@ -106,11 +107,15 @@ begin
 	if (enable == 1) 
 	begin		
 		case (cell_status) // test sullo stato della cella in quesione
+			cell_status_pre_occupied :
+				begin
+					color_out = `green;
+				end
 			cell_status_free : // <-----------------------------------------------
 				begin //se sono nel quadrato => cambio colore
 					color_out = `black;
 				end
-			cell_status_occ : 
+			cell_status_player_occ : 
 				begin
 					color_out = `color_ship;
 				end
@@ -133,6 +138,21 @@ begin
 					end
 				end
 			cell_status_player_and_ia_hitted : 
+				begin
+				//`cross
+					pointer_to_mask_1 =  ( current_row- (cell_x*10'd64));
+					pointer_to_mask_2 =  (current_line- (cell_y*10'd48));
+					pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*10'd64;
+					if (cross_over_circle[pointer_to_mask])
+					begin
+						color_out = `color_player_and_ia_hit;
+					end
+					else
+					begin
+						color_out = `black;
+					end
+				end
+			cell_status_player_hitted : 
 				begin
 				//`cross
 					pointer_to_mask_1 =  ( current_row- (cell_x*10'd64));
