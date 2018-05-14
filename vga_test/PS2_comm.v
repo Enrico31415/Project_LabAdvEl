@@ -75,19 +75,6 @@ reg [10:0] data_received [2:0];
 reg [10:0] data_received_el=0;
 reg [1:0] i_pck=0;
 
-// module SEND ////////////////////////
-`define NPACKETS_SEND 8'd3
-reg w_done_send_old=0;
-wire [10:0] w_data_send;
-wire w_done_send;
-wire w_send;
-reg send=0;
-reg [0:10] data_send_array [`NPACKETS_SEND-1:0];
-integer pck_sent=0;
-// err
-wire w_err_send;
-wire [7:0] w_errcode_send;
-
 // module READ ////////////////////////
 reg enable_read=0;
 wire [10:0]w_data_read;
@@ -99,12 +86,29 @@ reg [10:0]data_read_last=0;
 wire w_err_read;
 wire [7:0] w_errcode_read;
 
+// module SEND ////////////////////////
+`define NPACKETS_SEND 8'd6
+reg w_done_send_old=0;
+wire [10:0] w_data_send;
+wire w_done_send;
+wire w_send;
+reg send=0;
+reg [0:10] data_send_array [`NPACKETS_SEND-1:0];
+integer pck_sent=0;
+// err
+wire w_err_send;
+wire [7:0] w_errcode_send;
+
 /* **************** array of data ****************************************** */
 initial begin
 	//data_send_array[0]=11'b01111111111;	// reset
 	data_send_array[0]=11'b00100111101;	// give me the ID
 	data_send_array[1]=11'b00101011101;	// stream
 	data_send_array[2]=11'b00010111101;	// enable_data_reporting
+	
+	data_send_array[3]=11'b00001011111; // 0xe8 set scaling
+	data_send_array[4]=11'b01100000011; // 3
+	data_send_array[5]=11'b01110011111;	// 0xe7 per il 2:1 scaling
 end
 
 `define PCK_RESEND 11'b00111111101
@@ -236,6 +240,13 @@ always @(posedge qzt_clk) begin
 				//err<=1;
 				//errcode<=`ERR_TIMER;
 			end
+			/*
+			if (!trigger_old & trigger) begin
+				phase<=`PH_INIT;
+				status<=`ST_SEND_SEND;
+				pck_sent<=0;
+			end
+			*/
 			case(status)
 				`ST_IDLE: begin
 					pck_received<=0;
