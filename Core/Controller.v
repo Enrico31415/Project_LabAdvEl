@@ -27,7 +27,7 @@
 `define size_1 4'd3
 `define size_2 4'd3
 `define size_3 4'd4
-`define size_4 4'd5
+`define size_4 4'd4
 
 
 

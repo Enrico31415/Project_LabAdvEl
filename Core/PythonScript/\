@@ -40,8 +40,8 @@ print ("output reg [3:0]"+var_out_2+";")
 
 print ("always @ (posedge clk_in)")
 print ("begin")
-for j in range (0,cell_count_y):
-	for i in range (0,cell_count_x):
+for j in range (0,cell_count_y+1):
+	for i in range (0,cell_count_x+1):
 		if i == 0 and j == 0:
 			 print("\t if", end ='')
 		else:

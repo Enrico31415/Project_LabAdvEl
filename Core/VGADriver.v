@@ -17,8 +17,8 @@
 `define row_dimension	10'd2
 `define line_dimension	10'd2
 
-`define row_period	10'd48
-`define line_period 10'd64
+`define row_period	10'd60
+`define line_period  10'd80
 
 
 
@@ -120,9 +120,9 @@ begin
 				end
 			cell_status_ia_hitted : 
 				begin
-					pointer_to_mask_1 =  ( current_row- (cell_x*10'd64));
-					pointer_to_mask_2 =  (current_line- (cell_y*10'd48));
-					pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*10'd64;
+					pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+					pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+					pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
 					if (cross[pointer_to_mask])
 					begin
 						color_out = `color_player_and_ia_hit;
@@ -135,9 +135,9 @@ begin
 			cell_status_player_and_ia_hitted : 
 				begin
 				//`cross
-					pointer_to_mask_1 =  ( current_row- (cell_x*10'd64));
-					pointer_to_mask_2 =  (current_line- (cell_y*10'd48));
-					pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*10'd64;
+					pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+					pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+					pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
 					if (circle[pointer_to_mask])
 					begin
 						color_out = `color_player_and_ia_hit;
@@ -151,81 +151,81 @@ begin
 					color_out = `black;
 		endcase
 		
-		if (current_line <= ('d48+`row_dimension) && current_line > ('d48-`row_dimension)) // prima riga
+		if (current_line <= ((12'd1*`row_period)+`row_dimension) && current_line > ((12'd1*`row_period)-`row_dimension)) // prima riga
 		begin
 			color_out = `color_line;
 		end
-		else if (current_line <= ('d96+`row_dimension)  && current_line > ('d96-`row_dimension)) //seconda riga 96
+		else if (current_line <= ((12'd2*`row_period)+`row_dimension)  && current_line > ((12'd2*`row_period)-`row_dimension)) //seconda riga 96
 		begin
 			color_out = `color_line;
 		end
-		else if (current_line <= ('d144+`row_dimension)  && current_line > ('d144-`row_dimension)) //terza riga 144
+		else if (current_line <= ((12'd3*`row_period)+`row_dimension)  && current_line > ((12'd3*`row_period)-`row_dimension)) //terza riga 144
 		begin
 			color_out = `color_line;
 		end
-		else if (current_line <= ('d192+`row_dimension) && current_line > ('d192-`row_dimension)) //quarta riga: 192
+		else if (current_line <= ((12'd4*`row_period)+`row_dimension) && current_line > ((12'd4*`row_period)-`row_dimension)) //quarta riga: 192
 		begin
 			color_out = `color_line;
 		end
-		else if (current_line <= ('d240+`row_dimension) && current_line > ('d240-`row_dimension)) //quinta riga 240
+		else if (current_line <= ((12'd5*`row_period)+`row_dimension) && current_line > ((12'd5*`row_period)-`row_dimension)) //quinta riga 240
 		begin
 			color_out = `color_line;
 		end
-		else if (current_line <= ('d288+`row_dimension) && current_line > ('d288-`row_dimension)) //sesta riga 288
+		else if (current_line <= ((12'd6*`row_period)+`row_dimension) && current_line > ((12'd6*`row_period)-`row_dimension)) //sesta riga 288
 		begin
 			color_out = `color_line;
 		end
-		else if (current_line <= ('d336+`row_dimension) && current_line > ('d336-`row_dimension)) //settima riga 336
+		else if (current_line <= ((12'd7*`row_period)+`row_dimension) && current_line > ((12'd7*`row_period)-`row_dimension)) //settima riga 336
 		begin
 			color_out = `color_line;
 		end
-		else if (current_line <= ('d384+`row_dimension) && current_line > ('d384-`row_dimension)) //ottava riga 384
+		/*else if (current_line <= ((12'd8*`row_period)+`row_dimension) && current_line > ((12'd8*`row_period)-`row_dimension)) //ottava riga 384
 		begin
 			color_out = `color_line;
 		end
-		else if (current_line <= ('d432+`row_dimension) && current_line > ('d432-`row_dimension)) //nona riga 432
+		else if (current_line <= ((12'd9*`row_period)+`row_dimension) && current_line > ((12'd9*`row_period)-`row_dimension)) //nona riga 432
 		begin
 			color_out = `color_line;
-		end
+		end*/
 		
 		
 		
-		if (current_row <= ('d64+`line_dimension) && current_row> ('d64-`line_dimension)) // prima riga
+		if (current_row <= ((12'd1*`line_period)+`line_dimension) && current_row> ((12'd1*`line_period)-`line_dimension)) // prima riga
 		begin
 			color_out = `color_row;
 		end
-		else if (current_row <= ('d128+`line_dimension) && current_row> ('d128-`line_dimension)) //seconda riga
+		else if (current_row <= ((12'd2*`line_period)+`line_dimension) && current_row> ((12'd2*`line_period)-`line_dimension)) //seconda riga
 		begin
 			color_out = `color_row;
 		end
-		else if (current_row <= ('d192+`line_dimension) && current_row> ('d192-`line_dimension)) //terza riga
+		else if (current_row <= ((12'd3*`line_period)+`line_dimension) && current_row> ((12'd3*`line_period)-`line_dimension)) //terza riga
 		begin
 			color_out = `color_row;
 		end
-		else if (current_row <= ('d256+`line_dimension) && current_row> ('d256-`line_dimension)) //quarta riga
+		else if (current_row <= ((12'd4*`line_period)+`line_dimension) && current_row> ((12'd4*`line_period)-`line_dimension)) //quarta riga
 		begin
 			color_out = `color_row;
 		end
-		else if (current_row <= ('d320+`line_dimension) && current_row> ('d320-`line_dimension)) //quinta riga
+		else if (current_row <= ((12'd5*`line_period)+`line_dimension) && current_row> ((12'd5*`line_period)-`line_dimension)) //quinta riga
 		begin
 			color_out = `color_row;
 		end
-		else if (current_row <= ('d384+`line_dimension) && current_row> ('d384-`line_dimension)) //sesta riga
+		else if (current_row <= ((12'd6*`line_period)+`line_dimension) && current_row> ((12'd6*`line_period)-`line_dimension)) //sesta riga
 		begin
 			color_out = `color_row;
 		end
-		else if (current_row <= ('d448+`line_dimension) && current_row> ('d448-`line_dimension)) //settima riga
+		else if (current_row <= ((12'd7*`line_period)+`line_dimension) && current_row> ((12'd7*`line_period)-`line_dimension)) //settima riga
 		begin
 			color_out = `color_row;
 		end
-		else if (current_row <= ('d512+`line_dimension) && current_row> ('d512-`line_dimension)) //ottava riga
+		/*else if (current_row <= ((12'd8*`line_period)+`line_dimension) && current_row> ((12'd8*`line_period)-`line_dimension)) //ottava riga
 		begin
 			color_out = `color_row;
 		end
-		else if (current_row <= ('d576+`line_dimension) && current_row> ('d576-`line_dimension)) //nona riga
+		else if (current_row <= ((12'd9*`line_period)+`line_dimension) && current_row> ((12'd9*`line_period)-`line_dimension)) //nona riga
 		begin
 			color_out = `color_row;
-		end 
+		end */
 		/*
 		if(current_row <= cell_cross_counter_x+cell_cross_counter_x>>1+cell_cross_counter_x>>1)
 		begin
