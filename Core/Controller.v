@@ -35,6 +35,7 @@
 module Controller(
 			CLK_50M,
 			BTN_EAST, BTN_WEST, BTN_NORTH, BTN_SOUTH,
+			PS2_CLK1, PS2_DATA1,
 			SW, //Serve per simulare il click del mouse
 			
 			
@@ -47,7 +48,8 @@ module Controller(
 input CLK_50M;
 
 output [7:0] LED;
-
+inout PS2_CLK1;
+inout PS2_DATA1;
 //Da testing, per simulare il mouse
 input BTN_EAST, BTN_WEST, BTN_NORTH, BTN_SOUTH;
 
@@ -137,6 +139,88 @@ Module_VGADriver driver (
 //simula il movimento del puntatore con i bottoni
 //TODO
 //Un giorno sar rimosso, e vi andr il driver del mouse.
+/* ************************************************************************* */ 
+wire [7:0] w_status_pck_1;
+wire [7:0] w_xm_pck_2;
+wire [7:0] w_ym_pck_3;
+wire w_clk_milli;
+wire w_buttonN;
+wire w_clk_second;
+wire [7:0] w_altro;
+wire [2:0] w_clicks;
+
+PS2_comm PS2_comm(
+		.qzt_clk(CLK_50M),
+		.trigger(w_buttonN), /////////////////
+		
+		.PS2C(PS2_CLK1),
+		.PS2D(PS2_DATA1),
+		
+		.data_tx(w_data_mouse),
+		.status_pck_1(w_status_pck_1),
+		.xm_pck_2(w_xm_pck_2),
+		.ym_pck_3(w_ym_pck_3),
+		
+		.altro(w_altro)
+    );
+
+monostable_with_one_run antirimbalzoNorth(
+		.trigger(BTN_NORTH),
+		.qzt_clk(CLK_50M),
+		.clk(w_clk_milli),
+		.limit(8'd200),
+		
+		.out(w_buttonN)
+    );
+
+Module_FrequencyDivider	milli(
+		.clk_in(CLK_50M),
+		.period(30'd25_000),
+
+		.clk_out(w_clk_milli)
+		);
+		
+Module_FrequencyDivider	second(
+		.clk_in(CLK_50M),
+		.period(30'd25_000_000),
+
+		.clk_out(w_clk_second)
+		);
+
+	
+mouse_data_management mdm(
+		.qzt_clk(CLK_50M),
+		.status(w_status_pck_1),
+		.deltaX(w_xm_pck_2),
+		.deltaY(w_ym_pck_3),
+		.tx(w_data_mouse),
+		
+		.posX(mouse_sym_counter_x),
+		.posY(mouse_sym_counter_y),
+		.clicks(w_clicks)
+    );
+
+/*
+always @ (posedge CLK_50M) begin
+	case(SW)
+	4'd0: LED<=w_status_pck_1;
+	4'd1: LED<=w_xm_pck_2;
+	4'd2: LED<=w_ym_pck_3;
+	4'd3: LED<=w_altro;
+	
+	4'd5: LED<=mouse_sym_counter_x[9:2];
+	4'd4: LED<=mouse_sym_counter_x[7:0];
+	
+	4'd7: LED<=mouse_sym_counter_y[9:2];
+	4'd6: LED<=mouse_sym_counter_y[7:0];
+	default: LED<={8{w_clk_second}};
+	endcase
+end
+*/
+
+/* ************************************************************************* */
+
+/*
 Module_MouseSimulator sim (
 	.clk_in(w_25Mhz_clock),
 	.BTN_EAST(BTN_EAST), 
@@ -149,7 +233,7 @@ Module_MouseSimulator sim (
 	
 	.x_pos(mouse_sym_counter_x),
 	.y_pos(mouse_sym_counter_y));
-
+*/
 
 	
 
@@ -160,7 +244,7 @@ GridEngine GE(.clk_in(w_25Mhz_clock),
 	.mouse_pos_x(mouse_sym_counter_x),
 	.mouse_pos_y(mouse_sym_counter_y),
 
-	.mouse_click(SW[1:0]),
+	.mouse_click({w_clicks[2],w_clicks[0]}),
 	
 	.pos_x(position_to_controller_x),
 	.pos_y(position_to_controller_y),
