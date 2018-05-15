@@ -3,9 +3,9 @@
  <header>
   <ImplementationReportsDirectory>/home/user/git/core/Core/</ImplementationReportsDirectory>
   <ModuleName>Controller</ModuleName>
-  <DateModified>2018-05-07T17:24:52</DateModified>
+  <DateModified>2018-05-15T10:37:43</DateModified>
   <SavedFilePath>/home/user/git/core/Core/iseconfig/Controller.xreport</SavedFilePath>
   <DateInitialized>2018-04-26T12:26:50</DateInitialized>
-  <EnableMessageFiltering>false</EnableMessageFiltering>
+  <EnableMessageFiltering>true</EnableMessageFiltering>
  </header>
 </report-views>

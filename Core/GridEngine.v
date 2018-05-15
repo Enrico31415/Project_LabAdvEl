@@ -5,11 +5,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 `define frequency_div 	30'd1
-//`define seed_1 		31'b1001010101101000100111111000001;
-//`define seed_2		31'b1111000101010010000110101010111;
 
 // turn legend : 3 bits:  
-
 // x _ _	first bit 	0 fpga, 			1 player
 // _ x _ second bit 	0     , 			1 
 // _ _ x third bit 	0 initialize, 	1 check
@@ -18,12 +15,21 @@
 `define turn_player_init	3'b100
 `define turn_fpga_check 	3'b001
 `define turn_player_check 	3'b101
-// .... tbc
+
+//......
 
 `define row_dimension	10'd2
 `define line_dimension	10'd2
-`define row_period	10'd48
-`define line_period  10'd64
+`define row_period		10'd48
+`define line_period  	10'd64
+
+// momenti di [turn_fpga_init]
+`define init_guess 		4'b0000
+`define mem_point 		4'b0001
+`define mem_read 			4'b0010
+`define count_check 		4'b0011
+`define sec_placement 	4'b0100
+`define out_placement 	4'b1111
 
 // CODIFICA DELLA CELLA DI MEMORIA: 5 bit
 // 	_ 1 bit libero (?)	_ _ 2 bit per i colpi sparati 	_ _ 2 bit per la disposizione
@@ -45,7 +51,7 @@
 //    | |_/ / | | | |   | |     | |   | |____ | |___  /\__/ / | | | |  _| |_  | |     |_| 
 //    \____/  \_| |_/   \_/     \_/   \_____/ \____/  \____/  \_| |_/  \___/  \_|     (_) 
 //                              
-//                                
+                            
 
 
 ////////////////////////  -  REGISTRI E CAVI  -  REGISTRI E CAVI  -  REGISTRI E CAVI  -  /////////////////////////////////
@@ -73,38 +79,40 @@ module GridEngine(clk_in,
 				
 
 
-reg [2:0] turn_status = 3'b000; 	//flag che regola i momenti di gioco  
-reg [4:0] ship_placement = 5'b00000;
-reg [4:0] mouse_new_status;
+reg [2:0] turn_status = 3'b000; 	// flag che regola i momenti di gioco  
+reg [4:0] ships_number_count = 5'b00000; 	// contatore sul numero di navi piazzate
+reg [3:0] placement_task = 4'b0000; 	// contatore sulle oprazioni piazzamento
+reg fpga_vs_mouse= 1'b1;		// flag che regola li switch tra logica fpga (0) e mouse (1)
+reg reg_out_placement= 1'b0;		// flag fine dei piazzamenti
+reg reg_final_else= 1'b0;
 
-reg reg_selector= 1'b1;						//flag che regola li switch tra logica fpga (0) e mouse (1)
-
-reg [3:0]placement_time = 4'b0000; // ciclo per leggere i valori in uscita dalla memoria
-
-
-//reg [30:0]seed_1 = 31'b1001010101101000100111111000001;
-//reg [30:0]seed_2 = 31'b1111000101010010000110101010111;
-
-reg set_random_gens=1'b1;	
-reg fpga_write_enable=1'b0;		
-reg mouse_write_enable =1'b0;	
-reg[3:0] fpga_cell_x;
+reg set_random_gens=1'b1;		// setta i generatori pseudorandom
+reg fpga_write_enable=1'b0;		// pin che abilita la scrittura nella casella di memoria da parte dell'fpga
+reg mouse_write_enable =1'b0;		// pin che abilita la scrittura nella casella di memoria da parte dell mouse
+reg[3:0] fpga_cell_x;			// coordinate della cella di memoria a cui punta l'fpga
 reg[3:0] fpga_cell_y;
-reg [4:0] mouse_cell_new_status;
-reg [4:0] fpga_cell_new_status;
-wire[3:0] mouse_cell_x;
-wire[3:0] mouse_cell_y;
-wire[4:0] out_mem_cell_read_status; //stato attuale della cella letta (uscita dalla memoria)
 
-//reg [3:0]flag_primo_if=4'd0;
-//reg [3:0]flag_secondo_if=4'd0;
-//reg [3:0]flag_secondo_else=4'd0;
+reg[3:0] fpga_guess_x;			// valori di partenza durante l'operazione di piazzamento
+reg[3:0] fpga_guess_y;
+reg orient_guess;			// orientamento della nave che si sta cercando di piazzare
+reg who_write = 1'b0;
+
+reg[3:0] fpga_count_move_x;		// valore da aggiungere al punto di partenza per muoversi lungo la griglia
+reg[3:0] fpga_count_move_y;
+reg[3:0] fpga_target_ship_lenght;	// lunghezza target della nave da piazzare
+
+reg [4:0] mouse_cell_new_status;		
+reg [4:0] fpga_cell_new_status; 	// nuovo valore che l'fpga vuole scrivere in memoria
+wire[3:0] mouse_cell_x;			// coordinate della cella di memoria a cui punta il mouse
+wire[3:0] mouse_cell_y;
+wire[4:0] out_mem_cell_read_status; 	// stato attuale della cella letta (uscita dalla memoria)
 
 //cavi dallo switch alla memoria
 wire[3:0] cell_x_to_mem;
 wire[3:0] cell_y_to_mem;
 wire we_to_mem;
 wire[4:0] new_value_to_mem;
+
 wire[3:0] pointer_cell_x;
 wire[3:0] pointer_cell_y;
 
@@ -123,8 +131,6 @@ wire [2:0] reg_to_seven_m2;
 wire [2:0] reg_to_six_m2;
 wire reg_one_bit_1_m2;
 wire reg_one_bit_2_m2;	
-
-
 
 /////////////////////////  MODULI  -  MODULI  -  MODULI  -  MODULI  /////////////////////////////
 
@@ -151,7 +157,7 @@ pos_to_quadrant pointer_to_cell(
 
 // 	modulo che devia i dati in uscita della ------------------------------------------
 swtch_mouse_fpga mouse_fpga(
-//porta 1		se selector=0  -> fpga
+//porta 1		se selector=1'b0  -> fpga
 		 .cell_x_1(fpga_cell_x), 
 		 .cell_y_1(fpga_cell_y), 
 		 .we_1(fpga_write_enable), 
@@ -162,12 +168,12 @@ swtch_mouse_fpga mouse_fpga(
 		 .we_2(mouse_write_enable),
 		 .new_value_2(mouse_cell_new_status),
 
-		 .selector(reg_selector),
+		 .selector(fpga_vs_mouse),
 
 	 .cell_x_out(cell_x_to_mem), 			//cella x in uscita 
 	 .cell_y_out(cell_y_to_mem), 			//cella y in uscita
-	 .we_out(we_to_mem), 					//Write enable in uscita, se deve scrivere
-	 .new_value_out(new_value_to_mem) 	//valore da scrivere, in uscita
+	 .we_out(we_to_mem), 				//Write enable in uscita, se deve scrivere
+	 .new_value_out(new_value_to_mem) 		//valore da scrivere, in uscita
 
 		);
 
@@ -212,45 +218,158 @@ zero_to_nine_r_gen randomg_2( .qzt_clk(clk_in),
 									.r_zero_to_six(reg_to_six_m2),
 									.r_one_bit_1(reg_one_bit_1_m2),
 									.r_one_bit_2(reg_one_bit_2_m2)						);	
-					
+	
 
 ////////////////////////////  -  LOGICA  -  LOGICA  -  LOGICA  -  LOGICA  -  LOGICA  -  ///////////////////////////////////
 always @ (posedge clk_in)
 begin
-	if (turn_status == `turn_fpga_init) // && ship_placement<= 5'd8 )
-	begin
+	if (turn_status == `turn_fpga_init) begin // && ships_number_count<= 5'd8 )
 		
-		reg_selector =1'b0; // switcha sull'fpga perchè sei in turn_fpga_init
+		fpga_vs_mouse =1'b0; // switcha sull'fpga perchè sei in turn_fpga_init
 		set_random_gens =1'b0; // blocca l'inizailizzazione del generatore random
-		fpga_write_enable =1'b0; // non scrivere
+
+// implementare una target length per ogni giro da caricare secondo un if
 
 
-		if (placement_time==4'd0) // tempo zero punta la cella di memoria.
-		begin
-				fpga_cell_x = reg_to_nine_m1;
-				fpga_cell_y = reg_to_nine_m2;
-				placement_time = 4'd1;
+
+		if (placement_task == `init_guess) begin // tempo zero inizializzazione guess
+
+				fpga_write_enable =1'b0; 	// non scrivere mentre esplori tutte le caselle (primo giro)
+				fpga_count_move_x = 4'b0000;			// valori di prova durante l'operazione di piazzamento. questo valore va sommato alla coordinata x 
+				fpga_count_move_y = 4'b0000;			// potersi muovere lungo x o y
+				orient_guess = reg_one_bit_2_m2; // guess orientazione (0=orizzontale 1= verticale)
+
+				// ship placement mi dice a che punto sono del piazzamento. ne deduco la lunghezza della nave0,1= navi da 4. 2,3= navi da 4. 4,5= navi da 4.
+				// e quindi che numero random mi serve e dove assegnarlo in funzione dell'orientazione (orient_guess = reg_one_bit_2_m2)
+
+				// a seconda della lunghezza della nave e dell'orientazione parti da una coppia di valori random per la coordinata
+
+				if (ships_number_count <= 5'd1) begin  // a seconda di quante navi ho già disposto so la lunghezza
+
+					if(reg_one_bit_2_m2==1'b0) begin					// a seconda dell'orientazione
+					fpga_guess_x=reg_to_six_m1;  						// inizializzo le coordinate
+					fpga_guess_y=reg_to_nine_m2;						// di partenza x e y
+					end			
+
+					else if(reg_one_bit_2_m2==1'b0) begin
+					fpga_guess_x=reg_to_nine_m2;
+					fpga_guess_y=reg_to_six_m1;
+					end
+					
+					fpga_target_ship_lenght= 4'b0100;  					// inizializzo la lunghezza della nave
+				end 
+				else if (ships_number_count == 5'd2 || ships_number_count == 5'd3 ) begin
+
+					if(reg_one_bit_2_m2==1'b0) begin
+					fpga_guess_x=reg_to_seven_m1;
+					fpga_guess_y=reg_to_nine_m2;
+					end			
+
+					else if(reg_one_bit_2_m2==1'b0) begin
+					fpga_guess_x=reg_to_nine_m2;
+					fpga_guess_y=reg_to_seven_m1;
+					end
+					
+					fpga_target_ship_lenght= 4'b0011;
+				end 
+				else if (ships_number_count == 5'd4 || ships_number_count == 5'd5) begin
+
+					if(reg_one_bit_2_m2==1'b0) begin
+					fpga_guess_x=reg_to_eight_m1;
+					fpga_guess_y=reg_to_nine_m2;
+					end			
+
+					else if(reg_one_bit_2_m2==1'b0) begin
+					fpga_guess_x=reg_to_nine_m2;
+					fpga_guess_y=reg_to_eight_m1;
+					end
+					
+					fpga_target_ship_lenght= 4'b0010;
+				end 				
+
+			if (ships_number_count <= 5'd5) begin 		// se il conteggio delle navi piazzate è maggioreuguale di 5
+				placement_task = `mem_point;		// punta la memoria del primo guess
+				end
+			else begin					 // altrimenti...
+				placement_task = `sec_placement;	 // vai allo stato finale di uscita 
+				end
 		end
-		else if (placement_time==4'd1) // tempo zero punta la cella di memoria.
-		begin
-				if (out_mem_cell_read_status == 5'bXXXXX)
-				begin
-					placement_time=4'd0;			
+
+		else if (placement_task==`mem_point) begin // tempo `mem_point. passa i valori alla memoria eventualmente incrementati
+			fpga_cell_x = fpga_guess_x + fpga_count_move_x;
+			fpga_cell_y = fpga_guess_y + fpga_count_move_y;
+			placement_task = `mem_read;
+
+		end
+		else if (placement_task==`mem_read) begin // tempo `mem_read. leggi il valore della cella e decidi cosa fare. RICORDA al primo giro fpga_write_enable sta a zero (!)
+
+				if (out_mem_cell_read_status == 5'bXXXXX) begin // se lo stato è indefinito riprova ad inizializzare ( accade appena accesa l'fpga? primi cicli)
+					placement_task=`init_guess;			
 				end
-				else if(out_mem_cell_read_status == 5'b00000 && ship_placement<=5'd8) //&& ship_placement <= 5'd8)
-				begin
-					fpga_write_enable=1'b1;
+				else if(out_mem_cell_read_status != fpga_cell_new_status || (out_mem_cell_read_status == fpga_cell_new_status && fpga_write_enable==1'b1) )
+				begin //se la casella è vuota e... da capire (!!)
+					// fpga_write_enable=1'b1;  // da sistemare il write enable (!!) un giro per leggere e un giro per scrivere!
+
+					if (who_write== 0'b0 ) begin
 					fpga_cell_new_status= 5'b00001;
-					ship_placement= ship_placement+5'd1;
-					placement_time=4'd0;
+					end
+					else if (who_write== 0'b1) begin
+					fpga_cell_new_status= 5'b00010;
+					end
+
+					if(orient_guess== 1'b0)					// incrementa la direzione di movimento
+					begin fpga_count_move_x=fpga_count_move_x+ 4'b0001;
+					end
+					else if(orient_guess== 1'b1)				// incrementa la direzione di movimento
+					begin fpga_count_move_y=fpga_count_move_y+ 4'b0001;
+					end
+
+					placement_task=`count_check;	// vai a controllare lo stato dei contatori
 				end
-				else if (out_mem_cell_read_status == 5'b00001)
+				else if (out_mem_cell_read_status == fpga_cell_new_status && fpga_write_enable==1'b0)
 				begin
-					placement_time=4'd0;			
+					placement_task=`init_guess;	// risetta i valori iniziali = RESET		(condizione di uscita)
 				end
 				else begin
-					placement_time=4'd0;			
+					placement_task=`init_guess;	// risetta i valori iniziali = RESET		
 				end
+		end
+
+		else if (placement_task==`count_check) begin // tempo `count_check. prima di puntare la memoria controlla di non essere alla fine del conteggio sulla lunghezza
+// controllare i valori di fpga_target_ship_lenght
+			if( (fpga_count_move_x == fpga_target_ship_lenght || fpga_count_move_y == fpga_target_ship_lenght ) && fpga_write_enable == 0 ) begin
+				fpga_write_enable = 1'b1;
+				fpga_count_move_x = 4'b0000;
+				fpga_count_move_y = 4'b0000;
+				placement_task=`mem_point; // ricomincia il giro
+			end
+			else if( (fpga_count_move_x == fpga_target_ship_lenght || fpga_count_move_y == fpga_target_ship_lenght ) && fpga_write_enable == 1 ) begin
+				fpga_write_enable = 1'b0;
+				fpga_count_move_x = 4'b0000;
+				fpga_count_move_y = 4'b0000;
+				ships_number_count=ships_number_count+5'b00001;
+				placement_task=`init_guess;
+			end
+			else begin
+				placement_task=`mem_point;			
+			end
+
+		end
+
+		else if (placement_task == `sec_placement) begin // tempo zero punta la cella di memoria.
+			if (who_write == 1'b0) begin
+			who_write = 1'b1;
+			placement_task=`init_guess;
+			end
+			else begin
+			placement_task=`out_placement;
+			end 
+		end
+		else if (placement_task == `out_placement) begin // tempo zero punta la cella di memoria.
+		reg_out_placement=1'b1;
+		end
+		else begin 
+		reg_final_else=1'b1;
 		end
 
 	end
@@ -258,7 +377,5 @@ begin
 end
 
 
-
-
-
 endmodule
+
