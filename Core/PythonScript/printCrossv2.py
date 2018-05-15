@@ -5,9 +5,11 @@ delta = 10
 image = Image.new('1', (x_dim, y_dim))
 draw = ImageDraw.Draw(image)
 #ellisse di dimenzion (0,0)->(63,47) di 1
-draw.ellipse((0, 0, x_dim-3, y_dim-3), outline =1, fill = 1)
+draw.line((0, 0, x_dim, y_dim), fill=1, width = 5)
+draw.line((x_dim, 0, 0, y_dim), fill=1, width = 5)
+#draw.ellipse((0, 0, x_dim-3, y_dim-3), outline =1, fill = 1)
 #ellisse più piccola di 2
-draw.ellipse((0+delta, 0+delta, x_dim-3-delta, y_dim-3-delta), outline =2, fill = 2)
+#draw.ellipse((0+delta, 0+delta, x_dim-3-delta, y_dim-3-delta), outline =2, fill = 2)
 #diventa lista
 image = list(image.getdata())
 print ("//File autogenerato da "+__file__);

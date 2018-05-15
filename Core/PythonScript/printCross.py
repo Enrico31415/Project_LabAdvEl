@@ -1,6 +1,6 @@
 #scipt che parametrizza una croce di dimensione cube_dimension su una matrice di dimensione impostata. Utile per implementarlo poi in vlog
-max_x = 64
-max_y = 48
+max_x = int(640/8)
+max_y = int(480/8)
 dim  = 4
 x=0
 y=0
