@@ -1,0 +1,25 @@
+
+
+
+// Instantiate the module
+GridEngine instance_name (
+    .clk_in(clk_in), 
+    .mouse_pos_x(mouse_pos_x), 
+    .mouse_pos_y(mouse_pos_y), 
+    .pos_x(pos_x), 
+    .pos_y(pos_y), 
+    .mouse_click(mouse_click), 
+    .cell_status_free(cell_status_free), 
+    .cell_status_occ(cell_status_occ), 
+    .cell_status_player_hitted(cell_status_player_hitted), 
+    .cell_status_ia_hitted(cell_status_ia_hitted), 
+    .cell_status_player_and_ia_hitted(cell_status_player_and_ia_hitted), 
+    .ship_size0(ship_size0), 
+    .ship_size1(ship_size1), 
+    .ship_size2(ship_size2), 
+    .ship_size3(ship_size3), 
+    .ship_size4(ship_size4), 
+    .pointer_cell_read_status(pointer_cell_read_status)
+    );
+
+

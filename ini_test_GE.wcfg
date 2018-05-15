@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/enrico.pierobon/Vga_Test/Project_LabAdvEl/Core/GridEngine_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="GridEngine" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="13" />
+   <wvobject fp_name="/GridEngine/mouse_click" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">mouse_click</obj_property>
+      <obj_property name="ObjectShortName">mouse_click</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/clk_in" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk_in</obj_property>
+      <obj_property name="ObjectShortName">clk_in</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/mouse_pos_x" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">mouse_pos_x[9:0]</obj_property>
+      <obj_property name="ObjectShortName">mouse_pos_x[9:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/mouse_pos_y" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">mouse_pos_y[9:0]</obj_property>
+      <obj_property name="ObjectShortName">mouse_pos_y[9:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/pos_x" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">pos_x[9:0]</obj_property>
+      <obj_property name="ObjectShortName">pos_x[9:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/pos_y" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">pos_y[9:0]</obj_property>
+      <obj_property name="ObjectShortName">pos_y[9:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/cell_read_status" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cell_read_status[1:0]</obj_property>
+      <obj_property name="ObjectShortName">cell_read_status[1:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/mouse_cell_x" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">mouse_cell_x[3:0]</obj_property>
+      <obj_property name="ObjectShortName">mouse_cell_x[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/mouse_cell_y" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">mouse_cell_y[3:0]</obj_property>
+      <obj_property name="ObjectShortName">mouse_cell_y[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/turn_status" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">turn_status[1:0]</obj_property>
+      <obj_property name="ObjectShortName">turn_status[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/cell_new_status" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cell_new_status[1:0]</obj_property>
+      <obj_property name="ObjectShortName">cell_new_status[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/mouse_enable" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">mouse_enable</obj_property>
+      <obj_property name="ObjectShortName">mouse_enable</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/memory/stat_X0_Y0" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">stat_X0_Y0[1:0]</obj_property>
+      <obj_property name="ObjectShortName">stat_X0_Y0[1:0]</obj_property>
+   </wvobject>
+</wave_config>

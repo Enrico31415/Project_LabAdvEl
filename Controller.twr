@@ -1,0 +1,675 @@
+--------------------------------------------------------------------------------
+Release 14.7 Trace  (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise -v 3 -s 4
+-n 3 -fastpaths -xml Controller.twx Controller.ncd -o Controller.twr
+Controller.pcf -ucf simpleCounter.ucf
+
+Design file:              Controller.ncd
+Physical constraint file: Controller.pcf
+Device,package,speed:     xc3s700an,fgg484,-4 (PRODUCTION 1.42 2013-10-13)
+Report level:             verbose report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+WARNING:Timing:3224 - The clock CLK_50M associated with OFFSET = IN 10 ns VALID 
+   20 ns BEFORE COMP "CLK_50M"; does not clock any registered input components.
+WARNING:Timing:3225 - Timing constraint OFFSET = IN 10 ns VALID 20 ns BEFORE 
+   COMP "CLK_50M"; ignored during timing analysis
+WARNING:Timing:3224 - The clock CLK_50M associated with OFFSET = OUT 20 ns 
+   AFTER COMP "CLK_50M"; does not clock any registered output components.
+WARNING:Timing:3225 - Timing constraint OFFSET = OUT 20 ns AFTER COMP 
+   "CLK_50M"; ignored during timing analysis
+INFO:Timing:3412 - To improve timing, see the Timing Closure User Guide (UG612).
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths 
+   option. All paths that are not constrained will be reported in the 
+   unconstrained paths section(s) of the report.
+INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on 
+   a 50 Ohm transmission line loading model.  For the details of this model, 
+   and for more information on accounting for different loading conditions, 
+   please see the device datasheet.
+INFO:Timing:3390 - This architecture does not support a default System Jitter 
+   value, please add SYSTEM_JITTER constraint to the UCF to modify the Clock 
+   Uncertainty calculation.
+INFO:Timing:3389 - This architecture does not support 'Discrete Jitter' and 
+   'Phase Error' calculations, these terms will be zero in the Clock 
+   Uncertainty calculation.  Please make appropriate modification to 
+   SYSTEM_JITTER to account for the unsupported Discrete Jitter and Phase 
+   Error.
+
+================================================================================
+Timing constraint: NET "CLK_50M_BUFGP/IBUFG" PERIOD = 20 ns HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 1397 paths analyzed, 106 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is   6.707ns.
+--------------------------------------------------------------------------------
+
+Paths for end point ClockUmanoGenerator/counter_6 (SLICE_X33Y76.SR), 30 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     13.293ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               ClockUmanoGenerator/counter_1 (FF)
+  Destination:          ClockUmanoGenerator/counter_6 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      6.686ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.021ns (0.072 - 0.093)
+  Source Clock:         CLK_50M_BUFGP rising at 0.000ns
+  Destination Clock:    CLK_50M_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: ClockUmanoGenerator/counter_1 to ClockUmanoGenerator/counter_6
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X33Y73.YQ      Tcko                  0.580   ClockUmanoGenerator/counter<0>
+                                                       ClockUmanoGenerator/counter_1
+    SLICE_X31Y77.F2      net (fanout=2)        1.323   ClockUmanoGenerator/counter<1>
+    SLICE_X31Y77.COUT    Topcyf                1.195   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_lut<0>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<0>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+    SLICE_X31Y78.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+    SLICE_X31Y78.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<2>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+    SLICE_X31Y79.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+    SLICE_X31Y79.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<4>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+    SLICE_X31Y80.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+    SLICE_X31Y80.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<6>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+    SLICE_X31Y81.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+    SLICE_X31Y81.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<8>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+    SLICE_X31Y82.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+    SLICE_X31Y82.COUT    Tbyp                  0.130   ClockUmanoGenerator/counter_cmp_ge0000
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<10>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<11>
+    SLICE_X33Y76.SR      net (fanout=16)       2.071   ClockUmanoGenerator/counter_cmp_ge0000
+    SLICE_X33Y76.CLK     Tsrck                 0.867   ClockUmanoGenerator/counter<6>
+                                                       ClockUmanoGenerator/counter_6
+    -------------------------------------------------  ---------------------------
+    Total                                      6.686ns (3.292ns logic, 3.394ns route)
+                                                       (49.2% logic, 50.8% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     13.834ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               ClockUmanoGenerator/counter_0 (FF)
+  Destination:          ClockUmanoGenerator/counter_6 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      6.145ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.021ns (0.072 - 0.093)
+  Source Clock:         CLK_50M_BUFGP rising at 0.000ns
+  Destination Clock:    CLK_50M_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: ClockUmanoGenerator/counter_0 to ClockUmanoGenerator/counter_6
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X33Y73.XQ      Tcko                  0.591   ClockUmanoGenerator/counter<0>
+                                                       ClockUmanoGenerator/counter_0
+    SLICE_X31Y77.F1      net (fanout=2)        0.771   ClockUmanoGenerator/counter<0>
+    SLICE_X31Y77.COUT    Topcyf                1.195   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_lut<0>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<0>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+    SLICE_X31Y78.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+    SLICE_X31Y78.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<2>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+    SLICE_X31Y79.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+    SLICE_X31Y79.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<4>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+    SLICE_X31Y80.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+    SLICE_X31Y80.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<6>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+    SLICE_X31Y81.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+    SLICE_X31Y81.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<8>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+    SLICE_X31Y82.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+    SLICE_X31Y82.COUT    Tbyp                  0.130   ClockUmanoGenerator/counter_cmp_ge0000
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<10>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<11>
+    SLICE_X33Y76.SR      net (fanout=16)       2.071   ClockUmanoGenerator/counter_cmp_ge0000
+    SLICE_X33Y76.CLK     Tsrck                 0.867   ClockUmanoGenerator/counter<6>
+                                                       ClockUmanoGenerator/counter_6
+    -------------------------------------------------  ---------------------------
+    Total                                      6.145ns (3.303ns logic, 2.842ns route)
+                                                       (53.8% logic, 46.2% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     13.932ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               ClockUmanoGenerator/counter_2 (FF)
+  Destination:          ClockUmanoGenerator/counter_6 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      6.050ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.018ns (0.072 - 0.090)
+  Source Clock:         CLK_50M_BUFGP rising at 0.000ns
+  Destination Clock:    CLK_50M_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: ClockUmanoGenerator/counter_2 to ClockUmanoGenerator/counter_6
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X33Y74.XQ      Tcko                  0.591   ClockUmanoGenerator/counter<2>
+                                                       ClockUmanoGenerator/counter_2
+    SLICE_X31Y77.F4      net (fanout=2)        0.676   ClockUmanoGenerator/counter<2>
+    SLICE_X31Y77.COUT    Topcyf                1.195   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_lut<0>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<0>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+    SLICE_X31Y78.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+    SLICE_X31Y78.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<2>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+    SLICE_X31Y79.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+    SLICE_X31Y79.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<4>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+    SLICE_X31Y80.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+    SLICE_X31Y80.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<6>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+    SLICE_X31Y81.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+    SLICE_X31Y81.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<8>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+    SLICE_X31Y82.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+    SLICE_X31Y82.COUT    Tbyp                  0.130   ClockUmanoGenerator/counter_cmp_ge0000
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<10>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<11>
+    SLICE_X33Y76.SR      net (fanout=16)       2.071   ClockUmanoGenerator/counter_cmp_ge0000
+    SLICE_X33Y76.CLK     Tsrck                 0.867   ClockUmanoGenerator/counter<6>
+                                                       ClockUmanoGenerator/counter_6
+    -------------------------------------------------  ---------------------------
+    Total                                      6.050ns (3.303ns logic, 2.747ns route)
+                                                       (54.6% logic, 45.4% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point ClockUmanoGenerator/counter_7 (SLICE_X33Y76.SR), 30 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     13.293ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               ClockUmanoGenerator/counter_1 (FF)
+  Destination:          ClockUmanoGenerator/counter_7 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      6.686ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.021ns (0.072 - 0.093)
+  Source Clock:         CLK_50M_BUFGP rising at 0.000ns
+  Destination Clock:    CLK_50M_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: ClockUmanoGenerator/counter_1 to ClockUmanoGenerator/counter_7
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X33Y73.YQ      Tcko                  0.580   ClockUmanoGenerator/counter<0>
+                                                       ClockUmanoGenerator/counter_1
+    SLICE_X31Y77.F2      net (fanout=2)        1.323   ClockUmanoGenerator/counter<1>
+    SLICE_X31Y77.COUT    Topcyf                1.195   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_lut<0>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<0>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+    SLICE_X31Y78.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+    SLICE_X31Y78.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<2>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+    SLICE_X31Y79.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+    SLICE_X31Y79.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<4>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+    SLICE_X31Y80.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+    SLICE_X31Y80.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<6>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+    SLICE_X31Y81.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+    SLICE_X31Y81.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<8>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+    SLICE_X31Y82.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+    SLICE_X31Y82.COUT    Tbyp                  0.130   ClockUmanoGenerator/counter_cmp_ge0000
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<10>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<11>
+    SLICE_X33Y76.SR      net (fanout=16)       2.071   ClockUmanoGenerator/counter_cmp_ge0000
+    SLICE_X33Y76.CLK     Tsrck                 0.867   ClockUmanoGenerator/counter<6>
+                                                       ClockUmanoGenerator/counter_7
+    -------------------------------------------------  ---------------------------
+    Total                                      6.686ns (3.292ns logic, 3.394ns route)
+                                                       (49.2% logic, 50.8% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     13.834ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               ClockUmanoGenerator/counter_0 (FF)
+  Destination:          ClockUmanoGenerator/counter_7 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      6.145ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.021ns (0.072 - 0.093)
+  Source Clock:         CLK_50M_BUFGP rising at 0.000ns
+  Destination Clock:    CLK_50M_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: ClockUmanoGenerator/counter_0 to ClockUmanoGenerator/counter_7
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X33Y73.XQ      Tcko                  0.591   ClockUmanoGenerator/counter<0>
+                                                       ClockUmanoGenerator/counter_0
+    SLICE_X31Y77.F1      net (fanout=2)        0.771   ClockUmanoGenerator/counter<0>
+    SLICE_X31Y77.COUT    Topcyf                1.195   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_lut<0>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<0>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+    SLICE_X31Y78.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+    SLICE_X31Y78.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<2>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+    SLICE_X31Y79.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+    SLICE_X31Y79.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<4>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+    SLICE_X31Y80.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+    SLICE_X31Y80.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<6>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+    SLICE_X31Y81.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+    SLICE_X31Y81.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<8>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+    SLICE_X31Y82.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+    SLICE_X31Y82.COUT    Tbyp                  0.130   ClockUmanoGenerator/counter_cmp_ge0000
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<10>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<11>
+    SLICE_X33Y76.SR      net (fanout=16)       2.071   ClockUmanoGenerator/counter_cmp_ge0000
+    SLICE_X33Y76.CLK     Tsrck                 0.867   ClockUmanoGenerator/counter<6>
+                                                       ClockUmanoGenerator/counter_7
+    -------------------------------------------------  ---------------------------
+    Total                                      6.145ns (3.303ns logic, 2.842ns route)
+                                                       (53.8% logic, 46.2% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     13.932ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               ClockUmanoGenerator/counter_2 (FF)
+  Destination:          ClockUmanoGenerator/counter_7 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      6.050ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.018ns (0.072 - 0.090)
+  Source Clock:         CLK_50M_BUFGP rising at 0.000ns
+  Destination Clock:    CLK_50M_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: ClockUmanoGenerator/counter_2 to ClockUmanoGenerator/counter_7
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X33Y74.XQ      Tcko                  0.591   ClockUmanoGenerator/counter<2>
+                                                       ClockUmanoGenerator/counter_2
+    SLICE_X31Y77.F4      net (fanout=2)        0.676   ClockUmanoGenerator/counter<2>
+    SLICE_X31Y77.COUT    Topcyf                1.195   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_lut<0>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<0>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+    SLICE_X31Y78.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+    SLICE_X31Y78.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<2>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+    SLICE_X31Y79.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+    SLICE_X31Y79.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<4>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+    SLICE_X31Y80.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+    SLICE_X31Y80.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<6>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+    SLICE_X31Y81.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+    SLICE_X31Y81.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<8>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+    SLICE_X31Y82.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+    SLICE_X31Y82.COUT    Tbyp                  0.130   ClockUmanoGenerator/counter_cmp_ge0000
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<10>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<11>
+    SLICE_X33Y76.SR      net (fanout=16)       2.071   ClockUmanoGenerator/counter_cmp_ge0000
+    SLICE_X33Y76.CLK     Tsrck                 0.867   ClockUmanoGenerator/counter<6>
+                                                       ClockUmanoGenerator/counter_7
+    -------------------------------------------------  ---------------------------
+    Total                                      6.050ns (3.303ns logic, 2.747ns route)
+                                                       (54.6% logic, 45.4% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point ClockUmanoGenerator/counter_8 (SLICE_X33Y77.SR), 30 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     13.293ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               ClockUmanoGenerator/counter_1 (FF)
+  Destination:          ClockUmanoGenerator/counter_8 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      6.686ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.021ns (0.072 - 0.093)
+  Source Clock:         CLK_50M_BUFGP rising at 0.000ns
+  Destination Clock:    CLK_50M_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: ClockUmanoGenerator/counter_1 to ClockUmanoGenerator/counter_8
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X33Y73.YQ      Tcko                  0.580   ClockUmanoGenerator/counter<0>
+                                                       ClockUmanoGenerator/counter_1
+    SLICE_X31Y77.F2      net (fanout=2)        1.323   ClockUmanoGenerator/counter<1>
+    SLICE_X31Y77.COUT    Topcyf                1.195   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_lut<0>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<0>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+    SLICE_X31Y78.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+    SLICE_X31Y78.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<2>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+    SLICE_X31Y79.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+    SLICE_X31Y79.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<4>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+    SLICE_X31Y80.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+    SLICE_X31Y80.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<6>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+    SLICE_X31Y81.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+    SLICE_X31Y81.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<8>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+    SLICE_X31Y82.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+    SLICE_X31Y82.COUT    Tbyp                  0.130   ClockUmanoGenerator/counter_cmp_ge0000
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<10>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<11>
+    SLICE_X33Y77.SR      net (fanout=16)       2.071   ClockUmanoGenerator/counter_cmp_ge0000
+    SLICE_X33Y77.CLK     Tsrck                 0.867   ClockUmanoGenerator/counter<8>
+                                                       ClockUmanoGenerator/counter_8
+    -------------------------------------------------  ---------------------------
+    Total                                      6.686ns (3.292ns logic, 3.394ns route)
+                                                       (49.2% logic, 50.8% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     13.834ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               ClockUmanoGenerator/counter_0 (FF)
+  Destination:          ClockUmanoGenerator/counter_8 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      6.145ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.021ns (0.072 - 0.093)
+  Source Clock:         CLK_50M_BUFGP rising at 0.000ns
+  Destination Clock:    CLK_50M_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: ClockUmanoGenerator/counter_0 to ClockUmanoGenerator/counter_8
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X33Y73.XQ      Tcko                  0.591   ClockUmanoGenerator/counter<0>
+                                                       ClockUmanoGenerator/counter_0
+    SLICE_X31Y77.F1      net (fanout=2)        0.771   ClockUmanoGenerator/counter<0>
+    SLICE_X31Y77.COUT    Topcyf                1.195   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_lut<0>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<0>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+    SLICE_X31Y78.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+    SLICE_X31Y78.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<2>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+    SLICE_X31Y79.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+    SLICE_X31Y79.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<4>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+    SLICE_X31Y80.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+    SLICE_X31Y80.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<6>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+    SLICE_X31Y81.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+    SLICE_X31Y81.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<8>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+    SLICE_X31Y82.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+    SLICE_X31Y82.COUT    Tbyp                  0.130   ClockUmanoGenerator/counter_cmp_ge0000
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<10>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<11>
+    SLICE_X33Y77.SR      net (fanout=16)       2.071   ClockUmanoGenerator/counter_cmp_ge0000
+    SLICE_X33Y77.CLK     Tsrck                 0.867   ClockUmanoGenerator/counter<8>
+                                                       ClockUmanoGenerator/counter_8
+    -------------------------------------------------  ---------------------------
+    Total                                      6.145ns (3.303ns logic, 2.842ns route)
+                                                       (53.8% logic, 46.2% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     13.932ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               ClockUmanoGenerator/counter_2 (FF)
+  Destination:          ClockUmanoGenerator/counter_8 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      6.050ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.018ns (0.072 - 0.090)
+  Source Clock:         CLK_50M_BUFGP rising at 0.000ns
+  Destination Clock:    CLK_50M_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Maximum Data Path: ClockUmanoGenerator/counter_2 to ClockUmanoGenerator/counter_8
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X33Y74.XQ      Tcko                  0.591   ClockUmanoGenerator/counter<2>
+                                                       ClockUmanoGenerator/counter_2
+    SLICE_X31Y77.F4      net (fanout=2)        0.676   ClockUmanoGenerator/counter<2>
+    SLICE_X31Y77.COUT    Topcyf                1.195   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_lut<0>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<0>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+    SLICE_X31Y78.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>
+    SLICE_X31Y78.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<2>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+    SLICE_X31Y79.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>
+    SLICE_X31Y79.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<4>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+    SLICE_X31Y80.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>
+    SLICE_X31Y80.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<6>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+    SLICE_X31Y81.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>
+    SLICE_X31Y81.COUT    Tbyp                  0.130   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<8>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+    SLICE_X31Y82.CIN     net (fanout=1)        0.000   ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>
+    SLICE_X31Y82.COUT    Tbyp                  0.130   ClockUmanoGenerator/counter_cmp_ge0000
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<10>
+                                                       ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<11>
+    SLICE_X33Y77.SR      net (fanout=16)       2.071   ClockUmanoGenerator/counter_cmp_ge0000
+    SLICE_X33Y77.CLK     Tsrck                 0.867   ClockUmanoGenerator/counter<8>
+                                                       ClockUmanoGenerator/counter_8
+    -------------------------------------------------  ---------------------------
+    Total                                      6.050ns (3.303ns logic, 2.747ns route)
+                                                       (54.6% logic, 45.4% route)
+
+--------------------------------------------------------------------------------
+
+Hold Paths: NET "CLK_50M_BUFGP/IBUFG" PERIOD = 20 ns HIGH 50%;
+--------------------------------------------------------------------------------
+
+Paths for end point Mhz25ClockGenerator/clk_out (SLICE_X23Y94.BY), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      1.019ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               Mhz25ClockGenerator/clk_out (FF)
+  Destination:          Mhz25ClockGenerator/clk_out (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.019ns (Levels of Logic = 0)
+  Clock Path Skew:      0.000ns
+  Source Clock:         CLK_50M_BUFGP rising at 20.000ns
+  Destination Clock:    CLK_50M_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: Mhz25ClockGenerator/clk_out to Mhz25ClockGenerator/clk_out
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X23Y94.YQ      Tcko                  0.464   Mhz25ClockGenerator/clk_out1
+                                                       Mhz25ClockGenerator/clk_out
+    SLICE_X23Y94.BY      net (fanout=2)        0.415   Mhz25ClockGenerator/clk_out1
+    SLICE_X23Y94.CLK     Tckdi       (-Th)    -0.140   Mhz25ClockGenerator/clk_out1
+                                                       Mhz25ClockGenerator/clk_out
+    -------------------------------------------------  ---------------------------
+    Total                                      1.019ns (0.604ns logic, 0.415ns route)
+                                                       (59.3% logic, 40.7% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point ClockUmanoGenerator/clk_out (SLICE_X32Y82.BY), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      1.129ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               ClockUmanoGenerator/clk_out (FF)
+  Destination:          ClockUmanoGenerator/clk_out (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.129ns (Levels of Logic = 0)
+  Clock Path Skew:      0.000ns
+  Source Clock:         CLK_50M_BUFGP rising at 20.000ns
+  Destination Clock:    CLK_50M_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: ClockUmanoGenerator/clk_out to ClockUmanoGenerator/clk_out
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X32Y82.YQ      Tcko                  0.541   ClockUmanoGenerator/clk_out
+                                                       ClockUmanoGenerator/clk_out
+    SLICE_X32Y82.BY      net (fanout=20)       0.415   ClockUmanoGenerator/clk_out
+    SLICE_X32Y82.CLK     Tckdi       (-Th)    -0.173   ClockUmanoGenerator/clk_out
+                                                       ClockUmanoGenerator/clk_out
+    -------------------------------------------------  ---------------------------
+    Total                                      1.129ns (0.714ns logic, 0.415ns route)
+                                                       (63.2% logic, 36.8% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point ClockUmanoGenerator/counter_12 (SLICE_X33Y79.F4), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      1.626ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               ClockUmanoGenerator/counter_12 (FF)
+  Destination:          ClockUmanoGenerator/counter_12 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      1.626ns (Levels of Logic = 1)
+  Clock Path Skew:      0.000ns
+  Source Clock:         CLK_50M_BUFGP rising at 20.000ns
+  Destination Clock:    CLK_50M_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: ClockUmanoGenerator/counter_12 to ClockUmanoGenerator/counter_12
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X33Y79.XQ      Tcko                  0.473   ClockUmanoGenerator/counter<12>
+                                                       ClockUmanoGenerator/counter_12
+    SLICE_X33Y79.F4      net (fanout=2)        0.306   ClockUmanoGenerator/counter<12>
+    SLICE_X33Y79.CLK     Tckf        (-Th)    -0.847   ClockUmanoGenerator/counter<12>
+                                                       ClockUmanoGenerator/counter<12>_rt
+                                                       ClockUmanoGenerator/Mcount_counter_xor<12>
+                                                       ClockUmanoGenerator/counter_12
+    -------------------------------------------------  ---------------------------
+    Total                                      1.626ns (1.320ns logic, 0.306ns route)
+                                                       (81.2% logic, 18.8% route)
+
+--------------------------------------------------------------------------------
+
+Component Switching Limit Checks: NET "CLK_50M_BUFGP/IBUFG" PERIOD = 20 ns HIGH 50%;
+--------------------------------------------------------------------------------
+Slack: 18.398ns (period - (min low pulse limit / (low pulse / period)))
+  Period: 20.000ns
+  Low pulse: 10.000ns
+  Low pulse limit: 0.801ns (Tcl)
+  Physical resource: ClockUmanoGenerator/clk_out/CLK
+  Logical resource: ClockUmanoGenerator/clk_out/CK
+  Location pin: SLICE_X32Y82.CLK
+  Clock network: CLK_50M_BUFGP
+--------------------------------------------------------------------------------
+Slack: 18.398ns (period - (min high pulse limit / (high pulse / period)))
+  Period: 20.000ns
+  High pulse: 10.000ns
+  High pulse limit: 0.801ns (Tch)
+  Physical resource: ClockUmanoGenerator/clk_out/CLK
+  Logical resource: ClockUmanoGenerator/clk_out/CK
+  Location pin: SLICE_X32Y82.CLK
+  Clock network: CLK_50M_BUFGP
+--------------------------------------------------------------------------------
+Slack: 18.398ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 1.602ns (624.220MHz) (Tcp)
+  Physical resource: ClockUmanoGenerator/clk_out/CLK
+  Logical resource: ClockUmanoGenerator/clk_out/CK
+  Location pin: SLICE_X32Y82.CLK
+  Clock network: CLK_50M_BUFGP
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: OFFSET = IN 10 ns VALID 20 ns BEFORE COMP "CLK_50M";
+For more information, see Offset In Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+================================================================================
+Timing constraint: OFFSET = OUT 20 ns AFTER COMP "CLK_50M";
+For more information, see Offset Out Analysis in the Timing Closure User Guide (UG612).
+
+ 0 paths analyzed, 0 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected.
+--------------------------------------------------------------------------------
+
+
+All constraints were met.
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Clock to Setup on destination clock CLK_50M
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+CLK_50M        |    6.707|         |         |         |
+---------------+---------+---------+---------+---------+
+
+
+Timing summary:
+---------------
+
+Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
+
+Constraints cover 1397 paths, 0 nets, and 115 connections
+
+Design statistics:
+   Minimum period:   6.707ns{1}   (Maximum frequency: 149.098MHz)
+
+
+------------------------------------Footnotes-----------------------------------
+1)  The minimum period statistic assumes all single cycle delays.
+
+Analysis completed Tue May 15 10:12:09 2018 
+--------------------------------------------------------------------------------
+
+Trace Settings:
+-------------------------
+Trace Settings 
+
+Peak Memory Usage: 254 MB
+
+
+

@@ -1,0 +1,8 @@
+verilog work "pos_to_quadrant.v"
+verilog work "cellMemory.v"
+verilog work "VGASyncronizer.v"
+verilog work "VGADriver.v"
+verilog work "MouseSimulator.v"
+verilog work "GridEngine.v"
+verilog work "FrquencyDivider.v"
+verilog work "Controller.v"

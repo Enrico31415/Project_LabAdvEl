@@ -1,0 +1,1071 @@
+Release 14.7 - xst P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.97 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 1.06 secs
+ 
+--> Reading design: Controller.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "Controller.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "Controller"
+Output Format                      : NGC
+Target Device                      : xc3s700an-4-fgg484
+
+---- Source Options
+Top Module Name                    : Controller
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Multiplier Style                   : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 24
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Yes
+Use Synchronous Set                : Yes
+Use Synchronous Reset              : Yes
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "pos_to_quadrant.v" in library work
+Compiling verilog file "cellMemory.v" in library work
+Module <pos_to_quadrant> compiled
+Compiling verilog file "VGASyncronizer.v" in library work
+Module <cell_io> compiled
+Compiling verilog file "VGADriver.v" in library work
+Module <Module_VGASyncronizer> compiled
+Compiling verilog include file "VGAmask.v"
+Compiling verilog file "MouseSimulator.v" in library work
+Module <Module_VGADriver> compiled
+Compiling verilog file "GridEngine.v" in library work
+Module <Module_MouseSimulator> compiled
+Compiling verilog include file "gridFunctions.v"
+Compiling verilog file "FrquencyDivider.v" in library work
+Module <GridEngine> compiled
+Compiling verilog file "Controller.v" in library work
+Module <Module_FrequencyDivider> compiled
+Module <Controller> compiled
+No errors in compilation
+Analysis of file <"Controller.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <Controller> in library <work>.
+
+Analyzing hierarchy for module <Module_FrequencyDivider> in library <work>.
+
+Analyzing hierarchy for module <Module_VGADriver> in library <work>.
+
+Analyzing hierarchy for module <Module_MouseSimulator> in library <work>.
+
+Analyzing hierarchy for module <GridEngine> in library <work>.
+
+Analyzing hierarchy for module <Module_VGASyncronizer> in library <work>.
+
+Analyzing hierarchy for module <pos_to_quadrant> in library <work>.
+
+Analyzing hierarchy for module <cell_io> in library <work>.
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <Controller>.
+Module <Controller> is correct for synthesis.
+ 
+Analyzing module <Module_FrequencyDivider> in library <work>.
+Module <Module_FrequencyDivider> is correct for synthesis.
+ 
+Analyzing module <Module_VGADriver> in library <work>.
+Module <Module_VGADriver> is correct for synthesis.
+ 
+Analyzing module <pos_to_quadrant> in library <work>.
+Module <pos_to_quadrant> is correct for synthesis.
+ 
+Analyzing module <Module_MouseSimulator> in library <work>.
+Module <Module_MouseSimulator> is correct for synthesis.
+ 
+Analyzing module <GridEngine> in library <work>.
+INFO:Xst:1433 - Contents of array <ship_size> may be accessed with an index that exceeds the array size. This could cause simulation mismatch.
+Module <GridEngine> is correct for synthesis.
+ 
+Analyzing module <cell_io> in library <work>.
+Module <cell_io> is correct for synthesis.
+ 
+Analyzing module <Module_VGASyncronizer> in library <work>.
+Module <Module_VGASyncronizer> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <Module_FrequencyDivider>.
+    Related source file is "FrquencyDivider.v".
+    Found 1-bit register for signal <clk_out>.
+    Found 32-bit subtractor for signal <$sub0000> created at line 16.
+    Found 30-bit up counter for signal <counter>.
+    Found 32-bit comparator greatequal for signal <counter$cmp_ge0000> created at line 16.
+    Summary:
+	inferred   1 Counter(s).
+	inferred   1 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+	inferred   1 Comparator(s).
+Unit <Module_FrequencyDivider> synthesized.
+
+
+Synthesizing Unit <Module_MouseSimulator>.
+    Related source file is "MouseSimulator.v".
+WARNING:Xst:647 - Input <clk_in> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 10-bit register for signal <x_pos>.
+    Found 10-bit register for signal <y_pos>.
+    Found 10-bit adder for signal <old_x_pos_4$addsub0000> created at line 43.
+    Found 10-bit subtractor for signal <old_x_pos_6$addsub0000> created at line 47.
+    Found 10-bit comparator greatequal for signal <old_x_pos_8$cmp_ge0000> created at line 59.
+    Found 10-bit subtractor for signal <old_y_pos_5$sub0000> created at line 51.
+    Found 10-bit adder for signal <old_y_pos_7$addsub0000> created at line 55.
+    Found 10-bit comparator greatequal for signal <old_y_pos_9$cmp_ge0000> created at line 61.
+    Found 10-bit comparator lessequal for signal <x_pos$cmp_le0000> created at line 63.
+    Found 10-bit comparator lessequal for signal <y_pos$cmp_le0000> created at line 65.
+    Summary:
+	inferred  20 D-type flip-flop(s).
+	inferred   4 Adder/Subtractor(s).
+	inferred   4 Comparator(s).
+Unit <Module_MouseSimulator> synthesized.
+
+
+Synthesizing Unit <Module_VGASyncronizer>.
+    Related source file is "VGASyncronizer.v".
+WARNING:Xst:646 - Signal <vstatus> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <status> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 1-bit register for signal <out_hsync>.
+    Found 1-bit register for signal <out_vsync>.
+    Found 10-bit register for signal <out_rows>.
+    Found 1-bit register for signal <write_enable>.
+    Found 10-bit register for signal <out_lines>.
+    Found 10-bit register for signal <lines>.
+    Found 10-bit comparator greater for signal <old_lines_28$cmp_gt0000> created at line 69.
+    Found 10-bit comparator greater for signal <old_rows_27$cmp_gt0000> created at line 60.
+    Found 10-bit adder for signal <old_rows_29$add0000> created at line 104.
+    Found 10-bit comparator less for signal <out_hsync$cmp_lt0000> created at line 78.
+    Found 10-bit subtractor for signal <out_lines$addsub0000> created at line 109.
+    Found 10-bit comparator lessequal for signal <out_lines$cmp_le0000> created at line 53.
+    Found 10-bit subtractor for signal <out_rows$addsub0000> created at line 110.
+    Found 10-bit comparator greatequal for signal <out_rows$cmp_ge0000> created at line 105.
+    Found 10-bit comparator greatequal for signal <out_rows$cmp_ge0001> created at line 100.
+    Found 10-bit comparator greatequal for signal <out_rows$cmp_ge0002> created at line 93.
+    Found 10-bit comparator greatequal for signal <out_rows$cmp_ge0003> created at line 86.
+    Found 10-bit comparator greatequal for signal <out_rows$cmp_ge0004> created at line 78.
+    Found 10-bit comparator greatequal for signal <out_rows$cmp_ge0005> created at line 105.
+    Found 10-bit comparator lessequal for signal <out_rows$cmp_le0000> created at line 48.
+    Found 10-bit comparator less for signal <out_rows$cmp_lt0000> created at line 86.
+    Found 10-bit comparator less for signal <out_rows$cmp_lt0001> created at line 93.
+    Found 10-bit comparator less for signal <out_rows$cmp_lt0002> created at line 105.
+    Found 10-bit comparator less for signal <out_rows$cmp_lt0003> created at line 100.
+    Found 10-bit comparator less for signal <out_rows$cmp_lt0004> created at line 105.
+    Found 10-bit comparator greatequal for signal <out_vsync$cmp_ge0000> created at line 128.
+    Found 10-bit comparator greatequal for signal <out_vsync$cmp_ge0001> created at line 122.
+    Found 10-bit comparator lessequal for signal <out_vsync$cmp_le0000> created at line 60.
+    Found 10-bit comparator less for signal <out_vsync$cmp_lt0000> created at line 115.
+    Found 10-bit comparator less for signal <out_vsync$cmp_lt0001> created at line 122.
+    Found 10-bit register for signal <rows>.
+    Summary:
+	inferred  43 D-type flip-flop(s).
+	inferred   4 Adder/Subtractor(s).
+	inferred  21 Comparator(s).
+Unit <Module_VGASyncronizer> synthesized.
+
+
+Synthesizing Unit <pos_to_quadrant>.
+    Related source file is "pos_to_quadrant.v".
+    Found 4-bit register for signal <cell_x>.
+    Found 4-bit register for signal <cell_y>.
+    Found 10-bit comparator greatequal for signal <cell_x$cmp_ge0000> created at line 23.
+    Found 10-bit comparator greatequal for signal <cell_x$cmp_ge0001> created at line 513.
+    Found 10-bit comparator greatequal for signal <cell_x$cmp_ge0002> created at line 513.
+    Found 10-bit comparator greatequal for signal <cell_x$cmp_ge0003> created at line 508.
+    Found 10-bit comparator greatequal for signal <cell_x$cmp_ge0004> created at line 503.
+    Found 10-bit comparator greatequal for signal <cell_x$cmp_ge0005> created at line 498.
+    Found 10-bit comparator greatequal for signal <cell_x$cmp_ge0006> created at line 493.
+    Found 10-bit comparator greatequal for signal <cell_x$cmp_ge0007> created at line 488.
+    Found 10-bit comparator greatequal for signal <cell_x$cmp_ge0008> created at line 483.
+    Found 10-bit comparator greatequal for signal <cell_x$cmp_ge0009> created at line 478.
+    Found 10-bit comparator greatequal for signal <cell_x$cmp_ge0010> created at line 463.
+    Found 10-bit comparator greatequal for signal <cell_x$cmp_ge0011> created at line 413.
+    Found 10-bit comparator greatequal for signal <cell_x$cmp_ge0012> created at line 363.
+    Found 10-bit comparator greatequal for signal <cell_x$cmp_ge0013> created at line 313.
+    Found 10-bit comparator greatequal for signal <cell_x$cmp_ge0014> created at line 263.
+    Found 10-bit comparator greatequal for signal <cell_x$cmp_ge0015> created at line 213.
+    Found 10-bit comparator greatequal for signal <cell_x$cmp_ge0016> created at line 163.
+    Found 10-bit comparator greatequal for signal <cell_x$cmp_ge0017> created at line 113.
+    Found 10-bit comparator less for signal <cell_x$cmp_lt0000> created at line 18.
+    Found 10-bit comparator less for signal <cell_x$cmp_lt0001> created at line 18.
+    Found 10-bit comparator less for signal <cell_x$cmp_lt0002> created at line 23.
+    Found 10-bit comparator less for signal <cell_x$cmp_lt0003> created at line 513.
+    Found 10-bit comparator less for signal <cell_x$cmp_lt0004> created at line 513.
+    Found 10-bit comparator less for signal <cell_x$cmp_lt0005> created at line 508.
+    Found 10-bit comparator less for signal <cell_x$cmp_lt0006> created at line 503.
+    Found 10-bit comparator less for signal <cell_x$cmp_lt0007> created at line 498.
+    Found 10-bit comparator less for signal <cell_x$cmp_lt0008> created at line 493.
+    Found 10-bit comparator less for signal <cell_x$cmp_lt0009> created at line 488.
+    Found 10-bit comparator less for signal <cell_x$cmp_lt0010> created at line 483.
+    Found 10-bit comparator less for signal <cell_x$cmp_lt0011> created at line 478.
+    Found 10-bit comparator less for signal <cell_x$cmp_lt0012> created at line 463.
+    Found 10-bit comparator less for signal <cell_x$cmp_lt0013> created at line 413.
+    Found 10-bit comparator less for signal <cell_x$cmp_lt0014> created at line 363.
+    Found 10-bit comparator less for signal <cell_x$cmp_lt0015> created at line 313.
+    Found 10-bit comparator less for signal <cell_x$cmp_lt0016> created at line 263.
+    Found 10-bit comparator less for signal <cell_x$cmp_lt0017> created at line 213.
+    Found 10-bit comparator less for signal <cell_x$cmp_lt0018> created at line 163.
+    Found 10-bit comparator less for signal <cell_x$cmp_lt0019> created at line 113.
+    Summary:
+	inferred   8 D-type flip-flop(s).
+	inferred  38 Comparator(s).
+Unit <pos_to_quadrant> synthesized.
+
+
+Synthesizing Unit <cell_io>.
+    Related source file is "cellMemory.v".
+WARNING:Xst:647 - Input <turn_ia_placing> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <turn_ia_shoot> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 5-bit register for signal <status>.
+    Found 1-bit register for signal <ship_placed>.
+    Found 5-bit register for signal <status_pointed_cell>.
+    Found 40-bit register for signal <memory<0>>.
+    Found 40-bit register for signal <memory<1>>.
+    Found 40-bit register for signal <memory<2>>.
+    Found 40-bit register for signal <memory<3>>.
+    Found 40-bit register for signal <memory<4>>.
+    Found 40-bit register for signal <memory<5>>.
+    Found 40-bit register for signal <memory<6>>.
+    Found 40-bit register for signal <memory<7>>.
+    Found 40-bit register for signal <memory<8>>.
+    Found 40-bit register for signal <memory<9>>.
+    Found 4-bit adder for signal <ship_placed$add0000> created at line 84.
+    Found 4-bit adder for signal <ship_placed$add0001> created at line 127.
+    Found 4-bit adder for signal <ship_placed$add0002> created at line 181.
+    Found 4-bit adder for signal <ship_placed$add0003> created at line 246.
+    Found 4-bit comparator lessequal for signal <ship_placed$cmp_le0000> created at line 84.
+    Found 4-bit comparator lessequal for signal <ship_placed$cmp_le0001> created at line 127.
+    Found 4-bit comparator lessequal for signal <ship_placed$cmp_le0002> created at line 181.
+    Found 4-bit comparator lessequal for signal <ship_placed$cmp_le0003> created at line 246.
+    Summary:
+	inferred 411 D-type flip-flop(s).
+	inferred   4 Adder/Subtractor(s).
+	inferred   4 Comparator(s).
+Unit <cell_io> synthesized.
+
+
+Synthesizing Unit <Module_VGADriver>.
+    Related source file is "VGADriver.v".
+WARNING:Xst:646 - Signal <prec_line> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <pointer_to_mask_2> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <pointer_to_mask_1> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <pointer_to_mask> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <cross_over_circle> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <cell_cross_counter_y> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <cell_cross_counter_x> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+    Found 3072x2-bit ROM for signal <old_pointer_to_mask_3$rom0000>.
+    Found 12-bit register for signal <color_out>.
+    Found 10-bit adder for signal <color_out$addsub0000> created at line 245.
+    Found 10-bit adder for signal <color_out$addsub0001> created at line 245.
+    Found 10-bit subtractor for signal <color_out$addsub0002> created at line 245.
+    Found 10-bit subtractor for signal <color_out$addsub0003> created at line 245.
+    Found 10-bit comparator greatequal for signal <color_out$cmp_ge0000> created at line 245.
+    Found 10-bit comparator greatequal for signal <color_out$cmp_ge0001> created at line 245.
+    Found 10-bit comparator greater for signal <color_out$cmp_gt0000> created at line 193.
+    Found 10-bit comparator greater for signal <color_out$cmp_gt0001> created at line 197.
+    Found 10-bit comparator greater for signal <color_out$cmp_gt0002> created at line 201.
+    Found 10-bit comparator greater for signal <color_out$cmp_gt0003> created at line 205.
+    Found 10-bit comparator greater for signal <color_out$cmp_gt0004> created at line 209.
+    Found 10-bit comparator greater for signal <color_out$cmp_gt0005> created at line 213.
+    Found 10-bit comparator greater for signal <color_out$cmp_gt0006> created at line 217.
+    Found 10-bit comparator greater for signal <color_out$cmp_gt0007> created at line 221.
+    Found 10-bit comparator greater for signal <color_out$cmp_gt0008> created at line 225.
+    Found 10-bit comparator greater for signal <color_out$cmp_gt0009> created at line 154.
+    Found 10-bit comparator greater for signal <color_out$cmp_gt0010> created at line 158.
+    Found 10-bit comparator greater for signal <color_out$cmp_gt0011> created at line 162.
+    Found 10-bit comparator greater for signal <color_out$cmp_gt0012> created at line 166.
+    Found 10-bit comparator greater for signal <color_out$cmp_gt0013> created at line 170.
+    Found 10-bit comparator greater for signal <color_out$cmp_gt0014> created at line 174.
+    Found 10-bit comparator greater for signal <color_out$cmp_gt0015> created at line 178.
+    Found 10-bit comparator greater for signal <color_out$cmp_gt0016> created at line 182.
+    Found 10-bit comparator greater for signal <color_out$cmp_gt0017> created at line 186.
+    Found 10-bit comparator lessequal for signal <color_out$cmp_le0000> created at line 245.
+    Found 10-bit comparator lessequal for signal <color_out$cmp_le0001> created at line 245.
+    Found 10-bit comparator lessequal for signal <color_out$cmp_le0002> created at line 193.
+    Found 10-bit comparator lessequal for signal <color_out$cmp_le0003> created at line 197.
+    Found 10-bit comparator lessequal for signal <color_out$cmp_le0004> created at line 201.
+    Found 10-bit comparator lessequal for signal <color_out$cmp_le0005> created at line 205.
+    Found 10-bit comparator lessequal for signal <color_out$cmp_le0006> created at line 209.
+    Found 10-bit comparator lessequal for signal <color_out$cmp_le0007> created at line 213.
+    Found 10-bit comparator lessequal for signal <color_out$cmp_le0008> created at line 217.
+    Found 10-bit comparator lessequal for signal <color_out$cmp_le0009> created at line 221.
+    Found 10-bit comparator lessequal for signal <color_out$cmp_le0010> created at line 225.
+    Found 10-bit comparator lessequal for signal <color_out$cmp_le0011> created at line 154.
+    Found 10-bit comparator lessequal for signal <color_out$cmp_le0012> created at line 158.
+    Found 10-bit comparator lessequal for signal <color_out$cmp_le0013> created at line 162.
+    Found 10-bit comparator lessequal for signal <color_out$cmp_le0014> created at line 166.
+    Found 10-bit comparator lessequal for signal <color_out$cmp_le0015> created at line 170.
+    Found 10-bit comparator lessequal for signal <color_out$cmp_le0016> created at line 174.
+    Found 10-bit comparator lessequal for signal <color_out$cmp_le0017> created at line 178.
+    Found 10-bit comparator lessequal for signal <color_out$cmp_le0018> created at line 182.
+    Found 10-bit comparator lessequal for signal <color_out$cmp_le0019> created at line 186.
+    Found 4x6-bit multiplier for signal <pointer_to_mask_2$mult0000> created at line 124.
+    Found 12-bit subtractor for signal <pointer_to_mask_2$sub0000> created at line 124.
+    Summary:
+	inferred   1 ROM(s).
+	inferred  12 D-type flip-flop(s).
+	inferred   7 Adder/Subtractor(s).
+	inferred   1 Multiplier(s).
+	inferred  40 Comparator(s).
+Unit <Module_VGADriver> synthesized.
+
+
+Synthesizing Unit <GridEngine>.
+    Related source file is "GridEngine.v".
+INFO:Xst:1799 - State 11 is never reached in FSM <turn_status>.
+    Found finite state machine <FSM_0> for signal <turn_status>.
+    -----------------------------------------------------------------------
+    | States             | 2                                              |
+    | Transitions        | 4                                              |
+    | Inputs             | 2                                              |
+    | Outputs            | 5                                              |
+    | Clock              | clk_in                    (rising_edge)        |
+    | Power Up State     | 00                                             |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found finite state machine <FSM_1> for signal <ship_size_pointer>.
+    -----------------------------------------------------------------------
+    | States             | 6                                              |
+    | Transitions        | 11                                             |
+    | Inputs             | 1                                              |
+    | Outputs            | 5                                              |
+    | Clock              | clk_in                    (rising_edge)        |
+    | Clock enable       | ship_size_pointer$not0000 (negative)           |
+    | Power Up State     | 0000                                           |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 5x4-bit ROM for signal <$varindex0000> created at line 158.
+    Found 5-bit register for signal <cell_new_status>.
+    Found T flip-flop for signal <direction>.
+    Found 1-bit register for signal <mouse_left_enable>.
+    Found 1-bit register for signal <mouse_right_enable>.
+    Found 1-bit register for signal <write_enable>.
+    Summary:
+	inferred   2 Finite State Machine(s).
+	inferred   1 ROM(s).
+	inferred   1 T-type flip-flop(s).
+	inferred   8 D-type flip-flop(s).
+Unit <GridEngine> synthesized.
+
+
+Synthesizing Unit <Controller>.
+    Related source file is "Controller.v".
+WARNING:Xst:1780 - Signal <w_cell_y> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <w_cell_x> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+Unit <Controller> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# ROMs                                                 : 2
+ 3072x2-bit ROM                                        : 1
+ 5x4-bit ROM                                           : 1
+# Multipliers                                          : 1
+ 4x6-bit multiplier                                    : 1
+# Adders/Subtractors                                   : 21
+ 10-bit adder                                          : 6
+ 10-bit subtractor                                     : 6
+ 12-bit adder                                          : 1
+ 12-bit subtractor                                     : 2
+ 32-bit subtractor                                     : 2
+ 4-bit adder                                           : 4
+# Counters                                             : 2
+ 30-bit up counter                                     : 2
+# Registers                                            : 125
+ 1-bit register                                        : 9
+ 10-bit register                                       : 6
+ 12-bit register                                       : 1
+ 4-bit register                                        : 106
+ 5-bit register                                        : 3
+# Toggle Registers                                     : 1
+ T flip-flop                                           : 1
+# Comparators                                          : 185
+ 10-bit comparator greatequal                          : 66
+ 10-bit comparator greater                             : 20
+ 10-bit comparator less                                : 68
+ 10-bit comparator lessequal                           : 25
+ 32-bit comparator greatequal                          : 2
+ 4-bit comparator lessequal                            : 4
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Analyzing FSM <FSM_1> for best encoding.
+Optimizing FSM <GE/ship_size_pointer/FSM> on signal <ship_size_pointer[1:3]> with gray encoding.
+-------------------
+ State | Encoding
+-------------------
+ 0000  | 000
+ 0001  | 001
+ 0010  | 011
+ 0011  | 010
+ 0100  | 110
+ 0101  | 111
+-------------------
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <GE/turn_status/FSM> on signal <turn_status[1:1]> with sequential encoding.
+-------------------
+ State | Encoding
+-------------------
+ 00    | 0
+ 11    | unreached
+ 01    | 1
+-------------------
+INFO:Xst:2261 - The FF/Latch <cell_new_status_3> in Unit <GE> is equivalent to the following FF/Latch, which will be removed : <cell_new_status_4> 
+WARNING:Xst:1293 - FF/Latch <color_out_5> has a constant value of 0 in block <driver>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <status_3> (without init value) has a constant value of 0 in block <memory>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <status_4> (without init value) has a constant value of 0 in block <memory>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <status_pointed_cell_4> (without init value) has a constant value of 0 in block <memory>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <cell_new_status_3> (without init value) has a constant value of 0 in block <GE>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2404 -  FFs/Latches <status_pointed_cell<4:4>> (without init value) have a constant value of 0 in block <cell_io>.
+WARNING:Xst:2404 -  FFs/Latches <cell_new_status<4:3>> (without init value) have a constant value of 0 in block <GridEngine>.
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# FSMs                                                 : 2
+# ROMs                                                 : 2
+ 3072x2-bit ROM                                        : 1
+ 5x4-bit ROM                                           : 1
+# Multipliers                                          : 1
+ 4x6-bit multiplier                                    : 1
+# Adders/Subtractors                                   : 21
+ 10-bit adder                                          : 6
+ 10-bit subtractor                                     : 6
+ 12-bit adder                                          : 1
+ 12-bit subtractor                                     : 1
+ 32-bit subtractor                                     : 2
+ 4-bit adder                                           : 4
+ 6-bit subtractor                                      : 1
+# Counters                                             : 2
+ 30-bit up counter                                     : 2
+# Registers                                            : 518
+ Flip-Flops                                            : 518
+# Comparators                                          : 185
+ 10-bit comparator greatequal                          : 66
+ 10-bit comparator greater                             : 20
+ 10-bit comparator less                                : 68
+ 10-bit comparator lessequal                           : 25
+ 32-bit comparator greatequal                          : 2
+ 4-bit comparator lessequal                            : 4
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:1293 - FF/Latch <color_out_5> has a constant value of 0 in block <Module_VGADriver>. This FF/Latch will be trimmed during the optimization process.
+INFO:Xst:2261 - The FF/Latch <status_3> in Unit <cell_io> is equivalent to the following FF/Latch, which will be removed : <status_4> 
+WARNING:Xst:1710 - FF/Latch <status_3> (without init value) has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_0> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_1> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_2> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_3> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_4> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_5> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_6> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_7> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_8> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_9> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_10> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_11> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_12> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_13> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_14> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_15> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_16> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_17> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_18> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_19> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_20> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_21> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_22> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_23> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_24> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_25> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_26> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_27> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_28> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <Mhz25ClockGenerator/counter_29> of sequential type is unconnected in block <Controller>.
+
+Optimizing unit <Controller> ...
+
+Optimizing unit <Module_MouseSimulator> ...
+WARNING:Xst:1293 - FF/Latch <y_pos_9> has a constant value of 0 in block <Module_MouseSimulator>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <y_pos_9> has a constant value of 0 in block <Module_MouseSimulator>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <y_pos_9> has a constant value of 0 in block <Module_MouseSimulator>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <y_pos_9> has a constant value of 0 in block <Module_MouseSimulator>. This FF/Latch will be trimmed during the optimization process.
+
+Optimizing unit <Module_VGASyncronizer> ...
+
+Optimizing unit <pos_to_quadrant> ...
+
+Optimizing unit <cell_io> ...
+WARNING:Xst:1293 - FF/Latch <memory<1>_8_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<1>_7_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<1>_9_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<1>_6_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<1>_5_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<1>_4_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<1>_3_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<1>_1_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<1>_0_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<1>_2_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<0>_9_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<0>_8_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<0>_7_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<0>_6_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<0>_4_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<0>_3_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<0>_5_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<0>_2_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<0>_1_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<0>_0_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <memory<1>_8_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<1>_7_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<1>_9_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<1>_6_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<1>_5_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<1>_4_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<1>_3_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<1>_1_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<1>_0_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<1>_2_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<0>_9_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<0>_8_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<0>_7_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<0>_6_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<0>_4_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<0>_3_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<0>_5_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<0>_2_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<0>_1_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <memory<0>_0_3> has a constant value of 0 in block <cell_io>. This FF/Latch will be trimmed during the optimization process.
+
+Optimizing unit <Module_VGADriver> ...
+INFO:Xst:2261 - The FF/Latch <color_out_9> in Unit <Module_VGADriver> is equivalent to the following FF/Latch, which will be removed : <color_out_11> 
+INFO:Xst:2261 - The FF/Latch <color_out_9> in Unit <Module_VGADriver> is equivalent to the following FF/Latch, which will be removed : <color_out_11> 
+
+Optimizing unit <GridEngine> ...
+WARNING:Xst:2677 - Node <driver/position_to_quadrant/cell_y_2> of sequential type is unconnected in block <Controller>.
+WARNING:Xst:2677 - Node <driver/position_to_quadrant/cell_y_3> of sequential type is unconnected in block <Controller>.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+INFO:Xst:2261 - The FF/Latch <driver/position_to_quadrant/cell_x_3> in Unit <Controller> is equivalent to the following FF/Latch, which will be removed : <GE/pointer_to_cell/cell_x_3> 
+INFO:Xst:2261 - The FF/Latch <driver/position_to_quadrant/cell_x_1> in Unit <Controller> is equivalent to the following FF/Latch, which will be removed : <GE/pointer_to_cell/cell_x_1> 
+INFO:Xst:2261 - The FF/Latch <driver/position_to_quadrant/cell_x_0> in Unit <Controller> is equivalent to the following FF/Latch, which will be removed : <GE/pointer_to_cell/cell_x_0> 
+INFO:Xst:2261 - The FF/Latch <driver/position_to_quadrant/cell_x_2> in Unit <Controller> is equivalent to the following FF/Latch, which will be removed : <GE/pointer_to_cell/cell_x_2> 
+Found area constraint ratio of 100 (+ 5) on block Controller, actual ratio is 82.
+FlipFlop GE/mouse_to_cell/cell_x_0 has been replicated 1 time(s)
+FlipFlop GE/mouse_to_cell/cell_x_1 has been replicated 1 time(s)
+FlipFlop GE/mouse_to_cell/cell_x_2 has been replicated 1 time(s)
+FlipFlop GE/mouse_to_cell/cell_x_3 has been replicated 4 time(s)
+FlipFlop GE/mouse_to_cell/cell_y_0 has been replicated 1 time(s)
+FlipFlop GE/mouse_to_cell/cell_y_1 has been replicated 1 time(s)
+FlipFlop GE/mouse_to_cell/cell_y_2 has been replicated 2 time(s)
+FlipFlop GE/mouse_to_cell/cell_y_3 has been replicated 2 time(s)
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 534
+ Flip-Flops                                            : 534
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : Controller.ngr
+Top Level Output File Name         : Controller
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 29
+
+Cell Usage :
+# BELS                             : 11845
+#      GND                         : 1
+#      INV                         : 38
+#      LUT1                        : 69
+#      LUT2                        : 403
+#      LUT2_D                      : 56
+#      LUT2_L                      : 9
+#      LUT3                        : 1223
+#      LUT3_D                      : 98
+#      LUT3_L                      : 157
+#      LUT4                        : 6829
+#      LUT4_D                      : 836
+#      LUT4_L                      : 754
+#      MUXCY                       : 609
+#      MUXF5                       : 604
+#      MUXF6                       : 9
+#      MUXF7                       : 2
+#      MUXF8                       : 1
+#      VCC                         : 1
+#      XORCY                       : 146
+# FlipFlops/Latches                : 534
+#      FD                          : 24
+#      FD_1                        : 81
+#      FDE                         : 32
+#      FDE_1                       : 3
+#      FDR                         : 46
+#      FDRE                        : 25
+#      FDRS                        : 7
+#      FDRSE                       : 7
+#      FDS                         : 7
+#      FDS_1                       : 300
+#      FDSE                        : 2
+# Clock Buffers                    : 2
+#      BUFG                        : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 28
+#      IBUF                        : 6
+#      OBUF                        : 22
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 3s700anfgg484-4 
+
+ Number of Slices:                     5399  out of   5888    91%  
+ Number of Slice Flip Flops:            534  out of  11776     4%  
+ Number of 4 input LUTs:              10472  out of  11776    88%  
+ Number of IOs:                          29
+ Number of bonded IOBs:                  29  out of    372     7%  
+ Number of GCLKs:                         2  out of     24     8%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+CLK_50M                            | BUFGP                  | 32    |
+ClockUmanoGenerator/clk_out        | NONE(sim/x_pos_9)      | 19    |
+Mhz25ClockGenerator/clk_out1       | BUFG                   | 483   |
+-----------------------------------+------------------------+-------+
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -4
+
+   Minimum period: 103.467ns (Maximum Frequency: 9.665MHz)
+   Minimum input arrival time before clock: 14.524ns
+   Maximum output required time after clock: 6.111ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'CLK_50M'
+  Clock period: 5.383ns (frequency: 185.774MHz)
+  Total number of paths / destination ports: 1397 / 63
+-------------------------------------------------------------------------
+Delay:               5.383ns (Levels of Logic = 13)
+  Source:            ClockUmanoGenerator/counter_0 (FF)
+  Destination:       ClockUmanoGenerator/counter_0 (FF)
+  Source Clock:      CLK_50M rising
+  Destination Clock: CLK_50M rising
+
+  Data Path: ClockUmanoGenerator/counter_0 to ClockUmanoGenerator/counter_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDR:C->Q              2   0.591   0.590  ClockUmanoGenerator/counter_0 (ClockUmanoGenerator/counter_0)
+     LUT4:I0->O            1   0.648   0.000  ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_lut<0> (ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_lut<0>)
+     MUXCY:S->O            1   0.632   0.000  ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<0> (ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<0>)
+     MUXCY:CI->O           1   0.065   0.000  ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1> (ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<1>)
+     MUXCY:CI->O           1   0.065   0.000  ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<2> (ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<2>)
+     MUXCY:CI->O           1   0.065   0.000  ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3> (ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<3>)
+     MUXCY:CI->O           1   0.065   0.000  ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<4> (ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<4>)
+     MUXCY:CI->O           1   0.065   0.000  ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5> (ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<5>)
+     MUXCY:CI->O           1   0.065   0.000  ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<6> (ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<6>)
+     MUXCY:CI->O           1   0.065   0.000  ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7> (ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<7>)
+     MUXCY:CI->O           1   0.065   0.000  ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<8> (ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<8>)
+     MUXCY:CI->O           1   0.065   0.000  ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9> (ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<9>)
+     MUXCY:CI->O           1   0.065   0.000  ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<10> (ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<10>)
+     MUXCY:CI->O          31   0.141   1.262  ClockUmanoGenerator/Mcompar_counter_cmp_ge0000_cy<11> (ClockUmanoGenerator/counter_cmp_ge0000)
+     FDR:R                     0.869          ClockUmanoGenerator/counter_0
+    ----------------------------------------
+    Total                      5.383ns (3.531ns logic, 1.852ns route)
+                                       (65.6% logic, 34.4% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'ClockUmanoGenerator/clk_out'
+  Clock period: 16.319ns (frequency: 61.278MHz)
+  Total number of paths / destination ports: 68318 / 38
+-------------------------------------------------------------------------
+Delay:               16.319ns (Levels of Logic = 20)
+  Source:            sim/y_pos_0 (FF)
+  Destination:       sim/y_pos_5 (FF)
+  Source Clock:      ClockUmanoGenerator/clk_out rising
+  Destination Clock: ClockUmanoGenerator/clk_out rising
+
+  Data Path: sim/y_pos_0 to sim/y_pos_5
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDS:C->Q              5   0.591   0.776  sim/y_pos_0 (sim/y_pos_0)
+     LUT1:I0->O            1   0.648   0.000  sim/Msub_old_y_pos_5_sub0000_cy<0>_rt (sim/Msub_old_y_pos_5_sub0000_cy<0>_rt)
+     MUXCY:S->O            1   0.632   0.000  sim/Msub_old_y_pos_5_sub0000_cy<0> (sim/Msub_old_y_pos_5_sub0000_cy<0>)
+     MUXCY:CI->O           1   0.065   0.000  sim/Msub_old_y_pos_5_sub0000_cy<1> (sim/Msub_old_y_pos_5_sub0000_cy<1>)
+     MUXCY:CI->O           1   0.065   0.000  sim/Msub_old_y_pos_5_sub0000_cy<2> (sim/Msub_old_y_pos_5_sub0000_cy<2>)
+     MUXCY:CI->O           1   0.065   0.000  sim/Msub_old_y_pos_5_sub0000_cy<3> (sim/Msub_old_y_pos_5_sub0000_cy<3>)
+     MUXCY:CI->O           1   0.065   0.000  sim/Msub_old_y_pos_5_sub0000_cy<4> (sim/Msub_old_y_pos_5_sub0000_cy<4>)
+     MUXCY:CI->O           1   0.065   0.000  sim/Msub_old_y_pos_5_sub0000_cy<5> (sim/Msub_old_y_pos_5_sub0000_cy<5>)
+     MUXCY:CI->O           1   0.065   0.000  sim/Msub_old_y_pos_5_sub0000_cy<6> (sim/Msub_old_y_pos_5_sub0000_cy<6>)
+     XORCY:CI->O           3   0.844   0.563  sim/Msub_old_y_pos_5_sub0000_xor<7> (sim/old_y_pos_5_sub0000<7>)
+     LUT3:I2->O            1   0.648   0.000  sim/_old_y_pos_5<7>11 (sim/_old_y_pos_5<7>1)
+     MUXCY:S->O            1   0.632   0.000  sim/Madd_old_y_pos_7_addsub0000_cy<7> (sim/Madd_old_y_pos_7_addsub0000_cy<7>)
+     XORCY:CI->O           2   0.844   0.450  sim/Madd_old_y_pos_7_addsub0000_xor<8> (sim/old_y_pos_7_addsub0000<8>)
+     LUT4:I3->O            1   0.648   0.000  sim/_old_y_pos_7<8>11 (sim/_old_y_pos_7<8>1)
+     MUXF5:I1->O           3   0.276   0.674  sim/_old_y_pos_7<8>1_f5 (sim/_old_y_pos_7<8>)
+     LUT4:I0->O            1   0.648   0.452  sim/old_y_pos_9_cmp_ge00001_SW0 (N94)
+     LUT4:I2->O           15   0.648   1.097  sim/old_y_pos_9_cmp_ge00001 (sim/old_y_pos_9_cmp_ge0000)
+     LUT2:I1->O            1   0.643   0.000  sim/_old_y_pos_9<4>11 (sim/_old_y_pos_9<4>1)
+     MUXF5:I1->O           2   0.276   0.527  sim/_old_y_pos_9<4>1_f5 (sim/_old_y_pos_9<4>)
+     LUT4:I1->O            1   0.643   0.500  sim/y_pos_cmp_le0000252_SW0 (N4869)
+     LUT4:I1->O            8   0.643   0.757  sim/y_pos_cmp_le0000252 (sim/y_pos_cmp_le0000)
+     FDR:R                     0.869          sim/y_pos_5
+    ----------------------------------------
+    Total                     16.319ns (10.523ns logic, 5.796ns route)
+                                       (64.5% logic, 35.5% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'Mhz25ClockGenerator/clk_out1'
+  Clock period: 103.467ns (frequency: 9.665MHz)
+  Total number of paths / destination ports: 103005920932024640 / 838
+-------------------------------------------------------------------------
+Delay:               51.734ns (Levels of Logic = 84)
+  Source:            GE/mouse_to_cell/cell_y_2_1 (FF)
+  Destination:       GE/memory/memory<4>_0_0 (FF)
+  Source Clock:      Mhz25ClockGenerator/clk_out1 rising
+  Destination Clock: Mhz25ClockGenerator/clk_out1 falling
+
+  Data Path: GE/mouse_to_cell/cell_y_2_1 to GE/memory/memory<4>_0_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDRE:C->Q            17   0.591   1.194  GE/mouse_to_cell/cell_y_2_1 (GE/mouse_to_cell/cell_y_2_1)
+     LUT4_D:I0->O         19   0.648   1.165  GE/memory/COND_12_cmp_eq00021_1 (GE/memory/COND_12_cmp_eq00021)
+     LUT2:I1->O            1   0.643   0.423  GE/memory/_COND_12<1>_wg_lut<1>_SW0 (N3189)
+     LUT4:I3->O            1   0.648   0.000  GE/memory/_COND_12<1>_wg_lut<1> (GE/memory/_COND_12<1>_wg_lut<1>)
+     MUXCY:S->O            1   0.632   0.000  GE/memory/_COND_12<1>_wg_cy<1> (GE/memory/_COND_12<1>_wg_cy<1>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<2> (GE/memory/_COND_12<1>_wg_cy<2>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<3> (GE/memory/_COND_12<1>_wg_cy<3>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<4> (GE/memory/_COND_12<1>_wg_cy<4>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<5> (GE/memory/_COND_12<1>_wg_cy<5>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<6> (GE/memory/_COND_12<1>_wg_cy<6>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<7> (GE/memory/_COND_12<1>_wg_cy<7>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<8> (GE/memory/_COND_12<1>_wg_cy<8>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<9> (GE/memory/_COND_12<1>_wg_cy<9>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<10> (GE/memory/_COND_12<1>_wg_cy<10>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<11> (GE/memory/_COND_12<1>_wg_cy<11>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<12> (GE/memory/_COND_12<1>_wg_cy<12>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<13> (GE/memory/_COND_12<1>_wg_cy<13>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<14> (GE/memory/_COND_12<1>_wg_cy<14>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<15> (GE/memory/_COND_12<1>_wg_cy<15>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<16> (GE/memory/_COND_12<1>_wg_cy<16>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<17> (GE/memory/_COND_12<1>_wg_cy<17>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<18> (GE/memory/_COND_12<1>_wg_cy<18>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<19> (GE/memory/_COND_12<1>_wg_cy<19>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<20> (GE/memory/_COND_12<1>_wg_cy<20>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<21> (GE/memory/_COND_12<1>_wg_cy<21>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<22> (GE/memory/_COND_12<1>_wg_cy<22>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<23> (GE/memory/_COND_12<1>_wg_cy<23>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<24> (GE/memory/_COND_12<1>_wg_cy<24>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<25> (GE/memory/_COND_12<1>_wg_cy<25>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<26> (GE/memory/_COND_12<1>_wg_cy<26>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<27> (GE/memory/_COND_12<1>_wg_cy<27>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<28> (GE/memory/_COND_12<1>_wg_cy<28>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<29> (GE/memory/_COND_12<1>_wg_cy<29>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<30> (GE/memory/_COND_12<1>_wg_cy<30>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<31> (GE/memory/_COND_12<1>_wg_cy<31>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<32> (GE/memory/_COND_12<1>_wg_cy<32>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<33> (GE/memory/_COND_12<1>_wg_cy<33>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<34> (GE/memory/_COND_12<1>_wg_cy<34>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<35> (GE/memory/_COND_12<1>_wg_cy<35>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<36> (GE/memory/_COND_12<1>_wg_cy<36>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<37> (GE/memory/_COND_12<1>_wg_cy<37>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<38> (GE/memory/_COND_12<1>_wg_cy<38>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<39> (GE/memory/_COND_12<1>_wg_cy<39>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<40> (GE/memory/_COND_12<1>_wg_cy<40>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<41> (GE/memory/_COND_12<1>_wg_cy<41>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<42> (GE/memory/_COND_12<1>_wg_cy<42>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<43> (GE/memory/_COND_12<1>_wg_cy<43>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<44> (GE/memory/_COND_12<1>_wg_cy<44>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<45> (GE/memory/_COND_12<1>_wg_cy<45>)
+     MUXCY:CI->O           1   0.065   0.000  GE/memory/_COND_12<1>_wg_cy<46> (GE/memory/_COND_12<1>_wg_cy<46>)
+     MUXCY:CI->O           1   0.269   0.452  GE/memory/_COND_12<1>_wg_cy<47> (GE/memory/_COND_12<1>_wg_cy<47>)
+     LUT3_D:I2->O        313   0.648   1.383  GE/memory/_COND_12<1>_wg_cy<49>1 (GE/memory/_COND_12<1>_wg_cy<49>)
+     LUT4_D:I2->O          4   0.648   0.590  GE/memory/_mux0118<2>11 (GE/memory/N2362)
+     LUT4_D:I3->LO         1   0.648   0.103  GE/memory/SF677126 (N6244)
+     LUT4:I3->O            1   0.648   0.423  GE/memory/SF677139 (GE/memory/N19521)
+     LUT4:I3->O            1   0.648   0.452  GE/memory/mux0190_and00002114 (GE/memory/mux0190_and00002114)
+     LUT4:I2->O            1   0.648   0.423  GE/memory/mux0190_and00002274 (GE/memory/mux0190_and00002274)
+     LUT4:I3->O            3   0.648   0.563  GE/memory/mux0190_and00002299 (GE/memory/mux0190_and00002299)
+     LUT4:I2->O           17   0.648   1.054  GE/memory/mux0190_and00002977_1 (GE/memory/mux0190_and000029771)
+     LUT4:I3->O          238   0.648   1.330  GE/memory/mux0190_and00006862_1 (GE/memory/mux0190_and00006862)
+     LUT4_D:I3->O          5   0.648   0.665  GE/memory/_mux0268<1>1 (GE/memory/_mux0268<1>)
+     LUT4:I2->O            1   0.648   0.423  GE/memory/mux0270_and00005831 (GE/memory/mux0270_and00005831)
+     LUT4:I3->O            1   0.648   0.423  GE/memory/mux0270_and00005841 (GE/memory/mux0270_and00005841)
+     LUT4_L:I3->LO         1   0.648   0.103  GE/memory/mux0270_and00005869 (GE/memory/mux0270_and00005869)
+     LUT4:I3->O            1   0.648   0.500  GE/memory/mux0270_and00005919 (GE/memory/mux0270_and00005919)
+     LUT4:I1->O            1   0.643   0.452  GE/memory/mux0270_and00006322 (GE/memory/mux0270_and00006322)
+     LUT4:I2->O            2   0.648   0.450  GE/memory/mux0270_and00007099 (GE/memory/mux0270_and00007099)
+     LUT4:I3->O          263   0.648   1.338  GE/memory/mux0270_and00007121_1 (GE/memory/mux0270_and00007121)
+     LUT4:I3->O            3   0.648   0.563  GE/memory/SF16521 (GE/memory/N464)
+     LUT4:I2->O            2   0.648   0.479  GE/memory/SF16541 (GE/memory/N19121)
+     LUT3:I2->O            1   0.648   0.423  GE/memory/mux0340_and00004652_SW0 (N1099)
+     LUT4:I3->O            1   0.648   0.452  GE/memory/mux0340_and00004652 (GE/memory/mux0340_and00004652)
+     LUT4:I2->O            1   0.648   0.423  GE/memory/mux0340_and00004783 (GE/memory/mux0340_and00004783)
+     LUT4:I3->O            1   0.648   0.423  GE/memory/mux0340_and00006075_SW0 (N1161)
+     LUT4:I3->O            2   0.648   0.479  GE/memory/mux0340_and00007096 (GE/memory/mux0340_and00007096)
+     LUT4:I2->O          312   0.648   1.354  GE/memory/mux0340_and00007118_1 (GE/memory/mux0340_and00007118)
+     LUT4:I3->O            3   0.648   0.563  GE/memory/SF19511 (GE/memory/N204)
+     LUT4:I2->O            1   0.648   0.423  GE/memory/memory<4>_0_and00001203 (GE/memory/memory<4>_0_and00001203)
+     LUT4:I3->O            1   0.648   0.423  GE/memory/memory<4>_0_and00001219 (GE/memory/memory<4>_0_and00001219)
+     LUT4:I3->O            1   0.648   0.423  GE/memory/memory<4>_0_and00001126_SW0 (N2019)
+     LUT4_L:I3->LO         1   0.648   0.180  GE/memory/memory<4>_0_and00001415 (GE/memory/memory<4>_0_and00001415)
+     LUT4:I1->O            2   0.643   0.450  GE/memory/memory<4>_0_and00001439 (GE/memory/memory<4>_0_and00001439)
+     LUT4_D:I3->O        185   0.648   1.314  GE/memory/memory<4>_0_and00005129 (GE/memory/memory<4>_0_and0000)
+     LUT4_D:I3->O          9   0.648   0.823  GE/memory/memory<4>_0_mux0000<1>121 (GE/memory/N2237)
+     LUT4:I3->O            1   0.648   0.000  GE/memory/memory<7>_3_mux0000<0>2371 (GE/memory/memory<7>_3_mux0000<0>237)
+     FDS_1:D                   0.252          GE/memory/memory<7>_3_0
+    ----------------------------------------
+    Total                     51.734ns (28.630ns logic, 23.104ns route)
+                                       (55.3% logic, 44.7% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'ClockUmanoGenerator/clk_out'
+  Total number of paths / destination ports: 12597 / 38
+-------------------------------------------------------------------------
+Offset:              14.524ns (Levels of Logic = 19)
+  Source:            BTN_NORTH (PAD)
+  Destination:       sim/y_pos_5 (FF)
+  Destination Clock: ClockUmanoGenerator/clk_out rising
+
+  Data Path: BTN_NORTH to sim/y_pos_5
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O            23   0.849   1.345  BTN_NORTH_IBUF (BTN_NORTH_IBUF)
+     LUT3:I0->O            1   0.648   0.000  sim/Madd_old_y_pos_7_addsub0000_lut<0> (sim/Madd_old_y_pos_7_addsub0000_lut<0>)
+     MUXCY:S->O            1   0.632   0.000  sim/Madd_old_y_pos_7_addsub0000_cy<0> (sim/Madd_old_y_pos_7_addsub0000_cy<0>)
+     MUXCY:CI->O           1   0.065   0.000  sim/Madd_old_y_pos_7_addsub0000_cy<1> (sim/Madd_old_y_pos_7_addsub0000_cy<1>)
+     MUXCY:CI->O           1   0.065   0.000  sim/Madd_old_y_pos_7_addsub0000_cy<2> (sim/Madd_old_y_pos_7_addsub0000_cy<2>)
+     MUXCY:CI->O           1   0.065   0.000  sim/Madd_old_y_pos_7_addsub0000_cy<3> (sim/Madd_old_y_pos_7_addsub0000_cy<3>)
+     MUXCY:CI->O           1   0.065   0.000  sim/Madd_old_y_pos_7_addsub0000_cy<4> (sim/Madd_old_y_pos_7_addsub0000_cy<4>)
+     MUXCY:CI->O           1   0.065   0.000  sim/Madd_old_y_pos_7_addsub0000_cy<5> (sim/Madd_old_y_pos_7_addsub0000_cy<5>)
+     MUXCY:CI->O           1   0.065   0.000  sim/Madd_old_y_pos_7_addsub0000_cy<6> (sim/Madd_old_y_pos_7_addsub0000_cy<6>)
+     MUXCY:CI->O           1   0.065   0.000  sim/Madd_old_y_pos_7_addsub0000_cy<7> (sim/Madd_old_y_pos_7_addsub0000_cy<7>)
+     XORCY:CI->O           2   0.844   0.450  sim/Madd_old_y_pos_7_addsub0000_xor<8> (sim/old_y_pos_7_addsub0000<8>)
+     LUT4:I3->O            1   0.648   0.000  sim/_old_y_pos_7<8>11 (sim/_old_y_pos_7<8>1)
+     MUXF5:I1->O           3   0.276   0.674  sim/_old_y_pos_7<8>1_f5 (sim/_old_y_pos_7<8>)
+     LUT4:I0->O            1   0.648   0.452  sim/old_y_pos_9_cmp_ge00001_SW0 (N94)
+     LUT4:I2->O           15   0.648   1.097  sim/old_y_pos_9_cmp_ge00001 (sim/old_y_pos_9_cmp_ge0000)
+     LUT2:I1->O            1   0.643   0.000  sim/_old_y_pos_9<4>11 (sim/_old_y_pos_9<4>1)
+     MUXF5:I1->O           2   0.276   0.527  sim/_old_y_pos_9<4>1_f5 (sim/_old_y_pos_9<4>)
+     LUT4:I1->O            1   0.643   0.500  sim/y_pos_cmp_le0000252_SW0 (N4869)
+     LUT4:I1->O            8   0.643   0.757  sim/y_pos_cmp_le0000252 (sim/y_pos_cmp_le0000)
+     FDR:R                     0.869          sim/y_pos_5
+    ----------------------------------------
+    Total                     14.524ns (8.722ns logic, 5.802ns route)
+                                       (60.1% logic, 39.9% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'Mhz25ClockGenerator/clk_out1'
+  Total number of paths / destination ports: 7 / 7
+-------------------------------------------------------------------------
+Offset:              2.903ns (Levels of Logic = 2)
+  Source:            SW<0> (PAD)
+  Destination:       GE/cell_new_status_2 (FF)
+  Destination Clock: Mhz25ClockGenerator/clk_out1 rising
+
+  Data Path: SW<0> to GE/cell_new_status_2
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             3   0.849   0.563  SW_0_IBUF (SW_0_IBUF)
+     LUT3:I2->O            3   0.648   0.531  GE/cell_new_status_not00011 (GE/cell_new_status_not0001)
+     FDE:CE                    0.312          GE/cell_new_status_0
+    ----------------------------------------
+    Total                      2.903ns (1.809ns logic, 1.094ns route)
+                                       (62.3% logic, 37.7% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'Mhz25ClockGenerator/clk_out1'
+  Total number of paths / destination ports: 17 / 17
+-------------------------------------------------------------------------
+Offset:              6.111ns (Levels of Logic = 1)
+  Source:            GE/memory/status_pointed_cell_2 (FF)
+  Destination:       LED<2> (PAD)
+  Source Clock:      Mhz25ClockGenerator/clk_out1 rising
+
+  Data Path: GE/memory/status_pointed_cell_2 to LED<2>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q              14   0.591   1.000  GE/memory/status_pointed_cell_2 (GE/memory/status_pointed_cell_2)
+     OBUF:I->O                 4.520          LED_2_OBUF (LED<2>)
+    ----------------------------------------
+    Total                      6.111ns (5.111ns logic, 1.000ns route)
+                                       (83.6% logic, 16.4% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 773.00 secs
+Total CPU time to Xst completion: 772.83 secs
+ 
+--> 
+
+Total memory usage is 522232 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :   99 (   0 filtered)
+Number of infos    :   11 (   0 filtered)
+
