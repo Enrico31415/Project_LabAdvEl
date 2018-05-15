@@ -15,7 +15,7 @@ image = list(image.getdata())
 print ("//File autogenerato da "+__file__);
 print ("//non modificare! Qualsiasi modifica potrebbe essere cancellata all'esecuzione successiva")
 print("")
-print("`define d_circle \t "+str(x_dim*y_dim)+"'b", end = '\n')
+print("`define d_cross \t "+str(x_dim*y_dim)+"'b", end ='')
 #sistemo l'ellisse interna con gli zeri
 for i in range(0,len(image)):
 	if(image[i] == 2):
