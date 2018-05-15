@@ -1,23 +1,7 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date:    16:26:30 04/20/2018 
-// Design Name: 
-// Module Name:    sim_test_battleship 
-// Project Name: 
-// Target Devices: 
-// Tool versions: 
-// Description: 
-//
-// Dependencies: 
-//
-// Revision: 
-// Revision 0.01 - File Created
-// Additional Comments: 
-//
-//////////////////////////////////////////////////////////////////////////////////
+/*
+Simulation of the system FPGA + Mouse.
+*/
 module sim_test_battleship(
 		input btn,
 		

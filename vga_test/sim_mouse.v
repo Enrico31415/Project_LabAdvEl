@@ -1,23 +1,22 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date:    21:59:28 05/02/2018 
-// Design Name: 
-// Module Name:    sim_mouse 
-// Project Name: 
-// Target Devices: 
-// Tool versions: 
-// Description: 
-//
-// Dependencies: 
-//
-// Revision: 
-// Revision 0.01 - File Created
-// Additional Comments: 
-//
-//////////////////////////////////////////////////////////////////////////////////
+/*
+Mouse simulation. For using with the simulator.
+	At initialization it responds to all packets with ACK. It doesn't control
+parity. After it has received the packet `enable stream reporting` it starts to
+send three-byte packets every 10ms. The packets are all equal and has no
+meaning. They just are special cases, like: all zeroes OR very alternating bits
+	The code is very similar to the `PS2_send` and `PS2_read` modules. Here the
+reading and sending is done in the same module, without delegating to childrens
+this make the module big and possibly messy.
+
+HOW TO IMPROOVE:
+	- understand other signals like resend or reset from host
+	- send real packets (with meaning) to host. send also packets with errors:
+	parity, start/stop OR malformed: too long or too short, or two packets 
+	instead of three; all this with the purpouse of testing the module
+	`PS2_comm`.
+	- eventually split in submodules analogously to the `PS2_comm`.
+*/
 module sim_mouse(
 	inout PS2C,
 	inout PS2D
@@ -313,8 +312,11 @@ delay_clk delay_my_clk_for_sync_data(
 		.clk_out(w_my_clk_sync_data)
     );
 
+// Is the mouse who makes the pull-up
 pullup (PS2C);
 pullup (PS2D);
+
+// remember inouts are nets, so only assign allowed
 assign PS2C = clk_enable ? (w_my_clk ? 1'bz : 1'b0) : 1'bz;
 assign PS2D = PS2D_reg ? 1'bz : 1'b0;
 

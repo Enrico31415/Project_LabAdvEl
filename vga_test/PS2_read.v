@@ -1,23 +1,18 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date:    17:26:21 05/02/2018 
-// Design Name: 
-// Module Name:    PS2_read 
-// Project Name: 
-// Target Devices: 
-// Tool versions: 
-// Description: 
-//
-// Dependencies: 
-//
-// Revision: 
-// Revision 0.01 - File Created
-// Additional Comments: 
-//
-//////////////////////////////////////////////////////////////////////////////////
+
+/* ******************************** MODULE ********************************* **
+	The module has to read a packet from the mouse. To avoid confusion the top
+module decide when the reading is enable. When it has done his job it send a 
+pulse to the parent. the output reading signals to parent that module is in a
+state that's not `ST_IDLE` so, dangerous to interrupt.
+	Also here the clk used is not the 50MHz, due to the fact that sample at high
+frequency is likely to loos edges. That's strange(*) but i've tested with OSC.
+	`data` puts data in output.
+	
+(*) one would expect more edges than real due to strange things in the TTL?
+	instead there are missing. 
+*/
+
 module PS2_read(
 		qzt_clk,
 		clk_main_loop,

@@ -1,23 +1,10 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date:    12:57:17 05/08/2018 
-// Design Name: 
-// Module Name:    mouse_data_management 
-// Project Name: 
-// Target Devices: 
-// Tool versions: 
-// Description: 
-//
-// Dependencies: 
-//
-// Revision: 
-// Revision 0.01 - File Created
-// Additional Comments: 
-//
-//////////////////////////////////////////////////////////////////////////////////
+/*
+	Treat the data coming from PS2_comm to have a position on the screen. and 
+click. Data from the mouse are in 2'complement so easily summable. the only 
+other thing is to set the boxes of the screen. For the clicks I just extract
+and reordered them from status.
+*/
 module mouse_data_management(
 		qzt_clk,
 		status,
@@ -45,6 +32,8 @@ always @ (posedge qzt_clk) begin
 		posX<=posX+{{3{status[4]}},deltaX};
 		posY<=posY+ ~{{3{status[5]}},deltaY} + 1;
 	end else begin
+		/* screen limits respected and the pointer doesn't disappear.
+		*/
 		if (posX[10] || (!posX[10] && posX<=11'd9))	posX<=11'd10;
 		if (!posX[10] && posX[9:0]>=11'd640)			posX<=11'd640;
 		if (posY[10] || (!posY[10] && posY<=11'd9))	posY<=11'd10;

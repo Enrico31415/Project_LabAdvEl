@@ -1,10 +1,16 @@
 /*
 ********************************************************************************
-This module has to send data through the PS2 port. data will be provided from a 
+	This module has to send data through the PS2 port. data will be provided from a 
 top module and will be an array of 11 bits. The top module has to care about
 parity and start and stop bit. The send signal is a positive edge one and start
 the procedure of sending the data. The alghorithm is organized as a state 
 machine.
+	A determining thing for the operation of this module has been using a clock
+with a frequency less than `qzt_clk`, that is `clk_main_loop` which comes from 
+the parent. with the 50MHz clk it happens that clock rising fronts are not
+always found. That's strange: more likely I expect many rising fronts if i'm
+too fast to sample. Instead there are missing ones. But with a clock lower
+(in this case is 50KHz) the problem is solved.
 
 INPUTS:
 	- qzt_clk
@@ -35,9 +41,18 @@ REG:
 			i cannot do with input port
 	- nbits: counts the number of bits sended
 	
-TODO:
-	- I can use only one oneRun Module if i change limit in the state machine!
-	- Data to send is more naturally descriped using register with MSB last bit?
+TODO and FIXES:
+	- trim unused regs and wires
+	- timings are not all implemented, for example the time between clock and
+	data change status is not respected. Only the crucial ones are respected. A
+	great fix would be to pay attention to all timings. It'll require more
+	counters and new states. By now it just works and the total timeout save the
+	execution in case of stuck in one state.
+	- state machine is simple and fragile. with the previous point and new
+	errors it'll improove.
+	- all is implemented in `=` and not `<=`. was the first module, the others
+	uses `<=` which avoids strange race conditions. one could carefully use `<=`
+	everywhere and rewrite the code. Maybe some states would disappear.
 */
 
 `timescale 1ns / 1ps
@@ -55,14 +70,11 @@ TODO:
 `define ST_PRE_WAITREADLAST 8'd9
 `define ST_WAITCLK_SEND 8'd10
 
-`define uno 1'bz
-
 module PS2_send(
 		qzt_clk,
 		clk_main_loop,
 		data,
 		send,
-		btnS,
 		
 		PS2C,
 		PS2D,
@@ -73,22 +85,18 @@ module PS2_send(
 		PS2Creg,
 		PS2Dreg,
 		altro,
-		ortla,
+		
 		errcode
 	  );
-//	  ,errCode
-//
 
 input qzt_clk;
 input clk_main_loop;
 input [0:10] data;
 input send;
-input btnS;
 
 inout PS2C;
 inout PS2D;
 
-//reg	[8:0] data;
 output reg	[7:0] status=8'd0;
 output reg			err=1'b0;
 output reg 	[7:0]	errcode=8'd0;
@@ -97,7 +105,6 @@ reg					reg_done=1'b0;
 
 reg  send_old=1'b0;
 reg  PS2C_old=1'b1;
-reg  PS2D_old=1'b1;
 
 wire w_clk_1micro;
 wire w_clk_100micro;
@@ -111,6 +118,8 @@ wire w_principal;
 wire w_auxiliary;
 wire w_timeout;
 
+/* inouts are nets so i can manipulate them only through assignment. For that
+i use `PS2Creg` and `PS2Dreg`, and here i assign them to the inout ports. */
 output reg  PS2Creg=1'b1;
 output reg  PS2Dreg=1'b1;
 assign PS2C=PS2Creg?1'bz:1'b0;
@@ -119,32 +128,19 @@ assign PS2D=PS2Dreg?1'bz:1'b0;
 reg [0:10] dataReg=11'd0;
 integer nbits=0;
 
+// define ERR
 `define ERR_TIMEOUT 8'd1
 `define ERR_MOUSE_ACK 8'd2
 `define ERR_STATE_MACHINE 8'd3
 
-//////////////////////////////////////////////
+// debugging (put on altro) ////////////////////////
+
 output [3:0] altro;
-output [3:0] ortla;
-reg to_count_bits=0;
 
-/*
-pulse_on_change pulse_bit(
-		.qzt_clk(qzt_clk),
-		.trigger(to_count_bits),
-		
-		.pulse(altro[0])
-    );
-*/
-
-//assign altro=PS2D;//
 assign altro[3]=(w_timeout | w_principal);
-//assign altro[0]=w_clk_100micro;
 assign altro[1]=run_principal;
 assign altro[2]=run_auxiliary;
-//assign altro[2]=
 
-assign ortla[0]=0;
 ////////////////////////////////////////////////////
 
 always @(posedge clk_main_loop) begin
@@ -207,9 +203,6 @@ always @(posedge clk_main_loop) begin
 		`ST_WAITCLK_SEND:begin
 			PS2Dreg=dataReg[0];
 			nbits=nbits+1;
-			/////////////////////////////////
-			to_count_bits=~to_count_bits;
-			/////////////////////////////////
 			if (nbits>=10) begin
 				status=`ST_PRE_WAITREADLAST;
 			end else begin
@@ -235,7 +228,7 @@ always @(posedge clk_main_loop) begin
 		// read the ack and signal error if is not 0
 		`ST_WAITACK: begin
 			if (PS2C_old & !PS2C) begin
-				err=PS2D?(1'b1):(1'b0);
+				err=PS2D?(1'b1):(1'b0); // check ACK
 				errcode=`ERR_MOUSE_ACK;
 				
 				limit_principal=8'd60;
@@ -281,7 +274,6 @@ always @(posedge clk_main_loop) begin
 		 
 	// update old values
 	PS2C_old=PS2C;
-	//PS2D_old=PS2D;
 	send_old=send;
 end	
 
@@ -308,6 +300,7 @@ Module_Counter_8_bit_oneRun principal(
 					//.out(),
 					.carry(w_principal)
 					);
+
 Module_Counter_8_bit_oneRun auxiliary(
 					.qzt_clk(qzt_clk),
 					.clk_in(w_clk_1micro),
@@ -334,105 +327,5 @@ pulse_on_change done_pulse(
 		
 		.pulse(done)
     );
-
-/*
-Module_Counter_8_bit_oneRun acquireChannel	(
-					.qzt_clk(qzt_clk),
-					.clk_in(w_clk_1micro),
-					.limit(8'd120),
-					.run(runAcq),
-
-					//out,
-					.carry(w_acquire)
-					);
-					
-Module_Counter_8_bit_oneRun transmissionTiming	(
-					.qzt_clk(qzt_clk),
-					.clk_in(w_clk_1micro),
-					.limit(8'd3),
-					.run(runData),
-
-					//out,
-					.carry(w_chData)
-					);
-					
-Module_Counter_8_bit_oneRun endPacket	(
-					.qzt_clk(qzt_clk),
-					.clk_in(w_clk_1micro),
-					.limit(8'd60), // 60 uS
-					.run(runEP),
-
-					//out,
-					.carry(w_EP)
-					);
-					
-Module_Counter_8_bit_oneRun endComm	(
-					.qzt_clk(qzt_clk),
-					.clk_in(w_clk_1micro),
-					.limit(8'd20), // 
-					.run(runEC),
-
-					//out,
-					.carry(w_EC)
-					);
-*/
-
-/*	
-	if (out >= (limit - 8'b00000001)) begin
-		out = 0;
-		carry = 1;
-	end else if (out == 0) begin
-		out = 1;
-		carry = 0;
-	end else
-		out = out + 1;
-end
-// */
-
-/*
-		
-		
-		
-		end
-	// send request: make both counters start and take clock low.
-	if (counter>=9) begin
-		status=3;
-		done=1;
-	end
-	if (!send_old & send & status==0) begin
-		reset=1;
-		runAcq=1;
-		PS2C=0;
-		PS2D=1;
-	end
-	// channel acquired, now release the clock and put data low
-	if (w_acquire & status==0) begin
-		status=1;
-		reset=0;
-		runAcq=0;
-		PS2C=1;
-		PS2D=0;
-	end
-	// device has acquired clock!
-	if (status==1 & PS2C==0) begin
-		status=2;
-	end
-	if (status==2 & PS2C_old & !PS2C) begin
-		runData=1;
-	end
-	if (status==2 & w_chData) begin
-		runData=0;
-		PS2D=data[0];
-		data>>1;
-		counter=counter+1;
-	end
-	
-	
-	PS2C_old=PS2C;
-	PS2D_old=PS2D;
-	send_old=send;
-	
-*/
-
 
 endmodule

@@ -1,26 +1,43 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date:    10:25:13 05/02/2018 
-// Design Name: 
-// Module Name:    PS2_comm 
-// Project Name: 
-// Target Devices: 
-// Tool versions: 
-// Description: 
-//
-// Dependencies: 
-//
-// Revision: 
-// Revision 0.01 - File Created
-// Additional Comments: 
-//
-//////////////////////////////////////////////////////////////////////////////////
-// stati //////////////////////////////////////////////////////////////////////
+/* ************************** DESCRIPTION ********************************** **
+// mode of operation:
+	Module PS2_comm uses modules PS2_send and PS2_read, for implementing mouse
+communication. There is an `initialization phase` in which packets are send to
+mouse and then a `listen phase` in which the mouse is in `enable stream mode`
+and sends data to host. Initialization process is triggered by parent using
+`trigger` input.
+	Packets to send are written in the module himself, in an array. Through a 
+state machine, with the module `PS2_send` they're send in order to the mouse.
+	In the `listen phase` data are read and the three packets are checked for
+transmission errors and then reversed (due to PS2 protocol) and put in output.
+the `data_tx` output signals transmission through a pulse.
+// TODO:
+	* error handling is incomplete. errors are not presented to the parent 
+module and also errors coming from children modules are handled very naive way
+	* logic of operation is very simplified, it "just works".
+		1. in init phase after each H2D communication i try to read ACK, but
+		there is no check this is an ACK and program works also if mouse don't
+		say anything. it should be handled with a retransmission in case of a
+		missing ack or a resend request from mouse.
+		2. there's no way of have another `init` phase after it has finish.
+	* It would be nice to have an `.ngc` file for this module. by now the inout
+`PS2C` and `PS2D` will be connected directly with the I/O pins of the FPGA. if
+I've understand correctly the newer fpga have three-state ports only at output
+pins. The problem in doing the synthesis of a black box module comes from the 
+fact that three-state ports cannot be implemented inside the circuits of the
+fpga. So this module should be reimplemented without using high impedance 
+values and maybe without inouts. The top module will handle the high impedance
+on I/O pins.
+	* array of data to send is loaded with bits as they appear on the oscil-
+-loscope. is more elegant to load them as hexadecimal codes are they are found
+on guides. this requires reverse the bits, add a 0 for start bit, add the 
+parity bit and a 1 for stop bit. I've a small python script that does this for
+me. what about delegate that work to `send_module`?
+	* OTHER minor things to fix or improove can be:
+		* regs, wires, modules (expecially frequency divider) not used.
+		* too much states? 
 
-// modulo 
+** *********************** MODULE DECLARATION ****************************** */
 module PS2_comm(
 		qzt_clk,
 		trigger,
@@ -35,6 +52,7 @@ module PS2_comm(
 		
 		altro
     );
+// altro is used for debugging	
 /* *********************** IN, OUT, INOUT ********************************** */
 input qzt_clk;
 input trigger;
@@ -44,12 +62,13 @@ inout PS2D;
 
 output [15:0] altro;
 
-// mouse data
+// output mouse data
 output data_tx;
 output reg [7:0] status_pck_1=0;
 output reg [7:0] xm_pck_2=0;
 output reg [7:0] ym_pck_3=0;
 
+	// reverse packets regs
 reg [7:0] status_pck_1_r=0;
 reg [7:0] xm_pck_2_r=0;
 reg [7:0] ym_pck_3_r=0;
@@ -100,6 +119,12 @@ wire w_err_send;
 wire [7:0] w_errcode_send;
 
 /* **************** array of data ****************************************** */
+/* here can be added packets to send. They are like they appear on the oscil-
+-loscope. so the first bit send is the left one. If you want to send other
+packets just add them and change the constant `NPACKETS_SEND` accordingly. it
+is defined above, below `module SEND` declarations.
+*/
+
 initial begin
 	//data_send_array[0]=11'b01111111111;	// reset
 	data_send_array[0]=11'b00100111101;	// give me the ID
@@ -111,7 +136,10 @@ initial begin
 	data_send_array[5]=11'b01110011111;	// 0xe7 per il 2:1 scaling
 end
 
-`define PCK_RESEND 11'b00111111101
+`define PCK_RESEND 11'b00111111101 // resend packet
+/* naive way of implementing resend: if phase is `PH_INIT` `w_data_send`
+becomes `PCK_RESEND`. this is a thing you can do in a more general and
+refined way.                                                                 */
 assign w_data_send = phase ? `PCK_RESEND : data_send_array[pck_sent];
 
 initial begin
@@ -135,7 +163,7 @@ assign altro=status;
 
 `define ST_WAIT_ACK 8'd3
 `define ST_TRY_TO_READ 8'd4
-`define ST_LIFE_DECISIONS 8'd5
+`define ST_LIFE_DECISIONS 8'd5 // about the name: it is like a hub state...
 `define ST_HAS_READ 8'd6
 
 // states LISTEN
@@ -151,6 +179,7 @@ assign altro=status;
 `define ERR_STATE_MACHINE 8'd3	// for send only
 
 /* ***************************** function ********************************** */
+// checks for: parity, start, stop bits.
 function [1:0] checkPck;
 	input [10:0] pck;
 	if (pck[10] | !pck[0]) checkPck=1;
@@ -180,7 +209,7 @@ always @(posedge qzt_clk) begin
 					end
 				end
 				`ST_SEND_SEND: begin
-					send<=~send;
+					send<=~send; // this trigger send, generating a pulse
 					status<=`ST_SEND_WAIT;
 					limit_timer<=8'd1; // STUDY_MOUSE_TIMES
 				end
@@ -240,6 +269,8 @@ always @(posedge qzt_clk) begin
 				//err<=1;
 				//errcode<=`ERR_TIMER;
 			end
+			
+			// i wanted to re-do initialization but it doesn't work well. why?
 			/*
 			if (!trigger_old & trigger) begin
 				phase<=`PH_INIT;
@@ -247,6 +278,7 @@ always @(posedge qzt_clk) begin
 				pck_sent<=0;
 			end
 			*/
+			
 			case(status)
 				`ST_IDLE: begin
 					pck_received<=0;
