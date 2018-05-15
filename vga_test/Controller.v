@@ -73,6 +73,7 @@ wire w_clk_milli;
 wire w_buttonN;
 wire w_clk_second;
 wire [7:0] w_altro;
+wire [2:0] w_clicks;
 
 PS2_comm PS2_comm(
 		.qzt_clk(CLK_50M),
@@ -121,7 +122,8 @@ mouse_data_management mdm(
 		.tx(w_data_mouse),
 		
 		.posX(mouse_sym_counter_x),
-		.posY(mouse_sym_counter_y)
+		.posY(mouse_sym_counter_y),
+		.clicks(w_clicks)
     );
 
 

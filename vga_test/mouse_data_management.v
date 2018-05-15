@@ -13,7 +13,8 @@ module mouse_data_management(
 		tx,
 		
 		posX,
-		posY
+		posY,
+		clicks
     );
 
 input qzt_clk;
@@ -22,11 +23,17 @@ input [7:0] deltaX;
 input [7:0] deltaY;
 input tx;
 		
-output reg [10:0] posX=11'd0;
-output reg [10:0] posY=11'd0;
+output reg 	[10:0] 	posX=11'd0;
+output reg 	[10:0] 	posY=11'd0;
+output 		[2:0] 	clicks;
 
 reg tx_old;
-// do the 2 bit complement
+
+// output clicks net has the clicks in the orther:
+// {2:LEFT (0), 1:MIDDLE (2), 3:RIGHT (1)}
+// <pos> ::= <pos_in_clicks>':'<pos_physical>' '<pos_in_status> 
+assign clicks = {status[0], status[2], status[1]};
+
 always @ (posedge qzt_clk) begin
 	if (!tx_old & tx) begin
 		posX<=posX+{{3{status[4]}},deltaX};
