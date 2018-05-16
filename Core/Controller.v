@@ -40,9 +40,8 @@
 
 module Controller(
 			CLK_50M,
-			BTN_EAST, BTN_WEST, BTN_NORTH, BTN_SOUTH,
+			BTN_NORTH,
 			PS2_CLK1, PS2_DATA1,
-			SW, //Serve per simulare il click del mouse
 			
 			
 			
@@ -56,10 +55,9 @@ input CLK_50M;
 output [7:0] LED;
 inout PS2_CLK1;
 inout PS2_DATA1;
-//Da testing, per simulare il mouse
-input BTN_EAST, BTN_WEST, BTN_NORTH, BTN_SOUTH;
+//inizializza il mouse
+input  BTN_NORTH;
 
-input [1:0] SW;
 
 wire w_25Mhz_clock;
 

@@ -135,9 +135,9 @@ for i in range(0,dim_x):
             print("\t\t\tbegin")
             #controllo se sto dentro
             if n == 0:
-                print("\t\t\t\tif ("+var_in_ship_dimension+"+ "+var_in_x+" < 4'd8)//se sono dentro")
+                print("\t\t\t\tif ("+var_in_ship_dimension+"+ "+var_in_x+" < 4'd"+str(dim_y)+")//se sono dentro")
             else:
-                print("\t\t\t\tif ("+var_in_ship_dimension+"+ "+var_in_y+" < 4'd8)//se sono dentro")
+                print("\t\t\t\tif ("+var_in_ship_dimension+"+ "+var_in_y+" < 4'd"+str(dim_x)+")//se sono dentro")
             print("\t\t\t\tbegin")
             print("\t\t\t\t\tcase ("+var_in_ship_dimension+")")
             # stampo il case delle dimensioni

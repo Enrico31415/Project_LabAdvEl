@@ -1,20 +1,24 @@
-Running: /usr/LDSS/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -o /media/Scratch/Project_LabAdvEl/Core/cell_io_isim_beh.exe -prj /media/Scratch/Project_LabAdvEl/Core/cell_io_beh.prj work.cell_io work.glbl 
+Running: /usr/LDSS/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -o /media/Scratch/projectel/Project_LabAdvEl/Core/GridEngine_isim_beh.exe -prj /media/Scratch/projectel/Project_LabAdvEl/Core/GridEngine_beh.prj work.GridEngine work.glbl 
 ISim P.20131013 (signature 0xfbc00daa)
 Number of CPUs detected in this system: 4
 Turning on mult-threading, number of parallel sub-compilation jobs: 8 
 Determining compilation order of HDL files
-Analyzing Verilog file "/media/Scratch/Project_LabAdvEl/Core/cellMemory.v" into library work
+Analyzing Verilog file "/media/Scratch/projectel/Project_LabAdvEl/Core/pos_to_quadrant.v" into library work
+Analyzing Verilog file "/media/Scratch/projectel/Project_LabAdvEl/Core/cellMemory.v" into library work
+Analyzing Verilog file "/media/Scratch/projectel/Project_LabAdvEl/Core/GridEngine.v" into library work
+WARNING:HDLCompiler:568 - "/media/Scratch/projectel/Project_LabAdvEl/Core/GridEngine.v" Line 269: Constant value is truncated to fit in <1> bits.
 Analyzing Verilog file "/usr/LDSS/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
 Starting static elaboration
 Completed static elaboration
-Fuse Memory Usage: 100692 KB
-Fuse CPU Usage: 1140 ms
+Fuse Memory Usage: 96252 KB
+Fuse CPU Usage: 880 ms
+Compiling module pos_to_quadrant
 Compiling module cell_io
+Compiling module GridEngine
 Compiling module glbl
 Time Resolution for simulation is 1ps.
-Waiting for 1 sub-compilation(s) to finish...
-Compiled 2 Verilog Units
-Built simulation executable /media/Scratch/Project_LabAdvEl/Core/cell_io_isim_beh.exe
-Fuse Memory Usage: 798052 KB
-Fuse CPU Usage: 2370 ms
-GCC CPU Usage: 107490 ms
+Compiled 4 Verilog Units
+Built simulation executable /media/Scratch/projectel/Project_LabAdvEl/Core/GridEngine_isim_beh.exe
+Fuse Memory Usage: 660696 KB
+Fuse CPU Usage: 950 ms
+GCC CPU Usage: 1950 ms

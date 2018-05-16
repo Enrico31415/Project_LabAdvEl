@@ -126,28 +126,34 @@ begin
 			begin //se sono nel quadrato => cambio colore
 				color_out = `black;
 			end
-			cell_status_player_occ : 
+			4'd1 : 
 			begin
 				color_out = `color_ship;
 			end
-			cell_status_ia_occ:
+			4'd2 : 
 			begin
-				color_out = `color_superposition;
+				color_out = `color_player_hit;
 			end
-			cell_status_player_ia_occ : 
-			begin
-				color_out = `blue;
-			end
-			cell_status_player_hitted :  //DA RIMUOVERE PER IL GIOCO, SERVE SOLO AL DEBUGGING
-			begin
-				color_out = `green;
-			end
-			cell_status_ia_hitted : 
+			4'd3 : 
 			begin
 				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
 				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
 				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
-				if (circle[pointer_to_mask])
+				if (cross[pointer_to_mask])
+				begin
+					color_out = `color_player_and_ia_hit;
+				end
+				else
+				begin
+					color_out = `black;
+				end
+			end
+			4'd4 : 
+			begin
+				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+				if (cross[pointer_to_mask])
 				begin
 					color_out = `color_player_and_ia_hit;
 				end

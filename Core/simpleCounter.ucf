@@ -43,10 +43,7 @@ NET "LED<7>"        LOC = "W21"  | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = SL
 # Buttons
 ##############################################################################
 
-NET "BTN_EAST"      LOC = "T16"  | IOSTANDARD = LVCMOS33 | PULLDOWN ;
 NET "BTN_NORTH"     LOC = "T14"  | IOSTANDARD = LVCMOS33 | PULLDOWN ;
-NET "BTN_SOUTH"     LOC = "T15"  | IOSTANDARD = LVCMOS33 | PULLDOWN ;
-NET "BTN_WEST"      LOC = "U15"  | IOSTANDARD = LVCMOS33 | PULLDOWN ;
 
 ##############################################################################
 # Switchs
@@ -54,7 +51,4 @@ NET "BTN_WEST"      LOC = "U15"  | IOSTANDARD = LVCMOS33 | PULLDOWN ;
 
 NET "PS2_CLK1"		  LOC = "W12" 	| IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = SLOW;// | PULLUP ;
 NET "PS2_DATA1" 	  LOC = "V11" 	| IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = SLOW;// | PULLUP ;
-
-NET "SW<0>"         LOC = "T9"   | IOSTANDARD = LVCMOS33 ;
-NET "SW<1>"         LOC = "U8"   | IOSTANDARD = LVCMOS33 ;
 

@@ -1,5 +1,8 @@
 `timescale 1ns / 1ps
-`define turn_inizialize 2'b00
+`define turn_player_placing 2'b00
+`define turn_ia_placing 2'b01
+`define turn_player_shoot 2'b10
+`define turn_ia_shoot 2'b11
 `define frequency_div 	30'd1
 `define turn_player 2'b01
 `define turn_IA 2'b10
@@ -190,8 +193,13 @@ cell_io memory( //gestisce la memoria
 	.we(write_enable),
 	.pointer_cell_x(pointer_cell_x),
 	.pointer_cell_y(pointer_cell_y),
-	
-	
+	 
+	 
+
+	 .turn_ia_placing(`turn_ia_placing), //stati di gioco 
+	 .turn_player_placing(`turn_player_placing), //stati di gioco 
+	 .turn_ia_shoot(`turn_ia_shoot), //stati di gioco 
+	 .turn_player_shoot(`turn_player_shoot), //stati di gioco 
 	
 	
 	.play_status(turn_status), //stato attuale del gioco (schieramento, shooting, etc)
@@ -208,7 +216,7 @@ cell_io memory( //gestisce la memoria
 
 always @ (posedge clk_in)
 begin
-	if (turn_status == `turn_inizialize)//se devo inizializzare 
+	if (turn_status == `turn_player_placing)//se devo inizializzare 
 	begin
 		//TODO: generazione random, controllo posizionamento
 		//TODO: provo ad implementare il posizionamento delle navi.
@@ -248,7 +256,7 @@ begin
 				if (ship_placed)
 				begin
 					ship_size_pointer = ship_size_pointer+1;
-					turn_status = turn_status +1;
+					turn_status = turn_status +1'd2; //FIXME altrimenti non si incementa
 				end
 			end
 			default:
@@ -261,7 +269,7 @@ begin
 		//se clicca il sinistro, devo giare il posizionamento
 		if(mouse_click[1] & mouse_left_enable) //se ho cliccato 
 		begin
-			direction = direction+1; // sfrutto l'oveflow (spero funzioni. Funziona)
+			direction = !direction; // s
 		end
 		mouse_left_enable = !mouse_click[1];
 	end
