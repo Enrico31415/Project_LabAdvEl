@@ -97,7 +97,7 @@ Module_MouseSimulator sim (
 	.clk_in(w_25Mhz_clock),
 	.BTN_EAST(BTN_EAST), 
 	.BTN_WEST(BTN_WEST), 
-	.BTN_NORTH(BTN_NORTH), 
+	//.BTN_NORTH(BTN_NORTH), 
 	.BTN_SOUTH(BTN_SOUTH),
 	.clk_in_umano(clock_umano),
 	
@@ -115,7 +115,7 @@ GridEngine GE(.clk_in(w_25Mhz_clock),
 	//TODO Implementazione della posizione del mouse.
 	.mouse_pos_x(mouse_sym_counter_x),
 	.mouse_pos_y(mouse_sym_counter_y),
-
+	.BTN_NORTH(BTN_NORTH), 
 	.mouse_click(SW),
 	
 	

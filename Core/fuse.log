@@ -10,15 +10,15 @@ Analyzing Verilog file "/home/user/git/core/Core/swtch_mouse_fpga.v" into librar
 Analyzing Verilog file "/home/user/git/core/Core/pos_to_quadrant.v" into library work
 Analyzing Verilog file "/home/user/git/core/Core/cellMemory.v" into library work
 Analyzing Verilog file "/home/user/git/core/Core/GridEngine.v" into library work
-WARNING:HDLCompiler:1818 - "/home/user/git/core/Core/GridEngine.v" Line 313: Invalid size of integer constant literal
-WARNING:HDLCompiler:1818 - "/home/user/git/core/Core/GridEngine.v" Line 316: Invalid size of integer constant literal
+WARNING:HDLCompiler:1818 - "/home/user/git/core/Core/GridEngine.v" Line 320: Invalid size of integer constant literal
+WARNING:HDLCompiler:1818 - "/home/user/git/core/Core/GridEngine.v" Line 323: Invalid size of integer constant literal
 Analyzing Verilog file "/opt/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
 Starting static elaboration
-WARNING:HDLCompiler:189 - "/home/user/git/core/Core/GridEngine.v" Line 190: Size mismatch in connection of port <pointer_cell_x>. Formal port size is 5-bit while actual signal size is 4-bit.
-WARNING:HDLCompiler:189 - "/home/user/git/core/Core/GridEngine.v" Line 191: Size mismatch in connection of port <pointer_cell_y>. Formal port size is 5-bit while actual signal size is 4-bit.
+WARNING:HDLCompiler:189 - "/home/user/git/core/Core/GridEngine.v" Line 195: Size mismatch in connection of port <pointer_cell_x>. Formal port size is 5-bit while actual signal size is 4-bit.
+WARNING:HDLCompiler:189 - "/home/user/git/core/Core/GridEngine.v" Line 196: Size mismatch in connection of port <pointer_cell_y>. Formal port size is 5-bit while actual signal size is 4-bit.
 Completed static elaboration
 Fuse Memory Usage: 37128 KB
-Fuse CPU Usage: 1380 ms
+Fuse CPU Usage: 1570 ms
 Compiling module pos_to_quadrant
 Compiling module swtch_mouse_fpga
 Compiling module cell_io
@@ -32,5 +32,5 @@ Waiting for 1 sub-compilation(s) to finish...
 Compiled 8 Verilog Units
 Built simulation executable /home/user/git/core/Core/GridEngine_isim_beh.exe
 Fuse Memory Usage: 92220 KB
-Fuse CPU Usage: 1550 ms
-GCC CPU Usage: 6180 ms
+Fuse CPU Usage: 1730 ms
+GCC CPU Usage: 5250 ms

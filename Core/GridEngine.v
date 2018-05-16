@@ -24,11 +24,13 @@
 `define line_period  	10'd64
 
 // momenti di [turn_fpga_init]
-`define init_guess 		4'b0000
-`define mem_point 		4'b0001
-`define mem_read 			4'b0010
-`define count_check 		4'b0011
-`define sec_placement 	4'b0100
+`define quiescent_time	4'b0000
+`define init_guess 		4'b0001
+`define mem_point 		4'b0010
+`define mem_read 			4'b0011
+`define count_check 		4'b0100
+`define sec_placement 	4'b0101
+
 `define out_placement 	4'b1111
 
 // CODIFICA DELLA CELLA DI MEMORIA: 5 bit
@@ -59,7 +61,8 @@
 module GridEngine(clk_in,
 	//posizione del mouse.
 	mouse_pos_x,
-	mouse_pos_y,	
+	mouse_pos_y,
+	BTN_NORTH, 	
 	// posizione attuale del pxcel a schermo
 	pos_x,
 	pos_y,	
@@ -71,6 +74,8 @@ module GridEngine(clk_in,
 				input mouse_click;	
 				input [9:0] mouse_pos_x;
 				input [9:0] mouse_pos_y;
+				
+				input BTN_NORTH;
 
 				input [9:0] pos_x;
 				input [9:0] pos_y;
@@ -82,7 +87,7 @@ module GridEngine(clk_in,
 reg [2:0] turn_status = 3'b000; 	// flag che regola i momenti di gioco  
 reg [4:0] ships_number_count = 5'b00000; 	// contatore sul numero di navi piazzate
 reg [3:0] placement_task = 4'b0000; 	// contatore sulle oprazioni piazzamento
-reg fpga_vs_mouse= 1'b1;		// flag che regola li switch tra logica fpga (0) e mouse (1)
+reg fpga_vs_mouse= 1'b0;		// flag che regola li switch tra logica fpga (0) e mouse (1)
 reg reg_out_placement= 1'b0;		// flag fine dei piazzamenti
 reg reg_final_else= 1'b0;
 
@@ -221,23 +226,26 @@ zero_to_nine_r_gen randomg_2( .qzt_clk(clk_in),
 	
 
 ////////////////////////////  -  LOGICA  -  LOGICA  -  LOGICA  -  LOGICA  -  LOGICA  -  ///////////////////////////////////
+initial fpga_cell_new_status= 5'b00001;
+
 always @ (posedge clk_in)
 begin
-	if (turn_status == `turn_fpga_init) begin // && ships_number_count<= 5'd8 )
-		
-		fpga_vs_mouse =1'b0; // switcha sull'fpga perchè sei in turn_fpga_init
+	if (turn_status == `turn_fpga_init) begin // && ships_number_count<= 5'd8 )	
 		set_random_gens =1'b0; // blocca l'inizailizzazione del generatore random
 
-// implementare una target length per ogni giro da caricare secondo un if
-
-
-
-		if (placement_task == `init_guess) begin // tempo zero inizializzazione guess
+		if (placement_task == `quiescent_time) begin 
+			if (BTN_NORTH == 1'b1) begin
+				placement_task = `init_guess;
+			end
+		end
+		
+		else if (placement_task == `init_guess) begin // tempo zero inizializzazione guess
 
 				fpga_write_enable =1'b0; 	// non scrivere mentre esplori tutte le caselle (primo giro)
 				fpga_count_move_x = 4'b0000;			// valori di prova durante l'operazione di piazzamento. questo valore va sommato alla coordinata x 
 				fpga_count_move_y = 4'b0000;			// potersi muovere lungo x o y
-				orient_guess = reg_one_bit_2_m2; // guess orientazione (0=orizzontale 1= verticale)
+//				orient_guess = reg_one_bit_2_m2; // guess orientazione (0=orizzontale 1= verticale)
+				orient_guess = orient_guess + 1'b1;
 
 				// ship placement mi dice a che punto sono del piazzamento. ne deduco la lunghezza della nave0,1= navi da 4. 2,3= navi da 4. 4,5= navi da 4.
 				// e quindi che numero random mi serve e dove assegnarlo in funzione dell'orientazione (orient_guess = reg_one_bit_2_m2)
@@ -326,7 +334,7 @@ begin
 
 					placement_task=`count_check;	// vai a controllare lo stato dei contatori
 				end
-				else if (out_mem_cell_read_status == fpga_cell_new_status && fpga_write_enable==1'b0)
+				else if (out_mem_cell_read_status != fpga_cell_new_status && fpga_write_enable==1'b0)
 				begin
 					placement_task=`init_guess;	// risetta i valori iniziali = RESET		(condizione di uscita)
 				end
@@ -359,6 +367,7 @@ begin
 		else if (placement_task == `sec_placement) begin // tempo zero punta la cella di memoria.
 			if (who_write == 1'b0) begin
 			who_write = 1'b1;
+			ships_number_count= 5'b00000;
 			placement_task=`init_guess;
 			end
 			else begin

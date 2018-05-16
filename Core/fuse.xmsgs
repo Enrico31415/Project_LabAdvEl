@@ -5,16 +5,16 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
-<msg type="warning" file="HDLCompiler" num="1818" delta="unknown" >"/home/user/git/core/Core/GridEngine.v" Line 313: Invalid size of integer constant literal
+<msg type="warning" file="HDLCompiler" num="1818" delta="unknown" >"/home/user/git/core/Core/GridEngine.v" Line 320: Invalid size of integer constant literal
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="1818" delta="unknown" >"/home/user/git/core/Core/GridEngine.v" Line 316: Invalid size of integer constant literal
+<msg type="warning" file="HDLCompiler" num="1818" delta="unknown" >"/home/user/git/core/Core/GridEngine.v" Line 323: Invalid size of integer constant literal
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="189" delta="unknown" >"/home/user/git/core/Core/GridEngine.v" Line 190: Size mismatch in connection of port &lt;<arg fmt="%s" index="3">pointer_cell_x</arg>&gt;. Formal port size is <arg fmt="%d" index="2">5</arg>-bit while actual signal size is <arg fmt="%d" index="1">4</arg>-bit.
+<msg type="warning" file="HDLCompiler" num="189" delta="unknown" >"/home/user/git/core/Core/GridEngine.v" Line 195: Size mismatch in connection of port &lt;<arg fmt="%s" index="3">pointer_cell_x</arg>&gt;. Formal port size is <arg fmt="%d" index="2">5</arg>-bit while actual signal size is <arg fmt="%d" index="1">4</arg>-bit.
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="189" delta="unknown" >"/home/user/git/core/Core/GridEngine.v" Line 191: Size mismatch in connection of port &lt;<arg fmt="%s" index="3">pointer_cell_y</arg>&gt;. Formal port size is <arg fmt="%d" index="2">5</arg>-bit while actual signal size is <arg fmt="%d" index="1">4</arg>-bit.
+<msg type="warning" file="HDLCompiler" num="189" delta="unknown" >"/home/user/git/core/Core/GridEngine.v" Line 196: Size mismatch in connection of port &lt;<arg fmt="%s" index="3">pointer_cell_y</arg>&gt;. Formal port size is <arg fmt="%d" index="2">5</arg>-bit while actual signal size is <arg fmt="%d" index="1">4</arg>-bit.
 </msg>
 
 </messages>

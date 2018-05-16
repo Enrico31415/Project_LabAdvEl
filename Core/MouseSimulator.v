@@ -20,14 +20,16 @@
 //////////////////////////////////////////////////////////////////////////////////
 module Module_MouseSimulator(
 	clk_in,
-	BTN_EAST, BTN_WEST, BTN_NORTH, BTN_SOUTH,
+	BTN_EAST, BTN_WEST, //BTN_NORTH, 
+	BTN_SOUTH,
 	clk_in_umano,
 	x_pos, y_pos
     );
 	 
 	 
 input clk_in, clk_in_umano;
-input BTN_EAST, BTN_WEST, BTN_NORTH, BTN_SOUTH;
+input BTN_EAST, BTN_WEST;// BTN_NORTH, 
+input BTN_SOUTH;
 
 output reg [9:0] x_pos = 'd360;
 output reg [9:0] y_pos = 'd200;
@@ -45,10 +47,6 @@ begin
 		if (BTN_WEST == 1)
 		begin
 			x_pos = x_pos - 1;
-		end
-		if (BTN_NORTH == 1)
-		begin
-			y_pos = y_pos - 1;
 		end
 		if (BTN_SOUTH == 1)
 		begin
