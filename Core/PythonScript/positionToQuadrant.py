@@ -15,8 +15,8 @@ cell_count_y = 8
 
 
 #periodo tipico
-period_y = int(480/8)
-period_x = int(640/8)
+period_y = int(480/cell_count_y)
+period_x = int(640/cell_count_x)
 
 print ("// modulo autogenerato, non modificare. Qualsiasi modifica sarà cancellata all successiva esecuzione");
 print ("// generato da "+__file__);

@@ -25,8 +25,6 @@
 `define row_dimension	10'd2
 `define line_dimension	10'd2
 
-`define row_period	10'd48
-`define line_period  10'd64
 
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -59,12 +57,18 @@ module GridEngine(clk_in,
 	
 	mouse_click, //evento del click del mouse [0] right click, [1] left click
 	
-	//stati delle celle, siccome sono in comune con la memoria, per evitare mismatch  meglio che le definizione sia contenute nel modulo padre
+	//stati statici delle celle
 	cell_status_free,
-	cell_status_occ,
+	cell_status_player_occ,
+	cell_status_ia_occ,
+	cell_status_player_ia_occ,
 	cell_status_player_hitted,
 	cell_status_ia_hitted,
 	cell_status_player_and_ia_hitted,
+	cell_status_pre_occ,
+	cell_status_player_shoot,
+	cell_status_ia_shoot,
+	cell_status_position_na,
 	
 	
 	// dimensione delle navi
@@ -84,12 +88,18 @@ module GridEngine(clk_in,
 	 
 `include "gridFunctions.v"
 
-input [4:0] cell_status_free;
-input [4:0] cell_status_occ;
-input [4:0] cell_status_player_hitted;
-input [4:0] cell_status_ia_hitted;
-input [4:0] cell_status_player_and_ia_hitted;
-
+//stati delle celle
+input[3:0]	cell_status_free;
+input[3:0]	cell_status_player_occ;
+input[3:0]	cell_status_ia_occ;
+input[3:0]	cell_status_player_ia_occ;
+input[3:0]	cell_status_player_hitted;
+input[3:0]	cell_status_ia_hitted;
+input[3:0]	cell_status_player_and_ia_hitted;
+input[3:0]	cell_status_pre_occ;
+input[3:0]	cell_status_player_shoot;
+input[3:0]	cell_status_ia_shoot;
+input[3:0]	cell_status_position_na;
 
 input [3:0] ship_size0, ship_size1, ship_size2, ship_size3, ship_size4;
 
@@ -182,6 +192,8 @@ cell_io memory( //gestisce la memoria
 	.pointer_cell_y(pointer_cell_y),
 	
 	
+	
+	
 	.play_status(turn_status), //stato attuale del gioco (schieramento, shooting, etc)
 	.direction(direction), //direzione della nave 
 	.dimension(ship_size[ship_size_pointer]), //dimensione della nave 
@@ -204,7 +216,6 @@ begin
 		case (ship_size_pointer)
 			4'd0: // posiziona la prima nave
 			begin
-				//cosa sbagliata: la funzione ritorna 1 se va a buon fine, pertanto  come fare +1 (non uccidetermi)
 				if (ship_placed)
 				begin
 					ship_size_pointer = ship_size_pointer+1;
@@ -265,30 +276,13 @@ begin
 		if(mouse_click[0] & mouse_right_enable) //se ho cliccato sulal cella => cambio lo stato
 		begin
 			write_enable = 1'b1;
-
 			if (mouse_cell_read_status == cell_status_free)
 			begin
-				cell_new_status = cell_status_occ;  // _____________ 0->1 
+				cell_new_status = cell_status_player_shoot;  
 			end
-			else if (mouse_cell_read_status == cell_status_occ) 
+			else if (mouse_cell_read_status == cell_status_ia_occ) 
 			begin
-				cell_new_status = cell_status_player_hitted;   // _____________ 1->2 
-			end
-			else if (mouse_cell_read_status == cell_status_player_hitted) 
-			begin
-				cell_new_status = cell_status_ia_hitted;  // _____________ 2->3 
-			end
-			else if (mouse_cell_read_status == cell_status_ia_hitted) 
-			begin
-				cell_new_status = cell_status_player_and_ia_hitted; // _____________ 3->4
-			end
-			else if (mouse_cell_read_status == cell_status_player_and_ia_hitted) 
-			begin
-				cell_new_status = cell_status_free;   // _____________ 4->0
-			end
-			else
-			begin
-				cell_new_status = cell_status_free;   
+				cell_new_status = cell_status_ia_hitted;   
 			end
 		end	
 		else

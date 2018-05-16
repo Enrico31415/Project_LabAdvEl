@@ -7,6 +7,7 @@
 `define color_line 	12'b000000001111 
 `define color_row 	12'b000000001111 
 `define color_ship 	12'b010101010101
+`define color_superposition 	12'b011000001100
 `define color_player_hit			12'b111010010001
 `define color_ia_hit 				12'b111100000000
 `define color_player_and_ia_hit 	12'b111100001100
@@ -30,14 +31,23 @@ module Module_VGADriver(
 	enable, //se non sono nel porch
 	mouse_pos_x,
 	mouse_pos_y,
+	
+	//stato letto delle celle
 	cell_status,
+	
+	
+	//stati statici delle celle
 	cell_status_free,
-	cell_status_occ,
+	cell_status_player_occ,
+	cell_status_ia_occ,
+	cell_status_player_ia_occ,
 	cell_status_player_hitted,
 	cell_status_ia_hitted,
-	cell_status_player_and_ia_hitted,
-	
-	
+	/*cell_status_player_and_ia_hitted,
+	cell_status_pre_occ,
+	cell_status_player_shoot,
+	cell_status_ia_shoot,
+	cell_status_position_na,*/
 	
 	color_out
     );
@@ -49,14 +59,20 @@ input[9:0] current_line;
 
 
 
-input [4:0] cell_status_free;
-input [4:0] cell_status_occ;
-input [4:0] cell_status_player_hitted;
-input [4:0] cell_status_ia_hitted;
-input [4:0] cell_status_player_and_ia_hitted;
+input[3:0]	cell_status_free;
+input[3:0]	cell_status_player_occ;
+input[3:0]	cell_status_ia_occ;
+input[3:0]	cell_status_player_ia_occ;
+input[3:0]	cell_status_player_hitted;
+input[3:0]	cell_status_ia_hitted;
+/*input[3:0]	cell_status_player_and_ia_hitted;
+input[3:0]	cell_status_pre_occ;
+input[3:0]	cell_status_player_shoot;
+input[3:0]	cell_status_ia_shoot;
+input[3:0]	cell_status_position_na;*/
+	
 
-
-input [4:0]	cell_status;
+input [2:0]	cell_status;
 
 
 input[9:0] mouse_pos_x;
@@ -107,48 +123,83 @@ begin
 	begin		
 		case (cell_status) // test sullo stato della cella in quesione
 			cell_status_free : // <-----------------------------------------------
-				begin //se sono nel quadrato => cambio colore
+			begin //se sono nel quadrato => cambio colore
+				color_out = `black;
+			end
+			cell_status_player_occ : 
+			begin
+				color_out = `color_ship;
+			end
+			cell_status_ia_occ:
+			begin
+				color_out = `color_superposition;
+			end
+			cell_status_player_ia_occ : 
+			begin
+				color_out = `blue;
+			end
+			cell_status_player_hitted :  //DA RIMUOVERE PER IL GIOCO, SERVE SOLO AL DEBUGGING
+			begin
+				color_out = `green;
+			end
+			cell_status_ia_hitted : 
+			begin
+				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+				if (circle[pointer_to_mask])
+				begin
+					color_out = `color_player_and_ia_hit;
+				end
+				else
+				begin
 					color_out = `black;
 				end
-			cell_status_occ : 
+			end
+			/*cell_status_ia_hitted : 
+			begin
+				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+				if (cross[pointer_to_mask])
 				begin
-					color_out = `color_ship;
+					color_out = `color_player_and_ia_hit;
 				end
-			cell_status_player_hitted : 
+				else
 				begin
-					color_out = `color_player_hit;
+					color_out = `black;
 				end
-			cell_status_ia_hitted : 
+			end
+			cell_status_position_na: 
+			begin
+				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+				if (cross[pointer_to_mask])
 				begin
-					pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
-					pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
-					pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
-					if (cross[pointer_to_mask])
-					begin
-						color_out = `color_player_and_ia_hit;
-					end
-					else
-					begin
-						color_out = `black;
-					end
+					color_out = `red;
 				end
+				else
+				begin
+					color_out = `black;
+				end
+			end
 			cell_status_player_and_ia_hitted : 
+			begin
+				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+				if (cross_over_circle[pointer_to_mask])
 				begin
-				//`cross
-					pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
-					pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
-					pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
-					if (circle[pointer_to_mask])
-					begin
-						color_out = `color_player_and_ia_hit;
-					end
-					else
-					begin
-						color_out = `black;
-					end
+					color_out = `color_player_and_ia_hit;
+				end
+				else
+				begin
+					color_out = `black;
+				end
 				end
 				default: 
-					color_out = `black;
+					color_out = `black;*/
 		endcase
 		
 		if (current_line <= ((12'd1*`row_period)+`row_dimension) && current_line > ((12'd1*`row_period)-`row_dimension)) // prima riga
