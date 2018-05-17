@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/user/git/core/Core/GridEngine_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="GridEngine" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="43" />
+   <wvobject fp_name="/GridEngine/clk_in" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk_in</obj_property>
+      <obj_property name="ObjectShortName">clk_in</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/mouse_click" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">mouse_click</obj_property>
+      <obj_property name="ObjectShortName">mouse_click</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/mouse_pos_x" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">mouse_pos_x[9:0]</obj_property>
+      <obj_property name="ObjectShortName">mouse_pos_x[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/mouse_pos_y" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">mouse_pos_y[9:0]</obj_property>
+      <obj_property name="ObjectShortName">mouse_pos_y[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/BTN_NORTH" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">BTN_NORTH</obj_property>
+      <obj_property name="ObjectShortName">BTN_NORTH</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/pos_x" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">pos_x[9:0]</obj_property>
+      <obj_property name="ObjectShortName">pos_x[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/pos_y" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">pos_y[9:0]</obj_property>
+      <obj_property name="ObjectShortName">pos_y[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/pointer_cell_read_status" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">pointer_cell_read_status[4:0]</obj_property>
+      <obj_property name="ObjectShortName">pointer_cell_read_status[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/mouse_cell_x" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">mouse_cell_x[3:0]</obj_property>
+      <obj_property name="ObjectShortName">mouse_cell_x[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/mouse_cell_y" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">mouse_cell_y[3:0]</obj_property>
+      <obj_property name="ObjectShortName">mouse_cell_y[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/out_mem_cell_read_status" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">out_mem_cell_read_status[4:0]</obj_property>
+      <obj_property name="ObjectShortName">out_mem_cell_read_status[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/cell_x_to_mem" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cell_x_to_mem[3:0]</obj_property>
+      <obj_property name="ObjectShortName">cell_x_to_mem[3:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/cell_y_to_mem" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cell_y_to_mem[3:0]</obj_property>
+      <obj_property name="ObjectShortName">cell_y_to_mem[3:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#00ffff</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/we_to_mem" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">we_to_mem</obj_property>
+      <obj_property name="ObjectShortName">we_to_mem</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/new_value_to_mem" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">new_value_to_mem[4:0]</obj_property>
+      <obj_property name="ObjectShortName">new_value_to_mem[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/reg_to_nine_m1" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">reg_to_nine_m1[3:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_to_nine_m1[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/reg_to_eight_m1" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">reg_to_eight_m1[3:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_to_eight_m1[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/reg_to_seven_m1" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">reg_to_seven_m1[2:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_to_seven_m1[2:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ffffff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/reg_to_six_m1" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">reg_to_six_m1[2:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_to_six_m1[2:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/reg_one_bit_1_m1" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">reg_one_bit_1_m1</obj_property>
+      <obj_property name="ObjectShortName">reg_one_bit_1_m1</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/reg_one_bit_2_m1" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">reg_one_bit_2_m1</obj_property>
+      <obj_property name="ObjectShortName">reg_one_bit_2_m1</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/reg_to_nine_m2" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">reg_to_nine_m2[3:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_to_nine_m2[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ffffff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/reg_to_eight_m2" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">reg_to_eight_m2[3:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_to_eight_m2[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/reg_to_seven_m2" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">reg_to_seven_m2[2:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_to_seven_m2[2:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/reg_to_six_m2" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">reg_to_six_m2[2:0]</obj_property>
+      <obj_property name="ObjectShortName">reg_to_six_m2[2:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/reg_one_bit_1_m2" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">reg_one_bit_1_m2</obj_property>
+      <obj_property name="ObjectShortName">reg_one_bit_1_m2</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/reg_one_bit_2_m2" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">reg_one_bit_2_m2</obj_property>
+      <obj_property name="ObjectShortName">reg_one_bit_2_m2</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/turn_status" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">turn_status[2:0]</obj_property>
+      <obj_property name="ObjectShortName">turn_status[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/ships_number_count" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">ships_number_count[4:0]</obj_property>
+      <obj_property name="ObjectShortName">ships_number_count[4:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#808080</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/placement_task" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">placement_task[3:0]</obj_property>
+      <obj_property name="ObjectShortName">placement_task[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ff00ff</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/fpga_write_enable" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">fpga_write_enable</obj_property>
+      <obj_property name="ObjectShortName">fpga_write_enable</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#008080</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/mouse_write_enable" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">mouse_write_enable</obj_property>
+      <obj_property name="ObjectShortName">mouse_write_enable</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/fpga_cell_x" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">fpga_cell_x[3:0]</obj_property>
+      <obj_property name="ObjectShortName">fpga_cell_x[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/fpga_cell_y" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">fpga_cell_y[3:0]</obj_property>
+      <obj_property name="ObjectShortName">fpga_cell_y[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/fpga_guess_x" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">fpga_guess_x[3:0]</obj_property>
+      <obj_property name="ObjectShortName">fpga_guess_x[3:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ffa500</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/fpga_guess_y" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">fpga_guess_y[3:0]</obj_property>
+      <obj_property name="ObjectShortName">fpga_guess_y[3:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#ffa500</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/orient_guess" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">orient_guess</obj_property>
+      <obj_property name="ObjectShortName">orient_guess</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#808000</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/who_write" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">who_write</obj_property>
+      <obj_property name="ObjectShortName">who_write</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/fpga_count_move_x" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">fpga_count_move_x[3:0]</obj_property>
+      <obj_property name="ObjectShortName">fpga_count_move_x[3:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#808080</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/fpga_count_move_y" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">fpga_count_move_y[3:0]</obj_property>
+      <obj_property name="ObjectShortName">fpga_count_move_y[3:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#808080</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/fpga_target_ship_lenght" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">fpga_target_ship_lenght[3:0]</obj_property>
+      <obj_property name="ObjectShortName">fpga_target_ship_lenght[3:0]</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="CustomSignalColor">#00ff00</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/mouse_cell_new_status" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">mouse_cell_new_status[4:0]</obj_property>
+      <obj_property name="ObjectShortName">mouse_cell_new_status[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/GridEngine/fpga_cell_new_status" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">fpga_cell_new_status[4:0]</obj_property>
+      <obj_property name="ObjectShortName">fpga_cell_new_status[4:0]</obj_property>
+   </wvobject>
+</wave_config>

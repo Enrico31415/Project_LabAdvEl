@@ -26,12 +26,14 @@
 // momenti di [turn_fpga_init]
 `define quiescent_time	4'b0000
 `define init_guess 		4'b0001
-`define mem_point 		4'b0010
-`define mem_read 			4'b0011
-`define count_check 		4'b0100
-`define sec_placement 	4'b0101
+`define eval_orient 		4'b0010
+`define mem_point 		4'b0011
+`define mem_read 			4'b0100
+`define count_check 		4'b0101
+`define sec_placement 	4'b0110
 
 `define out_placement 	4'b1111
+
 
 // CODIFICA DELLA CELLA DI MEMORIA: 5 bit
 // 	_ 1 bit libero (?)	_ _ 2 bit per i colpi sparati 	_ _ 2 bit per la disposizione
@@ -88,7 +90,7 @@ reg [2:0] turn_status = 3'b000; 	// flag che regola i momenti di gioco
 reg [4:0] ships_number_count = 5'b00000; 	// contatore sul numero di navi piazzate
 reg [3:0] placement_task = 4'b0000; 	// contatore sulle oprazioni piazzamento
 reg fpga_vs_mouse= 1'b0;		// flag che regola li switch tra logica fpga (0) e mouse (1)
-reg reg_out_placement= 1'b0;		// flag fine dei piazzamenti
+reg reg_finish_placement= 1'b0;		// flag fine dei piazzamenti
 reg reg_final_else= 1'b0;
 
 reg set_random_gens=1'b1;		// setta i generatori pseudorandom
@@ -99,7 +101,7 @@ reg[3:0] fpga_cell_y;
 
 reg[3:0] fpga_guess_x;			// valori di partenza durante l'operazione di piazzamento
 reg[3:0] fpga_guess_y;
-reg orient_guess;			// orientamento della nave che si sta cercando di piazzare
+reg orient_guess=1'b1;			// orientamento della nave che si sta cercando di piazzare
 reg who_write = 1'b0;
 
 reg[3:0] fpga_count_move_x;		// valore da aggiungere al punto di partenza per muoversi lungo la griglia
@@ -111,6 +113,8 @@ reg [4:0] fpga_cell_new_status; 	// nuovo valore che l'fpga vuole scrivere in me
 wire[3:0] mouse_cell_x;			// coordinate della cella di memoria a cui punta il mouse
 wire[3:0] mouse_cell_y;
 wire[4:0] out_mem_cell_read_status; 	// stato attuale della cella letta (uscita dalla memoria)
+
+reg [4:0] inquiry=5'b11111;
 
 //cavi dallo switch alla memoria
 wire[3:0] cell_x_to_mem;
@@ -251,45 +255,54 @@ begin
 				// e quindi che numero random mi serve e dove assegnarlo in funzione dell'orientazione (orient_guess = reg_one_bit_2_m2)
 
 				// a seconda della lunghezza della nave e dell'orientazione parti da una coppia di valori random per la coordinata
-
+			placement_task = `eval_orient;
+		end
+		else if (placement_task == `eval_orient) begin
+		
 				if (ships_number_count <= 5'd1) begin  // a seconda di quante navi ho già disposto so la lunghezza
 
-					if(reg_one_bit_2_m2==1'b0) begin					// a seconda dell'orientazione
+					if(orient_guess==1'b0) begin					// a seconda dell'orientazione
 					fpga_guess_x=reg_to_six_m1;  						// inizializzo le coordinate
 					fpga_guess_y=reg_to_nine_m2;						// di partenza x e y
+					inquiry=5'd0;
 					end			
 
-					else if(reg_one_bit_2_m2==1'b0) begin
+					else if(orient_guess==1'b0) begin
 					fpga_guess_x=reg_to_nine_m2;
 					fpga_guess_y=reg_to_six_m1;
+					inquiry=5'd1;
 					end
 					
 					fpga_target_ship_lenght= 4'b0100;  					// inizializzo la lunghezza della nave
 				end 
 				else if (ships_number_count == 5'd2 || ships_number_count == 5'd3 ) begin
 
-					if(reg_one_bit_2_m2==1'b0) begin
+					if(orient_guess==1'b0) begin
 					fpga_guess_x=reg_to_seven_m1;
 					fpga_guess_y=reg_to_nine_m2;
+					inquiry=5'd2;
 					end			
 
-					else if(reg_one_bit_2_m2==1'b0) begin
+					else if(orient_guess==1'b0) begin
 					fpga_guess_x=reg_to_nine_m2;
 					fpga_guess_y=reg_to_seven_m1;
+					inquiry=5'd3;
 					end
 					
 					fpga_target_ship_lenght= 4'b0011;
 				end 
 				else if (ships_number_count == 5'd4 || ships_number_count == 5'd5) begin
 
-					if(reg_one_bit_2_m2==1'b0) begin
+					if(orient_guess==1'b0) begin
 					fpga_guess_x=reg_to_eight_m1;
 					fpga_guess_y=reg_to_nine_m2;
+					inquiry=5'd4;
 					end			
 
-					else if(reg_one_bit_2_m2==1'b0) begin
+					else if(orient_guess==1'b0) begin
 					fpga_guess_x=reg_to_nine_m2;
 					fpga_guess_y=reg_to_eight_m1;
+					inquiry=5'd5;
 					end
 					
 					fpga_target_ship_lenght= 4'b0010;
@@ -314,7 +327,11 @@ begin
 				if (out_mem_cell_read_status == 5'bXXXXX) begin // se lo stato è indefinito riprova ad inizializzare ( accade appena accesa l'fpga? primi cicli)
 					placement_task=`init_guess;			
 				end
-				else if(out_mem_cell_read_status != fpga_cell_new_status || (out_mem_cell_read_status == fpga_cell_new_status && fpga_write_enable==1'b1) )
+//				else if(out_mem_cell_read_status != fpga_cell_new_status || (out_mem_cell_read_status == fpga_cell_new_status && fpga_write_enable==1'b1) )
+
+//-------------------------------------------------------------------
+	
+					else if(out_mem_cell_read_status != fpga_cell_new_status || (out_mem_cell_read_status == fpga_cell_new_status && fpga_write_enable==1'b1) )
 				begin //se la casella è vuota e... da capire (!!)
 					// fpga_write_enable=1'b1;  // da sistemare il write enable (!!) un giro per leggere e un giro per scrivere!
 
@@ -334,7 +351,10 @@ begin
 
 					placement_task=`count_check;	// vai a controllare lo stato dei contatori
 				end
-				else if (out_mem_cell_read_status != fpga_cell_new_status && fpga_write_enable==1'b0)
+
+	
+//----------------------------------------------
+				else if (out_mem_cell_read_status == fpga_cell_new_status && fpga_write_enable==1'b0)
 				begin
 					placement_task=`init_guess;	// risetta i valori iniziali = RESET		(condizione di uscita)
 				end
@@ -365,17 +385,17 @@ begin
 		end
 
 		else if (placement_task == `sec_placement) begin // tempo zero punta la cella di memoria.
-			if (who_write == 1'b0) begin
-			who_write = 1'b1;
-			ships_number_count= 5'b00000;
-			placement_task=`init_guess;
-			end
-			else begin
+//			if (who_write == 1'b0) begin
+//			who_write = 1'b1;
+//			ships_number_count= 5'b00000;
+//			placement_task=`init_guess;
+//			end
+//			else begin
 			placement_task=`out_placement;
-			end 
+//			end 
 		end
 		else if (placement_task == `out_placement) begin // tempo zero punta la cella di memoria.
-		reg_out_placement=1'b1;
+		reg_finish_placement=1'b1;
 		end
 		else begin 
 		reg_final_else=1'b1;
