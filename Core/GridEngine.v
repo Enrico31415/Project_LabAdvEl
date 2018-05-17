@@ -126,16 +126,15 @@ wire[3:0] pointer_cell_x;
 wire[3:0] pointer_cell_y;
 
 // uscite del generatore di numeri random
-wire [3:0] reg_to_nine_m1;
-wire [3:0] reg_to_eight_m1;
-									
+wire [2:0] reg_to_four_m1;
+wire [2:0] reg_to_five_m1;									
 wire [2:0] reg_to_seven_m1;									
 wire [2:0] reg_to_six_m1;
 wire reg_one_bit_1_m1;
 wire reg_one_bit_2_m1;		
 
-wire [3:0] reg_to_nine_m2;
-wire [3:0] reg_to_eight_m2;									
+wire [2:0] reg_to_four_m2;
+wire [2:0] reg_to_five_m2;									
 wire [2:0] reg_to_seven_m2;									
 wire [2:0] reg_to_six_m2;
 wire reg_one_bit_1_m2;
@@ -210,8 +209,8 @@ zero_to_nine_r_gen randomg_1( .qzt_clk(clk_in),
 										.set_reg(set_random_gens), 
 										.seed(31'b1001010101101000100111111000001),
 
-									.r_zero_to_nine(reg_to_nine_m1),
-									.r_zero_to_eight(reg_to_eight_m1),									
+									.r_zero_to_four(reg_to_four_m1),
+									.r_zero_to_five(reg_to_five_m1),									
 									.r_zero_to_seven(reg_to_seven_m1),									
 									.r_zero_to_six(reg_to_six_m1),
 									.r_one_bit_1(reg_one_bit_1_m1),
@@ -221,8 +220,8 @@ zero_to_nine_r_gen randomg_2( .qzt_clk(clk_in),
 										.set_reg(set_random_gens), 
 										.seed(31'b1111000101010010000110101011111),
 
-									.r_zero_to_nine(reg_to_nine_m2),
-									.r_zero_to_eight(reg_to_eight_m2),									
+									.r_zero_to_four(reg_to_four_m2),
+									.r_zero_to_five(reg_to_five_m2),									
 									.r_zero_to_seven(reg_to_seven_m2),									
 									.r_zero_to_six(reg_to_six_m2),
 									.r_one_bit_1(reg_one_bit_1_m2),
@@ -248,8 +247,8 @@ begin
 				fpga_write_enable =1'b0; 	// non scrivere mentre esplori tutte le caselle (primo giro)
 				fpga_count_move_x = 4'b0000;			// valori di prova durante l'operazione di piazzamento. questo valore va sommato alla coordinata x 
 				fpga_count_move_y = 4'b0000;			// potersi muovere lungo x o y
-//				orient_guess = reg_one_bit_2_m2; // guess orientazione (0=orizzontale 1= verticale)
-				orient_guess = orient_guess + 1'b1;
+				orient_guess = reg_one_bit_2_m2; // guess orientazione (0=orizzontale 1= verticale)
+//				orient_guess = orient_guess + 1'b1; // decommentare e commentare sopra per cambiare metodo
 
 				// ship placement mi dice a che punto sono del piazzamento. ne deduco la lunghezza della nave0,1= navi da 4. 2,3= navi da 4. 4,5= navi da 4.
 				// e quindi che numero random mi serve e dove assegnarlo in funzione dell'orientazione (orient_guess = reg_one_bit_2_m2)
@@ -258,18 +257,18 @@ begin
 			placement_task = `eval_orient;
 		end
 		else if (placement_task == `eval_orient) begin
-		
+
 				if (ships_number_count <= 5'd1) begin  // a seconda di quante navi ho già disposto so la lunghezza
 
 					if(orient_guess==1'b0) begin					// a seconda dell'orientazione
-					fpga_guess_x=reg_to_six_m1;  						// inizializzo le coordinate
-					fpga_guess_y=reg_to_nine_m2;						// di partenza x e y
+					fpga_guess_x=reg_to_four_m1;  						// inizializzo le coordinate
+					fpga_guess_y=reg_to_seven_m2;						// di partenza x e y
 					inquiry=5'd0;
 					end			
 
-					else if(orient_guess==1'b0) begin
-					fpga_guess_x=reg_to_nine_m2;
-					fpga_guess_y=reg_to_six_m1;
+					else if(orient_guess==1'b1) begin
+					fpga_guess_x=reg_to_seven_m2;
+					fpga_guess_y=reg_to_four_m1;
 					inquiry=5'd1;
 					end
 					
@@ -278,14 +277,14 @@ begin
 				else if (ships_number_count == 5'd2 || ships_number_count == 5'd3 ) begin
 
 					if(orient_guess==1'b0) begin
-					fpga_guess_x=reg_to_seven_m1;
-					fpga_guess_y=reg_to_nine_m2;
+					fpga_guess_x=reg_to_five_m1;
+					fpga_guess_y=reg_to_seven_m2;
 					inquiry=5'd2;
 					end			
 
-					else if(orient_guess==1'b0) begin
-					fpga_guess_x=reg_to_nine_m2;
-					fpga_guess_y=reg_to_seven_m1;
+					else if(orient_guess==1'b1) begin
+					fpga_guess_x=reg_to_seven_m2;
+					fpga_guess_y=reg_to_five_m1;
 					inquiry=5'd3;
 					end
 					
@@ -294,19 +293,20 @@ begin
 				else if (ships_number_count == 5'd4 || ships_number_count == 5'd5) begin
 
 					if(orient_guess==1'b0) begin
-					fpga_guess_x=reg_to_eight_m1;
-					fpga_guess_y=reg_to_nine_m2;
+					fpga_guess_x=reg_to_six_m1;
+					fpga_guess_y=reg_to_seven_m2;
 					inquiry=5'd4;
 					end			
 
-					else if(orient_guess==1'b0) begin
-					fpga_guess_x=reg_to_nine_m2;
-					fpga_guess_y=reg_to_eight_m1;
+					else if(orient_guess==1'b1) begin
+					fpga_guess_x=reg_to_seven_m2;
+					fpga_guess_y=reg_to_six_m1;
 					inquiry=5'd5;
 					end
 					
 					fpga_target_ship_lenght= 4'b0010;
 				end 				
+
 
 			if (ships_number_count <= 5'd5) begin 		// se il conteggio delle navi piazzate è maggioreuguale di 5
 				placement_task = `mem_point;		// punta la memoria del primo guess

@@ -14,11 +14,11 @@ WARNING:HDLCompiler:1818 - "/home/user/git/core/Core/GridEngine.v" Line 338: Inv
 WARNING:HDLCompiler:1818 - "/home/user/git/core/Core/GridEngine.v" Line 341: Invalid size of integer constant literal
 Analyzing Verilog file "/opt/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
 Starting static elaboration
-WARNING:HDLCompiler:189 - "/home/user/git/core/Core/GridEngine.v" Line 199: Size mismatch in connection of port <pointer_cell_x>. Formal port size is 5-bit while actual signal size is 4-bit.
-WARNING:HDLCompiler:189 - "/home/user/git/core/Core/GridEngine.v" Line 200: Size mismatch in connection of port <pointer_cell_y>. Formal port size is 5-bit while actual signal size is 4-bit.
+WARNING:HDLCompiler:189 - "/home/user/git/core/Core/GridEngine.v" Line 198: Size mismatch in connection of port <pointer_cell_x>. Formal port size is 5-bit while actual signal size is 4-bit.
+WARNING:HDLCompiler:189 - "/home/user/git/core/Core/GridEngine.v" Line 199: Size mismatch in connection of port <pointer_cell_y>. Formal port size is 5-bit while actual signal size is 4-bit.
 Completed static elaboration
 Fuse Memory Usage: 37128 KB
-Fuse CPU Usage: 1430 ms
+Fuse CPU Usage: 1360 ms
 Compiling module pos_to_quadrant
 Compiling module swtch_mouse_fpga
 Compiling module cell_io
@@ -28,9 +28,8 @@ Compiling module zero_to_nine_r_gen
 Compiling module GridEngine
 Compiling module glbl
 Time Resolution for simulation is 1ps.
-Waiting for 1 sub-compilation(s) to finish...
 Compiled 8 Verilog Units
 Built simulation executable /home/user/git/core/Core/GridEngine_isim_beh.exe
-Fuse Memory Usage: 92220 KB
-Fuse CPU Usage: 1590 ms
-GCC CPU Usage: 5190 ms
+Fuse Memory Usage: 92212 KB
+Fuse CPU Usage: 1530 ms
+GCC CPU Usage: 5500 ms
