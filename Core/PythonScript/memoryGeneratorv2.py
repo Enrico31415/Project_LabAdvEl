@@ -20,29 +20,42 @@ def shipDimension (direction):
             print("\t\t\t\t\tif (!"+var_in_1+")")
             print("\t\t\t\t\tbegin")
             while k < i:
-                print("\t\t\t\t\t\tif("+var_memory+"["+var_in_x+"+4'd"+str(k)+"]["+var_in_y+"] == 5'd0)")
-                print("\t\t\t\t\t\tbegin")
-                print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"+4'd"+str(k)+"]["+var_in_y+"] = 5'd1;")
-                print("\t\t\t\t\t\tend")
-                print("\t\t\t\t\t\telse if("+var_memory+"["+var_in_x+"+4'd"+str(k)+"]["+var_in_y+"] == 5'd2)")
-                print("\t\t\t\t\t\tbegin")
-                print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"+4'd"+str(k)+"]["+var_in_y+"] = 5'd3;")
-                print("\t\t\t\t\t\tend")
+                if k == 0:
+                    print("\t\t\t\t\t\tif("+var_memory+"["+var_in_x+"]["+var_in_y+"] == 4'd0)")
+                    print("\t\t\t\t\t\tbegin")
+                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"] = 4'd1;")
+                    print("\t\t\t\t\t\tend")
+                    print("\t\t\t\t\t\telse if("+var_memory+"["+var_in_x+"]["+var_in_y+"] == 4'd2)")
+                    print("\t\t\t\t\t\tbegin")
+                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"] = 4'd3;")
+                    print("\t\t\t\t\t\tend")
+                else:
+                    print("\t\t\t\t\t\tif("+var_memory+"["+var_in_x+"+4'd"+str(k)+"]["+var_in_y+"] == 4'd0)")
+                    print("\t\t\t\t\t\tbegin")
+                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"+4'd"+str(k)+"]["+var_in_y+"] = 4'd1;")
+                    print("\t\t\t\t\t\tend")
+                    print("\t\t\t\t\t\telse if("+var_memory+"["+var_in_x+"+4'd"+str(k)+"]["+var_in_y+"] == 4'd2)")
+                    print("\t\t\t\t\t\tbegin")
+                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"+4'd"+str(k)+"]["+var_in_y+"] = 4'd3;")
+                    print("\t\t\t\t\t\tend")
                 k +=1
             print("\t\t\t\t\tend//write enable")
             print("\t\t\t\t\telse")
             print("\t\t\t\t\tbegin")
             #se piazzo la nave cio'e ho we = 1
-            print("\t\t\t\t\t\tif("+var_memory+"["+var_in_x+"+4'd"+str(l)+"]["+var_in_y+"] == 5'd0 //se è pre allocata")
+            print("\t\t\t\t\t\tif("+var_memory+"["+var_in_x+"]["+var_in_y+"] == 4'd0 //se è pre allocata")
             while l < (i-1):
-                print("\t\t\t\t\t\t\t\t&& "+var_memory+"["+var_in_x+"+4'd"+str(l+1)+"]["+var_in_y+"] == 5'd0")
+                print("\t\t\t\t\t\t\t\t&& "+var_memory+"["+var_in_x+"+4'd"+str(l+1)+"]["+var_in_y+"] == 4'd0")
                 #print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"+4'd"+str(l)+"]["+var_in_y+"] = 5'd2;")
                 l +=1
             l = 0
             print("\t\t\t\t\t\t\t)")
             print("\t\t\t\t\t\tbegin // la piazzo")
             while l < (i):
-                print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"+4'd"+str(l)+"]["+var_in_y+"] = 5'd2;")
+                if l == 0:
+                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"] = 4'd2;")
+                else:
+                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"+4'd"+str(l)+"]["+var_in_y+"] = 4'd2;")
                 l+=1
             print ("\t\t\t\t\t\t\t"+var_out_3+" = 1;")
             print("\t\t\t\t\t\tend")
@@ -53,7 +66,10 @@ def shipDimension (direction):
             #se ho sforato non posso scrivere
             print("\t\t\t\t\t//metto che non si puo' scrivere")
             while j < i:
-                print("\t\t\t\t\t"+var_memory+"["+var_in_x+"+4'd"+str(j)+"]["+var_in_y+"] = 5'd4;")
+                if (j == 0):
+                    print("\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"] = 4'd4;")
+                else:
+                    print("\t\t\t\t\t"+var_memory+"["+var_in_x+"+4'd"+str(j)+"]["+var_in_y+"] = 4'd4;")
                 j +=1
             print("\t\t\t\tend")
             print("\t\t\tend")
@@ -74,29 +90,42 @@ def shipDimension (direction):
             print("\t\t\t\t\tif (!"+var_in_1+")")
             print("\t\t\t\t\tbegin")
             while k < i:
-                print("\t\t\t\t\t\tif("+var_memory+"["+var_in_x+"]["+var_in_y+"+4'd"+str(k)+"] == 5'd0)")
-                print("\t\t\t\t\t\tbegin")
-                print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"+4'd"+str(k)+"] = 5'd1;")
-                print("\t\t\t\t\t\tend")
-                print("\t\t\t\t\t\telse if("+var_memory+"["+var_in_x+"]["+var_in_y+"+4'd"+str(k)+"] == 5'd2)")
-                print("\t\t\t\t\t\tbegin")
-                print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"+4'd"+str(k)+"] = 5'd3;")
-                print("\t\t\t\t\t\tend")
+                if (k == 0):
+                    print("\t\t\t\t\t\tif("+var_memory+"["+var_in_x+"]["+var_in_y+"] == 4'd0)")
+                    print("\t\t\t\t\t\tbegin")
+                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"] = 4'd1;")
+                    print("\t\t\t\t\t\tend")
+                    print("\t\t\t\t\t\telse if("+var_memory+"["+var_in_x+"]["+var_in_y+"] == 4'd2)")
+                    print("\t\t\t\t\t\tbegin")
+                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"] = 4'd3;")
+                    print("\t\t\t\t\t\tend")
+                else:
+                    print("\t\t\t\t\t\tif("+var_memory+"["+var_in_x+"]["+var_in_y+"+4'd"+str(k)+"] == 4'd0)")
+                    print("\t\t\t\t\t\tbegin")
+                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"+4'd"+str(k)+"] = 4'd1;")
+                    print("\t\t\t\t\t\tend")
+                    print("\t\t\t\t\t\telse if("+var_memory+"["+var_in_x+"]["+var_in_y+"+4'd"+str(k)+"] == 4'd2)")
+                    print("\t\t\t\t\t\tbegin")
+                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"+4'd"+str(k)+"] = 4'd3;")
+                    print("\t\t\t\t\t\tend")
                 k +=1
             print("\t\t\t\t\tend//write enable")
             print("\t\t\t\t\telse")
             print("\t\t\t\t\tbegin")
             #se piazzo la nave cio'e ho we = 1
-            print("\t\t\t\t\t\tif("+var_memory+"["+var_in_x+"]["+var_in_y+"]+4'd"+str(l)+" == 5'd0 //se è pre allocata")
+            print("\t\t\t\t\t\tif("+var_memory+"["+var_in_x+"]["+var_in_y+"] == 4'd0 //se è pre allocata")
             while l < (i-1):
-                print("\t\t\t\t\t\t\t\t&& "+var_memory+"["+var_in_x+"]["+var_in_y+"+4'd"+str(l+1)+"] == 5'd0")
+                print("\t\t\t\t\t\t\t\t&& "+var_memory+"["+var_in_x+"]["+var_in_y+"+4'd"+str(l+1)+"] == 4'd0")
                 #print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"+4'd"+str(l)+"]["+var_in_y+"] = 5'd2;")
                 l +=1
             l = 0
             print("\t\t\t\t\t\t\t)")
             print("\t\t\t\t\t\tbegin // la piazzo")
             while l < (i):
-                print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"+4'd"+str(l)+"] = 5'd2;")
+                if l == 0:
+                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"] = 4'd2;")
+                else:
+                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"+4'd"+str(l)+"] = 4'd2;")
                 l+=1
             print ("\t\t\t\t\t\t\t"+var_out_3+" = 1;")
             print("\t\t\t\t\t\tend")
@@ -107,7 +136,10 @@ def shipDimension (direction):
             #se ho sforato non posso scrivere
             print("\t\t\t\t\t//metto che non si puo' scrivere")
             while j < i:
-                print("\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"+4'd"+str(j)+"] = 5'd4;")
+                if j ==0 :
+                    print("\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"] = 4'd4;")
+                else:
+                    print("\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"+4'd"+str(j)+"] = 4'd4;")
                 j +=1
             print("\t\t\t\tend")
             print("\t\t\tend")
@@ -127,10 +159,6 @@ var_in_y_p = "pointer_cell_y"
 var_in_play_status = "play_status"
 var_in_direction = "direction"
 var_in_ship_dimension = "dimension"
-var_in_turn_0 = "turn_ia_placing"
-var_in_turn_1 = "turn_player_placing"
-var_in_turn_2 = "turn_ia_shoot"
-var_in_turn_3 = "turn_player_shoot"
 
 var_out_2 = "status_pointed_cell"
 var_out_3 = "ship_placed"
@@ -159,11 +187,6 @@ print ("\t " +var_in_play_status+", //stato attuale del gioco (schieramento, sho
 print ("\t " +var_in_direction+", //direzione della nave ");
 print ("\t " +var_in_ship_dimension+", //dimensione della nave ");
 print("")
-print ("\t " +var_in_turn_0+", //stati di gioco ");
-print ("\t " +var_in_turn_1+", //stati di gioco ");
-print ("\t " +var_in_turn_2+", //stati di gioco ");
-print ("\t " +var_in_turn_3+", //stati di gioco ");
-print ("");
 print ("\t " + var_out_1+", //stato ritornato dal mouse");
 print ("\t " + var_out_2+", //stato ritornato dal puntantore");
 print ("\t " + var_out_3+" //se ha scritto la nave in memoria");
@@ -171,24 +194,20 @@ print (");");
 
 print("input clk_in;");
 print("input "+var_in_1+";");
-print("input [4:0] "+var_in_2+";");
+print("input [3:0] "+var_in_2+";");
 print("input [1:0] "+var_in_play_status+";");
 
 print("input "+var_in_direction+";");
-print ("input [3:0] "+var_in_x+";")
-print ("input [3:0] "+var_in_y+";")
-print ("input [3:0] "+var_in_x_p+";")
-print ("input [3:0] "+var_in_y_p+";")
+print ("input [2:0] "+var_in_x+";")
+print ("input [2:0] "+var_in_y+";")
+print ("input [2:0] "+var_in_x_p+";")
+print ("input [2:0] "+var_in_y_p+";")
 print ("input [3:0] "+var_in_ship_dimension+";")
 
 
-print ("input [1:0] " +var_in_turn_0+";")
-print ("input [1:0] " +var_in_turn_1+";")
-print ("input [1:0] " +var_in_turn_2+";")
-print ("input [1:0] " +var_in_turn_3+";")
 
-print ("output reg [4:0] "+var_out_1+";")
-print ("output reg [4:0] "+var_out_2+";")
+print ("output reg [3:0] "+var_out_1+";")
+print ("output reg [3:0] "+var_out_2+";")
 print ("output reg "+var_out_3+" = 0;")
 
 
@@ -202,7 +221,7 @@ print ("\tfor (i = 0; i <= "+str(dim_x-1)+"; i = i + 1)")
 print ("\tbegin")
 print ("\t\tfor (j = 0; j <= "+str(dim_y-1)+"; j = j + 1)")
 print ("\t\tbegin")
-print ("\t\t\t "+var_memory+"[i][j] = 5'd0;")
+print ("\t\t\t "+var_memory+"[i][j] = 4'd0;")
 print ("\t\tend")
 print ("\tend")
 print ("end")
@@ -215,29 +234,32 @@ print("// operazioni di scrittura/lettura dal mouse")
 print ("always @ (negedge clk_in)")
 print ("begin")
 print ("\t"+var_out_3+" = 0;")
-print ("\tfor (i = 0; i <= "+str(dim_x-1)+"; i = i + 1)")
-print ("\tbegin")
-print ("\t\tfor (j = 0; j <= "+str(dim_y-1)+"; j = j + 1)")
-print ("\t\tbegin")
-print ("\t\t\tif ("+var_memory+"[i][j] == 5'd1)")
-print ("\t\t\t "+var_memory+"[i][j] = 5'd0;")
-print ("\t\t\telse if ("+var_memory+"[i][j] == 5'd3 )")
-print ("\t\t\t "+var_memory+"[i][j] = 5'd2;")
-print ("\t\t\telse if ("+var_memory+"[i][j] == 5'd4 )")
-print ("\t\t\t "+var_memory+"[i][j] = 5'd0;")
-print ("\t\tend")
-print ("\tend")
 print("//se e' il turno del giocatore")
-print("\tif ("+var_in_play_status+"== "+var_in_turn_3+")")
+print("\tif ("+var_in_play_status+"== 2'd2)")
 print("\tbegin")
+
+
 print ("\t\t\tif("+var_in_1+")")
 print ("\t\t\tbegin")
 print ("\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"] ="+var_in_2+";")
 print ("\t\t\tend")
 print ("\t\t\t"+var_out_1+"="+var_in_2+";")
 print ("\t\tend")
-print("\telse if ("+var_in_play_status+"== "+var_in_turn_1+")")
+print("\telse if ("+var_in_play_status+"== 2'd1)")
 print("\tbegin")
+print ("\t\t // piallo gli stati temporanei")
+print ("\t\tfor (i = 0; i <= "+str(dim_x-1)+"; i = i + 1)")
+print ("\t\tbegin")
+print ("\t\t\tfor (j = 0; j <= "+str(dim_y-1)+"; j = j + 1)")
+print ("\t\t\tbegin")
+print ("\t\t\t\tif ("+var_memory+"[i][j] == 4'd1)")
+print ("\t\t\t\t "+var_memory+"[i][j] = 4'd0;")
+print ("\t\t\t\telse if ("+var_memory+"[i][j] == 4'd3 )")
+print ("\t\t\t\t "+var_memory+"[i][j] = 5'd2;")
+print ("\t\t\t\telse if ("+var_memory+"[i][j] == 4'd4 )")
+print ("\t\t\t\t "+var_memory+"[i][j] = 4'd0;")
+print ("\t\t\tend")
+print ("\t\tend")
 print("\t\t//controllo la direzione")
 print("\t\tif(!"+var_in_direction+")")
 print("\t\tbegin")
