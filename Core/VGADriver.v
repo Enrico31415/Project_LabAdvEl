@@ -82,8 +82,8 @@ output reg [11:0] color_out = `black;
 
 
 //cella in cui sto scrivendo.
-wire [3:0] cell_x;
-wire [3:0] cell_y;
+wire [2:0] cell_x;
+wire [2:0] cell_y;
 
 reg [9:0] prec_line;
 

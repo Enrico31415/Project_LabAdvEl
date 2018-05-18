@@ -19,21 +19,21 @@
 `define cell_status_player_ia_occ 4'd3
 `define cell_status_player_hitted 4'd4
 `define cell_status_ia_hitted 4'd5
-/*`define cell_status_player_and_ia_hitted 4'd6
+`define cell_status_player_and_ia_hitted 4'd6
 `define cell_status_pre_occ 4'd7
 `define cell_status_player_shoot 4'd8
 `define cell_status_ia_shoot 4'd9
-`define cell_status_position_na 4'd10*/
+`define cell_status_position_na 4'd10
 
 
 
 
 // dimensione delle navi
-`define size_0 4'd2
-`define size_1 4'd3
-`define size_2 4'd3
-`define size_3 4'd4
-`define size_4 4'd4
+`define size_0 3'd2
+`define size_1 3'd3
+`define size_2 3'd3
+`define size_3 3'd4
+`define size_4 3'd4
 
 
 
@@ -69,17 +69,14 @@ wire [9:0] position_to_controller_x;
 wire [9:0] position_to_controller_y;
 
 
-//Serve per connettere il clock lento all'aggiornamto della posizione del mouse 
-wire clock_umano;
-
 /*Controlla la posizione del mouse*/
 wire [9:0] mouse_sym_counter_x;
 wire [9:0] mouse_sym_counter_y;
 
 /*Semplifica la posizione del mouse*/
-wire [3:0] w_cell_x;
-wire [3:0] w_cell_y;
-wire [4:0] w_cell_status;
+wire [2:0] w_cell_x;
+wire [2:0] w_cell_y;
+wire [3:0] w_cell_status;
 	 
 	 
 /*OUTPUT TIPICI PER LA VGA*/
@@ -102,13 +99,6 @@ Module_FrequencyDivider Mhz25ClockGenerator(
 
 					.clk_out(w_25Mhz_clock));
 					
-					
-//il clock viene utilizzato per aggiornare la posizione del mouse. Non posso farlo alla frequenza di refresh del monitor....
-Module_FrequencyDivider ClockUmanoGenerator(
-					.clk_in(CLK_50M),
-					.period(`frequency_divider_umano),
-
-					.clk_out(clock_umano));
 
 //Driver principale: qui tutto quello che va stampato a schermo
 Module_VGADriver driver (
@@ -265,12 +255,12 @@ GridEngine GE(.clk_in(w_25Mhz_clock),
 	.cell_status_ia_occ(`cell_status_ia_occ), //occupata dall'ia
 	.cell_status_player_hitted(`cell_status_player_hitted), //giocatore colpito
 	.cell_status_ia_hitted(`cell_status_ia_hitted), //ia colpita
-	/*.cell_status_player_and_ia_hitted(`cell_status_player_and_ia_hitted), //ambedue
+	.cell_status_player_and_ia_hitted(`cell_status_player_and_ia_hitted), //ambedue
 	.cell_status_pre_occ(`cell_status_pre_occ), //pre occupata
 	.cell_status_player_shoot(`cell_status_player_shoot), //giocatore ha sparato in acqua
 	.cell_status_ia_shoot(`cell_status_ia_shoot), //se l'ia ha sparato
 	.cell_status_position_na(`cell_status_position_na), //stato di cella non posizionabile (di buffer, solo per il piazzamento)
-	.cell_status_player_ia_occ(`cell_status_player_ia_occ),*/
+	.cell_status_player_ia_occ(`cell_status_player_ia_occ),
 	
 	//dimensione delle navi
 	.ship_size0(`size_0),

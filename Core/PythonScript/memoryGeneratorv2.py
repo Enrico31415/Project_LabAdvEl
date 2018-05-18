@@ -11,7 +11,7 @@ def shipDimension (direction):
             j = 0
             k = 0
             l = 0
-            print("\t\t\t4'd"+str(i)+":" )
+            print("\t\t\t3'd"+str(i)+":" )
             print("\t\t\tbegin")
             #controllo di essere nelle celle, non posso sforare il vettore
             print("\t\t\t\tif ("+var_in_x+"+4'd"+str(i)+" <= 4'd"+str(dim_x)+")//se sono dentro il range")
@@ -81,7 +81,7 @@ def shipDimension (direction):
             j = 0
             k = 0
             l = 0
-            print("\t\t\t4'd"+str(i)+":" )
+            print("\t\t\t3'd"+str(i)+":" )
             print("\t\t\tbegin")
             #controllo di essere nelle celle, non posso sforare il vettore
             print("\t\t\t\tif ("+var_in_y+"+4'd"+str(i)+" <= 4'd"+str(dim_y)+")//se sono dentro il range")
@@ -202,7 +202,7 @@ print ("input [2:0] "+var_in_x+";")
 print ("input [2:0] "+var_in_y+";")
 print ("input [2:0] "+var_in_x_p+";")
 print ("input [2:0] "+var_in_y_p+";")
-print ("input [3:0] "+var_in_ship_dimension+";")
+print ("input [2:0] "+var_in_ship_dimension+";")
 
 
 

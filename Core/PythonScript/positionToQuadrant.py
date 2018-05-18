@@ -35,8 +35,8 @@ print("input clk_in;");
 print ("input [9:0]"+var_in_x+";")
 print ("input [9:0]"+var_in_y+";")
 
-print ("output reg [3:0]"+var_out_1+";")
-print ("output reg [3:0]"+var_out_2+";")
+print ("output reg [2:0]"+var_out_1+";")
+print ("output reg [2:0]"+var_out_2+";")
 
 print ("always @ (posedge clk_in)")
 print ("begin")
@@ -48,8 +48,8 @@ for j in range (0,cell_count_y):
 			 print("\t else if", end='')
 		print ("("+var_in_x+"< 10'd"+ str(period_x*( i + 1 ))+" && "+var_in_x+">= 10'd"+str(period_x*i)+" &&  "+var_in_y+"< 10'd"+str(period_y*(j+1))+" && "+ var_in_y+">= 10'd"+ str(period_y*j)+ ")")
 		print ("\tbegin")
-		print ("\t\t"+var_out_1+" = 4'd"+str(i)+";")
-		print ("\t\t"+var_out_2+" = 4'd"+str(j)+";")
+		print ("\t\t"+var_out_1+" = 3'd"+str(i)+";")
+		print ("\t\t"+var_out_2+" = 3'd"+str(j)+";")
 		print ("\tend")
 print ("\tend")
 print ("endmodule")

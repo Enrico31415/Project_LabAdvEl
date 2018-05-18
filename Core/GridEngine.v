@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
-`define turn_player_placing 2'b00
-`define turn_ia_placing 2'b01
+`define turn_player_placing 2'b01
+`define turn_ia_placing 2'b00
 `define turn_player_shoot 2'b10
 `define turn_ia_shoot 2'b11
 `define frequency_div 	30'd1
@@ -89,7 +89,6 @@ module GridEngine(clk_in,
 	
     );
 	 
-`include "gridFunctions.v"
 
 //stati delle celle
 input[3:0]	cell_status_free;
@@ -117,11 +116,11 @@ input [9:0] mouse_pos_y;
 input [9:0] pos_x;
 input [9:0] pos_y;
 
-output [4:0] pointer_cell_read_status;
+output [3:0] pointer_cell_read_status;
 
-//FIXME: per testare, sono nel turno del giocatore
-reg [1:0] turn_status = 2'b00;  //determina la fase di gioco: 00 schieramento navi, 01 turno giocatore, 10 turno IA.
-reg  [4:0] cell_new_status;
+
+reg [1:0] turn_status = 2'b00;  //determina la fase di gioco:
+reg [3:0] cell_new_status = 4'd0;
 
 reg mouse_right_enable = 1'b1;
 reg mouse_left_enable = 1'b1;
@@ -132,16 +131,16 @@ reg direction = 0;
 
 reg [3:0] ship_size_pointer = 4'd0;
 
-wire [3:0] mouse_cell_x;
-wire [3:0] mouse_cell_y;
+wire [2:0] mouse_cell_x;
+wire [2:0] mouse_cell_y;
 wire [4:0] mouse_cell_read_status; //stato attuale della cella letta
 
-wire[3:0] pointer_cell_x;
-wire[3:0] pointer_cell_y;
+wire [2:0] pointer_cell_x;
+wire [2:0] pointer_cell_y;
 
 // crea un array da: 5 elementi [4:0]
 // di profondit 2^4-1 (3:0)
-wire[3:0] ship_size [4:0];
+wire [2:0] ship_size [4:0];
 
 wire ship_placed;
 
@@ -195,11 +194,6 @@ cell_io memory( //gestisce la memoria
 	.pointer_cell_y(pointer_cell_y),
 	 
 	 
-
-	 .turn_ia_placing(`turn_ia_placing), //stati di gioco 
-	 .turn_player_placing(`turn_player_placing), //stati di gioco 
-	 .turn_ia_shoot(`turn_ia_shoot), //stati di gioco 
-	 .turn_player_shoot(`turn_player_shoot), //stati di gioco 
 	
 	
 	.play_status(turn_status), //stato attuale del gioco (schieramento, shooting, etc)
@@ -216,7 +210,15 @@ cell_io memory( //gestisce la memoria
 
 always @ (posedge clk_in)
 begin
-	if (turn_status == `turn_player_placing)//se devo inizializzare 
+if (turn_status == `turn_ia_placing)//se devo inizializzare 
+	begin
+		//TODO CODICE DI CARLO
+		turn_status = turn_status + 2'd1;
+	end
+
+
+
+	else if (turn_status == `turn_player_placing)//se devo inizializzare 
 	begin
 		//TODO: generazione random, controllo posizionamento
 		//TODO: provo ad implementare il posizionamento delle navi.
@@ -256,7 +258,7 @@ begin
 				if (ship_placed)
 				begin
 					ship_size_pointer = ship_size_pointer+1;
-					turn_status = turn_status +1'd2; //FIXME altrimenti non si incementa
+					turn_status = turn_status +2'd1;
 				end
 			end
 			default:
