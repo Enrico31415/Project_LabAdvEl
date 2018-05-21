@@ -91,7 +91,7 @@ reg [3:0] ship_size_pointer = 4'd0;
 
 wire [2:0] mouse_cell_x;
 wire [2:0] mouse_cell_y;
-wire [4:0] mouse_cell_read_status; //stato attuale della cella letta
+wire [3:0] mouse_cell_read_status; //stato attuale della cella letta
 
 wire [2:0] pointer_cell_x;
 wire [2:0] pointer_cell_y;
@@ -244,8 +244,48 @@ if (turn_status == `turn_ia_placing)//se devo inizializzare
 		//aspetto qui finch non ha cliccato?
 		if(mouse_click[0] & mouse_right_enable) //se ho cliccato sulal cella => cambio lo stato
 		begin
-			write_enable = 1'b1;
-			cell_new_status = 4'd3;
+			case(mouse_cell_read_status)
+				`free:
+				begin
+					write_enable = 1'b1;
+					cell_new_status = `Ps;
+				end
+				`Is:
+				begin
+					write_enable = 1'b1;
+					cell_new_status = `PsIs;
+				end
+				`Pn:
+				begin
+					write_enable = 1'b1;
+					cell_new_status = `PnPs;
+				end
+				`In:
+				begin
+					write_enable = 1'b1;
+					cell_new_status = `InPs;
+				end
+				`PnIn:
+				begin
+					write_enable = 1'b1;
+					cell_new_status = `PnInPs;
+				end
+				`PnIs:
+				begin
+					write_enable = 1'b1;
+					cell_new_status = `PnPsIs;
+				end
+				`InIs:
+				begin
+					write_enable = 1'b1;
+					cell_new_status = `InPsIs;
+				end
+				`PnInIs:
+				begin
+					write_enable = 1'b1;
+					cell_new_status = `PnInPsIs;
+				end
+			endcase
 		end
 		else
 		begin
@@ -256,7 +296,10 @@ if (turn_status == `turn_ia_placing)//se devo inizializzare
 	else if (turn_status == `turn_IA)//se tocca all'ia
 	begin
 		//TODO
-		//genero random una posizione e verifico se  buona.
+		
+		//COdice di carlo. Se tocca all'ia a sparare.
+		
+		turn_status = turn_status - 2'd1;
 	end
 end
 

@@ -11,7 +11,7 @@ def shipDimension (direction):
             j = 0
             k = 0
             l = 0
-            print("\t\t\t3'd"+str(i)+":" )
+            print("\t\t\t4'd"+str(i)+":" )
             print("\t\t\tbegin")
             #controllo di essere nelle celle, non posso sforare il vettore
             print("\t\t\t\tif ("+var_in_x+"+4'd"+str(i)+" <= 4'd"+str(dim_x)+")//se sono dentro il range")
@@ -23,20 +23,20 @@ def shipDimension (direction):
                 if k == 0:
                     print("\t\t\t\t\t\tif("+var_memory+"["+var_in_x+"]["+var_in_y+"] == 4'd0)")
                     print("\t\t\t\t\t\tbegin")
-                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"] = 4'd1;")
+                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"] = 4'd7;")
                     print("\t\t\t\t\t\tend")
-                    print("\t\t\t\t\t\telse if("+var_memory+"["+var_in_x+"]["+var_in_y+"] == 4'd2)")
+                    print("\t\t\t\t\t\telse if("+var_memory+"["+var_in_x+"]["+var_in_y+"] == 4'd4)")
                     print("\t\t\t\t\t\tbegin")
-                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"] = 4'd3;")
+                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"] = 4'd1;")
                     print("\t\t\t\t\t\tend")
                 else:
                     print("\t\t\t\t\t\tif("+var_memory+"["+var_in_x+"+4'd"+str(k)+"]["+var_in_y+"] == 4'd0)")
                     print("\t\t\t\t\t\tbegin")
-                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"+4'd"+str(k)+"]["+var_in_y+"] = 4'd1;")
+                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"+4'd"+str(k)+"]["+var_in_y+"] = 4'd7;")
                     print("\t\t\t\t\t\tend")
-                    print("\t\t\t\t\t\telse if("+var_memory+"["+var_in_x+"+4'd"+str(k)+"]["+var_in_y+"] == 4'd2)")
+                    print("\t\t\t\t\t\telse if("+var_memory+"["+var_in_x+"+4'd"+str(k)+"]["+var_in_y+"] == 4'd4)")
                     print("\t\t\t\t\t\tbegin")
-                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"+4'd"+str(k)+"]["+var_in_y+"] = 4'd3;")
+                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"+4'd"+str(k)+"]["+var_in_y+"] = 4'd1;")
                     print("\t\t\t\t\t\tend")
                 k +=1
             print("\t\t\t\t\tend//write enable")
@@ -46,16 +46,15 @@ def shipDimension (direction):
             print("\t\t\t\t\t\tif("+var_memory+"["+var_in_x+"]["+var_in_y+"] == 4'd0 //se è pre allocata")
             while l < (i-1):
                 print("\t\t\t\t\t\t\t\t&& "+var_memory+"["+var_in_x+"+4'd"+str(l+1)+"]["+var_in_y+"] == 4'd0")
-                #print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"+4'd"+str(l)+"]["+var_in_y+"] = 5'd2;")
                 l +=1
             l = 0
             print("\t\t\t\t\t\t\t)")
             print("\t\t\t\t\t\tbegin // la piazzo")
             while l < (i):
                 if l == 0:
-                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"] = 4'd2;")
+                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"] = 4'd4;")
                 else:
-                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"+4'd"+str(l)+"]["+var_in_y+"] = 4'd2;")
+                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"+4'd"+str(l)+"]["+var_in_y+"] = 4'd4;")
                 l+=1
             print ("\t\t\t\t\t\t\t"+var_out_3+" = 1;")
             print("\t\t\t\t\t\tend")
@@ -67,9 +66,9 @@ def shipDimension (direction):
             print("\t\t\t\t\t//metto che non si puo' scrivere")
             while j < i:
                 if (j == 0):
-                    print("\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"] = 4'd4;")
+                    print("\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"] = 4'd10;")
                 else:
-                    print("\t\t\t\t\t"+var_memory+"["+var_in_x+"+4'd"+str(j)+"]["+var_in_y+"] = 4'd4;")
+                    print("\t\t\t\t\t"+var_memory+"["+var_in_x+"+4'd"+str(j)+"]["+var_in_y+"] = 4'd10;")
                 j +=1
             print("\t\t\t\tend")
             print("\t\t\tend")
@@ -81,7 +80,7 @@ def shipDimension (direction):
             j = 0
             k = 0
             l = 0
-            print("\t\t\t3'd"+str(i)+":" )
+            print("\t\t\t4'd"+str(i)+":" )
             print("\t\t\tbegin")
             #controllo di essere nelle celle, non posso sforare il vettore
             print("\t\t\t\tif ("+var_in_y+"+4'd"+str(i)+" <= 4'd"+str(dim_y)+")//se sono dentro il range")
@@ -93,20 +92,20 @@ def shipDimension (direction):
                 if (k == 0):
                     print("\t\t\t\t\t\tif("+var_memory+"["+var_in_x+"]["+var_in_y+"] == 4'd0)")
                     print("\t\t\t\t\t\tbegin")
-                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"] = 4'd1;")
+                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"] = 4'd7;")
                     print("\t\t\t\t\t\tend")
-                    print("\t\t\t\t\t\telse if("+var_memory+"["+var_in_x+"]["+var_in_y+"] == 4'd2)")
+                    print("\t\t\t\t\t\telse if("+var_memory+"["+var_in_x+"]["+var_in_y+"] == 4'd4)")
                     print("\t\t\t\t\t\tbegin")
-                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"] = 4'd3;")
+                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"] = 4'd1;")
                     print("\t\t\t\t\t\tend")
                 else:
                     print("\t\t\t\t\t\tif("+var_memory+"["+var_in_x+"]["+var_in_y+"+4'd"+str(k)+"] == 4'd0)")
                     print("\t\t\t\t\t\tbegin")
-                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"+4'd"+str(k)+"] = 4'd1;")
+                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"+4'd"+str(k)+"] = 4'd7;")
                     print("\t\t\t\t\t\tend")
-                    print("\t\t\t\t\t\telse if("+var_memory+"["+var_in_x+"]["+var_in_y+"+4'd"+str(k)+"] == 4'd2)")
+                    print("\t\t\t\t\t\telse if("+var_memory+"["+var_in_x+"]["+var_in_y+"+4'd"+str(k)+"] == 4'd4)")
                     print("\t\t\t\t\t\tbegin")
-                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"+4'd"+str(k)+"] = 4'd3;")
+                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"+4'd"+str(k)+"] = 4'd1;")
                     print("\t\t\t\t\t\tend")
                 k +=1
             print("\t\t\t\t\tend//write enable")
@@ -123,9 +122,9 @@ def shipDimension (direction):
             print("\t\t\t\t\t\tbegin // la piazzo")
             while l < (i):
                 if l == 0:
-                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"] = 4'd2;")
+                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"] = 4'd4;")
                 else:
-                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"+4'd"+str(l)+"] = 4'd2;")
+                    print("\t\t\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"+4'd"+str(l)+"] = 4'd4;")
                 l+=1
             print ("\t\t\t\t\t\t\t"+var_out_3+" = 1;")
             print("\t\t\t\t\t\tend")
@@ -137,9 +136,9 @@ def shipDimension (direction):
             print("\t\t\t\t\t//metto che non si puo' scrivere")
             while j < i:
                 if j ==0 :
-                    print("\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"] = 4'd4;")
+                    print("\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"] = 4'd10;")
                 else:
-                    print("\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"+4'd"+str(j)+"] = 4'd4;")
+                    print("\t\t\t\t\t"+var_memory+"["+var_in_x+"]["+var_in_y+"+4'd"+str(j)+"] = 4'd10;")
                 j +=1
             print("\t\t\t\tend")
             print("\t\t\tend")
@@ -202,7 +201,7 @@ print ("input [2:0] "+var_in_x+";")
 print ("input [2:0] "+var_in_y+";")
 print ("input [2:0] "+var_in_x_p+";")
 print ("input [2:0] "+var_in_y_p+";")
-print ("input [2:0] "+var_in_ship_dimension+";")
+print ("input [3:0] "+var_in_ship_dimension+";")
 
 
 
@@ -252,11 +251,11 @@ print ("\t\tfor (i = 0; i <= "+str(dim_x-1)+"; i = i + 1)")
 print ("\t\tbegin")
 print ("\t\t\tfor (j = 0; j <= "+str(dim_y-1)+"; j = j + 1)")
 print ("\t\t\tbegin")
-print ("\t\t\t\tif ("+var_memory+"[i][j] == 4'd1)")
+print ("\t\t\t\tif ("+var_memory+"[i][j] == 4'd7)")
 print ("\t\t\t\t "+var_memory+"[i][j] = 4'd0;")
-print ("\t\t\t\telse if ("+var_memory+"[i][j] == 4'd3 )")
-print ("\t\t\t\t "+var_memory+"[i][j] = 5'd2;")
-print ("\t\t\t\telse if ("+var_memory+"[i][j] == 4'd4 )")
+print ("\t\t\t\telse if ("+var_memory+"[i][j] == 4'd1 )")
+print ("\t\t\t\t "+var_memory+"[i][j] = 5'd4;")
+print ("\t\t\t\telse if ("+var_memory+"[i][j] == 4'd10 )")
 print ("\t\t\t\t "+var_memory+"[i][j] = 4'd0;")
 print ("\t\t\tend")
 print ("\t\tend")

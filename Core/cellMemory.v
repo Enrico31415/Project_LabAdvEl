@@ -25,7 +25,7 @@ input [2:0] mouse_cell_x;
 input [2:0] mouse_cell_y;
 input [2:0] pointer_cell_x;
 input [2:0] pointer_cell_y;
-input [2:0] dimension;
+input [3:0] dimension;
 output reg [3:0] status;
 output reg [3:0] status_pointed_cell;
 output reg ship_placed = 0;
@@ -46,19 +46,27 @@ end
 always @ (negedge clk_in)
 begin
 	ship_placed = 0;
-
-	if (play_status== 2'd1)
+//se e' il turno del giocatore
+	if (play_status== 2'd2)
+	begin
+			if(we)
+			begin
+				memory[mouse_cell_x][mouse_cell_y] =new_value;
+			end
+			status=new_value;
+		end
+	else if (play_status== 2'd1)
 	begin
 		 // piallo gli stati temporanei
 		for (i = 0; i <= 7; i = i + 1)
 		begin
 			for (j = 0; j <= 7; j = j + 1)
 			begin
-				if (memory[i][j] == 4'd1)
+				if (memory[i][j] == 4'd7)
 				 memory[i][j] = 4'd0;
-				else if (memory[i][j] == 4'd3 )
-				 memory[i][j] = 5'd2;
-				else if (memory[i][j] == 4'd4 )
+				else if (memory[i][j] == 4'd1 )
+				 memory[i][j] = 5'd4;
+				else if (memory[i][j] == 4'd10 )
 				 memory[i][j] = 4'd0;
 			end
 		end
@@ -67,7 +75,7 @@ begin
 		begin
 			//case sulla dimensione della nave
 			case(dimension)
-			3'd2:
+			4'd2:
 			begin
 				if (mouse_cell_x+4'd2 <= 4'd8)//se sono dentro il range
 				begin
@@ -76,19 +84,19 @@ begin
 					begin
 						if(memory[mouse_cell_x][mouse_cell_y] == 4'd0)
 						begin
-							memory[mouse_cell_x][mouse_cell_y] = 4'd1;
+							memory[mouse_cell_x][mouse_cell_y] = 4'd7;
 						end
-						else if(memory[mouse_cell_x][mouse_cell_y] == 4'd2)
+						else if(memory[mouse_cell_x][mouse_cell_y] == 4'd4)
 						begin
-							memory[mouse_cell_x][mouse_cell_y] = 4'd3;
+							memory[mouse_cell_x][mouse_cell_y] = 4'd1;
 						end
 						if(memory[mouse_cell_x+4'd1][mouse_cell_y] == 4'd0)
 						begin
-							memory[mouse_cell_x+4'd1][mouse_cell_y] = 4'd1;
+							memory[mouse_cell_x+4'd1][mouse_cell_y] = 4'd7;
 						end
-						else if(memory[mouse_cell_x+4'd1][mouse_cell_y] == 4'd2)
+						else if(memory[mouse_cell_x+4'd1][mouse_cell_y] == 4'd4)
 						begin
-							memory[mouse_cell_x+4'd1][mouse_cell_y] = 4'd3;
+							memory[mouse_cell_x+4'd1][mouse_cell_y] = 4'd1;
 						end
 					end//write enable
 					else
@@ -97,8 +105,8 @@ begin
 								&& memory[mouse_cell_x+4'd1][mouse_cell_y] == 4'd0
 							)
 						begin // la piazzo
-							memory[mouse_cell_x][mouse_cell_y] = 4'd2;
-							memory[mouse_cell_x+4'd1][mouse_cell_y] = 4'd2;
+							memory[mouse_cell_x][mouse_cell_y] = 4'd4;
+							memory[mouse_cell_x+4'd1][mouse_cell_y] = 4'd4;
 							ship_placed = 1;
 						end
 					end
@@ -106,11 +114,11 @@ begin
 				else
 				begin
 					//metto che non si puo' scrivere
-					memory[mouse_cell_x][mouse_cell_y] = 4'd4;
-					memory[mouse_cell_x+4'd1][mouse_cell_y] = 4'd4;
+					memory[mouse_cell_x][mouse_cell_y] = 4'd10;
+					memory[mouse_cell_x+4'd1][mouse_cell_y] = 4'd10;
 				end
 			end
-			3'd3:
+			4'd3:
 			begin
 				if (mouse_cell_x+4'd3 <= 4'd8)//se sono dentro il range
 				begin
@@ -119,27 +127,27 @@ begin
 					begin
 						if(memory[mouse_cell_x][mouse_cell_y] == 4'd0)
 						begin
-							memory[mouse_cell_x][mouse_cell_y] = 4'd1;
+							memory[mouse_cell_x][mouse_cell_y] = 4'd7;
 						end
-						else if(memory[mouse_cell_x][mouse_cell_y] == 4'd2)
+						else if(memory[mouse_cell_x][mouse_cell_y] == 4'd4)
 						begin
-							memory[mouse_cell_x][mouse_cell_y] = 4'd3;
+							memory[mouse_cell_x][mouse_cell_y] = 4'd1;
 						end
 						if(memory[mouse_cell_x+4'd1][mouse_cell_y] == 4'd0)
 						begin
-							memory[mouse_cell_x+4'd1][mouse_cell_y] = 4'd1;
+							memory[mouse_cell_x+4'd1][mouse_cell_y] = 4'd7;
 						end
-						else if(memory[mouse_cell_x+4'd1][mouse_cell_y] == 4'd2)
+						else if(memory[mouse_cell_x+4'd1][mouse_cell_y] == 4'd4)
 						begin
-							memory[mouse_cell_x+4'd1][mouse_cell_y] = 4'd3;
+							memory[mouse_cell_x+4'd1][mouse_cell_y] = 4'd1;
 						end
 						if(memory[mouse_cell_x+4'd2][mouse_cell_y] == 4'd0)
 						begin
-							memory[mouse_cell_x+4'd2][mouse_cell_y] = 4'd1;
+							memory[mouse_cell_x+4'd2][mouse_cell_y] = 4'd7;
 						end
-						else if(memory[mouse_cell_x+4'd2][mouse_cell_y] == 4'd2)
+						else if(memory[mouse_cell_x+4'd2][mouse_cell_y] == 4'd4)
 						begin
-							memory[mouse_cell_x+4'd2][mouse_cell_y] = 4'd3;
+							memory[mouse_cell_x+4'd2][mouse_cell_y] = 4'd1;
 						end
 					end//write enable
 					else
@@ -149,9 +157,9 @@ begin
 								&& memory[mouse_cell_x+4'd2][mouse_cell_y] == 4'd0
 							)
 						begin // la piazzo
-							memory[mouse_cell_x][mouse_cell_y] = 4'd2;
-							memory[mouse_cell_x+4'd1][mouse_cell_y] = 4'd2;
-							memory[mouse_cell_x+4'd2][mouse_cell_y] = 4'd2;
+							memory[mouse_cell_x][mouse_cell_y] = 4'd4;
+							memory[mouse_cell_x+4'd1][mouse_cell_y] = 4'd4;
+							memory[mouse_cell_x+4'd2][mouse_cell_y] = 4'd4;
 							ship_placed = 1;
 						end
 					end
@@ -159,12 +167,12 @@ begin
 				else
 				begin
 					//metto che non si puo' scrivere
-					memory[mouse_cell_x][mouse_cell_y] = 4'd4;
-					memory[mouse_cell_x+4'd1][mouse_cell_y] = 4'd4;
-					memory[mouse_cell_x+4'd2][mouse_cell_y] = 4'd4;
+					memory[mouse_cell_x][mouse_cell_y] = 4'd10;
+					memory[mouse_cell_x+4'd1][mouse_cell_y] = 4'd10;
+					memory[mouse_cell_x+4'd2][mouse_cell_y] = 4'd10;
 				end
 			end
-			3'd4:
+			4'd4:
 			begin
 				if (mouse_cell_x+4'd4 <= 4'd8)//se sono dentro il range
 				begin
@@ -173,35 +181,35 @@ begin
 					begin
 						if(memory[mouse_cell_x][mouse_cell_y] == 4'd0)
 						begin
-							memory[mouse_cell_x][mouse_cell_y] = 4'd1;
+							memory[mouse_cell_x][mouse_cell_y] = 4'd7;
 						end
-						else if(memory[mouse_cell_x][mouse_cell_y] == 4'd2)
+						else if(memory[mouse_cell_x][mouse_cell_y] == 4'd4)
 						begin
-							memory[mouse_cell_x][mouse_cell_y] = 4'd3;
+							memory[mouse_cell_x][mouse_cell_y] = 4'd1;
 						end
 						if(memory[mouse_cell_x+4'd1][mouse_cell_y] == 4'd0)
 						begin
-							memory[mouse_cell_x+4'd1][mouse_cell_y] = 4'd1;
+							memory[mouse_cell_x+4'd1][mouse_cell_y] = 4'd7;
 						end
-						else if(memory[mouse_cell_x+4'd1][mouse_cell_y] == 4'd2)
+						else if(memory[mouse_cell_x+4'd1][mouse_cell_y] == 4'd4)
 						begin
-							memory[mouse_cell_x+4'd1][mouse_cell_y] = 4'd3;
+							memory[mouse_cell_x+4'd1][mouse_cell_y] = 4'd1;
 						end
 						if(memory[mouse_cell_x+4'd2][mouse_cell_y] == 4'd0)
 						begin
-							memory[mouse_cell_x+4'd2][mouse_cell_y] = 4'd1;
+							memory[mouse_cell_x+4'd2][mouse_cell_y] = 4'd7;
 						end
-						else if(memory[mouse_cell_x+4'd2][mouse_cell_y] == 4'd2)
+						else if(memory[mouse_cell_x+4'd2][mouse_cell_y] == 4'd4)
 						begin
-							memory[mouse_cell_x+4'd2][mouse_cell_y] = 4'd3;
+							memory[mouse_cell_x+4'd2][mouse_cell_y] = 4'd1;
 						end
 						if(memory[mouse_cell_x+4'd3][mouse_cell_y] == 4'd0)
 						begin
-							memory[mouse_cell_x+4'd3][mouse_cell_y] = 4'd1;
+							memory[mouse_cell_x+4'd3][mouse_cell_y] = 4'd7;
 						end
-						else if(memory[mouse_cell_x+4'd3][mouse_cell_y] == 4'd2)
+						else if(memory[mouse_cell_x+4'd3][mouse_cell_y] == 4'd4)
 						begin
-							memory[mouse_cell_x+4'd3][mouse_cell_y] = 4'd3;
+							memory[mouse_cell_x+4'd3][mouse_cell_y] = 4'd1;
 						end
 					end//write enable
 					else
@@ -212,10 +220,10 @@ begin
 								&& memory[mouse_cell_x+4'd3][mouse_cell_y] == 4'd0
 							)
 						begin // la piazzo
-							memory[mouse_cell_x][mouse_cell_y] = 4'd2;
-							memory[mouse_cell_x+4'd1][mouse_cell_y] = 4'd2;
-							memory[mouse_cell_x+4'd2][mouse_cell_y] = 4'd2;
-							memory[mouse_cell_x+4'd3][mouse_cell_y] = 4'd2;
+							memory[mouse_cell_x][mouse_cell_y] = 4'd4;
+							memory[mouse_cell_x+4'd1][mouse_cell_y] = 4'd4;
+							memory[mouse_cell_x+4'd2][mouse_cell_y] = 4'd4;
+							memory[mouse_cell_x+4'd3][mouse_cell_y] = 4'd4;
 							ship_placed = 1;
 						end
 					end
@@ -223,10 +231,10 @@ begin
 				else
 				begin
 					//metto che non si puo' scrivere
-					memory[mouse_cell_x][mouse_cell_y] = 4'd4;
-					memory[mouse_cell_x+4'd1][mouse_cell_y] = 4'd4;
-					memory[mouse_cell_x+4'd2][mouse_cell_y] = 4'd4;
-					memory[mouse_cell_x+4'd3][mouse_cell_y] = 4'd4;
+					memory[mouse_cell_x][mouse_cell_y] = 4'd10;
+					memory[mouse_cell_x+4'd1][mouse_cell_y] = 4'd10;
+					memory[mouse_cell_x+4'd2][mouse_cell_y] = 4'd10;
+					memory[mouse_cell_x+4'd3][mouse_cell_y] = 4'd10;
 				end
 			end
 			endcase
@@ -234,7 +242,7 @@ begin
 		else
 		begin
 			case(dimension)
-			3'd2:
+			4'd2:
 			begin
 				if (mouse_cell_y+4'd2 <= 4'd8)//se sono dentro il range
 				begin
@@ -243,19 +251,19 @@ begin
 					begin
 						if(memory[mouse_cell_x][mouse_cell_y] == 4'd0)
 						begin
-							memory[mouse_cell_x][mouse_cell_y] = 4'd1;
+							memory[mouse_cell_x][mouse_cell_y] = 4'd7;
 						end
-						else if(memory[mouse_cell_x][mouse_cell_y] == 4'd2)
+						else if(memory[mouse_cell_x][mouse_cell_y] == 4'd4)
 						begin
-							memory[mouse_cell_x][mouse_cell_y] = 4'd3;
+							memory[mouse_cell_x][mouse_cell_y] = 4'd1;
 						end
 						if(memory[mouse_cell_x][mouse_cell_y+4'd1] == 4'd0)
 						begin
-							memory[mouse_cell_x][mouse_cell_y+4'd1] = 4'd1;
+							memory[mouse_cell_x][mouse_cell_y+4'd1] = 4'd7;
 						end
-						else if(memory[mouse_cell_x][mouse_cell_y+4'd1] == 4'd2)
+						else if(memory[mouse_cell_x][mouse_cell_y+4'd1] == 4'd4)
 						begin
-							memory[mouse_cell_x][mouse_cell_y+4'd1] = 4'd3;
+							memory[mouse_cell_x][mouse_cell_y+4'd1] = 4'd1;
 						end
 					end//write enable
 					else
@@ -264,8 +272,8 @@ begin
 								&& memory[mouse_cell_x][mouse_cell_y+4'd1] == 4'd0
 							)
 						begin // la piazzo
-							memory[mouse_cell_x][mouse_cell_y] = 4'd2;
-							memory[mouse_cell_x][mouse_cell_y+4'd1] = 4'd2;
+							memory[mouse_cell_x][mouse_cell_y] = 4'd4;
+							memory[mouse_cell_x][mouse_cell_y+4'd1] = 4'd4;
 							ship_placed = 1;
 						end
 					end
@@ -273,11 +281,11 @@ begin
 				else
 				begin
 					//metto che non si puo' scrivere
-					memory[mouse_cell_x][mouse_cell_y] = 4'd4;
-					memory[mouse_cell_x][mouse_cell_y+4'd1] = 4'd4;
+					memory[mouse_cell_x][mouse_cell_y] = 4'd10;
+					memory[mouse_cell_x][mouse_cell_y+4'd1] = 4'd10;
 				end
 			end
-			3'd3:
+			4'd3:
 			begin
 				if (mouse_cell_y+4'd3 <= 4'd8)//se sono dentro il range
 				begin
@@ -286,27 +294,27 @@ begin
 					begin
 						if(memory[mouse_cell_x][mouse_cell_y] == 4'd0)
 						begin
-							memory[mouse_cell_x][mouse_cell_y] = 4'd1;
+							memory[mouse_cell_x][mouse_cell_y] = 4'd7;
 						end
-						else if(memory[mouse_cell_x][mouse_cell_y] == 4'd2)
+						else if(memory[mouse_cell_x][mouse_cell_y] == 4'd4)
 						begin
-							memory[mouse_cell_x][mouse_cell_y] = 4'd3;
+							memory[mouse_cell_x][mouse_cell_y] = 4'd1;
 						end
 						if(memory[mouse_cell_x][mouse_cell_y+4'd1] == 4'd0)
 						begin
-							memory[mouse_cell_x][mouse_cell_y+4'd1] = 4'd1;
+							memory[mouse_cell_x][mouse_cell_y+4'd1] = 4'd7;
 						end
-						else if(memory[mouse_cell_x][mouse_cell_y+4'd1] == 4'd2)
+						else if(memory[mouse_cell_x][mouse_cell_y+4'd1] == 4'd4)
 						begin
-							memory[mouse_cell_x][mouse_cell_y+4'd1] = 4'd3;
+							memory[mouse_cell_x][mouse_cell_y+4'd1] = 4'd1;
 						end
 						if(memory[mouse_cell_x][mouse_cell_y+4'd2] == 4'd0)
 						begin
-							memory[mouse_cell_x][mouse_cell_y+4'd2] = 4'd1;
+							memory[mouse_cell_x][mouse_cell_y+4'd2] = 4'd7;
 						end
-						else if(memory[mouse_cell_x][mouse_cell_y+4'd2] == 4'd2)
+						else if(memory[mouse_cell_x][mouse_cell_y+4'd2] == 4'd4)
 						begin
-							memory[mouse_cell_x][mouse_cell_y+4'd2] = 4'd3;
+							memory[mouse_cell_x][mouse_cell_y+4'd2] = 4'd1;
 						end
 					end//write enable
 					else
@@ -316,9 +324,9 @@ begin
 								&& memory[mouse_cell_x][mouse_cell_y+4'd2] == 4'd0
 							)
 						begin // la piazzo
-							memory[mouse_cell_x][mouse_cell_y] = 4'd2;
-							memory[mouse_cell_x][mouse_cell_y+4'd1] = 4'd2;
-							memory[mouse_cell_x][mouse_cell_y+4'd2] = 4'd2;
+							memory[mouse_cell_x][mouse_cell_y] = 4'd4;
+							memory[mouse_cell_x][mouse_cell_y+4'd1] = 4'd4;
+							memory[mouse_cell_x][mouse_cell_y+4'd2] = 4'd4;
 							ship_placed = 1;
 						end
 					end
@@ -326,12 +334,12 @@ begin
 				else
 				begin
 					//metto che non si puo' scrivere
-					memory[mouse_cell_x][mouse_cell_y] = 4'd4;
-					memory[mouse_cell_x][mouse_cell_y+4'd1] = 4'd4;
-					memory[mouse_cell_x][mouse_cell_y+4'd2] = 4'd4;
+					memory[mouse_cell_x][mouse_cell_y] = 4'd10;
+					memory[mouse_cell_x][mouse_cell_y+4'd1] = 4'd10;
+					memory[mouse_cell_x][mouse_cell_y+4'd2] = 4'd10;
 				end
 			end
-			3'd4:
+			4'd4:
 			begin
 				if (mouse_cell_y+4'd4 <= 4'd8)//se sono dentro il range
 				begin
@@ -340,35 +348,35 @@ begin
 					begin
 						if(memory[mouse_cell_x][mouse_cell_y] == 4'd0)
 						begin
-							memory[mouse_cell_x][mouse_cell_y] = 4'd1;
+							memory[mouse_cell_x][mouse_cell_y] = 4'd7;
 						end
-						else if(memory[mouse_cell_x][mouse_cell_y] == 4'd2)
+						else if(memory[mouse_cell_x][mouse_cell_y] == 4'd4)
 						begin
-							memory[mouse_cell_x][mouse_cell_y] = 4'd3;
+							memory[mouse_cell_x][mouse_cell_y] = 4'd1;
 						end
 						if(memory[mouse_cell_x][mouse_cell_y+4'd1] == 4'd0)
 						begin
-							memory[mouse_cell_x][mouse_cell_y+4'd1] = 4'd1;
+							memory[mouse_cell_x][mouse_cell_y+4'd1] = 4'd7;
 						end
-						else if(memory[mouse_cell_x][mouse_cell_y+4'd1] == 4'd2)
+						else if(memory[mouse_cell_x][mouse_cell_y+4'd1] == 4'd4)
 						begin
-							memory[mouse_cell_x][mouse_cell_y+4'd1] = 4'd3;
+							memory[mouse_cell_x][mouse_cell_y+4'd1] = 4'd1;
 						end
 						if(memory[mouse_cell_x][mouse_cell_y+4'd2] == 4'd0)
 						begin
-							memory[mouse_cell_x][mouse_cell_y+4'd2] = 4'd1;
+							memory[mouse_cell_x][mouse_cell_y+4'd2] = 4'd7;
 						end
-						else if(memory[mouse_cell_x][mouse_cell_y+4'd2] == 4'd2)
+						else if(memory[mouse_cell_x][mouse_cell_y+4'd2] == 4'd4)
 						begin
-							memory[mouse_cell_x][mouse_cell_y+4'd2] = 4'd3;
+							memory[mouse_cell_x][mouse_cell_y+4'd2] = 4'd1;
 						end
 						if(memory[mouse_cell_x][mouse_cell_y+4'd3] == 4'd0)
 						begin
-							memory[mouse_cell_x][mouse_cell_y+4'd3] = 4'd1;
+							memory[mouse_cell_x][mouse_cell_y+4'd3] = 4'd7;
 						end
-						else if(memory[mouse_cell_x][mouse_cell_y+4'd3] == 4'd2)
+						else if(memory[mouse_cell_x][mouse_cell_y+4'd3] == 4'd4)
 						begin
-							memory[mouse_cell_x][mouse_cell_y+4'd3] = 4'd3;
+							memory[mouse_cell_x][mouse_cell_y+4'd3] = 4'd1;
 						end
 					end//write enable
 					else
@@ -379,10 +387,10 @@ begin
 								&& memory[mouse_cell_x][mouse_cell_y+4'd3] == 4'd0
 							)
 						begin // la piazzo
-							memory[mouse_cell_x][mouse_cell_y] = 4'd2;
-							memory[mouse_cell_x][mouse_cell_y+4'd1] = 4'd2;
-							memory[mouse_cell_x][mouse_cell_y+4'd2] = 4'd2;
-							memory[mouse_cell_x][mouse_cell_y+4'd3] = 4'd2;
+							memory[mouse_cell_x][mouse_cell_y] = 4'd4;
+							memory[mouse_cell_x][mouse_cell_y+4'd1] = 4'd4;
+							memory[mouse_cell_x][mouse_cell_y+4'd2] = 4'd4;
+							memory[mouse_cell_x][mouse_cell_y+4'd3] = 4'd4;
 							ship_placed = 1;
 						end
 					end
@@ -390,24 +398,15 @@ begin
 				else
 				begin
 					//metto che non si puo' scrivere
-					memory[mouse_cell_x][mouse_cell_y] = 4'd4;
-					memory[mouse_cell_x][mouse_cell_y+4'd1] = 4'd4;
-					memory[mouse_cell_x][mouse_cell_y+4'd2] = 4'd4;
-					memory[mouse_cell_x][mouse_cell_y+4'd3] = 4'd4;
+					memory[mouse_cell_x][mouse_cell_y] = 4'd10;
+					memory[mouse_cell_x][mouse_cell_y+4'd1] = 4'd10;
+					memory[mouse_cell_x][mouse_cell_y+4'd2] = 4'd10;
+					memory[mouse_cell_x][mouse_cell_y+4'd3] = 4'd10;
 				end
 			end
 			endcase
 		end
 	end
-	//se e' il turno del giocatore
-	else
-	begin
-			if(we)
-			begin
-				memory[mouse_cell_x][mouse_cell_y] =new_value;
-			end
-			status=new_value;
-		end
 end //always
 // operazioni di read, fatte per plottare a schermo
 always @ (posedge clk_in)

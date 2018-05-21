@@ -69,7 +69,10 @@ reg [12:0] pointer_to_mask_2 = 13'd0;
 wire [4799:0] cross;
 wire [4799:0] circle;
 wire [4799:0] cross_over_circle;
-
+wire [4799:0] s_over_circle;
+wire [4799:0] s_over_cross;
+wire [4799:0] s_over_cross_over_cirle;
+wire [4799:0] ship_s;
 //ritona la posizione attuale del pennello in celle
 pos_to_quadrant position_to_quadrant (
 	.clk_in(clk_in),
@@ -84,7 +87,11 @@ pos_to_quadrant position_to_quadrant (
 
 assign cross = `d_cross;
 assign circle = `d_circle;
-assign cross_over_circle = `d_circle & `d_cross;
+assign ship_s = `d_ship;
+assign cross_over_circle = `d_circle | `d_cross;
+assign s_over_circle = `d_circle | `d_ship;
+assign s_over_cross = `d_cross | `d_ship;
+assign s_over_cross_over_cirle = s_over_cross | `d_circle ;
 /*
 initial begin 
 	cross = `d_cross;
@@ -97,61 +104,11 @@ begin
 	if (enable == 1) 
 	begin		
 		case (cell_status) // test sullo stato della cella in quesione
-			4'd0 : // <-----------------------------------------------
+			`free: // <-----------------------------------------------
 			begin //se sono nel quadrato => cambio colore
-				color_out = `black;
+				color_out = `back_ground;
 			end
-			4'd1 : 
-			begin
-				color_out = `color_ship;
-			end
-			4'd2 : 
-			begin
-				color_out = `color_player_hit;
-			end
-			4'd3 : 
-			begin
-				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
-				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
-				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
-				if (cross[pointer_to_mask])
-				begin
-					color_out = `color_player_and_ia_hit;
-				end
-				else
-				begin
-					color_out = `black;
-				end
-			end
-			4'd4 : 
-			begin
-				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
-				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
-				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
-				if (cross[pointer_to_mask])
-				begin
-					color_out = `color_player_and_ia_hit;
-				end
-				else
-				begin
-					color_out = `black;
-				end
-			end
-			/*cell_status_ia_hitted : 
-			begin
-				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
-				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
-				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
-				if (cross[pointer_to_mask])
-				begin
-					color_out = `color_player_and_ia_hit;
-				end
-				else
-				begin
-					color_out = `black;
-				end
-			end
-			cell_status_position_na: 
+			`Ps: 
 			begin
 				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
 				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
@@ -165,7 +122,21 @@ begin
 					color_out = `black;
 				end
 			end
-			cell_status_player_and_ia_hitted : 
+			`Is: 
+			begin
+				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+				if (circle[pointer_to_mask])
+				begin
+					color_out = `color_player_and_ia_hit;
+				end
+				else
+				begin
+					color_out = `black;
+				end
+			end
+			`PsIs: 
 			begin
 				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
 				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
@@ -178,9 +149,151 @@ begin
 				begin
 					color_out = `black;
 				end
+			end
+			`Pn || `PnIn: 
+			begin
+				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+				if (ship_s[pointer_to_mask])
+				begin
+					color_out = `color_player_and_ia_hit;
 				end
-				default: 
-					color_out = `black;*/
+				else
+				begin
+					color_out = `black;
+				end
+			end
+			`PnIs:
+			begin
+				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+				if (s_over_circle[pointer_to_mask])
+				begin
+					color_out = `color_player_and_ia_hit;
+				end
+				else
+				begin
+					color_out = `black;
+				end
+			end
+			`InIs:
+			begin
+				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+				if (circle[pointer_to_mask])
+				begin
+					color_out = `color_player_and_ia_hit;
+				end
+				else
+				begin
+					color_out = `black;
+				end
+			end
+			`PnIs:
+			begin
+				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+				if (s_over_cross[pointer_to_mask])
+				begin
+					color_out = `color_player_and_ia_hit;
+				end
+				else
+				begin
+					color_out = `black;
+				end
+			end
+			`InPs:
+			begin
+				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+				if (cross[pointer_to_mask])
+				begin
+					color_out = `red;
+				end
+				else
+				begin
+					color_out = `black;
+				end
+			end
+			`PnInPs:
+			begin
+				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+				if (s_over_cross[pointer_to_mask])
+				begin
+					color_out = `red;
+				end
+				else
+				begin
+					color_out = `black;
+				end
+			end
+			`PnInIs:
+			begin
+				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+				if (s_over_circle[pointer_to_mask])
+				begin
+					color_out = `color_player_and_ia_hit;
+				end
+				else
+				begin
+					color_out = `black;
+				end
+			end
+			`PnPsIs:
+			begin
+				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+				if (s_over_cross_over_cirle[pointer_to_mask])
+				begin
+					color_out = `color_player_and_ia_hit;
+				end
+				else
+				begin
+					color_out = `black;
+				end
+			end
+			`InPsIs:
+			begin
+				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+				if (cross_over_circle[pointer_to_mask])
+				begin
+					color_out = `red;
+				end
+				else
+				begin
+					color_out = `black;
+				end
+			end
+			`PnInPsIs:
+			begin
+				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+				if (s_over_cross_over_cirle[pointer_to_mask])
+				begin
+					color_out = `red;
+				end
+				else
+				begin
+					color_out = `black;
+				end
+			end
+			
+			
+			
+			
 		endcase
 		
 		if (current_line <= ((12'd1*`row_period)+`row_dimension) && current_line > ((12'd1*`row_period)-`row_dimension)) // prima riga
