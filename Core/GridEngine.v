@@ -28,27 +28,10 @@
 `define row_dimension	10'd2
 `define line_dimension	10'd2
 
+// tutti gli stati delle navi
+`include "cellStatus.v"
 
 
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date:    17:42:06 04/11/2018 
-// Design Name: 
-// Module Name:    GridEngine 
-// Project Name: 
-// Target Devices: 
-// Tool versions: 
-// Description: 
-//
-// Dependencies: 
-//
-// Revision: 
-// Revision 0.01 - File Created
-// Additional Comments: 
-//
-//////////////////////////////////////////////////////////////////////////////////
 module GridEngine(clk_in,
 	//TODO Implementazione della posizione del mouse.
 	mouse_pos_x,
@@ -60,18 +43,6 @@ module GridEngine(clk_in,
 	
 	mouse_click, //evento del click del mouse [0] right click, [1] left click
 	
-	//stati statici delle celle
-	cell_status_free,
-	cell_status_player_occ,
-	cell_status_ia_occ,
-	cell_status_player_ia_occ,
-	cell_status_player_hitted,
-	cell_status_ia_hitted,
-	cell_status_player_and_ia_hitted,
-	cell_status_pre_occ,
-	cell_status_player_shoot,
-	cell_status_ia_shoot,
-	cell_status_position_na,
 	
 	
 	// dimensione delle navi
@@ -90,19 +61,6 @@ module GridEngine(clk_in,
     );
 	 
 
-//stati delle celle
-input[3:0]	cell_status_free;
-input[3:0]	cell_status_player_occ;
-input[3:0]	cell_status_ia_occ;
-input[3:0]	cell_status_player_ia_occ;
-input[3:0]	cell_status_player_hitted;
-input[3:0]	cell_status_ia_hitted;
-input[3:0]	cell_status_player_and_ia_hitted;
-input[3:0]	cell_status_pre_occ;
-input[3:0]	cell_status_player_shoot;
-input[3:0]	cell_status_ia_shoot;
-input[3:0]	cell_status_position_na;
-
 input [3:0] ship_size0, ship_size1, ship_size2, ship_size3, ship_size4;
 
 // sono 5 navi, con profondit 3 bit (massimo 7 la lunghezza)
@@ -119,7 +77,7 @@ input [9:0] pos_y;
 output [3:0] pointer_cell_read_status;
 
 
-reg [1:0] turn_status = 2'b00;  //determina la fase di gioco:
+reg [1:0] turn_status = 2'd0;  //determina la fase di gioco:
 reg [3:0] cell_new_status = 4'd0;
 
 reg mouse_right_enable = 1'b1;
@@ -214,6 +172,7 @@ if (turn_status == `turn_ia_placing)//se devo inizializzare
 	begin
 		//TODO CODICE DI CARLO
 		turn_status = turn_status + 2'd1;
+		cell_new_status =  4'd2;
 	end
 
 
@@ -286,15 +245,8 @@ if (turn_status == `turn_ia_placing)//se devo inizializzare
 		if(mouse_click[0] & mouse_right_enable) //se ho cliccato sulal cella => cambio lo stato
 		begin
 			write_enable = 1'b1;
-			if (mouse_cell_read_status == cell_status_free)
-			begin
-				cell_new_status = cell_status_player_shoot;  
-			end
-			else if (mouse_cell_read_status == cell_status_ia_occ) 
-			begin
-				cell_new_status = cell_status_ia_hitted;   
-			end
-		end	
+			cell_new_status = 4'd3;
+		end
 		else
 		begin
 			write_enable = 1'b0;

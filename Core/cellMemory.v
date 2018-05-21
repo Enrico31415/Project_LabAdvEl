@@ -46,16 +46,8 @@ end
 always @ (negedge clk_in)
 begin
 	ship_placed = 0;
-//se e' il turno del giocatore
-	if (play_status== 2'b10)
-	begin
-			if(we)
-			begin
-				memory[mouse_cell_x][mouse_cell_y] =new_value;
-			end
-			status=new_value;
-		end
-	else if (play_status== 2'b01)
+
+	if (play_status== 2'd1)
 	begin
 		 // piallo gli stati temporanei
 		for (i = 0; i <= 7; i = i + 1)
@@ -407,6 +399,15 @@ begin
 			endcase
 		end
 	end
+	//se e' il turno del giocatore
+	else
+	begin
+			if(we)
+			begin
+				memory[mouse_cell_x][mouse_cell_y] =new_value;
+			end
+			status=new_value;
+		end
 end //always
 // operazioni di read, fatte per plottare a schermo
 always @ (posedge clk_in)

@@ -36,19 +36,6 @@ module Module_VGADriver(
 	cell_status,
 	
 	
-	//stati statici delle celle
-	cell_status_free,
-	cell_status_player_occ,
-	cell_status_ia_occ,
-	cell_status_player_ia_occ,
-	cell_status_player_hitted,
-	cell_status_ia_hitted,
-	/*cell_status_player_and_ia_hitted,
-	cell_status_pre_occ,
-	cell_status_player_shoot,
-	cell_status_ia_shoot,
-	cell_status_position_na,*/
-	
 	color_out
     );
 	 
@@ -56,20 +43,6 @@ input clk_in;
 input enable;
 input[9:0] current_row;
 input[9:0] current_line;
-
-
-
-input[3:0]	cell_status_free;
-input[3:0]	cell_status_player_occ;
-input[3:0]	cell_status_ia_occ;
-input[3:0]	cell_status_player_ia_occ;
-input[3:0]	cell_status_player_hitted;
-input[3:0]	cell_status_ia_hitted;
-/*input[3:0]	cell_status_player_and_ia_hitted;
-input[3:0]	cell_status_pre_occ;
-input[3:0]	cell_status_player_shoot;
-input[3:0]	cell_status_ia_shoot;
-input[3:0]	cell_status_position_na;*/
 	
 
 input [2:0]	cell_status;
@@ -107,6 +80,8 @@ pos_to_quadrant position_to_quadrant (
 	.cell_y(cell_y)
 );
 `include "VGAmask.v"
+`include "cellStatus.v"
+
 assign cross = `d_cross;
 assign circle = `d_circle;
 assign cross_over_circle = `d_circle & `d_cross;
@@ -122,7 +97,7 @@ begin
 	if (enable == 1) 
 	begin		
 		case (cell_status) // test sullo stato della cella in quesione
-			cell_status_free : // <-----------------------------------------------
+			4'd0 : // <-----------------------------------------------
 			begin //se sono nel quadrato => cambio colore
 				color_out = `black;
 			end
