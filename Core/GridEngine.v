@@ -375,7 +375,7 @@ begin
 			fpga_vs_mouse = 1;
 		end
 		else begin 
-		reg_final_else=1'b1;
+			reg_final_else=1'b1;
 		end
 	end
 	else if (turn_status == 2'd1)// piazzamento del giocatore
@@ -427,6 +427,7 @@ begin
 					mouse_write_enable = 1'b1;
 					mouse_cell_new_status = `PnInPsIs;
 				end
+			
 			endcase
 		end
 		else

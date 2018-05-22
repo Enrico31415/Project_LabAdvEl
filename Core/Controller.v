@@ -32,7 +32,7 @@ module Controller(
 	 
 input CLK_50M;
 
-output [1:0] LED;
+output [5:0] LED;
 inout PS2_CLK1;
 inout PS2_DATA1;
 //inizializza il mouse

@@ -64,9 +64,9 @@ reg [9:0] prec_line;
 reg [9:0] cell_cross_counter_x = 10'd0;
 reg [9:0] cell_cross_counter_y = 10'd0;
 
-reg [12:0] pointer_to_mask = 13'd0;
-reg [12:0] pointer_to_mask_1 = 13'd0;
-reg [12:0] pointer_to_mask_2 = 13'd0;
+reg [13:0] pointer_to_mask = 14'd0;
+reg [13:0] pointer_to_mask_1 = 14'd0;
+reg [13:0] pointer_to_mask_2 = 14'd0;
 wire [4799:0] cross;
 wire [4799:0] circle;
 wire [4799:0] cross_over_circle;
@@ -89,10 +89,10 @@ pos_to_quadrant position_to_quadrant (
 assign cross = `d_cross;
 assign circle = `d_circle;
 assign ship_s = `d_ship;
-assign cross_over_circle = `d_circle || `d_cross;
-assign s_over_circle = `d_circle || `d_ship;
-assign s_over_cross = `d_cross || `d_ship;
-assign s_over_cross_over_cirle = s_over_cross || `d_circle ;
+assign cross_over_circle = `d_circle | `d_cross;
+assign s_over_circle = `d_circle | `d_ship;
+assign s_over_cross = `d_cross | `d_ship;
+assign s_over_cross_over_cirle = `d_ship | `d_cross | `d_circle ;
 /*
 initial begin 
 	cross = `d_cross;
@@ -107,7 +107,7 @@ begin
 		case (cell_status) // test sullo stato della cella in quesione
 			`free: // <-----------------------------------------------
 			begin //se sono nel quadrato => cambio colore
-				color_out = `back_ground;
+				color_out = `green;
 			end
 			`Ps: 
 			begin
@@ -116,7 +116,7 @@ begin
 				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
 				if (cross[pointer_to_mask])
 				begin
-					color_out = `red;
+					color_out = `color_player_hit;
 				end
 				else
 				begin
@@ -130,7 +130,7 @@ begin
 				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
 				if (circle[pointer_to_mask])
 				begin
-					color_out = `color_player_and_ia_hit;
+					color_out = `color_player_hit;
 				end
 				else
 				begin
@@ -144,7 +144,7 @@ begin
 				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
 				if (cross_over_circle[pointer_to_mask])
 				begin
-					color_out = `color_player_and_ia_hit;
+					color_out = `color_player_hit;
 				end
 				else
 				begin
@@ -186,7 +186,7 @@ begin
 				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
 				if (s_over_circle[pointer_to_mask])
 				begin
-					color_out = `color_player_and_ia_hit;
+					color_out = `color_player_hit;
 				end
 				else
 				begin
@@ -200,7 +200,7 @@ begin
 				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
 				if (circle[pointer_to_mask])
 				begin
-					color_out = `color_player_and_ia_hit;
+					color_out = `color_player_hit;
 				end
 				else
 				begin
@@ -214,7 +214,7 @@ begin
 				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
 				if (s_over_cross[pointer_to_mask])
 				begin
-					color_out = `color_player_and_ia_hit;
+					color_out = `color_player_hit;
 				end
 				else
 				begin
@@ -256,7 +256,7 @@ begin
 				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
 				if (s_over_circle[pointer_to_mask])
 				begin
-					color_out = `color_player_and_ia_hit;
+					color_out = `color_player_hit;
 				end
 				else
 				begin
@@ -270,7 +270,7 @@ begin
 				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
 				if (s_over_cross_over_cirle[pointer_to_mask])
 				begin
-					color_out = `color_player_and_ia_hit;
+					color_out = `color_player_hit;
 				end
 				else
 				begin
@@ -321,10 +321,6 @@ begin
 					color_out = `back_ground;
 				end
 			end
-			
-			
-			
-			
 		endcase
 		
 		if (current_line <= ((12'd1*`row_period)+`row_dimension) && current_line > ((12'd1*`row_period)-`row_dimension)) // prima riga
