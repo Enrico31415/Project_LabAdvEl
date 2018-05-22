@@ -16,7 +16,7 @@
 `define line_dimension	10'd2
 
 // tutti gli stati delle navi
-`include "cellStatus.v"
+
 
 
 module GridEngine(clk_in,
@@ -87,7 +87,7 @@ reg[2:0] fpga_count_move_y;
 reg[3:0] fpga_target_ship_lenght;	// lunghezza target della nave da piazzare
 
 reg [3:0] mouse_cell_new_status;		
-reg [3:0] fpga_cell_new_status = `In; 
+reg [3:0] fpga_cell_new_status = 4'd5; 
 
 wire[3:0] out_mem_cell_read_status; 
 reg [4:0] inquiry=5'b11111;
@@ -310,10 +310,10 @@ begin
 					// fpga_write_enable=1'b1;  // da sistemare il write enable (!!) un giro per leggere e un giro per scrivere!
 
 					if (who_write== 1'b0 ) begin
-						fpga_cell_new_status= `In;
+						fpga_cell_new_status= 4'd5;
 					end
 					else if (who_write== 1'b1) begin
-						fpga_cell_new_status= `Pn;
+						fpga_cell_new_status= 4'd4;
 					end
 
 					if(orient_guess== 1'b0)					// incrementa la direzione di movimento
@@ -387,45 +387,45 @@ begin
 		if(mouse_click[0] & mouse_right_enable) //se ho cliccato sulal cella => cambio lo stato
 		begin
 			case(out_mem_cell_read_status)
-				`free:
+				4'd0:
 				begin 
 					mouse_write_enable = 1'b1;
-					mouse_cell_new_status = `Ps;
+					mouse_cell_new_status = 4'd1;
 				end
-				`Is:
+				4'd2:
 				begin
 					mouse_write_enable = 1'b1;
-					mouse_cell_new_status = `PsIs;
+					mouse_cell_new_status = 4'd3;
 				end
-				`Pn:
+				4'd4:
 				begin
 					mouse_write_enable = 1'b1;
-					mouse_cell_new_status = `PnPs;
+					mouse_cell_new_status = 4'd9;
 				end
-				`In:
+				4'd5:
 				begin
 					mouse_write_enable = 1'b1;
-					mouse_cell_new_status = `InPs;
+					mouse_cell_new_status = 4'd10;
 				end
-				`PnIn:
+				4'd6:
 				begin
 					mouse_write_enable = 1'b1;
-					mouse_cell_new_status = `PnInPs;
+					mouse_cell_new_status = 4'd11;
 				end
-				`PnIs:
+				4'd7:
 				begin
 					mouse_write_enable = 1'b1;
-					mouse_cell_new_status = `PnPsIs;
+					mouse_cell_new_status = 4'd13;
 				end
-				`InIs:
+				4'd8:
 				begin
 					mouse_write_enable = 1'b1;
-					mouse_cell_new_status = `InPsIs;
+					mouse_cell_new_status = 4'd14;
 				end
-				`PnInIs:
+				4'd12:
 				begin
 					mouse_write_enable = 1'b1;
-					mouse_cell_new_status = `PnInPsIs;
+					mouse_cell_new_status = 4'd15;
 				end
 			
 			endcase

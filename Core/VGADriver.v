@@ -84,7 +84,7 @@ pos_to_quadrant position_to_quadrant (
 	.cell_y(cell_y)
 );
 `include "VGAmask.v"
-`include "cellStatus.v"
+
 
 assign cross = `d_cross;
 assign circle = `d_circle;
@@ -105,11 +105,11 @@ begin
 	if (enable == 1) 
 	begin		
 		case (cell_status) // test sullo stato della cella in quesione
-			`free: // <-----------------------------------------------
+			4'd0: // <-----------------------------------------------
 			begin //se sono nel quadrato => cambio colore
 				color_out = `green;
 			end
-			`Ps: 
+			4'd1: 
 			begin
 				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
 				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
@@ -123,7 +123,7 @@ begin
 					color_out = `back_ground;
 				end
 			end
-			`Is: 
+			4'd2: 
 			begin
 				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
 				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
@@ -137,7 +137,7 @@ begin
 					color_out = `back_ground;
 				end
 			end
-			`PsIs: 
+			4'd3: 
 			begin
 				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
 				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
@@ -151,7 +151,7 @@ begin
 					color_out = `back_ground;
 				end
 			end
-			`Pn: 
+			4'd4: 
 			begin
 				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
 				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
@@ -165,7 +165,7 @@ begin
 					color_out = `back_ground;
 				end
 			end
-			`PnIn: 
+			4'd6: 
 			begin
 				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
 				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
@@ -179,7 +179,7 @@ begin
 					color_out = `back_ground;
 				end
 			end
-			`PnIs:
+			4'd7:
 			begin
 				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
 				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
@@ -193,7 +193,7 @@ begin
 					color_out = `back_ground;
 				end
 			end
-			`InIs:
+			 4'd8:
 			begin
 				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
 				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
@@ -207,7 +207,7 @@ begin
 					color_out = `back_ground;
 				end
 			end
-			`PnPs:
+			4'd9:
 			begin
 				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
 				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
@@ -221,7 +221,7 @@ begin
 					color_out = `back_ground;
 				end
 			end
-			`InPs:
+			4'd10:
 			begin
 				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
 				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
@@ -235,7 +235,7 @@ begin
 					color_out = `back_ground;
 				end
 			end
-			`PnInPs:
+			4'd11:
 			begin
 				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
 				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
@@ -249,7 +249,7 @@ begin
 					color_out = `back_ground;
 				end
 			end
-			`PnInIs:
+			4'd12:
 			begin
 				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
 				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
@@ -263,7 +263,7 @@ begin
 					color_out = `back_ground;
 				end
 			end
-			`PnPsIs:
+			4'd13:
 			begin
 				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
 				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
@@ -277,7 +277,7 @@ begin
 					color_out = `back_ground;
 				end
 			end
-			`InPsIs:
+			4'd14:
 			begin
 				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
 				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
@@ -291,7 +291,7 @@ begin
 					color_out = `back_ground;
 				end
 			end
-			`PnInPsIs:
+			4'd15:
 			begin
 				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
 				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
@@ -305,7 +305,7 @@ begin
 					color_out = `back_ground;
 				end
 			end
-			`In:
+			4'd5:
 			begin
 				//FIXME da rendere trasparente.
 				//color_out = `back_ground;
