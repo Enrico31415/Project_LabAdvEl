@@ -1,3 +1,5 @@
+`include "stati.v"
+
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Create Date:    17:42:06 04/11/2018 
@@ -15,6 +17,10 @@
 `define turn_player_init	3'b100
 `define turn_fpga_check 	3'b001
 `define turn_player_check 	3'b101
+
+`define cell_fpga_placed 	5'b00001
+`define cell_ia_placed 		5'b00010
+`define cell_double_plac 	5'b00001
 
 //......
 
@@ -385,14 +391,14 @@ begin
 		end
 
 		else if (placement_task == `sec_placement) begin // tempo zero punta la cella di memoria.
-//			if (who_write == 1'b0) begin
-//			who_write = 1'b1;
-//			ships_number_count= 5'b00000;
-//			placement_task=`init_guess;
-//			end
-//			else begin
+			if (who_write == 1'b0) begin
+			who_write = 1'b1;
+			ships_number_count= 5'b00000;
+			placement_task=`init_guess;
+			end
+			else begin
 			placement_task=`out_placement;
-//			end 
+			end 
 		end
 		else if (placement_task == `out_placement) begin // tempo zero punta la cella di memoria.
 		reg_finish_placement=1'b1;
@@ -407,4 +413,5 @@ end
 
 
 endmodule
+
 
