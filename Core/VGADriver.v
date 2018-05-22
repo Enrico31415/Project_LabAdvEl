@@ -1,16 +1,17 @@
 
 `define red 	12'b111100000000
+`define white 	12'b111111111111
 `define green 	12'b000011110000
 `define blue 	12'b000000001111
 `define black 	12'b000000000000
-`define back_ground 	12'b001010110000
+`define back_ground 	12'b010101010101
 `define color_line 	12'b000000001111 
 `define color_row 	12'b000000001111 
 `define color_ship 	12'b010101010101
 `define color_superposition 	12'b011000001100
 `define color_player_hit			12'b111010010001
 `define color_ia_hit 				12'b111100000000
-`define color_player_and_ia_hit 	12'b111100001100
+`define color_player_and_ia_hit 	12'b111100001111
 
 `define cross_dimensions 	10'd5
 
@@ -88,10 +89,10 @@ pos_to_quadrant position_to_quadrant (
 assign cross = `d_cross;
 assign circle = `d_circle;
 assign ship_s = `d_ship;
-assign cross_over_circle = `d_circle | `d_cross;
-assign s_over_circle = `d_circle | `d_ship;
-assign s_over_cross = `d_cross | `d_ship;
-assign s_over_cross_over_cirle = s_over_cross | `d_circle ;
+assign cross_over_circle = `d_circle || `d_cross;
+assign s_over_circle = `d_circle || `d_ship;
+assign s_over_cross = `d_cross || `d_ship;
+assign s_over_cross_over_cirle = s_over_cross || `d_circle ;
 /*
 initial begin 
 	cross = `d_cross;
@@ -119,7 +120,7 @@ begin
 				end
 				else
 				begin
-					color_out = `black;
+					color_out = `back_ground;
 				end
 			end
 			`Is: 
@@ -133,7 +134,7 @@ begin
 				end
 				else
 				begin
-					color_out = `black;
+					color_out = `back_ground;
 				end
 			end
 			`PsIs: 
@@ -147,10 +148,10 @@ begin
 				end
 				else
 				begin
-					color_out = `black;
+					color_out = `back_ground;
 				end
 			end
-			`Pn || `PnIn: 
+			`Pn: 
 			begin
 				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
 				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
@@ -161,7 +162,21 @@ begin
 				end
 				else
 				begin
-					color_out = `black;
+					color_out = `back_ground;
+				end
+			end
+			`PnIn: 
+			begin
+				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+				if (ship_s[pointer_to_mask])
+				begin
+					color_out = `color_player_and_ia_hit;
+				end
+				else
+				begin
+					color_out = `back_ground;
 				end
 			end
 			`PnIs:
@@ -175,7 +190,7 @@ begin
 				end
 				else
 				begin
-					color_out = `black;
+					color_out = `back_ground;
 				end
 			end
 			`InIs:
@@ -189,10 +204,10 @@ begin
 				end
 				else
 				begin
-					color_out = `black;
+					color_out = `back_ground;
 				end
 			end
-			`PnIs:
+			`PnPs:
 			begin
 				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
 				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
@@ -203,7 +218,7 @@ begin
 				end
 				else
 				begin
-					color_out = `black;
+					color_out = `back_ground;
 				end
 			end
 			`InPs:
@@ -217,7 +232,7 @@ begin
 				end
 				else
 				begin
-					color_out = `black;
+					color_out = `back_ground;
 				end
 			end
 			`PnInPs:
@@ -231,7 +246,7 @@ begin
 				end
 				else
 				begin
-					color_out = `black;
+					color_out = `back_ground;
 				end
 			end
 			`PnInIs:
@@ -245,7 +260,7 @@ begin
 				end
 				else
 				begin
-					color_out = `black;
+					color_out = `back_ground;
 				end
 			end
 			`PnPsIs:
@@ -259,7 +274,7 @@ begin
 				end
 				else
 				begin
-					color_out = `black;
+					color_out = `back_ground;
 				end
 			end
 			`InPsIs:
@@ -273,7 +288,7 @@ begin
 				end
 				else
 				begin
-					color_out = `black;
+					color_out = `back_ground;
 				end
 			end
 			`PnInPsIs:
@@ -287,7 +302,23 @@ begin
 				end
 				else
 				begin
-					color_out = `black;
+					color_out = `back_ground;
+				end
+			end
+			`In:
+			begin
+				//FIXME da rendere trasparente.
+				//color_out = `back_ground;
+				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+				if (ship_s[pointer_to_mask])
+				begin
+					color_out = `red;
+				end
+				else
+				begin
+					color_out = `back_ground;
 				end
 			end
 			
@@ -390,7 +421,7 @@ begin
 		if(current_row <= (mouse_pos_x+`dimension) && current_line <= (mouse_pos_y + `dimension) &&
 		current_row >= (mouse_pos_x-`dimension) && current_line >= (mouse_pos_y - `dimension) )
 		begin
-			color_out = `red;
+			color_out = `white;
 		end
 		
 	end

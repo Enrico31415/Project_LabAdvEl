@@ -1,1 +1,1 @@
--intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "Z:/Core/Project_LabAdvEl/Core/Module_FrequencyDivider_isim_beh.exe" -prj "Z:/Core/Project_LabAdvEl/Core/Module_FrequencyDivider_beh.prj" "work.Module_FrequencyDivider" "work.glbl" 
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "/media/Scratch/peadv/Project_LabAdvEl/Core/GridEngine_isim_beh.exe" -prj "/media/Scratch/peadv/Project_LabAdvEl/Core/GridEngine_beh.prj" "work.GridEngine" "work.glbl" 

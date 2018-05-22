@@ -15,19 +15,12 @@
 
 
 
-// dimensione delle navi
-`define size_0 3'd2
-`define size_1 3'd3
-`define size_2 3'd3
-`define size_3 3'd4
-`define size_4 3'd4
-
 
 
 
 module Controller(
 			CLK_50M,
-			BTN_NORTH,
+			BTN_NORTH, BTN_SOUTH,
 			PS2_CLK1, PS2_DATA1,
 			
 			
@@ -39,11 +32,11 @@ module Controller(
 	 
 input CLK_50M;
 
-output [7:0] LED;
+output [1:0] LED;
 inout PS2_CLK1;
 inout PS2_DATA1;
 //inizializza il mouse
-input  BTN_NORTH;
+input  BTN_NORTH, BTN_SOUTH;
 
 
 wire w_25Mhz_clock;
@@ -64,7 +57,8 @@ wire [9:0] mouse_sym_counter_y;
 wire [2:0] w_cell_x;
 wire [2:0] w_cell_y;
 wire [3:0] w_cell_status;
-	 
+
+wire [11:0] w_color_out;
 	 
 /*OUTPUT TIPICI PER LA VGA*/
 output	[3:0]	VGA_R;
@@ -72,10 +66,6 @@ output	[3:0]	VGA_G;
 output	[3:0]	VGA_B;
 output VGA_HSYNC, VGA_VSYNC;
 
-
-assign LED = {w_cell_status};
-
-wire [11:0] w_color_out;
 
 assign {{VGA_R, VGA_G, VGA_B}} = w_color_out;
 //generatore di clock a 25Mhz, serve per tutta la sicronia, a partire dallo schermo. 
@@ -221,17 +211,9 @@ GridEngine GE(.clk_in(w_25Mhz_clock),
 	
 	.pos_x(position_to_controller_x),
 	.pos_y(position_to_controller_y),
+	.BTN_SOUTH(BTN_SOUTH),
 	
-	
-	//dimensione delle navi
-	.ship_size0(`size_0),
-	.ship_size1(`size_1),
-	.ship_size2(`size_2),
-	.ship_size3(`size_3),
-	.ship_size4(`size_4),
-	
-	
-	
+	.LED(LED),
 	//TODO: cancellare, si utilizza solo per i led attualmente
 	.pointer_cell_read_status(w_cell_status) //stato della cella in uso
     );

@@ -1,0 +1,10 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7 (64-bit)
+# Build 321239 by xbuild on Fri Sep 27 19:24:36 MDT 2013
+# Start of session at: Tue May 22 12:30:11 2018
+# Process ID: 5586
+# Log file: /media/Scratch/peadv/Project_LabAdvEl/Core/planAhead_run_1/planAhead.log
+# Journal file: /media/Scratch/peadv/Project_LabAdvEl/Core/planAhead_run_1/planAhead.jou
+#-----------------------------------------------------------
+start_gui
+source /media/Scratch/peadv/Project_LabAdvEl/Core/pa.fromNetlist.tcl

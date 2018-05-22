@@ -42,7 +42,7 @@ begin
 	begin
 		memory[mouse_cell_x][mouse_cell_y] =new_value;
 	end
-	status=new_value;
+	status=memory[mouse_cell_x][mouse_cell_y];
 end //always
 // operazioni di read, fatte per plottare a schermo
 always @ (posedge clk_in)

@@ -7,7 +7,7 @@ draw = ImageDraw.Draw(image)
 #carica il carattere, per settare la dimensione (fc-list per vedere i caratteri installati)
 font = ImageFont.truetype("DejaVuSans.ttf", 75)
 
-draw.text((13,-13), 'S', fill = 1, font=font)
+draw.text((13,-13), 'Δ', fill = 1, font=font)
 #diventa lista
 image = list(image.getdata())
 

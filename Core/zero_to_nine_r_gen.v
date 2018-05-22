@@ -5,9 +5,11 @@
 // da bits random genera una distribuzione uniforme tra 0 e 9
 
 module zero_to_nine_r_gen( qzt_clk,
+									set_reg,
+									seed,
 
-									r_zero_to_nine,
-									r_zero_to_eight,									
+									r_zero_to_four,
+									r_zero_to_five,									
 									r_zero_to_seven,									
 									r_zero_to_six,
 									r_one_bit_1,
@@ -16,9 +18,13 @@ module zero_to_nine_r_gen( qzt_clk,
 // il valore delle uscite non è indipendente. sono pensate per essere usate in maniera esclusiva. 
 //	le uscite del modulo corrispondono allo stesso valore riscalato.									
 									
-input qzt_clk;
-output reg [3:0] r_zero_to_nine;
-output reg [3:0] r_zero_to_eight;									
+input 	qzt_clk;
+input		set_reg;
+input 	[30:0] seed;
+
+
+output reg [2:0] r_zero_to_four;
+output reg [2:0] r_zero_to_five;									
 output reg [2:0] r_zero_to_seven;									
 output reg [2:0] r_zero_to_six;
 output reg r_one_bit_1;
@@ -26,11 +32,11 @@ output reg r_one_bit_2;
 
 wire [30:0]random_gen_out;
 wire [9:0]rand_num;
-//reg set_reg=0;
+//reg set_reg = 1'b1 ;
 
 random_gen generatore_1 ( 	.qzt_clk(qzt_clk),
-									.seed(`start_const_1),
-//									.set_r(set_reg),
+									.seed(seed),
+									.set_in(set_reg),
 
 									.out_w(random_gen_out)
 								);
@@ -50,102 +56,69 @@ always @(posedge qzt_clk) begin
 
 //rand_num va da 0000000000 (d_0) a 1111111111 (d_1023). implrmento le divisioni.
 
-// blocco istruzioni per r_zero_to_nine --------------------------------------------------------
+// blocco istruzioni per r_zero_to_four --------------------------------------------------------
 // --------- valori limite ------------
-//
-// 102
+// 0
 // 204
-// 307
 // 409
-// 511
-// 614
-// 716 
+// 613
 // 818
-// 921
+// 1023
 
-if (rand_num <= 10'd102 )
+if (rand_num <= 10'd204 )
 		begin
-		r_zero_to_nine= 4'd0;
+		r_zero_to_four= 3'd0;
 		end
-if (rand_num >  10'd102  &&  rand_num <= 10'd204 )
+if (rand_num >  10'd204  &&  rand_num <= 10'd409 )
 		begin
-		r_zero_to_nine= 4'd1;
+		r_zero_to_four= 3'd1;
 		end
-if (rand_num > 10'd204  && rand_num <= 10'd307 )
+if (rand_num > 10'd409  && rand_num <= 10'd613 )
 		begin
-		r_zero_to_nine= 4'd2;
+		r_zero_to_four= 3'd2;
 		end
-if (rand_num > 10'd307  && rand_num <= 10'd409 )
+if (rand_num > 10'd613  && rand_num <= 10'd818 )
 		begin
-		r_zero_to_nine= 4'd3;
+		r_zero_to_four= 3'd3;
 		end
-if (rand_num > 10'd409  && rand_num <= 10'd511 )
+if (rand_num > 10'd808  )
 		begin
-		r_zero_to_nine= 4'd4;
-		end
-if (rand_num > 10'd511  && rand_num <= 10'd614 )
-		begin
-		r_zero_to_nine= 4'd5;
-		end
-if (rand_num > 10'd614  && rand_num <= 10'd716 )
-		begin
-		r_zero_to_nine= 4'd6;
-		end
-if (rand_num > 10'd716  && rand_num <= 10'd818 )
-		begin
-		r_zero_to_nine= 4'd7;
-		end
-if (rand_num > 10'd818  && rand_num <= 10'd921 )
-		begin
-		r_zero_to_nine= 4'd8;
-		end
-if (rand_num > 10'd921 )
-		begin
-		r_zero_to_nine= 4'd9;
+		r_zero_to_four= 3'd4;
 		end
 
-// blocco istruzioni per r_zero_to_eight --------------------------------------------------
+
+
+// blocco istruzioni per r_zero_to_five --------------------------------------------------
 // --------- valori limite ------------
-//    114    227    341   455    568    682    796    909  
+//    170    341    511   682    852    1023  
  
 
 
-if (rand_num <= 10'd114  )
+if (rand_num <= 10'd170  )
 		begin
-		r_zero_to_eight= 4'd0 ;
+		r_zero_to_five= 3'd0 ;
 		end
-if (rand_num > 10'd114   && rand_num <= 10'd227  )
+if (rand_num > 10'd170   && rand_num <= 10'd341  )
 		begin
-		r_zero_to_eight= 4'd1 ;
+		r_zero_to_five= 3'd1 ;
 		end
-if (rand_num > 10'd227   && rand_num <= 10'd341  )
+if (rand_num > 10'd341   && rand_num <= 10'd511  )
 		begin
-		r_zero_to_eight= 4'd2 ;
+		r_zero_to_five= 3'd2 ;
 		end
-if (rand_num > 10'd341   && rand_num <= 10'd455  )
+if (rand_num > 10'd511   && rand_num <= 10'd682  )
 		begin
-		r_zero_to_eight= 4'd3 ;
+		r_zero_to_five= 3'd3 ;
 		end
-if (rand_num > 10'd455   && rand_num <= 10'd568  )
+if (rand_num > 10'd682   && rand_num <= 10'd852  )
 		begin
-		r_zero_to_eight= 4'd4 ;
+		r_zero_to_five= 3'd4 ;
 		end
-if (rand_num > 10'd568   && rand_num <= 10'd682  )
+if (rand_num > 10'd852 )
 		begin
-		r_zero_to_eight= 4'd5 ;
+		r_zero_to_five= 3'd5 ;
 		end
-if (rand_num > 10'd682   && rand_num <= 10'd796  )
-		begin
-		r_zero_to_eight= 4'd6 ;
-		end
-if (rand_num > 10'd796   && rand_num <= 10'd909  )
-		begin
-		r_zero_to_eight= 4'd7 ;
-		end
-if (rand_num > 10'd909   )
-		begin
-		r_zero_to_eight= 4'd8 ;
-		end
+
 // blocco istruzioni per r_zero_to_seven --------------------------------------------------------
 
 r_zero_to_seven= rand_num[3:1] ;

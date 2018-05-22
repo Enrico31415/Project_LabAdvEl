@@ -6,16 +6,17 @@
 
 module random_gen( 	qzt_clk,
 							seed,
-//							set_r,
-
+							set_in,
+							
 							out_w
 						);
 	 
 
 
 	input 		qzt_clk;
+	input			set_in;
 	input 		[30:0] seed;
-//	input			set_r;
+	
 	output 		[30:0] out_w;	 
 	 
 
@@ -29,8 +30,8 @@ assign 	xorvalue=  (out_w[30] ^ out_w[27])^out_w[5];
 	 
 shift_2 test_sh(	.qzt_clk(qzt_clk),
 						.serial_in( xorvalue ),
-//						.set(set_r),
-//						.presetValue(seed),
+						.set(set_in),
+						.presetValue(seed),
 					
 						.out(out_w),
 						.serial_out(serial_out_w)
