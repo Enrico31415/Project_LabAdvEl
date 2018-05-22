@@ -37,6 +37,8 @@
 `define mem_read 			4'b0100
 `define count_check 		4'b0101
 `define sec_placement 	4'b0110
+//`define wait_plz		 	4'b0111
+`define incrementa		 	4'b0111
 
 `define out_placement 	4'b1111
 
@@ -121,6 +123,7 @@ wire[3:0] mouse_cell_y;
 wire[4:0] out_mem_cell_read_status; 	// stato attuale della cella letta (uscita dalla memoria)
 
 reg [4:0] inquiry=5'b11111;
+reg [4:0] mem_ram=5'b00000; // memoria salva dati provvisoria
 
 //cavi dallo switch alla memoria
 wire[3:0] cell_x_to_mem;
@@ -327,43 +330,116 @@ begin
 			fpga_cell_y = fpga_guess_y + fpga_count_move_y;
 			placement_task = `mem_read;
 
+
 		end
+		
+
 		else if (placement_task==`mem_read) begin // tempo `mem_read. leggi il valore della cella e decidi cosa fare. RICORDA al primo giro fpga_write_enable sta a zero (!)
 
+				if (fpga_write_enable==1'b0) begin
+					if (out_mem_cell_read_status == 5'b00000) begin		
+						if( (fpga_count_move_x + fpga_count_move_y) == 4'b0000 )begin
+						mem_ram[0]=1'b0;
+						end
+						if((fpga_count_move_x + fpga_count_move_y) == 4'b0001)begin
+						mem_ram[1]=1'b0;
+						end
+						if((fpga_count_move_x + fpga_count_move_y) == 4'b0010)begin
+						mem_ram[2]=1'b0;
+						end
+						if((fpga_count_move_x + fpga_count_move_y) == 4'b0011)begin
+						mem_ram[3]=1'b0;
+						end
+						if((fpga_count_move_x + fpga_count_move_y) == 4'b0100) begin
+						mem_ram[4]=1'b0;
+						end						
+					end
+					if (out_mem_cell_read_status == 5'b00001) begin		
+						if( (fpga_count_move_x + fpga_count_move_y) == 4'b0000 )begin
+						mem_ram[0]=1'b1;
+						end
+						if((fpga_count_move_x + fpga_count_move_y) == 4'b0001)begin
+						mem_ram[1]=1'b1;
+						end
+						if((fpga_count_move_x + fpga_count_move_y) == 4'b0010)begin
+						mem_ram[2]=1'b1;
+						end
+						if((fpga_count_move_x + fpga_count_move_y) == 4'b0011)begin
+						mem_ram[3]=1'b1;
+						end
+						if((fpga_count_move_x + fpga_count_move_y) == 4'b0100) begin
+						mem_ram[4]=1'b1;
+						end						
+					end				
+				end
+				
 				if (out_mem_cell_read_status == 5'bXXXXX) begin // se lo stato è indefinito riprova ad inizializzare ( accade appena accesa l'fpga? primi cicli)
 					placement_task=`init_guess;			
 				end
-//				else if(out_mem_cell_read_status != fpga_cell_new_status || (out_mem_cell_read_status == fpga_cell_new_status && fpga_write_enable==1'b1) )
-
-//-------------------------------------------------------------------
-	
-					else if(out_mem_cell_read_status != fpga_cell_new_status || (out_mem_cell_read_status == fpga_cell_new_status && fpga_write_enable==1'b1) )
-				begin //se la casella è vuota e... da capire (!!)
-					// fpga_write_enable=1'b1;  // da sistemare il write enable (!!) un giro per leggere e un giro per scrivere!
-
-					if (who_write== 0'b0 ) begin
+				else if ( (out_mem_cell_read_status == 5'b00000 && who_write== 1'b0) ||  (out_mem_cell_read_status == 5'b00000 || out_mem_cell_read_status == 5'b00001) && who_write== 1'b1 || fpga_write_enable==1'b1) 
+				begin 
+					if (who_write== 1'b0 ) begin
 					fpga_cell_new_status= 5'b00001;
 					end
-					else if (who_write== 0'b1) begin
-					fpga_cell_new_status= 5'b00010;
+					else if (who_write== 1'b1) begin			
+						if( (fpga_count_move_x + fpga_count_move_y) == 4'b0000 )begin
+							if(mem_ram[0]==1'b0) begin
+							fpga_cell_new_status= 5'b00010;
+							end else if(mem_ram[0]==1'b1) begin
+							fpga_cell_new_status= 5'b00011;						
+							end
+						end
+						
+						if( (fpga_count_move_x + fpga_count_move_y) == 4'b0001 )begin
+							if(mem_ram[1]==1'b0) begin
+							fpga_cell_new_status= 5'b00010;
+							end
+							end else if(mem_ram[1]==1'b1) begin
+							fpga_cell_new_status= 5'b00011;						
+							end							
+						end
+
+						if( (fpga_count_move_x + fpga_count_move_y) == 4'b0010 )begin
+							if(mem_ram[2]==1'b0) begin
+							fpga_cell_new_status= 5'b00010;
+							end else if(mem_ram[2]==1'b1) begin
+							fpga_cell_new_status= 5'b00011;						
+							end
+						end
+						
+						if( (fpga_count_move_x + fpga_count_move_y) == 4'b0011 )begin
+							if(mem_ram[3]==1'b0) begin
+							fpga_cell_new_status= 5'b00010;
+							end else if(mem_ram[3]==1'b1) begin
+							fpga_cell_new_status= 5'b00011;						
+							end
+						end
+						
+						if( (fpga_count_move_x + fpga_count_move_y) == 4'b0100 )begin
+							if(mem_ram[4]==1'b0) begin
+							fpga_cell_new_status= 5'b00010;
+							end else if(mem_ram[4]==1'b1) begin
+							fpga_cell_new_status= 5'b00011;						
+							end			
+						end
+
 					end
 
-					if(orient_guess== 1'b0)					// incrementa la direzione di movimento
-					begin fpga_count_move_x=fpga_count_move_x+ 4'b0001;
-					end
-					else if(orient_guess== 1'b1)				// incrementa la direzione di movimento
-					begin fpga_count_move_y=fpga_count_move_y+ 4'b0001;
-					end
-
-					placement_task=`count_check;	// vai a controllare lo stato dei contatori
+					placement_task=`incrementa;	// vai a controllare lo stato dei contatori
 				end
+		else if (placement_task == `incrementa) begin // tempo zero punta la cella di memoria.
+					if(orient_guess== 1'b0)	begin 				// incrementa la direzione di movimento
+					fpga_count_move_x=fpga_count_move_x+ 4'b0001;
+					end
+					else if(orient_guess== 1'b1) begin 				// incrementa la direzione di movimento
+					fpga_count_move_y=fpga_count_move_y+ 4'b0001;
+					end
+					placement_task=`count_check;
+		end
+
 
 	
 //----------------------------------------------
-				else if (out_mem_cell_read_status == fpga_cell_new_status && fpga_write_enable==1'b0)
-				begin
-					placement_task=`init_guess;	// risetta i valori iniziali = RESET		(condizione di uscita)
-				end
 				else begin
 					placement_task=`init_guess;	// risetta i valori iniziali = RESET		
 				end
@@ -400,6 +476,9 @@ begin
 			placement_task=`out_placement;
 			end 
 		end
+		
+		
+		
 		else if (placement_task == `out_placement) begin // tempo zero punta la cella di memoria.
 		reg_finish_placement=1'b1;
 		end
@@ -407,7 +486,7 @@ begin
 		reg_final_else=1'b1;
 		end
 
-	end
+//	end
 
 end
 

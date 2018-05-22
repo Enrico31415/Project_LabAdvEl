@@ -10,15 +10,13 @@ Analyzing Verilog file "/home/user/git/core/Core/swtch_mouse_fpga.v" into librar
 Analyzing Verilog file "/home/user/git/core/Core/pos_to_quadrant.v" into library work
 Analyzing Verilog file "/home/user/git/core/Core/cellMemory.v" into library work
 Analyzing Verilog file "/home/user/git/core/Core/GridEngine.v" into library work
-WARNING:HDLCompiler:1818 - "/home/user/git/core/Core/GridEngine.v" Line 344: Invalid size of integer constant literal
-WARNING:HDLCompiler:1818 - "/home/user/git/core/Core/GridEngine.v" Line 347: Invalid size of integer constant literal
 Analyzing Verilog file "/opt/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
 Starting static elaboration
-WARNING:HDLCompiler:189 - "/home/user/git/core/Core/GridEngine.v" Line 204: Size mismatch in connection of port <pointer_cell_x>. Formal port size is 5-bit while actual signal size is 4-bit.
-WARNING:HDLCompiler:189 - "/home/user/git/core/Core/GridEngine.v" Line 205: Size mismatch in connection of port <pointer_cell_y>. Formal port size is 5-bit while actual signal size is 4-bit.
+WARNING:HDLCompiler:189 - "/home/user/git/core/Core/GridEngine.v" Line 207: Size mismatch in connection of port <pointer_cell_x>. Formal port size is 5-bit while actual signal size is 4-bit.
+WARNING:HDLCompiler:189 - "/home/user/git/core/Core/GridEngine.v" Line 208: Size mismatch in connection of port <pointer_cell_y>. Formal port size is 5-bit while actual signal size is 4-bit.
 Completed static elaboration
 Fuse Memory Usage: 37464 KB
-Fuse CPU Usage: 1360 ms
+Fuse CPU Usage: 1430 ms
 Compiling module pos_to_quadrant
 Compiling module swtch_mouse_fpga
 Compiling module cell_io
@@ -28,9 +26,8 @@ Compiling module zero_to_nine_r_gen
 Compiling module GridEngine
 Compiling module glbl
 Time Resolution for simulation is 1ps.
-Waiting for 1 sub-compilation(s) to finish...
 Compiled 8 Verilog Units
 Built simulation executable /home/user/git/core/Core/GridEngine_isim_beh.exe
-Fuse Memory Usage: 92220 KB
-Fuse CPU Usage: 1580 ms
-GCC CPU Usage: 5160 ms
+Fuse Memory Usage: 92232 KB
+Fuse CPU Usage: 1600 ms
+GCC CPU Usage: 5390 ms
