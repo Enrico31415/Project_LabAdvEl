@@ -172,7 +172,7 @@ begin
 				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
 				if (ship_s[pointer_to_mask])
 				begin
-					color_out = `color_player_and_ia_hit;
+					color_out = `blue;
 				end
 				else
 				begin
@@ -308,7 +308,7 @@ begin
 			4'd5:
 			begin
 				//FIXME da rendere trasparente.
-				//color_out = `back_ground;
+				//color_out = `green;
 				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
 				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
 				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
