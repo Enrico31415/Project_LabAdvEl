@@ -46,7 +46,7 @@ input[9:0] current_row;
 input[9:0] current_line;
 	
 
-input [2:0]	cell_status;
+input [3:0]	cell_status;
 
 
 input[9:0] mouse_pos_x;

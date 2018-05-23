@@ -1,1 +1,1 @@
--intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "Z:/Core/Project_LabAdvEl/Core/GeTest_isim_beh.exe" -prj "Z:/Core/Project_LabAdvEl/Core/GeTest_beh.prj" "work.GeTest" "work.glbl" 
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "/media/Scratch/peadv/Project_LabAdvEl/Core/testCore_isim_beh.exe" -prj "/media/Scratch/peadv/Project_LabAdvEl/Core/testCore_beh.prj" "work.testCore" "work.glbl" 

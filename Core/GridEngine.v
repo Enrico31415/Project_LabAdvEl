@@ -1,6 +1,7 @@
 `timescale 1ns / 1ps
 
 `define frequency_div 	30'd1
+`define frequency_div_lento 	30'd2500000
 
 // momenti di [turn_fpga_init]
 `define quiescent_time	4'b0000
@@ -9,7 +10,7 @@
 `define mem_point 		4'b0011
 `define mem_read 			4'b0100
 `define count_check 		4'b0101
-`define sec_placement 	4'b0110
+//`define sec_placement 	4'b0110
 `define out_placement 	4'b1111
 
 `define row_dimension	10'd2
@@ -17,7 +18,7 @@
 
 // tutti gli stati delle navi
 
-
+ 
 
 module GridEngine(clk_in,
 	//TODO Implementazione della posizione del mouse.
@@ -29,6 +30,11 @@ module GridEngine(clk_in,
 	pos_y,
 	
 	BTN_SOUTH,
+	
+		
+	SONDA_1,
+	SONDA_2,
+	SONDA_3,
 	
 	LED,
 	mouse_click, //evento del click del mouse [0] right click, [1] left click	
@@ -49,13 +55,14 @@ input [9:0] pos_x;
 input [9:0] pos_y;
 output [3:0] pointer_cell_read_status;
 output [1:0] LED;
-
+output SONDA_1, SONDA_2, SONDA_3;
 reg [1:0] turn_status = 2'd0;  //determina la fase di gioco:
 reg [3:0] cell_new_status = 4'd0;
 
 reg mouse_right_enable = 1'b1;
 reg mouse_left_enable = 1'b1;
 reg write_enable =1'b0;
+reg [2:0] count_sleep;
 
 
 wire [2:0] mouse_cell_x;
@@ -73,7 +80,7 @@ reg reg_final_else= 1'b0;
 
 reg set_random_gens=1'b1;		// setta i generatori pseudorandom
 reg fpga_write_enable=1'b0;		// pin che abilita la scrittura nella casella di memoria da parte dell'fpga
-reg mouse_write_enable =1'b0;		// pin che abilita la scrittura nella casella di memoria da parte dell mouse
+wire mouse_write_enable;		// pin che abilita la scrittura nella casella di memoria da parte dell mouse
 reg[2:0] fpga_cell_x;			// coordinate della cella di memoria a cui punta l'fpga
 reg[2:0] fpga_cell_y;
 
@@ -115,6 +122,11 @@ wire reg_one_bit_2_m2;
 
 
 assign LED = turn_status;
+buf( SONDA_1 , mouse_left_enable);
+buf( SONDA_2 , mouse_click[0]);
+buf( SONDA_3 , mouse_click[0] && mouse_left_enable);
+buf( mouse_write_enable , mouse_click[0] && mouse_left_enable);
+//assign mouse_write_enable = mouse_click[0] & mouse_left_enable;
 //dalla posizione del mouse, torna la posizione in celle.
 pos_to_quadrant mouse_to_cell(
 	.clk_in(clk_in), 
@@ -125,7 +137,6 @@ pos_to_quadrant mouse_to_cell(
 	.cell_y(mouse_cell_y)
 
 );
-
 
 //dalla posizione del pixel in scrittura, torna la posizione in celle.
 pos_to_quadrant pointer_to_cell(
@@ -205,9 +216,8 @@ zero_to_nine_r_gen randomg_2( .qzt_clk(clk_in),
 
 always @ (posedge clk_in)
 begin
-		//TODO CODICE DI CARLO	
 	if (turn_status == 2'd0)
-		begin
+	begin
 		set_random_gens =1'b0; // blocca l'inizailizzazione del generatore random
 
 		if (placement_task == `quiescent_time) begin 
@@ -286,7 +296,8 @@ begin
 				placement_task = `mem_point;		// punta la memoria del primo guess
 			end
 			else begin					 // altrimenti...
-				placement_task = `sec_placement;	 // vai allo stato finale di uscita 
+//				placement_task = `sec_placement;	 // vai allo stato finale di uscita 
+				placement_task = `out_placement;	
 			end
 		end
 
@@ -359,92 +370,78 @@ begin
 
 		end
 
-		else if (placement_task == `sec_placement) begin // tempo zero punta la cella di memoria.
-			if (who_write == 1'b0) begin
-			who_write = 1'b1;
-			ships_number_count= 5'b00000;
-			placement_task=`init_guess;
-			end
-			else begin
-			placement_task=`out_placement;
-			end 
-		end
+//		else if (placement_task == `sec_placement) begin // tempo zero punta la cella di memoria.
+//			if (who_write == 1'b0) begin
+//			who_write = 1'b1;
+//			ships_number_count= 5'b00000;
+//			placement_task=`init_guess;
+//			end
+//			else begin
+//			placement_task=`out_placement;
+//			end 
+//		end
 		else if (placement_task == `out_placement) begin // tempo zero punta la cella di memoria.
 			reg_finish_placement=1'b1;
-			turn_status = turn_status + 2'd1;
+			turn_status = 2'd1;
 			fpga_vs_mouse = 1;
 		end
 		else begin 
 			reg_final_else=1'b1;
 		end
 	end
-	else if (turn_status == 2'd1)// piazzamento del giocatore
+	else if (turn_status == 2'd1)
 	begin
-		turn_status = turn_status + 2'd1;
-	end
-	else if (turn_status == 2'd2)//se tocca al giocatore
-	begin
-		if(mouse_click[0] & mouse_right_enable) //se ho cliccato sulal cella => cambio lo stato
+		if (mouse_click[0] && count_sleep < 3'd6)
 		begin
-			case(out_mem_cell_read_status)
-				4'd0:
-				begin 
-					mouse_write_enable = 1'b1;
-					mouse_cell_new_status = 4'd1;
-				end
-				4'd2:
-				begin
-					mouse_write_enable = 1'b1;
-					mouse_cell_new_status = 4'd3;
-				end
-				4'd4:
-				begin
-					mouse_write_enable = 1'b1;
-					mouse_cell_new_status = 4'd9;
-				end
-				4'd5:
-				begin
-					mouse_write_enable = 1'b1;
-					mouse_cell_new_status = 4'd10;
-				end
-				4'd6:
-				begin
-					mouse_write_enable = 1'b1;
-					mouse_cell_new_status = 4'd11;
-				end
-				4'd7:
-				begin
-					mouse_write_enable = 1'b1;
-					mouse_cell_new_status = 4'd13;
-				end
-				4'd8:
-				begin
-					mouse_write_enable = 1'b1;
-					mouse_cell_new_status = 4'd14;
-				end
-				4'd12:
-				begin
-					mouse_write_enable = 1'b1;
-					mouse_cell_new_status = 4'd15;
-				end
-			
-			endcase
+			count_sleep = count_sleep + 1;
 		end
 		else
 		begin
-			mouse_write_enable = 1'b0;
+			mouse_left_enable = !mouse_click[0];
+			if (out_mem_cell_read_status == 4'd0)
+			begin 
+				mouse_cell_new_status = 4'd1;
+			end
+			else if (out_mem_cell_read_status == 4'd2)
+			begin
+				mouse_cell_new_status = 4'd3;
+			end
+			else if (out_mem_cell_read_status == 4'd4)
+			begin
+				mouse_cell_new_status = 4'd9;
+			end
+			else if (out_mem_cell_read_status == 4'd5)
+			begin
+				mouse_cell_new_status = 4'd10;
+			end
+			else if (out_mem_cell_read_status == 4'd6)
+			begin
+				mouse_cell_new_status = 4'd11;
+			end
+			else if (out_mem_cell_read_status == 4'd7)
+			begin
+				mouse_cell_new_status = 4'd13;
+			end
+			else if (out_mem_cell_read_status == 4'd8)
+			begin
+				mouse_cell_new_status = 4'd14;
+			end
+			else if (out_mem_cell_read_status == 4'd12)
+			begin
+				mouse_cell_new_status = 4'd15;
+			end
 		end
-		mouse_right_enable = !mouse_click[0];
 	end
-	else if (turn_status == 2'd3)//se tocca all'ia
+	else if (turn_status == 2'd2)
 	begin
-		//TODO
-		
-		//COdice di carlo. Se tocca all'ia a sparare.
-		
-		turn_status = turn_status - 2'd1;
+		turn_status = 2'd3;
 	end
-end
+	else if (turn_status == 2'd3)
+	begin
+		turn_status = 2'd1;
+	end
+	
+end//always
 
 
 endmodule

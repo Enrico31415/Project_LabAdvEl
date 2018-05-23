@@ -1,221 +1,203 @@
 ISim log file
-Running: Z:\Core\Project_LabAdvEl\Core\GeTest_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb Z:/Core/Project_LabAdvEl/Core/GeTest_isim_beh.wdb 
-ISim P.20131013 (signature 0x7708f090)
+Running: /media/Scratch/peadv/Project_LabAdvEl/Core/testCore_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb /media/Scratch/peadv/Project_LabAdvEl/Core/testCore_isim_beh.wdb 
+ISim P.20131013 (signature 0xfbc00daa)
 WARNING: A WEBPACK license was found.
 WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
 WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
 This is a Lite version of ISim.
+WARNING: File "/media/Scratch/peadv/Project_LabAdvEl/Core/Controller.v" Line 112.  For instance uut/PS2_comm/, width 16 of formal port altro is not equal to width 8 of actual signal w_altro.
+WARNING: File "/media/Scratch/peadv/Project_LabAdvEl/Core/Controller.v" Line 53.  For instance uut/mdm/, width 11 of formal port posX is not equal to width 10 of actual signal mouse_sym_counter_x.
+WARNING: File "/media/Scratch/peadv/Project_LabAdvEl/Core/Controller.v" Line 54.  For instance uut/mdm/, width 11 of formal port posY is not equal to width 10 of actual signal mouse_sym_counter_y.
+WARNING: File "/media/Scratch/peadv/Project_LabAdvEl/Core/Controller.v" Line 35.  For instance uut/GE/, width 2 of formal port LED is not equal to width 6 of actual signal LED.
 Time resolution is 1 ps
 # onerror resume
 # wave add /
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
-# run all
-Stopped at time : 5490 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
-# isim force add /GeTest/mouse_click 11 -radix bin
-# isim force add /GeTest/mouse_click 11 -radix bin
-# isim force add /GeTest/BTN_SOUTH 0 -radix bin
-# isim force add /GeTest/BTN_SOUTH 0 -radix bin
-# run all
-Stopped at time : 5490 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
-# run all
-Stopped at time : 5500 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
-# run all
-Stopped at time : 5510 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
-# run all
-Stopped at time : 5510 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
-# run all
-Stopped at time : 5510 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 389
-# run all
-Stopped at time : 5520 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
-# run all
-Stopped at time : 5530 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
-# run all
-Stopped at time : 5530 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
-# run all
-Stopped at time : 5540 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
-# run all
-Stopped at time : 5550 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
-# isim force add /GeTest/mouse_click 00 -radix bin
-# isim force add /GeTest/mouse_click 00 -radix bin
+# isim force add /testCore/uut/w_25Mhz_clock 1 -radix bin -value 0 -radix bin -time 500 ps -repeat 1 ns
+# isim force add /testCore/uut/w_25Mhz_clock 1 -radix bin -value 0 -radix bin -time 500 ps -repeat 1 ns
 # run 1.00us
-Stopped at time : 5550 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
-# run all
-Stopped at time : 5560 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
-# run all
-Stopped at time : 5570 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
-# run all
-Stopped at time : 5570 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
-# run all
-Stopped at time : 5580 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
-# run all
-Stopped at time : 5590 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
-# run all
-Stopped at time : 5590 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
-# run all
-Stopped at time : 5600 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
-# run all
-Stopped at time : 5610 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
-# run all
-Stopped at time : 5610 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
-# run all
-Stopped at time : 5620 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
-# run all
-Stopped at time : 5630 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
-# run all
-Stopped at time : 5630 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
-# run all
-Stopped at time : 5640 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
-# run all
-Stopped at time : 5650 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
-# run all
-Stopped at time : 5650 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
-# isim force add /GeTest/mouse_click 11 -radix bin
-# isim force add /GeTest/mouse_click 11 -radix bin
-# run all
-Stopped at time : 5660 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
-# run all
-Stopped at time : 5670 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
-# step
-Stopped at time : 5670 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 386
-# step
-Stopped at time : 5670 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
-# step
-Stopped at time : 5670 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 388
-# step
-Stopped at time : 5670 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 389
-# step
-Stopped at time : 5670 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 437
-# run all
-Stopped at time : 5680 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
-# run all
-Stopped at time : 5690 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
-# run all
-Stopped at time : 5690 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
-# run all
-Stopped at time : 5700 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
-# run all
-Stopped at time : 5710 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
-# run all
-Stopped at time : 5710 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
-# run all
-Stopped at time : 5720 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
-# isim force add /GeTest/mouse_pos_x 230 -radix unsigned
-# isim force add /GeTest/mouse_pos_x 230 -radix unsigned
-# run all
-Stopped at time : 5730 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
-# isim force add /GeTest/mouse_click 00 -radix bin
-# isim force add /GeTest/mouse_click 00 -radix bin
-# run all
-Stopped at time : 5730 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
-# run all
-Stopped at time : 5740 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
-# run all
-Stopped at time : 5750 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
-# run all
-Stopped at time : 5750 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
-# run all
-Stopped at time : 5760 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
-# run all
-Stopped at time : 5770 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
-# isim force add /GeTest/mouse_pos_x 0 -radix unsigned
-# isim force add /GeTest/mouse_pos_x 0 -radix unsigned
-# isim force add /GeTest/mouse_pos_y 230 -radix unsigned
-# isim force add /GeTest/mouse_pos_y 230 -radix unsigned
-# run all
-Stopped at time : 5770 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
-# run all
-Stopped at time : 5780 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
-# run all
-Stopped at time : 5790 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
-# step
-Stopped at time : 5790 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 386
-# step
-Stopped at time : 5790 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
-# step
-Stopped at time : 5790 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 434
-# run all
-Stopped at time : 5800 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
-# run all
-Stopped at time : 5810 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
-# run all
-Stopped at time : 5810 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
-# run all
-Stopped at time : 5820 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
-# run all
-Stopped at time : 5830 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
-# run all
-Stopped at time : 5830 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
-# run all
-Stopped at time : 5840 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
-# run all
-Stopped at time : 5850 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
-# run all
-Stopped at time : 5850 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
-# run all
-Stopped at time : 5860 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
-# run all
-Stopped at time : 5870 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
-# run all
-Stopped at time : 5870 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
-# run all
-Stopped at time : 5880 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
-# run all
-Stopped at time : 5890 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
-# run all
-Stopped at time : 5890 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
-# run all
-Stopped at time : 5900 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
-# run all
-Stopped at time : 5910 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
-# run all
-Stopped at time : 5910 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
-# run all
-Stopped at time : 5920 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
-# run all
-Stopped at time : 5930 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
 # run 1.00us
-Stopped at time : 5930 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
-# isim force add /GeTest/mouse_click 11 -radix bin
-# isim force add /GeTest/mouse_click 11 -radix bin
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
 # run all
-Stopped at time : 5940 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
+Stopped at time : 33961 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
 # run all
-Stopped at time : 5950 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
+Stopped at time : 33962 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 33963 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 33964 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 33965 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 33966 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 33967 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 33968 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 33969 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 33970 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 33971 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 33972 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 33973 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 33974 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 33975 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 33976 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 33977 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 33978 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 33979 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 33980 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 33981 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 33982 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# isim force add /testCore/uut/BTN_SOUTH 1 -radix bin
+# isim force add /testCore/uut/BTN_SOUTH 1 -radix bin
+# run 1.00us
+Stopped at time : 33983 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run 1.00us
+Stopped at time : 33984 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run 1.00us
+Stopped at time : 33985 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run 1.00us
+Stopped at time : 33986 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run 1.00us
+Stopped at time : 33987 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# isim force add /testCore/uut/position_to_controller_x 0 -radix unsigned
+# isim force add /testCore/uut/position_to_controller_x 0 -radix unsigned
+# isim force add /testCore/uut/position_to_controller_y 0 -radix unsigned
+# isim force add /testCore/uut/position_to_controller_y 0 -radix unsigned
+# run 1.00us
+Stopped at time : 42988 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run 1.00us
+Stopped at time : 42989 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run 1.00us
+Stopped at time : 42990 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run 1.00us
+Stopped at time : 42991 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run 1.00us
+Stopped at time : 42992 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run 1.00us
+Stopped at time : 42993 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# isim force add /testCore/uut/w_clicks 111 -radix bin
+# isim force add /testCore/uut/w_clicks 111 -radix bin
+# run 1.00us
+Stopped at time : 42994 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
 # step
-Stopped at time : 5950 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 386
+Stopped at time : 42994 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 309
+# run all
+Stopped at time : 42995 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run 1.00us
+Stopped at time : 42996 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 42997 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
 # step
-Stopped at time : 5950 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
+Stopped at time : 42997 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 295
 # step
-Stopped at time : 5950 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 388
+Stopped at time : 42997 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 296
 # step
-Stopped at time : 5950 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 389
+Stopped at time : 42997 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 297
 # step
-Stopped at time : 5950 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 406
+Stopped at time : 42997 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 298
 # step
-Stopped at time : 5950 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 407
+Stopped at time : 42997 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 299
 # step
-Stopped at time : 5950 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 408
+Stopped at time : 42997 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 300
 # step
-Stopped at time : 5950 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 437
+Stopped at time : 42997 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 301
+# step
+Stopped at time : 42997 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 326
 # run 1.00us
-Stopped at time : 5960 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
+Stopped at time : 42998 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 42999 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 43 us : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 43001 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 43002 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 43003 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 43004 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 43005 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 43006 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 43007 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
+# run all
+Stopped at time : 43008 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" Line 107
 # run 1.00us
-Stopped at time : 5970 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
+# isim force add /testCore/uut/driver/mouse_pos_x 200 -radix unsigned
+# isim force add /testCore/uut/driver/mouse_pos_y 200 -radix unsigned
+# isim force add /testCore/uut/driver/mouse_pos_y 200 -radix unsigned
 # run 1.00us
-Stopped at time : 5970 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
 # run 1.00us
-Stopped at time : 5980 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
 # run 1.00us
-Stopped at time : 5990 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
 # run 1.00us
-Stopped at time : 5990 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
 # run 1.00us
-Stopped at time : 6 us : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
 # run 1.00us
-Stopped at time : 6010 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 385
 # run 1.00us
-Stopped at time : 6010 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 387
 # run 1.00us
-Stopped at time : 6020 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/cellMemory.v" Line 41
+# run 1.00us
+# run 1.00us
+# run all
+Stopped at time : 173846 ns : File "/media/Scratch/peadv/Project_LabAdvEl/Core/random_gen.v" Line 28
+# isim force add /testCore/uut/GE/mouse_click 01 -radix bin
+# isim force add /testCore/uut/GE/mouse_click 00 -radix bin
+# isim force add /testCore/uut/GE/mouse_click 00 -radix bin
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# isim force add /testCore/uut/GE/mouse_click 01 -radix bin
+# isim force add /testCore/uut/GE/mouse_click 01 -radix bin
+# run 1.00us
+# isim force add /testCore/uut/GE/mouse_click 00 -radix bin
+# isim force add /testCore/uut/GE/mouse_click 00 -radix bin
+# isim force add /testCore/uut/GE/pos_x 200 -radix unsigned
+# isim force add /testCore/uut/GE/pos_x 200 -radix unsigned
+# run 1.00us
+# run 1.00us
+# isim force add /testCore/uut/GE/pos_y 200 -radix unsigned
+# isim force add /testCore/uut/GE/pos_y 200 -radix unsigned
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us

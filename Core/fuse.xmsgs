@@ -5,5 +5,44 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
+<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"/media/Scratch/peadv/Project_LabAdvEl/Core/mouse_modules/PS2_comm.v" Line 340: Port <arg fmt="%s" index="1">status</arg> is not connected to this instance
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"/media/Scratch/peadv/Project_LabAdvEl/Core/mouse_modules/PS2_comm.v" Line 360: Port <arg fmt="%s" index="1">errcode</arg> is not connected to this instance
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"/media/Scratch/peadv/Project_LabAdvEl/Core/mouse_modules/PS2_comm.v" Line 402: Port <arg fmt="%s" index="1">out</arg> is not connected to this instance
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="189" delta="unknown" >"/media/Scratch/peadv/Project_LabAdvEl/Core/Controller.v" Line 127: Size mismatch in connection of port &lt;<arg fmt="%s" index="3">altro</arg>&gt;. Formal port size is <arg fmt="%d" index="2">16</arg>-bit while actual signal size is <arg fmt="%d" index="1">8</arg>-bit.
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"/media/Scratch/peadv/Project_LabAdvEl/Core/mouse_modules/PS2_send.v" Line 294: Port <arg fmt="%s" index="1">out</arg> is not connected to this instance
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"/media/Scratch/peadv/Project_LabAdvEl/Core/mouse_modules/PS2_send.v" Line 304: Port <arg fmt="%s" index="1">out</arg> is not connected to this instance
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"/media/Scratch/peadv/Project_LabAdvEl/Core/mouse_modules/PS2_send.v" Line 314: Port <arg fmt="%s" index="1">out</arg> is not connected to this instance
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"/media/Scratch/peadv/Project_LabAdvEl/Core/mouse_modules/PS2_read.v" Line 150: Port <arg fmt="%s" index="1">out</arg> is not connected to this instance
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"/media/Scratch/peadv/Project_LabAdvEl/Core/mouse_modules/PS2_read.v" Line 160: Port <arg fmt="%s" index="1">out</arg> is not connected to this instance
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"/media/Scratch/peadv/Project_LabAdvEl/Core/mouse_modules/monostable_with_one_run.v" Line 57: Port <arg fmt="%s" index="1">out</arg> is not connected to this instance
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="189" delta="unknown" >"/media/Scratch/peadv/Project_LabAdvEl/Core/Controller.v" Line 161: Size mismatch in connection of port &lt;<arg fmt="%s" index="3">posX</arg>&gt;. Formal port size is <arg fmt="%d" index="2">11</arg>-bit while actual signal size is <arg fmt="%d" index="1">10</arg>-bit.
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="189" delta="unknown" >"/media/Scratch/peadv/Project_LabAdvEl/Core/Controller.v" Line 162: Size mismatch in connection of port &lt;<arg fmt="%s" index="3">posY</arg>&gt;. Formal port size is <arg fmt="%d" index="2">11</arg>-bit while actual signal size is <arg fmt="%d" index="1">10</arg>-bit.
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="189" delta="unknown" >"/media/Scratch/peadv/Project_LabAdvEl/Core/Controller.v" Line 216: Size mismatch in connection of port &lt;<arg fmt="%s" index="3">LED</arg>&gt;. Formal port size is <arg fmt="%d" index="2">2</arg>-bit while actual signal size is <arg fmt="%d" index="1">6</arg>-bit.
+</msg>
+
 </messages>
 

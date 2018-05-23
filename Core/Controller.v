@@ -23,7 +23,7 @@ module Controller(
 			BTN_NORTH, BTN_SOUTH,
 			PS2_CLK1, PS2_DATA1,
 			
-			
+			SONDA_1, SONDA_2, SONDA_3,
 			
 			LED,
 			VGA_R, VGA_G, VGA_B,
@@ -37,6 +37,9 @@ inout PS2_CLK1;
 inout PS2_DATA1;
 //inizializza il mouse
 input  BTN_NORTH, BTN_SOUTH;
+
+//sonda
+output SONDA_1, SONDA_2, SONDA_3;
 
 
 wire w_25Mhz_clock;
@@ -198,7 +201,6 @@ Module_MouseSimulator sim (
 	.y_pos(mouse_sym_counter_y));
 */
 
-	
 
 	
 
@@ -212,6 +214,9 @@ GridEngine GE(.clk_in(w_25Mhz_clock),
 	.pos_x(position_to_controller_x),
 	.pos_y(position_to_controller_y),
 	.BTN_SOUTH(BTN_SOUTH),
+	.SONDA_1(SONDA_1),
+	.SONDA_2(SONDA_2),
+	.SONDA_3(SONDA_3),
 	
 	.LED(LED),
 	//TODO: cancellare, si utilizza solo per i led attualmente

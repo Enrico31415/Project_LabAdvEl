@@ -6,7 +6,7 @@
   <DeviceList devices="spartan3a"/>
 
   <Properties>
-    <property name="Synthesize - XST:Optimization Goal" value="Area"/>
+    <property name="Synthesize - XST:Optimization Goal" value="Speed"/>
     <property name="Synthesize - XST:Optimization Effort" value="Normal"/>
   </Properties>
 

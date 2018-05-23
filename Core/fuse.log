@@ -1,31 +1,69 @@
-Running: C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\fuse.exe -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -o Z:/Core/Project_LabAdvEl/Core/GeTest_isim_beh.exe -prj Z:/Core/Project_LabAdvEl/Core/GeTest_beh.prj work.GeTest work.glbl 
-ISim P.20131013 (signature 0x7708f090)
+Running: /usr/LDSS/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -o /media/Scratch/peadv/Project_LabAdvEl/Core/testCore_isim_beh.exe -prj /media/Scratch/peadv/Project_LabAdvEl/Core/testCore_beh.prj work.testCore work.glbl 
+ISim P.20131013 (signature 0xfbc00daa)
 Number of CPUs detected in this system: 4
 Turning on mult-threading, number of parallel sub-compilation jobs: 8 
 Determining compilation order of HDL files
-Analyzing Verilog file "Z:/Core/Project_LabAdvEl/Core/shift_2.v" into library work
-Analyzing Verilog file "Z:/Core/Project_LabAdvEl/Core/random_gen.v" into library work
-Analyzing Verilog file "Z:/Core/Project_LabAdvEl/Core/zero_to_nine_r_gen.v" into library work
-Analyzing Verilog file "Z:/Core/Project_LabAdvEl/Core/swtch_mouse_fpga.v" into library work
-Analyzing Verilog file "Z:/Core/Project_LabAdvEl/Core/pos_to_quadrant.v" into library work
-Analyzing Verilog file "Z:/Core/Project_LabAdvEl/Core/cellMemory.v" into library work
-Analyzing Verilog file "Z:/Core/Project_LabAdvEl/Core/GridEngine.v" into library work
-Analyzing Verilog file "Z:/Core/Project_LabAdvEl/Core/GeTest.v" into library work
-Analyzing Verilog file "C:/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
+Analyzing Verilog file "/media/Scratch/peadv/Project_LabAdvEl/Core/shift_2.v" into library work
+Analyzing Verilog file "/media/Scratch/peadv/Project_LabAdvEl/Core/random_gen.v" into library work
+Analyzing Verilog file "/media/Scratch/peadv/Project_LabAdvEl/Core/mouse_modules/pulse_on_change.v" into library work
+Analyzing Verilog file "/media/Scratch/peadv/Project_LabAdvEl/Core/mouse_modules/Module_Counter_8_bit_oneRun.v" into library work
+Analyzing Verilog file "/media/Scratch/peadv/Project_LabAdvEl/Core/FrquencyDivider.v" into library work
+Analyzing Verilog file "/media/Scratch/peadv/Project_LabAdvEl/Core/zero_to_nine_r_gen.v" into library work
+Analyzing Verilog file "/media/Scratch/peadv/Project_LabAdvEl/Core/swtch_mouse_fpga.v" into library work
+Analyzing Verilog file "/media/Scratch/peadv/Project_LabAdvEl/Core/pos_to_quadrant.v" into library work
+Analyzing Verilog file "/media/Scratch/peadv/Project_LabAdvEl/Core/mouse_modules/PS2_send.v" into library work
+Analyzing Verilog file "/media/Scratch/peadv/Project_LabAdvEl/Core/mouse_modules/PS2_read.v" into library work
+Analyzing Verilog file "/media/Scratch/peadv/Project_LabAdvEl/Core/cellMemory.v" into library work
+Analyzing Verilog file "/media/Scratch/peadv/Project_LabAdvEl/Core/VGASyncronizer.v" into library work
+Analyzing Verilog file "/media/Scratch/peadv/Project_LabAdvEl/Core/VGADriver.v" into library work
+Analyzing Verilog file "/media/Scratch/peadv/Project_LabAdvEl/Core/mouse_modules/PS2_comm.v" into library work
+Analyzing Verilog file "/media/Scratch/peadv/Project_LabAdvEl/Core/mouse_modules/mouse_data_management.v" into library work
+Analyzing Verilog file "/media/Scratch/peadv/Project_LabAdvEl/Core/mouse_modules/monostable_with_one_run.v" into library work
+Analyzing Verilog file "/media/Scratch/peadv/Project_LabAdvEl/Core/GridEngine.v" into library work
+Analyzing Verilog file "/media/Scratch/peadv/Project_LabAdvEl/Core/Controller.v" into library work
+Analyzing Verilog file "/media/Scratch/peadv/Project_LabAdvEl/Core/testCore.v" into library work
+Analyzing Verilog file "/usr/LDSS/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
 Starting static elaboration
+WARNING:HDLCompiler:1016 - "/media/Scratch/peadv/Project_LabAdvEl/Core/mouse_modules/PS2_comm.v" Line 340: Port status is not connected to this instance
+WARNING:HDLCompiler:1016 - "/media/Scratch/peadv/Project_LabAdvEl/Core/mouse_modules/PS2_comm.v" Line 360: Port errcode is not connected to this instance
+WARNING:HDLCompiler:1016 - "/media/Scratch/peadv/Project_LabAdvEl/Core/mouse_modules/PS2_comm.v" Line 402: Port out is not connected to this instance
+WARNING:HDLCompiler:189 - "/media/Scratch/peadv/Project_LabAdvEl/Core/Controller.v" Line 127: Size mismatch in connection of port <altro>. Formal port size is 16-bit while actual signal size is 8-bit.
+WARNING:HDLCompiler:1016 - "/media/Scratch/peadv/Project_LabAdvEl/Core/mouse_modules/PS2_send.v" Line 294: Port out is not connected to this instance
+WARNING:HDLCompiler:1016 - "/media/Scratch/peadv/Project_LabAdvEl/Core/mouse_modules/PS2_send.v" Line 304: Port out is not connected to this instance
+WARNING:HDLCompiler:1016 - "/media/Scratch/peadv/Project_LabAdvEl/Core/mouse_modules/PS2_send.v" Line 314: Port out is not connected to this instance
+WARNING:HDLCompiler:1016 - "/media/Scratch/peadv/Project_LabAdvEl/Core/mouse_modules/PS2_read.v" Line 150: Port out is not connected to this instance
+WARNING:HDLCompiler:1016 - "/media/Scratch/peadv/Project_LabAdvEl/Core/mouse_modules/PS2_read.v" Line 160: Port out is not connected to this instance
+WARNING:HDLCompiler:1016 - "/media/Scratch/peadv/Project_LabAdvEl/Core/mouse_modules/monostable_with_one_run.v" Line 57: Port out is not connected to this instance
+WARNING:HDLCompiler:189 - "/media/Scratch/peadv/Project_LabAdvEl/Core/Controller.v" Line 161: Size mismatch in connection of port <posX>. Formal port size is 11-bit while actual signal size is 10-bit.
+WARNING:HDLCompiler:189 - "/media/Scratch/peadv/Project_LabAdvEl/Core/Controller.v" Line 162: Size mismatch in connection of port <posY>. Formal port size is 11-bit while actual signal size is 10-bit.
+WARNING:HDLCompiler:189 - "/media/Scratch/peadv/Project_LabAdvEl/Core/Controller.v" Line 216: Size mismatch in connection of port <LED>. Formal port size is 2-bit while actual signal size is 6-bit.
 Completed static elaboration
+Fuse Memory Usage: 96252 KB
+Fuse CPU Usage: 1230 ms
+Compiling module Module_FrequencyDivider
 Compiling module pos_to_quadrant
+Compiling module Module_VGADriver
+Compiling module Module_Counter_8_bit_oneRun
+Compiling module pulse_on_change
+Compiling module PS2_send
+Compiling module PS2_read
+Compiling module PS2_comm
+Compiling module monostable_with_one_run
+Compiling module mouse_data_management
 Compiling module swtch_mouse_fpga
 Compiling module cell_io
 Compiling module shift_2
 Compiling module random_gen
 Compiling module zero_to_nine_r_gen
 Compiling module GridEngine
-Compiling module GeTest
+Compiling module Module_VGASyncronizer
+Compiling module Controller
+Compiling module testCore
 Compiling module glbl
 Time Resolution for simulation is 1ps.
-Waiting for 2 sub-compilation(s) to finish...
-Compiled 9 Verilog Units
-Built simulation executable Z:/Core/Project_LabAdvEl/Core/GeTest_isim_beh.exe
-Fuse Memory Usage: 33292 KB
-Fuse CPU Usage: 5365 ms
+Waiting for 13 sub-compilation(s) to finish...
+Compiled 20 Verilog Units
+Built simulation executable /media/Scratch/peadv/Project_LabAdvEl/Core/testCore_isim_beh.exe
+Fuse Memory Usage: 661128 KB
+Fuse CPU Usage: 1340 ms
+GCC CPU Usage: 3260 ms

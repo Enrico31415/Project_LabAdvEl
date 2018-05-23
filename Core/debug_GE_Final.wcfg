@@ -3,122 +3,111 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="Z:/Core/Project_LabAdvEl/Core/GeTest_isim_beh.wdb" id="1" type="auto">
+      <db_ref path="/media/Scratch/peadv/Project_LabAdvEl/Core/Module_VGADriver_isim_beh.wdb" id="1" type="auto">
          <top_modules>
-            <top_module name="GeTest" />
+            <top_module name="Module_VGADriver" />
             <top_module name="glbl" />
          </top_modules>
       </db_ref>
    </db_ref_list>
-   <WVObjectSize size="10" />
-   <wvobject fp_name="/GeTest/LED" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">LED[1:0]</obj_property>
-      <obj_property name="ObjectShortName">LED[1:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/GeTest/clk_in" type="logic" db_ref_id="1">
+   <WVObjectSize size="23" />
+   <wvobject fp_name="/Module_VGADriver/clk_in" type="logic" db_ref_id="1">
       <obj_property name="ElementShortName">clk_in</obj_property>
       <obj_property name="ObjectShortName">clk_in</obj_property>
    </wvobject>
-   <wvobject fp_name="/GeTest/mouse_pos_x" type="array" db_ref_id="1">
+   <wvobject fp_name="/Module_VGADriver/enable" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">enable</obj_property>
+      <obj_property name="ObjectShortName">enable</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Module_VGADriver/current_row" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">current_row[9:0]</obj_property>
+      <obj_property name="ObjectShortName">current_row[9:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Module_VGADriver/current_line" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">current_line[9:0]</obj_property>
+      <obj_property name="ObjectShortName">current_line[9:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Module_VGADriver/cell_status" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cell_status[2:0]</obj_property>
+      <obj_property name="ObjectShortName">cell_status[2:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Module_VGADriver/mouse_pos_x" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">mouse_pos_x[9:0]</obj_property>
       <obj_property name="ObjectShortName">mouse_pos_x[9:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/GeTest/mouse_pos_y" type="array" db_ref_id="1">
+   <wvobject fp_name="/Module_VGADriver/mouse_pos_y" type="array" db_ref_id="1">
       <obj_property name="ElementShortName">mouse_pos_y[9:0]</obj_property>
       <obj_property name="ObjectShortName">mouse_pos_y[9:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/GeTest/pos_x" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">pos_x[9:0]</obj_property>
-      <obj_property name="ObjectShortName">pos_x[9:0]</obj_property>
+   <wvobject fp_name="/Module_VGADriver/cell_x" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cell_x[2:0]</obj_property>
+      <obj_property name="ObjectShortName">cell_x[2:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/GeTest/pos_y" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">pos_y[9:0]</obj_property>
-      <obj_property name="ObjectShortName">pos_y[9:0]</obj_property>
+   <wvobject fp_name="/Module_VGADriver/cell_y" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cell_y[2:0]</obj_property>
+      <obj_property name="ObjectShortName">cell_y[2:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/GeTest/BTN_SOUTH" type="logic" db_ref_id="1">
-      <obj_property name="ElementShortName">BTN_SOUTH</obj_property>
-      <obj_property name="ObjectShortName">BTN_SOUTH</obj_property>
+   <wvobject fp_name="/Module_VGADriver/cross" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cross[4799:0]</obj_property>
+      <obj_property name="ObjectShortName">cross[4799:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/GeTest/mouse_click" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">mouse_click[1:0]</obj_property>
-      <obj_property name="ObjectShortName">mouse_click[1:0]</obj_property>
+   <wvobject fp_name="/Module_VGADriver/circle" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">circle[4799:0]</obj_property>
+      <obj_property name="ObjectShortName">circle[4799:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/GeTest/uut/out_mem_cell_read_status" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">out_mem_cell_read_status[3:0]</obj_property>
-      <obj_property name="ObjectShortName">out_mem_cell_read_status[3:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   <wvobject fp_name="/Module_VGADriver/cross_over_circle" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cross_over_circle[4799:0]</obj_property>
+      <obj_property name="ObjectShortName">cross_over_circle[4799:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/GeTest/uut/memory/memory" type="array" db_ref_id="1">
-      <obj_property name="ElementShortName">memory[0:7,0:7,3:0]</obj_property>
-      <obj_property name="ObjectShortName">memory[0:7,0:7,3:0]</obj_property>
-      <wvobject fp_name="/GeTest/uut/memory/memory[0]" type="array" db_ref_id="1">
-         <obj_property name="ElementShortName">[0,0:7,3:0]</obj_property>
-         <obj_property name="ObjectShortName">memory[0,0:7,3:0]</obj_property>
-         <wvobject fp_name="/GeTest/uut/memory/memory[0,0]" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">[0,0,3:0]</obj_property>
-            <obj_property name="ObjectShortName">memory[0,0,3:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/GeTest/uut/memory/memory[0,1]" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">[0,1,3:0]</obj_property>
-            <obj_property name="ObjectShortName">memory[0,1,3:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/GeTest/uut/memory/memory[0,2]" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">[0,2,3:0]</obj_property>
-            <obj_property name="ObjectShortName">memory[0,2,3:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/GeTest/uut/memory/memory[0,3]" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">[0,3,3:0]</obj_property>
-            <obj_property name="ObjectShortName">memory[0,3,3:0]</obj_property>
-            <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-         </wvobject>
-         <wvobject fp_name="/GeTest/uut/memory/memory[0,4]" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">[0,4,3:0]</obj_property>
-            <obj_property name="ObjectShortName">memory[0,4,3:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/GeTest/uut/memory/memory[0,5]" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">[0,5,3:0]</obj_property>
-            <obj_property name="ObjectShortName">memory[0,5,3:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/GeTest/uut/memory/memory[0,6]" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">[0,6,3:0]</obj_property>
-            <obj_property name="ObjectShortName">memory[0,6,3:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/GeTest/uut/memory/memory[0,7]" type="array" db_ref_id="1">
-            <obj_property name="ElementShortName">[0,7,3:0]</obj_property>
-            <obj_property name="ObjectShortName">memory[0,7,3:0]</obj_property>
-         </wvobject>
-      </wvobject>
-      <wvobject fp_name="/GeTest/uut/memory/memory[1]" type="array" db_ref_id="1">
-         <obj_property name="ElementShortName">[1,0:7,3:0]</obj_property>
-         <obj_property name="ObjectShortName">memory[1,0:7,3:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/GeTest/uut/memory/memory[2]" type="array" db_ref_id="1">
-         <obj_property name="ElementShortName">[2,0:7,3:0]</obj_property>
-         <obj_property name="ObjectShortName">memory[2,0:7,3:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/GeTest/uut/memory/memory[3]" type="array" db_ref_id="1">
-         <obj_property name="ElementShortName">[3,0:7,3:0]</obj_property>
-         <obj_property name="ObjectShortName">memory[3,0:7,3:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/GeTest/uut/memory/memory[4]" type="array" db_ref_id="1">
-         <obj_property name="ElementShortName">[4,0:7,3:0]</obj_property>
-         <obj_property name="ObjectShortName">memory[4,0:7,3:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/GeTest/uut/memory/memory[5]" type="array" db_ref_id="1">
-         <obj_property name="ElementShortName">[5,0:7,3:0]</obj_property>
-         <obj_property name="ObjectShortName">memory[5,0:7,3:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/GeTest/uut/memory/memory[6]" type="array" db_ref_id="1">
-         <obj_property name="ElementShortName">[6,0:7,3:0]</obj_property>
-         <obj_property name="ObjectShortName">memory[6,0:7,3:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/GeTest/uut/memory/memory[7]" type="array" db_ref_id="1">
-         <obj_property name="ElementShortName">[7,0:7,3:0]</obj_property>
-         <obj_property name="ObjectShortName">memory[7,0:7,3:0]</obj_property>
-      </wvobject>
+   <wvobject fp_name="/Module_VGADriver/s_over_circle" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">s_over_circle[4799:0]</obj_property>
+      <obj_property name="ObjectShortName">s_over_circle[4799:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Module_VGADriver/s_over_cross" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">s_over_cross[4799:0]</obj_property>
+      <obj_property name="ObjectShortName">s_over_cross[4799:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Module_VGADriver/s_over_cross_over_cirle" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">s_over_cross_over_cirle[4799:0]</obj_property>
+      <obj_property name="ObjectShortName">s_over_cross_over_cirle[4799:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Module_VGADriver/ship_s" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">ship_s[4799:0]</obj_property>
+      <obj_property name="ObjectShortName">ship_s[4799:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Module_VGADriver/color_out" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">color_out[11:0]</obj_property>
+      <obj_property name="ObjectShortName">color_out[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Module_VGADriver/prec_line" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">prec_line[9:0]</obj_property>
+      <obj_property name="ObjectShortName">prec_line[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Module_VGADriver/cell_cross_counter_x" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cell_cross_counter_x[9:0]</obj_property>
+      <obj_property name="ObjectShortName">cell_cross_counter_x[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Module_VGADriver/cell_cross_counter_y" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">cell_cross_counter_y[9:0]</obj_property>
+      <obj_property name="ObjectShortName">cell_cross_counter_y[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Module_VGADriver/pointer_to_mask" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">pointer_to_mask[13:0]</obj_property>
+      <obj_property name="ObjectShortName">pointer_to_mask[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Module_VGADriver/pointer_to_mask_1" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">pointer_to_mask_1[13:0]</obj_property>
+      <obj_property name="ObjectShortName">pointer_to_mask_1[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Module_VGADriver/pointer_to_mask_2" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">pointer_to_mask_2[13:0]</obj_property>
+      <obj_property name="ObjectShortName">pointer_to_mask_2[13:0]</obj_property>
    </wvobject>
 </wave_config>
