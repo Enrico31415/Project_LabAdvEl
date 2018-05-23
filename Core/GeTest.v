@@ -4,7 +4,7 @@
 // Company: 
 // Engineer:
 //
-// Create Date:   20:35:35 05/22/2018
+// Create Date:   23:05:32 05/23/2018
 // Design Name:   GridEngine
 // Module Name:   Z:/Core/Project_LabAdvEl/Core/GeTest.v
 // Project Name:  new
@@ -34,6 +34,9 @@ module GeTest;
 	reg [1:0] mouse_click;
 
 	// Outputs
+	wire SONDA_1;
+	wire SONDA_2;
+	wire SONDA_3;
 	wire [1:0] LED;
 	wire [3:0] pointer_cell_read_status;
 
@@ -45,6 +48,9 @@ module GeTest;
 		.pos_x(pos_x), 
 		.pos_y(pos_y), 
 		.BTN_SOUTH(BTN_SOUTH), 
+		.SONDA_1(SONDA_1), 
+		.SONDA_2(SONDA_2), 
+		.SONDA_3(SONDA_3), 
 		.LED(LED), 
 		.mouse_click(mouse_click), 
 		.pointer_cell_read_status(pointer_cell_read_status)
@@ -63,17 +69,12 @@ module GeTest;
 		// Wait 100 ns for global reset to finish
 		#100;
         
-		
-		
-		forever begin 
-			#10 clk_in = !clk_in;
-		end
 		// Add stimulus here
-
-      
-
+		forever #1
+		clk_in = ! clk_in;
+		
 
 	end
-
+      
 endmodule
 

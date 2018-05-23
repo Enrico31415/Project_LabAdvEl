@@ -100,6 +100,8 @@ reg[3:0] fpga_target_ship_lenght;	// lunghezza target della nave da piazzare
 reg [3:0] mouse_cell_new_status;		
 reg [3:0] fpga_cell_new_status = 4'd5; 
 
+reg wait_mouse_reset;
+
 wire[3:0] out_mem_cell_read_status; 
 reg [4:0] inquiry=5'b11111;
 //cavi dallo switch alla memoria
@@ -472,13 +474,19 @@ begin
 	end
 	else if (turn_status == 2'd1)
 	begin
-		if (mouse_click[0] == 1'b1 && count_sleep < 11'd1000)
-		begin
+		if (mouse_click[0] == 1'b1 && count_sleep < 11'd1 && !wait_mouse_reset) //se: devo contare, il mouse è cliccato, e non sto aspettando perché il mouse è ancora alto
+		begin //così salta 2 cicli di clock.
 			count_sleep = count_sleep + 11'd1;
+			mouse_left_enable = 1;
+		end
+		else if (wait_mouse_reset) // aspetta finché il mouse non è stato rilasciato
+		begin
+			wait_mouse_reset = mouse_click[0];
 		end
 		else
 		begin
 			mouse_left_enable = !mouse_click[0];
+			wait_mouse_reset = mouse_click[0]; //se ho cliccato
 			if (out_mem_cell_read_status == 4'd0)
 			begin 
 				mouse_cell_new_status = 4'd1;
