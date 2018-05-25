@@ -172,7 +172,7 @@ begin
 				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
 				if (ship_s[pointer_to_mask])
 				begin
-					color_out = `blue;
+					color_out = `color_player_and_ia_hit;
 				end
 				else
 				begin
@@ -212,9 +212,13 @@ begin
 				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
 				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
 				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
-				if (s_over_cross[pointer_to_mask])
+				if (cross[pointer_to_mask])
 				begin
 					color_out = `color_player_hit;
+				end
+				else if (ship_s[pointer_to_mask])
+				begin
+					color_out = `color_player_and_ia_hit;
 				end
 				else
 				begin
@@ -240,9 +244,13 @@ begin
 				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
 				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
 				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
-				if (s_over_cross[pointer_to_mask])
+				if (cross[pointer_to_mask])
 				begin
 					color_out = `red;
+				end
+				else if (ship_s[pointer_to_mask])
+				begin
+					color_out = `color_player_and_ia_hit;
 				end
 				else
 				begin
@@ -308,18 +316,7 @@ begin
 			4'd5:
 			begin
 				//FIXME da rendere trasparente.
-				//color_out = `green;
-				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
-				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
-				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
-				if (ship_s[pointer_to_mask])
-				begin
-					color_out = `red;
-				end
-				else
-				begin
-					color_out = `back_ground;
-				end
+				color_out = `green;
 			end
 		endcase
 		
