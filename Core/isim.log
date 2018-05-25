@@ -1,6 +1,6 @@
 ISim log file
-Running: Z:\Core\Project_LabAdvEl\Core\GeTest_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb Z:/Core/Project_LabAdvEl/Core/GeTest_isim_beh.wdb 
-ISim P.20131013 (signature 0x7708f090)
+Running: /media/Scratch/Project_LabAdvEl/Core/GeTest_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb /media/Scratch/Project_LabAdvEl/Core/GeTest_isim_beh.wdb 
+ISim P.20131013 (signature 0xfbc00daa)
 WARNING: A WEBPACK license was found.
 WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
 WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
@@ -11,140 +11,184 @@ Time resolution is 1 ps
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
+# isim force add /GeTest/clk_25M_in 1 -radix bin -value 0 -radix bin -time 10 ns -repeat 20 ns
+# isim force add /GeTest/clk_25M_in 1 -radix bin -value 0 -radix bin -time 10 ns -repeat 20 ns
+# isim force add /GeTest/clk_in 1 -radix bin -value 0 -radix bin -time 40 ns -repeat 80 ns
+# isim force add /GeTest/clk_in 1 -radix bin -value 0 -radix bin -time 40 ns -repeat 80 ns
+# run all
+Stopped at time : 32200 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
+# isim force add /GeTest/uut/mouse_pos_x 600 -radix unsigned
+# isim force add /GeTest/uut/mouse_pos_x 600 -radix unsigned
 # run 1.00us
+Stopped at time : 32280 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
 # run all
-Stopped at time : 2001 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 474
+Stopped at time : 32360 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
 # run all
-Stopped at time : 2001 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 475
+Stopped at time : 32440 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
 # run all
-Stopped at time : 2001 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 480
+Stopped at time : 32520 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
 # run all
-Stopped at time : 2003 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 474
+Stopped at time : 32600 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
+# isim force add /GeTest/uut/mouse_pos_x 0 -radix unsigned
+# isim force add /GeTest/uut/mouse_pos_x 0 -radix unsigned
+# isim force add /GeTest/uut/mouse_pos_y 410 -radix unsigned
 # run all
-Stopped at time : 2003 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 480
+Stopped at time : 32680 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
 # run all
-Stopped at time : 2005 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 480
+Stopped at time : 32760 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
 # run all
-Stopped at time : 2007 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 480
+Stopped at time : 32840 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
 # run all
-Stopped at time : 2009 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 480
+Stopped at time : 32920 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
 # run all
-Stopped at time : 2011 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 480
+Stopped at time : 33 us : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
+# isim force add /GeTest/uut/mouse_pos_y 460 -radix unsigned
+# isim force add /GeTest/uut/mouse_pos_y 460 -radix unsigned
 # run all
-Stopped at time : 2013 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 480
+Stopped at time : 33080 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
 # run all
-Stopped at time : 2015 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 480
+Stopped at time : 33160 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
 # run all
-Stopped at time : 2017 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 480
+Stopped at time : 33240 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
 # run all
-Stopped at time : 2019 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 480
-# isim force add /GeTest/uut/mouse_click 01 -radix bin
-# isim force add /GeTest/uut/mouse_click 01 -radix bin
+Stopped at time : 33320 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
 # run all
-Stopped at time : 2021 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2023 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2025 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2027 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2029 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2031 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2033 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2035 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2037 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2039 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2041 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 480
-# run all
-Stopped at time : 2043 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2045 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2047 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2049 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2051 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2053 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2055 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2057 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2059 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2061 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2063 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 480
-# run all
-Stopped at time : 2065 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2067 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2069 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2071 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2073 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2075 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2077 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2079 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2081 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2083 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2085 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 480
-# run all
-Stopped at time : 2087 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2089 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2091 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2093 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2095 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2097 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2099 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 2101 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# isim force add /GeTest/uut/mouse_click 00 -radix bin
-# isim force add /GeTest/uut/mouse_click 00 -radix bin
-# run all
-Stopped at time : 2103 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 480
-# run all
-Stopped at time : 2105 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 480
-# run all
-Stopped at time : 2107 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 480
-# run all
-Stopped at time : 2109 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 480
-# run all
-Stopped at time : 2111 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 480
-# run all
-Stopped at time : 2113 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 480
-# run all
-Stopped at time : 2115 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 480
+Stopped at time : 33400 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
+# step
+Stopped at time : 33400 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 487
+# step
+Stopped at time : 33400 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 492
+# step
+Stopped at time : 33400 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 497
+# step
+Stopped at time : 33400 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 498
+# step
+Stopped at time : 33400 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 525
+# step
+Stopped at time : 33400 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 526
+# step
+Stopped at time : 33400 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 527
+# step
+Stopped at time : 33400 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 580
 # run 1.00us
-Stopped at time : 2117 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 480
+Stopped at time : 33480 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
 # run 1.00us
-Stopped at time : 2119 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 480
+Stopped at time : 33560 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
 # run 1.00us
-Stopped at time : 2121 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 480
-ISim P.20131013 (signature 0x7708f090)
+Stopped at time : 33640 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
+# run 1.00us
+Stopped at time : 33720 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
+# run 1.00us
+Stopped at time : 33800 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
+# run 1.00us
+Stopped at time : 33880 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
+# run 1.00us
+Stopped at time : 33960 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
+# run 1.00us
+Stopped at time : 34040 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
+# run 1.00us
+Stopped at time : 34120 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
+# run 1.00us
+Stopped at time : 34200 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
+# run 1.00us
+Stopped at time : 34280 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
+# run 1.00us
+Stopped at time : 34360 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
+# isim force add /GeTest/mouse_click 11 -radix bin
+# isim force add /GeTest/mouse_click 11 -radix bin
+# step
+Stopped at time : 34360 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 487
+# step
+Stopped at time : 34360 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 492
+# step
+Stopped at time : 34360 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 497
+# step
+Stopped at time : 34360 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 498
+# step
+Stopped at time : 34360 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 525
+# step
+Stopped at time : 34360 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 526
+# step
+Stopped at time : 34360 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 527
+# step
+Stopped at time : 34360 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 580
+# step
+Stopped at time : 34360 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 581
+# step
+Stopped at time : 34360 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 582
+# step
+Stopped at time : 34360 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 583
+# step
+Stopped at time : 34360 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 584
+# step
+Stopped at time : 34360 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 233
+# run all
+Stopped at time : 34440 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
+# step
+Stopped at time : 34440 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 487
+# step
+Stopped at time : 34440 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 488
+# step
+Stopped at time : 34440 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 489
+# step
+Stopped at time : 34440 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 490
+# step
+Stopped at time : 34440 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 233
+# run all
+Stopped at time : 34520 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
+# step
+Stopped at time : 34520 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 487
+# step
+Stopped at time : 34520 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 492
+# step
+Stopped at time : 34520 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 497
+# step
+Stopped at time : 34520 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 498
+# step
+Stopped at time : 34520 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 530
+# step
+Stopped at time : 34520 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 531
+# step
+Stopped at time : 34520 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 532
+# step
+Stopped at time : 34520 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 580
+# step
+Stopped at time : 34520 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 581
+# step
+Stopped at time : 34520 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 582
+# step
+Stopped at time : 34520 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 583
+# step
+Stopped at time : 34520 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 584
+# step
+Stopped at time : 34520 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 233
+# step
+Stopped at time : 34520 ns : File "/media/Scratch/Project_LabAdvEl/Core/pos_to_quadrant.v" Line 17
+# run all
+Stopped at time : 34600 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
+# step
+Stopped at time : 34600 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 487
+# step
+Stopped at time : 34600 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 492
+# step
+Stopped at time : 34600 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 493
+# step
+Stopped at time : 34600 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 494
+# step
+Stopped at time : 34600 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 233
+# run all
+Stopped at time : 34680 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
+# step
+Stopped at time : 34680 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 487
+# step
+Stopped at time : 34680 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 492
+# step
+Stopped at time : 34680 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 493
+# step
+Stopped at time : 34680 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 494
+# step
+Stopped at time : 34680 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 233
+ISim P.20131013 (signature 0xfbc00daa)
 WARNING: A WEBPACK license was found.
 WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
 WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
@@ -152,729 +196,52 @@ This is a Lite version of ISim.
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
-Stopped at time : 881 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
-ISim P.20131013 (signature 0x7708f090)
-WARNING: A WEBPACK license was found.
-WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
-WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
-This is a Lite version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-Stopped at time : 881 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# run 1.00us
+# isim force add /GeTest/clk_25M_in 1 -radix bin -value 0 -radix bin -time 500 ps -repeat 1 ns
+# isim force add /GeTest/clk_25M_in 1 -radix bin -value 0 -radix bin -time 500 ps -repeat 1 ns
+# isim force add /GeTest/clk_in 1 -radix bin -value 0 -radix bin -time 50 ns -repeat 100 ns
+# isim force add /GeTest/clk_in 1 -radix bin -value 0 -radix bin -time 50 ns -repeat 100 ns
+# isim force add /GeTest/mouse_pos_y 420 -radix unsigned
+# isim force add /GeTest/mouse_pos_y 420 -radix unsigned
 # run all
-Stopped at time : 883 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
+Stopped at time : 48 us : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
 # run all
-Stopped at time : 885 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
+Stopped at time : 48100 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
 # run all
-Stopped at time : 887 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
+Stopped at time : 48200 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
 # run all
-Stopped at time : 889 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
-# run all
-Stopped at time : 891 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
-# run all
-Stopped at time : 893 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
-# run all
-Stopped at time : 895 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
-# run all
-Stopped at time : 897 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
-# run all
-Stopped at time : 899 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
-# run all
-Stopped at time : 901 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
-# run all
-Stopped at time : 903 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
-# run all
-Stopped at time : 905 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
-# run all
-Stopped at time : 907 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
-# run all
-Stopped at time : 909 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
-# run all
-Stopped at time : 911 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
-# run all
-Stopped at time : 913 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
-# run all
-Stopped at time : 915 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
-# run all
-Stopped at time : 917 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
-# run all
-Stopped at time : 919 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
-# run all
-Stopped at time : 921 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
+Stopped at time : 48300 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
 # isim force add /GeTest/mouse_click 01 -radix bin
 # isim force add /GeTest/mouse_click 01 -radix bin
 # run all
-Stopped at time : 923 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 925 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 927 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 929 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 931 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 933 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 935 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 937 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 939 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 941 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 943 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
-# run all
-Stopped at time : 945 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 947 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-ISim P.20131013 (signature 0x7708f090)
-WARNING: A WEBPACK license was found.
-WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
-WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
-This is a Lite version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-Stopped at time : 881 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
-ISim P.20131013 (signature 0x7708f090)
-WARNING: A WEBPACK license was found.
-WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
-WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
-This is a Lite version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-Stopped at time : 881 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
-# run all
-Stopped at time : 883 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
-# isim force add /GeTest/mouse_click 01 -radix bin
-# isim force add /GeTest/mouse_click 01 -radix bin
-# run all
-Stopped at time : 885 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 887 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 889 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 891 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 893 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 895 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 897 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 899 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 901 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 903 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 905 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 481
-# run all
-Stopped at time : 907 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-# run all
-Stopped at time : 909 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 476
-ISim P.20131013 (signature 0x7708f090)
-WARNING: A WEBPACK license was found.
-WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
-WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
-This is a Lite version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-Stopped at time : 881 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 883 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 885 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 887 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 889 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 891 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 893 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 895 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 897 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 899 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 901 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 903 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 905 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 907 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 909 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 911 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 913 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 915 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 917 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 919 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# isim force add /GeTest/mouse_click 01 -radix bin
-# isim force add /GeTest/mouse_click 01 -radix bin
-# run all
-Stopped at time : 921 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 478
-# run all
-Stopped at time : 923 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 478
-# run all
-Stopped at time : 925 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 478
-# run all
-Stopped at time : 927 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 929 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 478
-# run all
-Stopped at time : 931 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 478
-# run all
-Stopped at time : 933 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 478
-ISim P.20131013 (signature 0x7708f090)
-WARNING: A WEBPACK license was found.
-WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
-WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
-This is a Lite version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-Stopped at time : 881 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 883 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 885 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 887 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 889 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 891 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 893 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 895 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 897 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 899 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 901 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 903 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 905 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 907 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 909 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 911 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 913 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 915 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 917 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 919 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# isim force add /GeTest/mouse_click 01 -radix bin
-# isim force add /GeTest/mouse_click 01 -radix bin
-# run all
-Stopped at time : 921 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 478
-# run all
-Stopped at time : 923 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 478
-# run all
-Stopped at time : 925 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 478
-# run all
-Stopped at time : 927 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 929 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 931 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 933 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 935 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 937 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 939 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 941 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 943 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# isim force add /GeTest/mouse_click 00 -radix bin
-# isim force add /GeTest/mouse_click 00 -radix bin
-# run all
-Stopped at time : 945 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 947 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 949 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 951 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 953 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 955 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 957 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 959 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-ISim P.20131013 (signature 0x7708f090)
-WARNING: A WEBPACK license was found.
-WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
-WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
-This is a Lite version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-Stopped at time : 881 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 883 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 885 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 887 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 889 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 891 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 893 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 895 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 897 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 899 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 901 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 903 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 905 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 907 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 909 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 911 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 913 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 915 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 917 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 919 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 921 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 923 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 925 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 927 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 929 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 931 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 933 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 935 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 937 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 939 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 941 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 943 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 945 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 947 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 949 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 951 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 953 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# isim force add /GeTest/mouse_click 01 -radix bin
-# isim force add /GeTest/mouse_click 01 -radix bin
-# run all
-Stopped at time : 955 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 957 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 959 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 961 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 963 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 965 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 967 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-ISim P.20131013 (signature 0x7708f090)
-WARNING: A WEBPACK license was found.
-WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
-WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
-This is a Lite version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-Stopped at time : 881 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 883 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 885 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 887 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 889 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 891 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 893 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 895 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 897 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 899 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# isim force add /GeTest/mouse_click 01 -radix bin
-# isim force add /GeTest/mouse_click 01 -radix bin
-# run all
-Stopped at time : 901 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 478
-# run all
-Stopped at time : 903 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 478
-# run all
-Stopped at time : 905 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 907 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 909 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 911 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 913 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 915 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 917 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 919 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 921 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 923 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 925 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 927 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 929 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 931 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# isim force add /GeTest/mouse_click 00 -radix bin
-# isim force add /GeTest/mouse_click 00 -radix bin
-# run all
-Stopped at time : 933 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 935 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 937 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 939 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 941 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 943 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 945 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 947 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 949 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 951 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 953 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 955 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 957 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 959 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 961 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 963 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 965 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 967 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-ISim P.20131013 (signature 0x7708f090)
-WARNING: A WEBPACK license was found.
-WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
-WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
-This is a Lite version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-Stopped at time : 881 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 883 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 885 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 887 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 889 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 891 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 893 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 895 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 897 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# isim force add /GeTest/mouse_click 01 -radix bin
-# isim force add /GeTest/mouse_click 01 -radix bin
-# run all
-Stopped at time : 899 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 478
-# run all
-Stopped at time : 901 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 478
-# run all
-Stopped at time : 903 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 905 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 907 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 909 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 911 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 913 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 915 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 917 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 919 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 921 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 923 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 925 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 927 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 929 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 931 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 933 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 935 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 937 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 939 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-ISim P.20131013 (signature 0x7708f090)
-WARNING: A WEBPACK license was found.
-WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
-WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
-This is a Lite version of ISim.
-# run 1000 ns
-Simulator is doing circuit initialization process.
-Finished circuit initialization process.
-Stopped at time : 881 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 883 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 885 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 887 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 889 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 891 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 893 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 895 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 897 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 899 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 901 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 903 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 905 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 907 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 909 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 911 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 913 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 915 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 917 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 919 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 921 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 923 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 925 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 927 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 929 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 931 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 933 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 935 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 937 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 939 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 941 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 943 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 945 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 947 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 949 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 951 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 953 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 955 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 957 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 959 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 961 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 963 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 965 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 967 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 969 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 971 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 973 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 975 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 977 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 979 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 981 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 983 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 985 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 987 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 989 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 991 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 993 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 995 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 997 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 999 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 1001 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 1003 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 1005 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 1007 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 1009 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run 1.00us
-Stopped at time : 1011 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# isim force add /GeTest/mouse_click 01 -radix bin
-# isim force add /GeTest/mouse_click 01 -radix bin
-# run all
-Stopped at time : 1013 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 478
-# run all
-Stopped at time : 1015 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 487
-# run all
-Stopped at time : 1017 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 1019 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 1021 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 1023 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 1025 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 1027 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 1029 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 1031 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 1033 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 1035 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 1037 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 1039 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 1041 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 1043 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 1045 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 1047 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 1049 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
-# run all
-Stopped at time : 1051 ns : File "//vmware-host/Shared Folders/Core/Project_LabAdvEl/Core/GridEngine.v" Line 484
+Stopped at time : 48400 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
+# step
+Stopped at time : 48400 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 487
+# step
+Stopped at time : 48400 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 488
+# step
+Stopped at time : 48400 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 489
+# step
+Stopped at time : 48400 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 490
+# step
+Stopped at time : 48400 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 491
+# step
+Stopped at time : 48400 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 492
+# step
+Stopped at time : 48400 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 233
+# run all
+Stopped at time : 48500 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
+# run all
+Stopped at time : 48600 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
+# run all
+Stopped at time : 48700 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
+# run all
+Stopped at time : 48800 ns : File "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" Line 486
+# exit 0

@@ -22,7 +22,8 @@
 `include "cellStatus.v"
  
 
-module GridEngine(clk_in,
+module GridEngine(clk_25M_in,
+	clk_in,
 	//TODO Implementazione della posizione del mouse.
 	mouse_pos_x,
 	mouse_pos_y,
@@ -40,7 +41,9 @@ module GridEngine(clk_in,
 	
 	LED,
 	mouse_click, //evento del click del mouse [0] right click, [1] left click	
-	pointer_cell_read_status
+	pointer_cell_read_status,
+	
+	game_end
     );
 	 
 
@@ -49,6 +52,7 @@ module GridEngine(clk_in,
 
 
 input clk_in;
+input clk_25M_in;
 input [1:0] mouse_click;	
 input [9:0] mouse_pos_x;
 input [9:0] mouse_pos_y;
@@ -58,6 +62,7 @@ input [9:0] pos_y;
 output [3:0] pointer_cell_read_status;
 output [5:0] LED;
 output SONDA_1, SONDA_2, SONDA_3;
+output reg [1:0] game_end = 2'd0;
 reg [1:0] turn_status = 2'd0;  //determina la fase di gioco:
 reg [3:0] cell_new_status = 4'd0;
 
@@ -93,9 +98,7 @@ reg[2:0] fpga_guess_y;
 reg orient_guess=1'b1;			// orientamento della nave che si sta cercando di piazzare
 reg who_write = 1'b0;
 
-reg player_flag_hit = 0;
-reg player_hit_count_enable = 1;
-reg  [3:0] player_hit_count = 4'd0;
+reg  [4:0] player_hit_count = 5'd0;
 
 
 reg[2:0] fpga_count_move_x;		// valore da aggiungere al punto di partenza per muoversi lungo la griglia
@@ -131,12 +134,13 @@ wire [2:0] reg_to_six_m2;
 wire reg_one_bit_1_m2;
 wire reg_one_bit_2_m2;	
 
+reg player_flag_hit;
 
 assign LED[1:0] = turn_status;
 assign LED[5:2] = player_hit_count;
-buf( SONDA_1 , mouse_left_enable);
-buf( SONDA_2 , mouse_click[0]);
-buf( SONDA_3 , mouse_click[0] && mouse_left_enable);
+buf( SONDA_1 , player_flag_hit && mouse_write_enable);
+buf( SONDA_2 , player_flag_hit && mouse_write_enable);
+buf( SONDA_3 , player_flag_hit);
 buf( mouse_write_enable , mouse_click[0] && mouse_left_enable);
 //assign mouse_write_enable = mouse_click[0] & mouse_left_enable;
 //dalla posizione del mouse, torna la posizione in celle.
@@ -152,7 +156,7 @@ pos_to_quadrant mouse_to_cell(
 
 //dalla posizione del pixel in scrittura, torna la posizione in celle.
 pos_to_quadrant pointer_to_cell(
-	.clk_in(clk_in), 
+	.clk_in(clk_25M_in), 
 	.pos_x(pos_x),
 	.pos_y(pos_y),
 	
@@ -188,6 +192,7 @@ swtch_mouse_fpga mouse_fpga(
 
 cell_io memory( //gestisce la memoria
 	.clk_in(clk_in),
+	.clk_25M_in(clk_25M_in),
 	.mouse_cell_x(cell_x_to_mem),
 	.mouse_cell_y(cell_y_to_mem),
 	.new_value(new_value_to_mem),
@@ -480,90 +485,108 @@ begin
 	end
 	else if (turn_status == 2'd1)
 	begin
-		if (mouse_click[0] == 1'b1 && count_sleep < 11'd6 && !wait_mouse_reset) //se: devo contare, il mouse  cliccato, e non sto aspettando perch il mouse  ancora alto
-		begin //cos salta n cicli di clock.
+		if (mouse_click[0] == 1'b1 && count_sleep < 11'd1 && !wait_mouse_reset) //se: devo contare, il mouse  cliccato, e non sto aspettando perch il mouse  ancora alto
+		begin //cos salta 1 cicli di clock. E cosi' deve restare o si rompe il conteggio delle navi colpite
 			count_sleep = count_sleep + 11'd1;
 			mouse_left_enable = 1;
-		end
+			if (player_flag_hit)
+				player_hit_count = player_hit_count +1;
+			end
 		else if (wait_mouse_reset) // aspetta finch il mouse non  stato rilasciato
 		begin
 			wait_mouse_reset = mouse_click[0];
 		end
 		else
 		begin
-			
 			case(out_mem_cell_read_status)
 				`Ps:
 				begin 
 					mouse_cell_new_status = `Ps;
+					player_flag_hit = 0;
 				end
 				`PsIs:
 				begin
 					mouse_cell_new_status = `PsIs;
-
+					player_flag_hit = 0;
 				end
 				`free:
 				begin 
 					mouse_cell_new_status = `Ps;
+					player_flag_hit = 0;
 				end
 				`Is:
 				begin
 					mouse_cell_new_status = `PsIs;
+					player_flag_hit = 0;
 				end
 				`Pn:
 				begin
 					mouse_cell_new_status = `PnPs;
+					player_flag_hit = 0;
 				end
 				`In:
 				begin
 					mouse_cell_new_status = `InPs;
-					player_hit_count = player_hit_count + 1;
-				end
+					player_flag_hit = 1;
+					end
 				`InPs:
 				begin
 					mouse_cell_new_status = `InPs;
-					player_hit_count = player_hit_count + 1;
+					player_flag_hit = 0;
 				end
 				`PnIn:
 				begin
 					mouse_cell_new_status = `PnInPs;
+					player_flag_hit = 1;
 				end
 				`PnIs:
 				begin
 					mouse_cell_new_status = `PnPsIs;
+					player_flag_hit = 0;
 				end
 				`PnPs:
 				begin
 					mouse_cell_new_status = `PnPs;
+					player_flag_hit = 0;
 				end
 				`InIs:
 				begin
 					mouse_cell_new_status = `InPsIs;
+					player_flag_hit = 0;
 				end
 				`PnInIs:
 				begin
 					mouse_cell_new_status = `PnInPsIs;
+					player_flag_hit = 0;
 				end
 				`PnInPs:
 				begin
 					mouse_cell_new_status = `PnInPs;
+					player_flag_hit = 0;
 				end
 				`PnPsIs:
 				begin
 					mouse_cell_new_status = `PnPsIs;
+					player_flag_hit = 0;
 				end
 				`InPsIs:
 				begin
 					mouse_cell_new_status = `InPsIs;
+					player_flag_hit = 0;
 				end
 				`PnInPsIs:
 				begin
 					mouse_cell_new_status = `PnInPsIs;
+					player_flag_hit = 0;
 				end
 			endcase
 			count_sleep = 4'd0;
 			mouse_left_enable = !mouse_click[0];
-			wait_mouse_reset = mouse_click[0]; //se ho cliccato
+			wait_mouse_reset = mouse_click[0]; //se ho cliccato	
+		end
+		if(player_hit_count >= 5'd18)
+		begin
+			game_end = 2'b01;
 		end
 	end
 	else if (turn_status == 2'd2)

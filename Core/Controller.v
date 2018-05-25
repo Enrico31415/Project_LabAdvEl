@@ -1,5 +1,6 @@
 `define frequency_divider 	30'b000000000000000000000000000001
 `define frequency_divider_umano 	30'd100000
+`define frequency_gridEngine 	30'd500
 
 
 // CODIFICA DELLA CELLA DI MEMORIA: 5 bit
@@ -43,6 +44,7 @@ output SONDA_1, SONDA_2, SONDA_3;
 
 
 wire w_25Mhz_clock;
+wire w_gridEngine_clock;
 
 //Serve per bloccare l'output quando non sono all'interno dello schermo (vedi UG e PORCH)
 wire w_enable_write;
@@ -63,6 +65,7 @@ wire [3:0] w_cell_status;
 
 wire [11:0] w_color_out;
 	 
+	 
 /*OUTPUT TIPICI PER LA VGA*/
 output	[3:0]	VGA_R;
 output	[3:0]	VGA_G;
@@ -71,6 +74,9 @@ output VGA_HSYNC, VGA_VSYNC;
 
 
 assign {{VGA_R, VGA_G, VGA_B}} = w_color_out;
+
+
+wire [1:0] game_end; //se il gioco e' finito
 //generatore di clock a 25Mhz, serve per tutta la sicronia, a partire dallo schermo. 
 // il clock pi veloce utilizzato
 Module_FrequencyDivider Mhz25ClockGenerator(
@@ -78,6 +84,14 @@ Module_FrequencyDivider Mhz25ClockGenerator(
 					.period(`frequency_divider),
 
 					.clk_out(w_25Mhz_clock));
+					
+					
+					
+Module_FrequencyDivider clock_GE_generator(
+					.clk_in(CLK_50M),
+					.period(`frequency_gridEngine),
+
+					.clk_out(w_gridEngine_clock));
 					
 
 //Driver principale: qui tutto quello che va stampato a schermo
@@ -89,7 +103,7 @@ Module_VGADriver driver (
 	.mouse_pos_x(mouse_sym_counter_x), //posizione del mouse_x
 	.mouse_pos_y(mouse_sym_counter_y), //posizione del mouse_x
 		
-	
+	.game_end(game_end),
 	
 	
 	
@@ -204,7 +218,8 @@ Module_MouseSimulator sim (
 
 	
 
-GridEngine GE(.clk_in(w_25Mhz_clock),
+GridEngine GE(.clk_25M_in(w_25Mhz_clock),
+	.clk_in(w_gridEngine_clock),
 	//TODO Implementazione della posizione del mouse.
 	.mouse_pos_x(mouse_sym_counter_x),
 	.mouse_pos_y(mouse_sym_counter_y),
@@ -219,7 +234,9 @@ GridEngine GE(.clk_in(w_25Mhz_clock),
 	.SONDA_3(SONDA_3),
 	
 	.LED(LED),
-	//TODO: cancellare, si utilizza solo per i led attualmente
+	
+	.game_end(game_end), //stato del gioco
+	
 	.pointer_cell_read_status(w_cell_status) //stato della cella in uso
     );
 	 

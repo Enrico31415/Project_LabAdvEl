@@ -35,7 +35,7 @@ module Module_VGADriver(
 	
 	//stato letto delle celle
 	cell_status,
-	
+	game_end,
 	
 	color_out
     );
@@ -48,7 +48,7 @@ input[9:0] current_line;
 
 input [3:0]	cell_status;
 
-
+input [1:0] game_end;
 input[9:0] mouse_pos_x;
 input[9:0] mouse_pos_y;
 
@@ -74,6 +74,9 @@ wire [4799:0] s_over_circle;
 wire [4799:0] s_over_cross;
 wire [4799:0] s_over_cross_over_cirle;
 wire [4799:0] ship_s;
+wire [9999:0] player_win;
+reg [18:0]  final_print;
+
 //ritona la posizione attuale del pennello in celle
 pos_to_quadrant position_to_quadrant (
 	.clk_in(clk_in),
@@ -89,6 +92,7 @@ pos_to_quadrant position_to_quadrant (
 assign cross = `d_cross;
 assign circle = `d_circle;
 assign ship_s = `d_ship;
+assign player_win = `d_endPlayerWin;
 assign cross_over_circle = `d_circle | `d_cross;
 assign s_over_circle = `d_circle | `d_ship;
 assign s_over_cross = `d_cross | `d_ship;
@@ -104,311 +108,329 @@ always @(posedge clk_in)
 begin
 	if (enable == 1) 
 	begin		
-		case (cell_status) // test sullo stato della cella in quesione
-			4'd0: // <-----------------------------------------------
-			begin //se sono nel quadrato => cambio colore
-				color_out = `green;
-			end
-			4'd1: 
+		if (game_end == 2'd0)
+		begin
+			case (cell_status) // test sullo stato della cella in quesione
+				4'd0: // <-----------------------------------------------
+				begin //se sono nel quadrato => cambio colore
+					color_out = `green;
+				end
+				4'd1: 
+				begin
+					pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+					pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+					pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+					if (cross[pointer_to_mask])
+					begin
+						color_out = `color_player_hit;
+					end
+					else
+					begin
+						color_out = `back_ground;
+					end
+				end
+				4'd2: 
+				begin
+					pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+					pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+					pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+					if (circle[pointer_to_mask])
+					begin
+						color_out = `color_player_hit;
+					end
+					else
+					begin
+						color_out = `back_ground;
+					end
+				end
+				4'd3: 
+				begin
+					pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+					pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+					pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+					if (cross_over_circle[pointer_to_mask])
+					begin
+						color_out = `color_player_hit;
+					end
+					else
+					begin
+						color_out = `back_ground;
+					end
+				end
+				4'd4: 
+				begin
+					pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+					pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+					pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+					if (ship_s[pointer_to_mask])
+					begin
+						color_out = `color_player_and_ia_hit;
+					end
+					else
+					begin
+						color_out = `back_ground;
+					end
+				end
+				4'd6: 
+				begin
+					pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+					pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+					pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+					if (ship_s[pointer_to_mask])
+					begin
+						color_out = `color_player_and_ia_hit;
+					end
+					else
+					begin
+						color_out = `back_ground;
+					end
+				end
+				4'd7:
+				begin
+					pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+					pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+					pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+					if (s_over_circle[pointer_to_mask])
+					begin
+						color_out = `color_player_hit;
+					end
+					else
+					begin
+						color_out = `back_ground;
+					end
+				end
+				 4'd8:
+				begin
+					pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+					pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+					pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+					if (circle[pointer_to_mask])
+					begin
+						color_out = `color_player_hit;
+					end
+					else
+					begin
+						color_out = `back_ground;
+					end
+				end
+				4'd9:
+				begin
+					pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+					pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+					pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+					if (cross[pointer_to_mask])
+					begin
+						color_out = `color_player_hit;
+					end
+					else if (ship_s[pointer_to_mask])
+					begin
+						color_out = `color_player_and_ia_hit;
+					end
+					else
+					begin
+						color_out = `back_ground;
+					end
+				end
+				4'd10:
+				begin
+					pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+					pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+					pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+					if (cross[pointer_to_mask])
+					begin
+						color_out = `red;
+					end
+					else
+					begin
+						color_out = `back_ground;
+					end
+				end
+				4'd11:
+				begin
+					pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+					pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+					pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+					if (cross[pointer_to_mask])
+					begin
+						color_out = `red;
+					end
+					else if (ship_s[pointer_to_mask])
+					begin
+						color_out = `color_player_and_ia_hit;
+					end
+					else
+					begin
+						color_out = `back_ground;
+					end
+				end
+				4'd12:
+				begin
+					pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+					pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+					pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+					if (s_over_circle[pointer_to_mask])
+					begin
+						color_out = `color_player_hit;
+					end
+					else
+					begin
+						color_out = `back_ground;
+					end
+				end
+				4'd13:
+				begin
+					pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+					pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+					pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+					if (s_over_cross_over_cirle[pointer_to_mask])
+					begin
+						color_out = `color_player_hit;
+					end
+					else
+					begin
+						color_out = `back_ground;
+					end
+				end
+				4'd14:
+				begin
+					pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+					pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+					pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+					if (cross_over_circle[pointer_to_mask])
+					begin
+						color_out = `red;
+					end
+					else
+					begin
+						color_out = `back_ground;
+					end
+				end
+				4'd15:
+				begin
+					pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+					pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+					pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+					if (s_over_cross_over_cirle[pointer_to_mask])
+					begin
+						color_out = `red;
+					end
+					else
+					begin
+						color_out = `back_ground;
+					end
+				end
+				4'd5:
+				begin
+					//FIXME da rendere trasparente.
+					color_out = `green;
+					/*pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
+					pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
+					pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
+					if (ship_s[pointer_to_mask])
+					begin
+						color_out = `red;
+					end
+					else
+					begin
+						color_out = `back_ground;
+					end*/
+				end
+			endcase
+			
+			if (current_line <= ((12'd1*`row_period)+`row_dimension) && current_line > ((12'd1*`row_period)-`row_dimension)) // prima riga
 			begin
-				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
-				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
-				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
-				if (cross[pointer_to_mask])
-				begin
-					color_out = `color_player_hit;
-				end
-				else
-				begin
-					color_out = `back_ground;
-				end
+				color_out = `color_line;
 			end
-			4'd2: 
+			else if (current_line <= ((12'd2*`row_period)+`row_dimension)  && current_line > ((12'd2*`row_period)-`row_dimension)) //seconda riga 96
 			begin
-				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
-				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
-				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
-				if (circle[pointer_to_mask])
-				begin
-					color_out = `color_player_hit;
-				end
-				else
-				begin
-					color_out = `back_ground;
-				end
+				color_out = `color_line;
 			end
-			4'd3: 
+			else if (current_line <= ((12'd3*`row_period)+`row_dimension)  && current_line > ((12'd3*`row_period)-`row_dimension)) //terza riga 144
 			begin
-				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
-				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
-				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
-				if (cross_over_circle[pointer_to_mask])
-				begin
-					color_out = `color_player_hit;
-				end
-				else
-				begin
-					color_out = `back_ground;
-				end
+				color_out = `color_line;
 			end
-			4'd4: 
+			else if (current_line <= ((12'd4*`row_period)+`row_dimension) && current_line > ((12'd4*`row_period)-`row_dimension)) //quarta riga: 192
 			begin
-				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
-				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
-				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
-				if (ship_s[pointer_to_mask])
-				begin
-					color_out = `color_player_and_ia_hit;
-				end
-				else
-				begin
-					color_out = `back_ground;
-				end
+				color_out = `color_line;
 			end
-			4'd6: 
+			else if (current_line <= ((12'd5*`row_period)+`row_dimension) && current_line > ((12'd5*`row_period)-`row_dimension)) //quinta riga 240
 			begin
-				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
-				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
-				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
-				if (ship_s[pointer_to_mask])
-				begin
-					color_out = `color_player_and_ia_hit;
-				end
-				else
-				begin
-					color_out = `back_ground;
-				end
+				color_out = `color_line;
 			end
-			4'd7:
+			else if (current_line <= ((12'd6*`row_period)+`row_dimension) && current_line > ((12'd6*`row_period)-`row_dimension)) //sesta riga 288
 			begin
-				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
-				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
-				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
-				if (s_over_circle[pointer_to_mask])
-				begin
-					color_out = `color_player_hit;
-				end
-				else
-				begin
-					color_out = `back_ground;
-				end
+				color_out = `color_line;
 			end
-			 4'd8:
+			else if (current_line <= ((12'd7*`row_period)+`row_dimension) && current_line > ((12'd7*`row_period)-`row_dimension)) //settima riga 336
 			begin
-				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
-				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
-				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
-				if (circle[pointer_to_mask])
-				begin
-					color_out = `color_player_hit;
-				end
-				else
-				begin
-					color_out = `back_ground;
-				end
+				color_out = `color_line;
 			end
-			4'd9:
+			/*else if (current_line <= ((12'd8*`row_period)+`row_dimension) && current_line > ((12'd8*`row_period)-`row_dimension)) //ottava riga 384
 			begin
-				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
-				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
-				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
-				if (cross[pointer_to_mask])
-				begin
-					color_out = `color_player_hit;
-				end
-				else if (ship_s[pointer_to_mask])
-				begin
-					color_out = `color_player_and_ia_hit;
-				end
-				else
-				begin
-					color_out = `back_ground;
-				end
+				color_out = `color_line;
 			end
-			4'd10:
+			else if (current_line <= ((12'd9*`row_period)+`row_dimension) && current_line > ((12'd9*`row_period)-`row_dimension)) //nona riga 432
 			begin
-				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
-				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
-				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
-				if (cross[pointer_to_mask])
-				begin
-					color_out = `red;
-				end
-				else
-				begin
-					color_out = `back_ground;
-				end
-			end
-			4'd11:
+				color_out = `color_line;
+			end*/
+			
+			
+			
+			if (current_row <= ((12'd1*`line_period)+`line_dimension) && current_row> ((12'd1*`line_period)-`line_dimension)) // prima riga
 			begin
-				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
-				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
-				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
-				if (cross[pointer_to_mask])
-				begin
-					color_out = `red;
-				end
-				else if (ship_s[pointer_to_mask])
-				begin
-					color_out = `color_player_and_ia_hit;
-				end
-				else
-				begin
-					color_out = `back_ground;
-				end
+				color_out = `color_row;
 			end
-			4'd12:
+			else if (current_row <= ((12'd2*`line_period)+`line_dimension) && current_row> ((12'd2*`line_period)-`line_dimension)) //seconda riga
 			begin
-				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
-				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
-				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
-				if (s_over_circle[pointer_to_mask])
-				begin
-					color_out = `color_player_hit;
-				end
-				else
-				begin
-					color_out = `back_ground;
-				end
+				color_out = `color_row;
 			end
-			4'd13:
+			else if (current_row <= ((12'd3*`line_period)+`line_dimension) && current_row> ((12'd3*`line_period)-`line_dimension)) //terza riga
 			begin
-				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
-				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
-				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
-				if (s_over_cross_over_cirle[pointer_to_mask])
-				begin
-					color_out = `color_player_hit;
-				end
-				else
-				begin
-					color_out = `back_ground;
-				end
+				color_out = `color_row;
 			end
-			4'd14:
+			else if (current_row <= ((12'd4*`line_period)+`line_dimension) && current_row> ((12'd4*`line_period)-`line_dimension)) //quarta riga
 			begin
-				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
-				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
-				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
-				if (cross_over_circle[pointer_to_mask])
-				begin
-					color_out = `red;
-				end
-				else
-				begin
-					color_out = `back_ground;
-				end
+				color_out = `color_row;
 			end
-			4'd15:
+			else if (current_row <= ((12'd5*`line_period)+`line_dimension) && current_row> ((12'd5*`line_period)-`line_dimension)) //quinta riga
 			begin
-				pointer_to_mask_1 =  ( current_row- (cell_x*`line_period));
-				pointer_to_mask_2 =  (current_line- (cell_y*`row_period));
-				pointer_to_mask =   (pointer_to_mask_1) + pointer_to_mask_2*`line_period;
-				if (s_over_cross_over_cirle[pointer_to_mask])
-				begin
-					color_out = `red;
-				end
-				else
-				begin
-					color_out = `back_ground;
-				end
+				color_out = `color_row;
 			end
-			4'd5:
+			else if (current_row <= ((12'd6*`line_period)+`line_dimension) && current_row> ((12'd6*`line_period)-`line_dimension)) //sesta riga
 			begin
-				//FIXME da rendere trasparente.
-				color_out = `green;
+				color_out = `color_row;
 			end
-		endcase
-		
-		if (current_line <= ((12'd1*`row_period)+`row_dimension) && current_line > ((12'd1*`row_period)-`row_dimension)) // prima riga
-		begin
-			color_out = `color_line;
+			else if (current_row <= ((12'd7*`line_period)+`line_dimension) && current_row> ((12'd7*`line_period)-`line_dimension)) //settima riga
+			begin
+				color_out = `color_row;
+			end
+			/*else if (current_row <= ((12'd8*`line_period)+`line_dimension) && current_row> ((12'd8*`line_period)-`line_dimension)) //ottava riga
+			begin
+				color_out = `color_row;
+			end
+			else if (current_row <= ((12'd9*`line_period)+`line_dimension) && current_row> ((12'd9*`line_period)-`line_dimension)) //nona riga
+			begin
+				color_out = `color_row;
+			end */
+			/*
+			if(current_row <= cell_cross_counter_x+cell_cross_counter_x>>1+cell_cross_counter_x>>1)
+			begin
+				color_out = myfunction(cell_x, cell_y, 4'd0, 4'd0);
+			end
+			if (cell_cross_counter_x > 10'd479)
+			begin
+				cell_cross_counter_x = 10'b0;
+			end
+			if (prec_line != current_line)
+			begin
+				cell_cross_counter_x = cell_cross_counter_x + 10'd1;
+			end
+			*/
 		end
-		else if (current_line <= ((12'd2*`row_period)+`row_dimension)  && current_line > ((12'd2*`row_period)-`row_dimension)) //seconda riga 96
+		else if (game_end == 2'd1)
 		begin
-			color_out = `color_line;
+			color_out = `blue;
 		end
-		else if (current_line <= ((12'd3*`row_period)+`row_dimension)  && current_line > ((12'd3*`row_period)-`row_dimension)) //terza riga 144
-		begin
-			color_out = `color_line;
-		end
-		else if (current_line <= ((12'd4*`row_period)+`row_dimension) && current_line > ((12'd4*`row_period)-`row_dimension)) //quarta riga: 192
-		begin
-			color_out = `color_line;
-		end
-		else if (current_line <= ((12'd5*`row_period)+`row_dimension) && current_line > ((12'd5*`row_period)-`row_dimension)) //quinta riga 240
-		begin
-			color_out = `color_line;
-		end
-		else if (current_line <= ((12'd6*`row_period)+`row_dimension) && current_line > ((12'd6*`row_period)-`row_dimension)) //sesta riga 288
-		begin
-			color_out = `color_line;
-		end
-		else if (current_line <= ((12'd7*`row_period)+`row_dimension) && current_line > ((12'd7*`row_period)-`row_dimension)) //settima riga 336
-		begin
-			color_out = `color_line;
-		end
-		/*else if (current_line <= ((12'd8*`row_period)+`row_dimension) && current_line > ((12'd8*`row_period)-`row_dimension)) //ottava riga 384
-		begin
-			color_out = `color_line;
-		end
-		else if (current_line <= ((12'd9*`row_period)+`row_dimension) && current_line > ((12'd9*`row_period)-`row_dimension)) //nona riga 432
-		begin
-			color_out = `color_line;
-		end*/
-		
-		
-		
-		if (current_row <= ((12'd1*`line_period)+`line_dimension) && current_row> ((12'd1*`line_period)-`line_dimension)) // prima riga
-		begin
-			color_out = `color_row;
-		end
-		else if (current_row <= ((12'd2*`line_period)+`line_dimension) && current_row> ((12'd2*`line_period)-`line_dimension)) //seconda riga
-		begin
-			color_out = `color_row;
-		end
-		else if (current_row <= ((12'd3*`line_period)+`line_dimension) && current_row> ((12'd3*`line_period)-`line_dimension)) //terza riga
-		begin
-			color_out = `color_row;
-		end
-		else if (current_row <= ((12'd4*`line_period)+`line_dimension) && current_row> ((12'd4*`line_period)-`line_dimension)) //quarta riga
-		begin
-			color_out = `color_row;
-		end
-		else if (current_row <= ((12'd5*`line_period)+`line_dimension) && current_row> ((12'd5*`line_period)-`line_dimension)) //quinta riga
-		begin
-			color_out = `color_row;
-		end
-		else if (current_row <= ((12'd6*`line_period)+`line_dimension) && current_row> ((12'd6*`line_period)-`line_dimension)) //sesta riga
-		begin
-			color_out = `color_row;
-		end
-		else if (current_row <= ((12'd7*`line_period)+`line_dimension) && current_row> ((12'd7*`line_period)-`line_dimension)) //settima riga
-		begin
-			color_out = `color_row;
-		end
-		/*else if (current_row <= ((12'd8*`line_period)+`line_dimension) && current_row> ((12'd8*`line_period)-`line_dimension)) //ottava riga
-		begin
-			color_out = `color_row;
-		end
-		else if (current_row <= ((12'd9*`line_period)+`line_dimension) && current_row> ((12'd9*`line_period)-`line_dimension)) //nona riga
-		begin
-			color_out = `color_row;
-		end */
-		/*
-		if(current_row <= cell_cross_counter_x+cell_cross_counter_x>>1+cell_cross_counter_x>>1)
-		begin
-			color_out = myfunction(cell_x, cell_y, 4'd0, 4'd0);
-		end
-		if (cell_cross_counter_x > 10'd479)
-		begin
-			cell_cross_counter_x = 10'b0;
-		end
-		if (prec_line != current_line)
-		begin
-			cell_cross_counter_x = cell_cross_counter_x + 10'd1;
-		end
-		*/
 
 		//qui disegno il punatore
 		if(current_row <= (mouse_pos_x+`dimension) && current_line <= (mouse_pos_y + `dimension) &&

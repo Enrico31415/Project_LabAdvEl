@@ -1,7 +1,7 @@
-// modulo autogenerato, non modificare. Qualsiasi modifica sarà cancellata all successiva esecuzione
-// generato da memoryGeneratorv2.py
+
 module cell_io(
  	 clk_in,
+	 clk_25M_in,
 	 mouse_cell_x, //cella del mouse x 
 	 mouse_cell_y, //cella del mouse y
 	 pointer_cell_x, //cella del puntatore(pennello) x
@@ -13,6 +13,7 @@ module cell_io(
 	 status_pointed_cell //stato ritornato dal puntantore
 	 );
 input clk_in;
+input clk_25M_in;
 input we;
 input [3:0] new_value;
 input [2:0] mouse_cell_x;
@@ -45,7 +46,7 @@ begin
 	status=memory[mouse_cell_x][mouse_cell_y];
 end //always
 // operazioni di read, fatte per plottare a schermo
-always @ (posedge clk_in)
+always @ (posedge clk_25M_in)
 begin
 	status_pointed_cell= memory[pointer_cell_x][pointer_cell_y];
 end
