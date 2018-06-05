@@ -44,7 +44,7 @@ NET "LED<5>"        LOC = "V20"  | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = SL
 ##############################################################################
 
 NET "BTN_NORTH"     LOC = "T14"  | IOSTANDARD = LVCMOS33 | PULLDOWN ;
-NET "BTN_SOUTH"     LOC = "T15"  | IOSTANDARD = LVCMOS33 | PULLDOWN ;
+# NET "BTN_SOUTH"     LOC = "T15"  | IOSTANDARD = LVCMOS33 | PULLDOWN ;
 
 ##############################################################################
 # Switchs
@@ -58,3 +58,4 @@ NET "SONDA_1"     LOC = "V15"  | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = SLOW
 NET "SONDA_2"     LOC = "V16"  | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = SLOW ;
 NET "SONDA_3"     LOC = "V14"  | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = SLOW ;
 
+NET "ROT_CENTER"    LOC = "R13"  | IOSTANDARD = LVCMOS33 | PULLDOWN ;

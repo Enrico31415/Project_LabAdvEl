@@ -1,6 +1,7 @@
 `define frequency_divider 	30'b000000000000000000000000000001
 `define frequency_divider_umano 	30'd100000
-`define frequency_gridEngine 	30'd500
+//`define frequency_gridEngine 	30'd500 FIXME
+`define frequency_gridEngine 	30'd4000000
 
 
 // CODIFICA DELLA CELLA DI MEMORIA: 5 bit
@@ -21,9 +22,9 @@
 
 module Controller(
 			CLK_50M,
-			BTN_NORTH, BTN_SOUTH,
+			BTN_NORTH,
 			PS2_CLK1, PS2_DATA1,
-			
+			ROT_CENTER,
 			SONDA_1, SONDA_2, SONDA_3,
 			
 			LED,
@@ -37,7 +38,7 @@ output [5:0] LED;
 inout PS2_CLK1;
 inout PS2_DATA1;
 //inizializza il mouse
-input  BTN_NORTH, BTN_SOUTH;
+input  BTN_NORTH, ROT_CENTER;
 
 //sonda
 output SONDA_1, SONDA_2, SONDA_3;
@@ -206,7 +207,7 @@ Module_MouseSimulator sim (
 	.BTN_EAST(BTN_EAST), 
 	.BTN_WEST(BTN_WEST), 
 	.BTN_NORTH(BTN_NORTH), 
-	.BTN_SOUTH(BTN_SOUTH),
+	.BTN_NORTH(BTN_NORTH),
 	.clk_in_umano(clock_umano),
 	
 	
@@ -228,10 +229,11 @@ GridEngine GE(.clk_25M_in(w_25Mhz_clock),
 	
 	.pos_x(position_to_controller_x),
 	.pos_y(position_to_controller_y),
-	.BTN_SOUTH(BTN_SOUTH),
+	.BTN_SOUTH(BTN_NORTH),
 	.SONDA_1(SONDA_1),
 	.SONDA_2(SONDA_2),
 	.SONDA_3(SONDA_3),
+	.BTN_RESET(ROT_CENTER),
 	
 	.LED(LED),
 	

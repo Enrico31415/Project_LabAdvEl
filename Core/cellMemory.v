@@ -8,6 +8,7 @@ module cell_io(
 	 pointer_cell_y, //idem y
 	 we, //Write enable, se deve scrivere
 	 new_value, //valore da scrivere
+	 reset, 
 
 	 status, //stato ritornato dal mouse
 	 status_pointed_cell //stato ritornato dal puntantore
@@ -15,6 +16,7 @@ module cell_io(
 input clk_in;
 input clk_25M_in;
 input we;
+input reset;
 input [3:0] new_value;
 input [2:0] mouse_cell_x;
 input [2:0] mouse_cell_y;
@@ -38,12 +40,25 @@ end
 // operazioni di scrittura/lettura dal mouse
 always @ (negedge clk_in)
 begin
-	//se e' il turno del giocatore
-	if(we)
+	if(reset)
 	begin
-		memory[mouse_cell_x][mouse_cell_y] =new_value;
+		for (i = 0; i <= 7; i = i + 1)
+		begin
+			for (j = 0; j <= 7; j = j + 1)
+			begin
+			 memory[i][j] = 4'd0;
+			end
+		end
 	end
-	status=memory[mouse_cell_x][mouse_cell_y];
+	else
+	begin
+		//se e' il turno del giocatore
+		if(we)
+		begin
+			memory[mouse_cell_x][mouse_cell_y] =new_value;
+		end
+		status=memory[mouse_cell_x][mouse_cell_y];
+	end
 end //always
 // operazioni di read, fatte per plottare a schermo
 always @ (posedge clk_25M_in)

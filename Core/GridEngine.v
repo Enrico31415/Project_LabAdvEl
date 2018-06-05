@@ -33,7 +33,7 @@ module GridEngine(clk_25M_in,
 	pos_y,
 	
 	BTN_SOUTH,
-	
+	BTN_RESET,
 		
 	SONDA_1,
 	SONDA_2,
@@ -50,7 +50,7 @@ module GridEngine(clk_25M_in,
 
 // sono 5 navi, con profondit 3 bit (massimo 7 la lunghezza)
 
-
+input BTN_RESET;
 input clk_in;
 input clk_25M_in;
 input [1:0] mouse_click;	
@@ -100,7 +100,6 @@ reg who_write = 1'b0;
 
 reg  [4:0] player_hit_count = 5'd0;
 
-
 reg[2:0] fpga_count_move_x;		// valore da aggiungere al punto di partenza per muoversi lungo la griglia
 reg[2:0] fpga_count_move_y;
 reg[3:0] fpga_target_ship_lenght;	// lunghezza target della nave da piazzare
@@ -118,6 +117,7 @@ wire[2:0] cell_y_to_mem;
 wire we_to_mem;
 wire[3:0] new_value_to_mem;
 
+reg bypass_Placecment = 0'd0;
 
 // uscite del generatore di numeri random
 wire [2:0] reg_to_four_m1;
@@ -199,6 +199,7 @@ cell_io memory( //gestisce la memoria
 	.we(we_to_mem),
 	.pointer_cell_x(pointer_cell_x), // spazzola lo schermo
 	.pointer_cell_y(pointer_cell_y), // spazzola lo schermo
+	.reset(BTN_RESET),
 	
 	.status(out_mem_cell_read_status),
 	.status_pointed_cell(pointer_cell_read_status)
@@ -238,8 +239,15 @@ begin
 		set_random_gens =1'b0; // blocca l'inizailizzazione del generatore random
 
 		if (placement_task == `quiescent_time) begin 
-			if (BTN_SOUTH == 1'b1) begin
+			if ( (BTN_SOUTH == 1'b1 || bypass_Placecment) && BTN_RESET==1'b0) begin
 				placement_task = `init_guess;
+				player_hit_count = 5'd0;
+				flash_mem=5'b00000;
+				ships_number_count = 5'b00000;
+				fpga_vs_mouse= 1'b0;
+				reg_finish_placement= 1'b0;
+				fpga_write_enable=1'b0;
+				who_write = 1'b0;
 			end
 		end
 		
@@ -407,18 +415,25 @@ begin
 //					placement_task=`init_guess;			
 //				end
 				/*else*/ if(out_mem_cell_read_status != fpga_cell_new_status || (out_mem_cell_read_status == fpga_cell_new_status && fpga_write_enable==1'b1) )
-				begin //se la casella è vuota e... da capire (!!)
+				begin //se la casella è vuota e... da capire (!!) //O sono diversi, oppure sonon uguali, ma devo scrivere, quindi non mi interessa.
 					// fpga_write_enable=1'b1;  // da sistemare il write enable (!!) un giro per leggere e un giro per scrivere!
 
 					if (who_write== 1'b0 ) begin
 					fpga_cell_new_status= 4'd5;
 					end
-					else if (who_write== 1'b1) begin					
-						if(flash_mem_val==1'b1)begin
-						fpga_cell_new_status= 4'd6;
+					else if (who_write== 1'b1) begin	
+						if (out_mem_cell_read_status == `PnIn && fpga_write_enable==1'b0) //se c'e sovrapposizione (e sto leggendo) allora esci subito
+						begin
+							placement_task=`init_guess;
 						end
-						else begin
-						fpga_cell_new_status= 4'd4;
+						else
+						begin
+							if(flash_mem_val==1'b1)begin
+							fpga_cell_new_status= 4'd6;
+							end
+							else begin
+							fpga_cell_new_status= 4'd4;
+							end
 						end
 					end
 
@@ -432,7 +447,7 @@ begin
 					placement_task=`count_check;	// vai a controllare lo stato dei contatori
 				end
 
-				else if (out_mem_cell_read_status == fpga_cell_new_status && fpga_write_enable==1'b0)
+				else if ( (out_mem_cell_read_status == fpga_cell_new_status || out_mem_cell_read_status == `PnIn ) && fpga_write_enable==1'b0  )
 				begin
 					placement_task=`init_guess;	// risetta i valori iniziali = RESET		(condizione di uscita)
 				end
@@ -485,113 +500,131 @@ begin
 	end
 	else if (turn_status == 2'd1)
 	begin
-		if (mouse_click[0] == 1'b1 && count_sleep < 11'd1 && !wait_mouse_reset) //se: devo contare, il mouse  cliccato, e non sto aspettando perch il mouse  ancora alto
-		begin //cos salta 1 cicli di clock. E cosi' deve restare o si rompe il conteggio delle navi colpite
-			count_sleep = count_sleep + 11'd1;
-			mouse_left_enable = 1;
-			if (player_flag_hit)
-				player_hit_count = player_hit_count +1;
-			end
-		else if (wait_mouse_reset) // aspetta finch il mouse non  stato rilasciato
+		if (BTN_RESET)
 		begin
-			wait_mouse_reset = mouse_click[0];
+			turn_status = 2'd0;
+			bypass_Placecment = 1;
+			placement_task = `quiescent_time;
 		end
 		else
-		begin
-			case(out_mem_cell_read_status)
-				`Ps:
-				begin 
-					mouse_cell_new_status = `Ps;
-					player_flag_hit = 0;
+			begin
+			if (mouse_click[0] == 1'b1 && count_sleep < 11'd1 && !wait_mouse_reset) //se: devo contare, il mouse  cliccato, e non sto aspettando perch il mouse  ancora alto
+			begin //cos salta 1 cicli di clock. E cosi' deve restare o si rompe il conteggio delle navi colpite
+				count_sleep = count_sleep + 11'd1;
+				mouse_left_enable = 1;
+				if (player_flag_hit)
+					player_hit_count = player_hit_count +1;
 				end
-				`PsIs:
-				begin
-					mouse_cell_new_status = `PsIs;
-					player_flag_hit = 0;
-				end
-				`free:
-				begin 
-					mouse_cell_new_status = `Ps;
-					player_flag_hit = 0;
-				end
-				`Is:
-				begin
-					mouse_cell_new_status = `PsIs;
-					player_flag_hit = 0;
-				end
-				`Pn:
-				begin
-					mouse_cell_new_status = `PnPs;
-					player_flag_hit = 0;
-				end
-				`In:
-				begin
-					mouse_cell_new_status = `InPs;
-					player_flag_hit = 1;
+			else if (wait_mouse_reset) // aspetta finch il mouse non  stato rilasciato
+			begin
+				wait_mouse_reset = mouse_click[0];
+			end
+			else
+			begin
+				case(out_mem_cell_read_status)
+					`Ps:
+					begin 
+						mouse_cell_new_status = `Ps;
+						player_flag_hit = 0;
 					end
-				`InPs:
-				begin
-					mouse_cell_new_status = `InPs;
-					player_flag_hit = 0;
-				end
-				`PnIn:
-				begin
-					mouse_cell_new_status = `PnInPs;
-					player_flag_hit = 1;
-				end
-				`PnIs:
-				begin
-					mouse_cell_new_status = `PnPsIs;
-					player_flag_hit = 0;
-				end
-				`PnPs:
-				begin
-					mouse_cell_new_status = `PnPs;
-					player_flag_hit = 0;
-				end
-				`InIs:
-				begin
-					mouse_cell_new_status = `InPsIs;
-					player_flag_hit = 0;
-				end
-				`PnInIs:
-				begin
-					mouse_cell_new_status = `PnInPsIs;
-					player_flag_hit = 0;
-				end
-				`PnInPs:
-				begin
-					mouse_cell_new_status = `PnInPs;
-					player_flag_hit = 0;
-				end
-				`PnPsIs:
-				begin
-					mouse_cell_new_status = `PnPsIs;
-					player_flag_hit = 0;
-				end
-				`InPsIs:
-				begin
-					mouse_cell_new_status = `InPsIs;
-					player_flag_hit = 0;
-				end
-				`PnInPsIs:
-				begin
-					mouse_cell_new_status = `PnInPsIs;
-					player_flag_hit = 0;
-				end
-			endcase
-			count_sleep = 4'd0;
-			mouse_left_enable = !mouse_click[0];
-			wait_mouse_reset = mouse_click[0]; //se ho cliccato	
-		end
-		if(player_hit_count >= 5'd18)
-		begin
-			game_end = 2'b01;
+					`PsIs:
+					begin
+						mouse_cell_new_status = `PsIs;
+						player_flag_hit = 0;
+					end
+					`free:
+					begin 
+						mouse_cell_new_status = `Ps;
+						player_flag_hit = 0;
+					end
+					`Is:
+					begin
+						mouse_cell_new_status = `PsIs;
+						player_flag_hit = 0;
+					end
+					`Pn:
+					begin
+						mouse_cell_new_status = `PnPs;
+						player_flag_hit = 0;
+					end
+					`In:
+					begin
+						mouse_cell_new_status = `InPs;
+						player_flag_hit = 1;
+						end
+					`InPs:
+					begin
+						mouse_cell_new_status = `InPs;
+						player_flag_hit = 0;
+					end
+					`PnIn:
+					begin
+						mouse_cell_new_status = `PnInPs;
+						player_flag_hit = 1;
+					end
+					`PnIs:
+					begin
+						mouse_cell_new_status = `PnPsIs;
+						player_flag_hit = 0;
+					end
+					`PnPs:
+					begin
+						mouse_cell_new_status = `PnPs;
+						player_flag_hit = 0;
+					end
+					`InIs:
+					begin
+						mouse_cell_new_status = `InPsIs;
+						player_flag_hit = 0;
+					end
+					`PnInIs:
+					begin
+						mouse_cell_new_status = `PnInPsIs;
+						player_flag_hit = 0;
+					end
+					`PnInPs:
+					begin
+						mouse_cell_new_status = `PnInPs;
+						player_flag_hit = 0;
+					end
+					`PnPsIs:
+					begin
+						mouse_cell_new_status = `PnPsIs;
+						player_flag_hit = 0;
+					end
+					`InPsIs:
+					begin
+						mouse_cell_new_status = `InPsIs;
+						player_flag_hit = 0;
+					end
+					`PnInPsIs:
+					begin
+						mouse_cell_new_status = `PnInPsIs;
+						player_flag_hit = 0;
+					end
+				endcase
+				count_sleep = 4'd0;
+				mouse_left_enable = !mouse_click[0];
+				wait_mouse_reset = mouse_click[0]; //se ho cliccato	
+			end
+			if(player_hit_count >= 5'd18)
+			begin
+				game_end = 2'b01;
+				turn_status = 2'd2;
+			end
 		end
 	end
 	else if (turn_status == 2'd2)
 	begin
-		turn_status = 2'd3;
+		if (BTN_RESET)
+		begin
+			turn_status = 2'd0;
+			bypass_Placecment = 1;
+			placement_task = `quiescent_time;
+			player_hit_count = 5'd0;
+			game_end = 2'd0;
+		end
+		//turn_status = 2'd3;
 	end
 	else if (turn_status == 2'd3)
 	begin
