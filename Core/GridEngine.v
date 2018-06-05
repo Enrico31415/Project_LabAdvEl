@@ -107,6 +107,8 @@ reg[3:0] fpga_target_ship_lenght;	// lunghezza target della nave da piazzare
 reg [3:0] mouse_cell_new_status;		
 reg [3:0] fpga_cell_new_status = 4'd5; 
 
+reg player_shoot_change_status = 0;
+
 reg wait_mouse_reset;
 
 wire[3:0] out_mem_cell_read_status; 
@@ -135,6 +137,21 @@ wire reg_one_bit_1_m2;
 wire reg_one_bit_2_m2;	
 
 reg player_flag_hit;
+
+
+
+//variabili pe rlo sparo random dell'ia
+	//input: 
+ wire  [2:0] input_ia_shot_pos_x;
+ wire  [2:0] input_ia_shot_pos_y; //input direttamente dal generatore random
+//reg:
+ reg [2:0] ia_shot_pos_x = 3'd0; //posizioni in cui sto sparando.
+ reg [2:0] ia_shot_pos_y = 3'd0;
+ reg [1:0] ia_shoot_status = 3'd0; //in che fase si trova lo sparo dell'ia.
+
+
+
+
 
 assign LED[1:0] = turn_status;
 assign LED[5:2] = player_hit_count;
@@ -514,7 +531,9 @@ begin
 				mouse_left_enable = 1;
 				if (player_flag_hit)
 					player_hit_count = player_hit_count +1;
-				end
+				if(player_shoot_change_status) //se ho cambiato lo stato
+					turn_status = 2'd2; //passo al turno dell'IA
+			end
 			else if (wait_mouse_reset) // aspetta finch il mouse non  stato rilasciato
 			begin
 				wait_mouse_reset = mouse_click[0];
@@ -526,81 +545,97 @@ begin
 					begin 
 						mouse_cell_new_status = `Ps;
 						player_flag_hit = 0;
+						player_shoot_change_status = 0;
 					end
 					`PsIs:
 					begin
 						mouse_cell_new_status = `PsIs;
 						player_flag_hit = 0;
+						player_shoot_change_status = 0;
 					end
 					`free:
 					begin 
 						mouse_cell_new_status = `Ps;
 						player_flag_hit = 0;
+						player_shoot_change_status = 1;
 					end
 					`Is:
 					begin
 						mouse_cell_new_status = `PsIs;
 						player_flag_hit = 0;
+						player_shoot_change_status = 1;
 					end
 					`Pn:
 					begin
 						mouse_cell_new_status = `PnPs;
 						player_flag_hit = 0;
+						player_shoot_change_status = 1;
 					end
 					`In:
 					begin
 						mouse_cell_new_status = `InPs;
 						player_flag_hit = 1;
+						player_shoot_change_status = 1;
 						end
 					`InPs:
 					begin
 						mouse_cell_new_status = `InPs;
 						player_flag_hit = 0;
+						player_shoot_change_status = 0;
 					end
 					`PnIn:
 					begin
 						mouse_cell_new_status = `PnInPs;
 						player_flag_hit = 1;
+						player_shoot_change_status = 1;
 					end
 					`PnIs:
 					begin
 						mouse_cell_new_status = `PnPsIs;
 						player_flag_hit = 0;
+						player_shoot_change_status = 1;
 					end
 					`PnPs:
 					begin
 						mouse_cell_new_status = `PnPs;
 						player_flag_hit = 0;
+						player_shoot_change_status = 0;
 					end
 					`InIs:
 					begin
 						mouse_cell_new_status = `InPsIs;
 						player_flag_hit = 0;
+						player_shoot_change_status = 1;
 					end
 					`PnInIs:
 					begin
 						mouse_cell_new_status = `PnInPsIs;
 						player_flag_hit = 0;
+						player_shoot_change_status = 1;
 					end
 					`PnInPs:
 					begin
 						mouse_cell_new_status = `PnInPs;
 						player_flag_hit = 0;
+						player_shoot_change_status = 0;
 					end
 					`PnPsIs:
 					begin
 						mouse_cell_new_status = `PnPsIs;
 						player_flag_hit = 0;
+						player_shoot_change_status = 0;
 					end
 					`InPsIs:
 					begin
 						mouse_cell_new_status = `InPsIs;
 						player_flag_hit = 0;
+						player_shoot_change_status = 0;
 					end
 					`PnInPsIs:
 					begin
 						mouse_cell_new_status = `PnInPsIs;
 						player_flag_hit = 0;
+						player_shoot_change_status = 0;
 					end
 				endcase
 				count_sleep = 4'd0;
@@ -610,12 +645,120 @@ begin
 			if(player_hit_count >= 5'd18)
 			begin
 				game_end = 2'b01;
-				turn_status = 2'd2;
 			end
 		end
 	end
 	else if (turn_status == 2'd2)
+	//input: 
+	// [2:0] wire input_ia_shot_pos_x
+	// [2:0] wire input_ia_shot_pos_y //input direttamente dal generatore random
+	//reg:
+	// reg [2:0] ia_shot_pos_x; //posizioni in cui sto sparando.
+	// reg [2:0] ia_shot_pos_y;
+	// reg [1:0] ia_shoot_status; //in che fase si trova lo sparo dell'ia.
 	begin
+		fpga_vs_mouse = 0; //passo al controllo della memoria
+		case (ia_shoot_status)
+			2'd0: // inizializzazione del random
+			begin
+				// se becca valori buoni, metti i flag a 1
+				ia_shot_pos_x = reg_to_seven_m1; // lo salvo
+				ia_shot_pos_y = reg_to_seven_m2; // lo salvo
+				ia_shoot_status = ia_shoot_status +1;
+			end
+			2'd1: //controllo della cella di memoria puntata
+			begin
+				//leggo la memoria in questione,
+				fpga_cell_x = ia_shot_pos_x;
+				fpga_cell_y = ia_shot_pos_y;
+				ia_shoot_status = ia_shoot_status +1;
+			end
+			2'd2:
+			begin
+				case(out_mem_cell_read_status)
+					0: begin
+						//se è valido, passo allo stato successivo: la scrittura
+					  ia_shoot_status = ia_shoot_status + 1;
+					  fpga_cell_new_status=`Is;
+					end
+					`Ps: begin
+						ia_shoot_status = ia_shoot_status + 1;
+						fpga_cell_new_status=`PsIs;
+					end
+					`Is: begin //se non è valido, torno allo stato di generazione random.
+						ia_shoot_status = 2'd0;
+					end
+					`PsIs: begin //fix
+						ia_shoot_status = 2'd0;
+					end
+					 `Pn: begin
+						  ia_shoot_status = ia_shoot_status + 1;
+						  fpga_cell_new_status=`PnIs;
+					 end
+					 `In: begin
+						  ia_shoot_status = ia_shoot_status + 1;
+						  fpga_cell_new_status=`InIs;
+					 end
+					 `PnIn: begin
+						  ia_shoot_status = ia_shoot_status + 1;
+						  fpga_cell_new_status=`PnInIs;
+					 end
+					 `PnIs: begin //fix
+						  ia_shoot_status = 2'd0;
+					 end
+					 `InIs: begin //fix
+						  ia_shoot_status = 2'd0;
+					 end
+					 `PnPs: begin
+						  ia_shoot_status = ia_shoot_status + 1;
+						  fpga_cell_new_status=`PnPsIs;
+					 end
+					 `InPs: begin
+						  ia_shoot_status = ia_shoot_status + 1;
+						  fpga_cell_new_status=`InPsIs;
+					 end
+					 `PnInPs: begin
+						  ia_shoot_status = ia_shoot_status + 1;
+						  fpga_cell_new_status=`PnInPsIs;
+					 end
+					`PnInIs: begin
+							ia_shoot_status = 2'd0;
+					end
+					`PnPsIs: begin
+							ia_shoot_status = 2'd0;
+					end
+					`InPsIs: begin
+							ia_shoot_status = 2'd0;
+					end
+					`PnInPsIs: begin
+							ia_shoot_status = 2'd0;
+					end
+				endcase
+			end
+			2'd3: //fase finale, scrittura:
+			begin
+				if (fpga_write_enable == 0) //se ho il we a zero, quindi sono caduto in uno stato, che devo scrivere
+				begin 
+					fpga_write_enable = 1;
+				end
+				else //se ho scritto, 
+				begin
+					fpga_write_enable = 0;
+					ia_shoot_status = 2'd0;
+					turn_status = 2'd1; //torna 
+					fpga_vs_mouse = 1;
+					//resetto e passo al giocatore.
+				end
+			end
+			
+			
+		endcase
+
+	
+	
+	
+	
+		/* CODICE PER IL RESET */
 		if (BTN_RESET)
 		begin
 			turn_status = 2'd0;
@@ -623,7 +766,7 @@ begin
 			placement_task = `quiescent_time;
 			player_hit_count = 5'd0;
 			game_end = 2'd0;
-		end
+		end 
 		//turn_status = 2'd3;
 	end
 	else if (turn_status == 2'd3)

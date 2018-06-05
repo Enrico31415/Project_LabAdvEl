@@ -4,9 +4,9 @@
 // Company: 
 // Engineer:
 //
-// Create Date:   17:03:58 05/25/2018
+// Create Date:   21:18:13 06/05/2018
 // Design Name:   GridEngine
-// Module Name:   /media/Scratch/Project_LabAdvEl/Core/GeTest.v
+// Module Name:   Z:/Core/Project_LabAdvEl/Core/GeTest.v
 // Project Name:  new
 // Target Device:  
 // Tool versions:  
@@ -32,6 +32,7 @@ module GeTest;
 	reg [9:0] pos_x;
 	reg [9:0] pos_y;
 	reg BTN_SOUTH;
+	reg BTN_RESET;
 	reg [1:0] mouse_click;
 
 	// Outputs
@@ -40,6 +41,7 @@ module GeTest;
 	wire SONDA_3;
 	wire [5:0] LED;
 	wire [3:0] pointer_cell_read_status;
+	wire [1:0] game_end;
 
 	// Instantiate the Unit Under Test (UUT)
 	GridEngine uut (
@@ -50,12 +52,14 @@ module GeTest;
 		.pos_x(pos_x), 
 		.pos_y(pos_y), 
 		.BTN_SOUTH(BTN_SOUTH), 
+		.BTN_RESET(BTN_RESET), 
 		.SONDA_1(SONDA_1), 
 		.SONDA_2(SONDA_2), 
 		.SONDA_3(SONDA_3), 
 		.LED(LED), 
 		.mouse_click(mouse_click), 
-		.pointer_cell_read_status(pointer_cell_read_status)
+		.pointer_cell_read_status(pointer_cell_read_status), 
+		.game_end(game_end)
 	);
 
 	initial begin
@@ -67,12 +71,18 @@ module GeTest;
 		pos_x = 0;
 		pos_y = 0;
 		BTN_SOUTH = 1;
+		BTN_RESET = 0;
 		mouse_click = 0;
 
 		// Wait 100 ns for global reset to finish
 		#100;
         
 		// Add stimulus here
+		forever #1
+		begin
+			clk_25M_in = !clk_25M_in;
+			clk_in = !clk_in;
+		end
 	end
       
 endmodule

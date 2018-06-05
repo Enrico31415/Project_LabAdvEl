@@ -1,21 +1,20 @@
-Running: /usr/LDSS/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -relaunch -intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "/media/Scratch/Project_LabAdvEl/Core/GeTest_isim_beh.exe" -prj "/media/Scratch/Project_LabAdvEl/Core/GeTest_beh.prj" "work.GeTest" "work.glbl" 
-ISim P.20131013 (signature 0xfbc00daa)
+Running: fuse.exe -relaunch -intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "Z:/Core/Project_LabAdvEl/Core/GeTest_isim_beh.exe" -prj "Z:/Core/Project_LabAdvEl/Core/GeTest_beh.prj" "work.GeTest" "work.glbl" 
+ISim P.20131013 (signature 0x7708f090)
 Number of CPUs detected in this system: 4
 Turning on mult-threading, number of parallel sub-compilation jobs: 8 
 Determining compilation order of HDL files
-Analyzing Verilog file "/media/Scratch/Project_LabAdvEl/Core/shift_2.v" into library work
-Analyzing Verilog file "/media/Scratch/Project_LabAdvEl/Core/random_gen.v" into library work
-Analyzing Verilog file "/media/Scratch/Project_LabAdvEl/Core/zero_to_nine_r_gen.v" into library work
-Analyzing Verilog file "/media/Scratch/Project_LabAdvEl/Core/swtch_mouse_fpga.v" into library work
-Analyzing Verilog file "/media/Scratch/Project_LabAdvEl/Core/pos_to_quadrant.v" into library work
-Analyzing Verilog file "/media/Scratch/Project_LabAdvEl/Core/cellMemory.v" into library work
-Analyzing Verilog file "/media/Scratch/Project_LabAdvEl/Core/GridEngine.v" into library work
-Analyzing Verilog file "/media/Scratch/Project_LabAdvEl/Core/GeTest.v" into library work
-Analyzing Verilog file "/usr/LDSS/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
+Analyzing Verilog file "Z:/Core/Project_LabAdvEl/Core/shift_2.v" into library work
+Analyzing Verilog file "Z:/Core/Project_LabAdvEl/Core/random_gen.v" into library work
+Analyzing Verilog file "Z:/Core/Project_LabAdvEl/Core/zero_to_nine_r_gen.v" into library work
+Analyzing Verilog file "Z:/Core/Project_LabAdvEl/Core/swtch_mouse_fpga.v" into library work
+Analyzing Verilog file "Z:/Core/Project_LabAdvEl/Core/pos_to_quadrant.v" into library work
+Analyzing Verilog file "Z:/Core/Project_LabAdvEl/Core/cellMemory.v" into library work
+Analyzing Verilog file "Z:/Core/Project_LabAdvEl/Core/GridEngine.v" into library work
+WARNING:HDLCompiler:1818 - "Z:/Core/Project_LabAdvEl/Core/GridEngine.v" Line 122: Invalid size of integer constant literal
+Analyzing Verilog file "Z:/Core/Project_LabAdvEl/Core/GeTest.v" into library work
+Analyzing Verilog file "C:/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
 Starting static elaboration
 Completed static elaboration
-Fuse Memory Usage: 96252 KB
-Fuse CPU Usage: 910 ms
 Compiling module pos_to_quadrant
 Compiling module swtch_mouse_fpga
 Compiling module cell_io
@@ -26,9 +25,8 @@ Compiling module GridEngine
 Compiling module GeTest
 Compiling module glbl
 Time Resolution for simulation is 1ps.
-Waiting for 1 sub-compilation(s) to finish...
+Waiting for 2 sub-compilation(s) to finish...
 Compiled 9 Verilog Units
-Built simulation executable /media/Scratch/Project_LabAdvEl/Core/GeTest_isim_beh.exe
-Fuse Memory Usage: 660896 KB
-Fuse CPU Usage: 980 ms
-GCC CPU Usage: 370 ms
+Built simulation executable Z:/Core/Project_LabAdvEl/Core/GeTest_isim_beh.exe
+Fuse Memory Usage: 33476 KB
+Fuse CPU Usage: 2620 ms

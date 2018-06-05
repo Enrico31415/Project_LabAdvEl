@@ -5,5 +5,8 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
+<msg type="warning" file="HDLCompiler" num="1818" delta="unknown" >"Z:/Core/Project_LabAdvEl/Core/GridEngine.v" Line 122: Invalid size of integer constant literal
+</msg>
+
 </messages>
 
