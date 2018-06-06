@@ -604,13 +604,13 @@ begin
 					`InIs:
 					begin
 						mouse_cell_new_status = `InPsIs;
-						player_flag_hit = 0;
+						player_flag_hit = 1;
 						player_shoot_change_status = 1;
 					end
 					`PnInIs:
 					begin
 						mouse_cell_new_status = `PnInPsIs;
-						player_flag_hit = 0;
+						player_flag_hit = 1;
 						player_shoot_change_status = 1;
 					end
 					`PnInPs:
@@ -677,7 +677,7 @@ begin
 			begin
 				case(out_mem_cell_read_status)
 					0: begin
-						//se è valido, passo allo stato successivo: la scrittura
+						//se  valido, passo allo stato successivo: la scrittura
 					  ia_shoot_status = ia_shoot_status + 1;
 					  fpga_cell_new_status=`Is;
 					end
@@ -685,7 +685,7 @@ begin
 						ia_shoot_status = ia_shoot_status + 1;
 						fpga_cell_new_status=`PsIs;
 					end
-					`Is: begin //se non è valido, torno allo stato di generazione random.
+					`Is: begin //se non  valido, torno allo stato di generazione random.
 						ia_shoot_status = 2'd0;
 					end
 					`PsIs: begin //fix
