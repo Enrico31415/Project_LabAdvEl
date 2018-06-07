@@ -301,7 +301,7 @@ begin
 					end
 					else if(cross[pointer_to_mask])
 					begin
-						color_out = `red;
+						color_out = `color_player_hit;
 					end
 					else
 					begin
