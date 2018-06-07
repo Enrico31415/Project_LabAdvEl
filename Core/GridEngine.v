@@ -1,3 +1,8 @@
+// per cambiare stato, da 0 a 1
+//reg_finish_placement=1'b1;
+//turn_status = 2'd1;
+//fpga_vs_mouse = 1;
+
 `timescale 1ns / 1ps
 
 `define frequency_div 	30'd1
@@ -91,6 +96,7 @@ reg reg_final_else= 1'b0;
 
 reg set_random_gens=1'b1;		// setta i generatori pseudorandom
 reg fpga_write_enable=1'b0;		// pin che abilita la scrittura nella casella di memoria da parte dell'fpga
+reg fpga_write_enable_del=1'b0;
 wire mouse_write_enable;		// pin che abilita la scrittura nella casella di memoria da parte dell mouse
 reg[2:0] fpga_cell_x;			// coordinate della cella di memoria a cui punta l'fpga
 reg[2:0] fpga_cell_y;
@@ -351,6 +357,7 @@ begin
 		else if (placement_task==`mem_point) begin // tempo `mem_point. passa i valori alla memoria eventualmente incrementati
 			fpga_cell_x = fpga_guess_x + fpga_count_move_x;
 			fpga_cell_y = fpga_guess_y + fpga_count_move_y;
+			fpga_write_enable= fpga_write_enable_del;
 			placement_task = `mem_read;
 
 		end
@@ -431,51 +438,74 @@ begin
 
 //-------------------------------------------------------------------		
 		
-		else if (placement_task==`mem_write) begin // tempo `mem_read. leggi il valore della cella e decidi cosa fare. RICORDA al primo giro fpga_write_enable sta a zero (!)
+		else if (placement_task==`mem_write) begin 
 
-//				if (out_mem_cell_read_status == 5'bXXXXX) begin // se lo stato è indefinito riprova ad inizializzare ( accade appena accesa l'fpga? primi cicli)
-//					placement_task=`init_guess;			
-//				end
-				/*else*/ if(out_mem_cell_read_status != fpga_cell_new_status || (out_mem_cell_read_status == fpga_cell_new_status && fpga_write_enable==1'b1) )
-				begin //se la casella è vuota e... da capire (!!) //O sono diversi, oppure sonon uguali, ma devo scrivere, quindi non mi interessa.
-					// fpga_write_enable=1'b1;  // da sistemare il write enable (!!) un giro per leggere e un giro per scrivere!
+			if(who_write == 1'b0) begin
+				if(fpga_write_enable==1'b0)begin
+					if(out_mem_cell_read_status==`free) begin
+					placement_task=`count_check; // go on
+					end
+					else if(out_mem_cell_read_status==`In) begin
+					placement_task=`init_guess; // <------------- exit
+					end
+					//else if(out_mem_cell_read_status==`Pn) begin
+					//not defined
+					//end
+					//else if(out_mem_cell_read_status==`PnIn) begin
+					//not defined
+					//end
+					else begin // istruzione di uscita nei casi indeterminati
+					placement_task=`init_guess; // <------------- exit
+					end
+				end 
 
-					if (who_write== 1'b0 ) begin
-					fpga_cell_new_status= 4'd5;
-					end
-					else if (who_write== 1'b1) begin	
-						if (out_mem_cell_read_status == `PnIn && fpga_write_enable==1'b0) //se c'e sovrapposizione (e sto leggendo) allora esci subito
-						begin
-							placement_task=`init_guess;
-						end
-						else
-						begin
-							if(flash_mem_val==1'b1)begin
-							fpga_cell_new_status= 4'd6;
-							end
-							else begin
-							fpga_cell_new_status= 4'd4;
-							end
-						end
-					end
-
-					if(orient_guess== 1'b0)					// incrementa la direzione di movimento
-					begin fpga_count_move_x=fpga_count_move_x+ 4'b0001;
-					end
-					else if(orient_guess== 1'b1)				// incrementa la direzione di movimento
-					begin fpga_count_move_y=fpga_count_move_y+ 4'b0001;
-					end
-
-					placement_task=`count_check;	// vai a controllare lo stato dei contatori
+				else if(fpga_write_enable==1'b1) begin
+					fpga_cell_new_status= `In;
+					placement_task=`count_check;	//go on
 				end
 
-				else if ( (out_mem_cell_read_status == fpga_cell_new_status || out_mem_cell_read_status == `PnIn ) && fpga_write_enable==1'b0  )
-				begin
-					placement_task=`init_guess;	// risetta i valori iniziali = RESET		(condizione di uscita)
+			end
+			else if(who_write == 1'b1) begin
+				if(fpga_write_enable==1'b0)begin
+					if(out_mem_cell_read_status==`free) begin
+					placement_task=`count_check; // go on
+					end
+					else if(out_mem_cell_read_status==`In) begin
+					placement_task=`count_check; // go on
+					end
+					else if(out_mem_cell_read_status==`Pn) begin
+					placement_task=`init_guess; // <------------- exit
+					end
+					else if(out_mem_cell_read_status==`PnIn) begin
+					placement_task=`init_guess; // <------------- exit
+					end else begin // istruzione di uscita nei casi indeterminati
+					placement_task=`init_guess; // <------------- exit
+					end
+					
+				end 
+
+				else if(fpga_write_enable==1'b1) begin
+				// condizioni dipendenti dai valori della memoria flash
+					if(flash_mem_val==1'b1)begin
+					fpga_cell_new_status= `PnIn;
+					end
+					else if(flash_mem_val==1'b0) begin
+					fpga_cell_new_status= `Pn;
+					end
+
+					placement_task=`count_check;
 				end
-				else begin
-					placement_task=`init_guess;	// risetta i valori iniziali = RESET		
-				end
+
+
+			end
+
+			if(orient_guess== 1'b0)					// incrementa la direzione di movimento
+			begin fpga_count_move_x=fpga_count_move_x+ 4'b0001;
+			end
+			else if(orient_guess== 1'b1)				// incrementa la direzione di movimento
+			begin fpga_count_move_y=fpga_count_move_y+ 4'b0001;
+			end
+
 		end
 
 //----------------------------------------------
@@ -483,13 +513,13 @@ begin
 		else if (placement_task==`count_check) begin // tempo `count_check. prima di puntare la memoria controlla di non essere alla fine del conteggio sulla lunghezza
 // controllare i valori di fpga_target_ship_lenght
 			if( (fpga_count_move_x == fpga_target_ship_lenght || fpga_count_move_y == fpga_target_ship_lenght ) && fpga_write_enable == 0 ) begin
-				fpga_write_enable = 1'b1;
+				fpga_write_enable_del = 1'b1;
 				fpga_count_move_x = 4'b0000;
 				fpga_count_move_y = 4'b0000;
 				placement_task=`mem_point; // ricomincia il giro
 			end
 			else if( (fpga_count_move_x == fpga_target_ship_lenght || fpga_count_move_y == fpga_target_ship_lenght ) && fpga_write_enable == 1 ) begin
-				fpga_write_enable = 1'b0;
+				fpga_write_enable_del = 1'b0;
 				fpga_count_move_x = 4'b0000;
 				fpga_count_move_y = 4'b0000;
 				ships_number_count=ships_number_count+5'b00001;
