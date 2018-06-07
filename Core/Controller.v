@@ -1,7 +1,7 @@
 `define frequency_divider 	30'b000000000000000000000000000001
 `define frequency_divider_umano 	30'd100000
 `define frequency_gridEngine 	30'd500 //FIXME
-//`define frequency_gridEngine 	30'd4000000
+//`define frequency_gridEngine 	30'd4000000 //frequenza per testing
 
 
 // CODIFICA DELLA CELLA DI MEMORIA: 5 bit

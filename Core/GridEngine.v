@@ -3,7 +3,7 @@
 `define frequency_div 	30'd1
 `define frequency_div_lento 	30'd2500000
 
-`define sleep_pre_ia_shoot 	30'd10000
+`define sleep_pre_ia_shoot 	30'd10000 //conteggio prima di sparare
 
 // momenti di [turn_fpga_init]
 `define quiescent_time		4'b0000
@@ -102,7 +102,8 @@ reg who_write = 1'b0;
 
 reg ia_placement_rejected = 0; // serve a far saltare il conteggio, di sleep dell'ia, se la posizione generata non 'e valida
 
-reg  [4:0] player_hit_count = 5'd0;
+reg  [4:0] player_hit_count = 5'd0; // quante navi ha colpito il giocatore
+reg  [4:0] ia_hit_count = 5'd0; // quante navi ha colpito il'ia
 
 reg[2:0] fpga_count_move_x;		// valore da aggiungere al punto di partenza per muoversi lungo la griglia
 reg[2:0] fpga_count_move_y;
@@ -158,7 +159,7 @@ reg [29:0] sleep_pre_ia_shoot_counter = 30'd0; //tiene conto di un delay per sim
 
 
 assign LED[1:0] = turn_status;
-assign LED[5:2] = player_hit_count;
+assign LED[5:2] = ia_hit_count;
 buf( SONDA_1 , player_flag_hit && mouse_write_enable);
 buf( SONDA_2 , player_flag_hit && mouse_write_enable);
 buf( SONDA_3 , player_flag_hit);
@@ -527,6 +528,7 @@ begin
 			bypass_Placecment = 1;
 			placement_task = `quiescent_time;
 			player_hit_count = 5'd0;
+			ia_hit_count = 5'd0;
 			game_end = 2'd0;
 			sleep_pre_ia_shoot_counter = 0;
 		end
@@ -654,8 +656,8 @@ begin
 			begin
 				game_end = 2'b01;
 			end
-		end
-	end
+		end//end del reset: if(reset) else begin END
+	end //end
 	else if (turn_status == 2'd2)
 	begin
 		if (sleep_pre_ia_shoot_counter <=	`sleep_pre_ia_shoot  && ia_placement_rejected == 0)
@@ -714,6 +716,7 @@ begin
 							  ia_shoot_status = ia_shoot_status + 1;
 							  fpga_cell_new_status=`PnIs;
 							  ia_placement_rejected = 0;
+							  ia_hit_count = ia_hit_count + 1 ;
 						 end
 						 `In: begin
 							  ia_shoot_status = ia_shoot_status + 1;
@@ -724,6 +727,7 @@ begin
 							  ia_shoot_status = ia_shoot_status + 1;
 							  fpga_cell_new_status=`PnInIs;
 							  ia_placement_rejected = 0;
+							  ia_hit_count = ia_hit_count + 1 ;
 						 end
 						 `PnIs: begin //fix
 							  ia_shoot_status = 2'd0;
@@ -737,6 +741,7 @@ begin
 							  ia_shoot_status = ia_shoot_status + 1;
 							  fpga_cell_new_status=`PnPsIs;
 							  ia_placement_rejected = 0;
+							  ia_hit_count = ia_hit_count + 1 ;
 						 end
 						 `InPs: begin
 							  ia_shoot_status = ia_shoot_status + 1;
@@ -747,6 +752,7 @@ begin
 							  ia_shoot_status = ia_shoot_status + 1;
 							  fpga_cell_new_status=`PnInPsIs;
 							  ia_placement_rejected = 0;
+							  ia_hit_count = ia_hit_count + 1 ;
 						 end
 						`PnInIs: begin
 								ia_shoot_status = 2'd0;
@@ -785,12 +791,17 @@ begin
 			endcase //case stati
 	end //if del conteggio
 	/* CODICE PER IL RESET */
+	if(ia_hit_count >= 5'd18)
+	begin
+		game_end = 2'b10;
+	end
 	if (BTN_RESET)
 	begin
 		turn_status = 2'd0;
 		bypass_Placecment = 1;
 		placement_task = `quiescent_time;
 		player_hit_count = 5'd0;
+		ia_hit_count = 5'd0;
 		game_end = 2'd0;
 		sleep_pre_ia_shoot_counter = 0;
 	end 

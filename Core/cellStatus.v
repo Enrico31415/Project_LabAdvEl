@@ -14,8 +14,8 @@
 `define Is 4'd2//Ia shoot
 `define PsIs 4'd3//PlayerIa shoo
 `define Pn 4'd4//Player nave
-`define In 4'd5//Ia nave
-`define PnIn 4'd6//P and IA nave
+`define In 4'd5//Ia nave //DA MODIFICARE PER DEBUG
+`define PnIn 4'd6//P and IA nave //DA MODIFICARE PER DEBUG
 `define PnIs 4'd7//P nave Ia shot
 `define InIs 4'd8//I nave I shoot
 `define PnPs 4'd9//p nave p shoot
