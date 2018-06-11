@@ -276,12 +276,15 @@ begin
 				reg_finish_placement= 1'b0;
 				fpga_write_enable=1'b0;
 				who_write = 1'b0;
+				fpga_write_enable =1'b0; 
+				fpga_write_enable_del =1'b0; 
 			end
 		end
 		
 		else if (placement_task == `init_guess) begin // tempo zero inizializzazione guess
 
 				fpga_write_enable =1'b0; 	// non scrivere mentre esplori tutte le caselle (primo giro)
+				fpga_write_enable_del =1'b0; 
 				fpga_count_move_x = 4'b0000;			// valori di prova durante l'operazione di piazzamento. questo valore va sommato alla coordinata x 
 				fpga_count_move_y = 4'b0000;			// potersi muovere lungo x o y
 				orient_guess = reg_one_bit_2_m2; // guess orientazione (0=orizzontale 1= verticale)
