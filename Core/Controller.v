@@ -34,7 +34,7 @@ module Controller(
 	 
 input CLK_50M;
 
-output [5:0] LED;
+output [6:0] LED;
 inout PS2_CLK1;
 inout PS2_DATA1;
 //inizializza il mouse
@@ -96,7 +96,7 @@ Module_FrequencyDivider clock_GE_generator(
 					
 
 //Driver principale: qui tutto quello che va stampato a schermo
-Module_VGADriver driver (
+Module_VGADriver VGAdriver (
 	.clk_in(w_25Mhz_clock), 
 	.current_row(position_to_controller_x), //posizione_x del pixcel in considerazione
 	.current_line(position_to_controller_y), //posizione_y del pixcel in considerazione

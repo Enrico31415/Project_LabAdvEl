@@ -8,7 +8,7 @@
 `define frequency_div 	30'd1
 `define frequency_div_lento 	30'd2500000
 
-`define sleep_pre_ia_shoot 	30'd10000 //conteggio prima di sparare
+`define sleep_pre_ia_shoot 	30'd7000 //conteggio prima di sparare
 
 // momenti di [turn_fpga_init]
 `define quiescent_time		4'b0000
@@ -67,7 +67,7 @@ input BTN_SOUTH;
 input [9:0] pos_x;
 input [9:0] pos_y;
 output [3:0] pointer_cell_read_status;
-output [5:0] LED;
+output [6:0] LED;
 output SONDA_1, SONDA_2, SONDA_3;
 output reg [1:0] game_end = 2'd0;
 reg [1:0] turn_status = 2'd0;  //determina la fase di gioco:
@@ -77,6 +77,8 @@ reg mouse_right_enable = 1'b1;
 reg mouse_left_enable = 1'b1;
 reg write_enable =1'b0;
 reg [10:0] count_sleep = 11'd0;
+
+reg [6:0] player_click_count = 7'd0;
 
 reg[4:0] flash_mem=5'b00000;
 reg flash_mem_val; // valore momentaneo della memoria flash
@@ -93,6 +95,8 @@ reg [3:0] placement_task = 4'b0000; 	// contatore sulle oprazioni piazzamento
 reg fpga_vs_mouse= 1'b0;		// flag che regola li switch tra logica fpga (0) e mouse (1)
 reg reg_finish_placement= 1'b0;		// flag fine dei piazzamenti
 reg reg_final_else= 1'b0;
+
+reg pleyer_click_flag = 0;
 
 reg set_random_gens=1'b1;		// setta i generatori pseudorandom
 reg fpga_write_enable=1'b0;		// pin che abilita la scrittura nella casella di memoria da parte dell'fpga
@@ -164,8 +168,8 @@ reg player_flag_hit;
 reg [29:0] sleep_pre_ia_shoot_counter = 30'd0; //tiene conto di un delay per simulare lo sparo dell'IA
 
 
-assign LED[1:0] = turn_status;
-assign LED[5:2] = ia_hit_count;
+//assign LED[1:0] = turn_status;
+assign LED[6:0] = player_click_count;
 buf( SONDA_1 , player_flag_hit && mouse_write_enable);
 buf( SONDA_2 , player_flag_hit && mouse_write_enable);
 buf( SONDA_3 , player_flag_hit);
@@ -564,6 +568,7 @@ begin
 			ia_hit_count = 5'd0;
 			game_end = 2'd0;
 			sleep_pre_ia_shoot_counter = 0;
+			player_click_count = 7'd0;
 		end
 		else
 			begin
@@ -573,6 +578,8 @@ begin
 				mouse_left_enable = 1;
 				if (player_flag_hit)
 					player_hit_count = player_hit_count +1;
+				if (pleyer_click_flag)
+					player_click_count = player_click_count + 1;
 				if(player_shoot_change_status) //se ho cambiato lo stato
 					turn_status = 2'd2; //passo al turno dell'IA
 					sleep_pre_ia_shoot_counter = 30'd0;
@@ -589,96 +596,112 @@ begin
 						mouse_cell_new_status = `Ps;
 						player_flag_hit = 0;
 						player_shoot_change_status = 0;
+						pleyer_click_flag = 0;
 					end
 					`PsIs:
 					begin
 						mouse_cell_new_status = `PsIs;
 						player_flag_hit = 0;
 						player_shoot_change_status = 0;
+						pleyer_click_flag = 0;
 					end
 					`free:
 					begin 
 						mouse_cell_new_status = `Ps;
 						player_flag_hit = 0;
 						player_shoot_change_status = 1;
+						pleyer_click_flag = 1;
 					end
 					`Is:
 					begin
 						mouse_cell_new_status = `PsIs;
 						player_flag_hit = 0;
 						player_shoot_change_status = 1;
+						pleyer_click_flag = 1;
 					end
 					`Pn:
 					begin
 						mouse_cell_new_status = `PnPs;
 						player_flag_hit = 0;
 						player_shoot_change_status = 1;
+						pleyer_click_flag = 1;
 					end
 					`In:
 					begin
 						mouse_cell_new_status = `InPs;
 						player_flag_hit = 1;
 						player_shoot_change_status = 1;
+						pleyer_click_flag = 1;
 						end
 					`InPs:
 					begin
 						mouse_cell_new_status = `InPs;
 						player_flag_hit = 0;
 						player_shoot_change_status = 0;
+						pleyer_click_flag = 0;
 					end
 					`PnIn:
 					begin
 						mouse_cell_new_status = `PnInPs;
 						player_flag_hit = 1;
 						player_shoot_change_status = 1;
+						pleyer_click_flag = 1;
 					end
 					`PnIs:
 					begin
 						mouse_cell_new_status = `PnPsIs;
 						player_flag_hit = 0;
 						player_shoot_change_status = 1;
+						pleyer_click_flag = 1;
 					end
 					`PnPs:
 					begin
 						mouse_cell_new_status = `PnPs;
 						player_flag_hit = 0;
 						player_shoot_change_status = 0;
+						pleyer_click_flag = 0;
 					end
 					`InIs:
 					begin
 						mouse_cell_new_status = `InPsIs;
 						player_flag_hit = 1;
 						player_shoot_change_status = 1;
+						pleyer_click_flag = 1;
 					end
 					`PnInIs:
 					begin
 						mouse_cell_new_status = `PnInPsIs;
 						player_flag_hit = 1;
 						player_shoot_change_status = 1;
+						pleyer_click_flag = 1;
 					end
 					`PnInPs:
 					begin
 						mouse_cell_new_status = `PnInPs;
 						player_flag_hit = 0;
 						player_shoot_change_status = 0;
+						pleyer_click_flag = 0;
 					end
 					`PnPsIs:
 					begin
 						mouse_cell_new_status = `PnPsIs;
 						player_flag_hit = 0;
 						player_shoot_change_status = 0;
+						pleyer_click_flag = 0;
 					end
 					`InPsIs:
 					begin
 						mouse_cell_new_status = `InPsIs;
 						player_flag_hit = 0;
 						player_shoot_change_status = 0;
+						pleyer_click_flag = 0;
 					end
 					`PnInPsIs:
 					begin
 						mouse_cell_new_status = `PnInPsIs;
 						player_flag_hit = 0;
 						player_shoot_change_status = 0;
+						pleyer_click_flag = 0;
 					end
 				endcase
 				count_sleep = 4'd0;
@@ -824,7 +847,7 @@ begin
 			endcase //case stati
 	end //if del conteggio
 	/* CODICE PER IL RESET */
-	if(ia_hit_count >= 5'd18)
+	if(ia_hit_count >= 5'd17)
 	begin
 		game_end = 2'b10;
 	end
@@ -837,6 +860,7 @@ begin
 		ia_hit_count = 5'd0;
 		game_end = 2'd0;
 		sleep_pre_ia_shoot_counter = 0;
+		player_click_count = 7'd0;
 	end 
 		//turn_status = 2'd3;
 	end
